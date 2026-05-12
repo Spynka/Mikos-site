@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <title>Театр клоунады «Микос» | О театре</title>
+    <link rel="icon" type="image/svg+xml" href="SVG/logo-2.svg" sizes="any">
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;0,6..12,700;1,6..12,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header-footer.css"> 
+    <style>
+        /* ===== ПРИНУДИТЕЛЬНЫЙ СБРОС СТИЛЕЙ ДЛЯ НОВЫХ БЛОКОВ ===== */
+        .about-page .timeline-section *,
+        .about-page .mission-section * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --white: #FFFFFF;
+            --grey-89: #E5E3E1;
+            --grey-96: #F5F5F5;
+            --grey-97: #F8F7F6;
+            --azure-27: #2A3D5E;
+            --azure-35: #3A5078;
+            --azure-44: #4A6294;
+            --red-59: #E8454D;
+        }
+
+        /* ----- НОВЫЙ ТАЙМЛАЙН (ИСТОРИЯ) ----- */
+        .timeline-section {
+            padding: 3rem 0 4rem !important;
+        }
+        .timeline-section .section-title {
+            font-family: 'Unbounded', sans-serif !important;
+            font-weight: 700 !important;
+            font-size: clamp(2rem, 5vw, 2.8rem) !important;
+            color: #1A1718 !important;
+            margin-bottom: 2.5rem !important;
+            display: block !important;
+            text-align: left !important;
+            text-decoration: none !important;
+            border-bottom: none !important;
+            position: static !important;
+        }
+        .timeline-section .section-title::after,
+        .timeline-section .section-title::before {
+            display: none !important;
+        }
+        .timeline-container {
+            position: relative !important;
+            margin: 2rem 0 !important;
+            padding: 0 !important;
+        }
+        .timeline-container::before {
+            content: '' !important;
+            position: absolute !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            width: 3px !important;
+            height: 100% !important;
+            background: linear-gradient(to bottom, var(--azure-27), var(--grey-89)) !important;
+            border-radius: 3px !important;
+            z-index: 0 !important;
+        }
+        .timeline-item {
+            display: flex !important;
+            align-items: stretch !important;
+            margin-bottom: 4rem !important;
+            position: relative !important;
+            opacity: 0 !important;
+            transform: translateY(30px) !important;
+            transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1), transform 0.7s cubic-bezier(0.23, 1, 0.32, 1) !important;
+            padding: 0 !important;
+            width: 100% !important;
+        }
+        .timeline-item.visible {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+        .timeline-item.left {
+            flex-direction: row !important;
+            justify-content: flex-start !important;
+            padding-right: 5% !important;
+        }
+        .timeline-item.right {
+            flex-direction: row-reverse !important;
+            justify-content: flex-start !important;
+            padding-left: 5% !important;
+        }
+        .timeline-content {
+            width: 42% !important;
+            background: var(--white) !important;
+            border-radius: 24px !important;
+            padding: 0 !important;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.04), 0 5px 15px rgba(42,61,94,0.08) !important;
+            border: 1px solid rgba(74,98,148,0.1) !important;
+            backdrop-filter: blur(2px) !important;
+            transition: transform 0.25s ease, box-shadow 0.3s ease !important;
+            z-index: 2 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            text-align: left !important;
+            margin: 0 !important;
+            overflow: hidden !important;
+        }
+        .timeline-content:hover {
+            transform: translateY(-6px) !important;
+            box-shadow: 0 25px 40px rgba(42,61,94,0.12) !important;
+            border-color: rgba(232,69,77,0.25) !important;
+        }
+        .timeline-photo {
+            width: 100% !important;
+            height: 180px !important;
+            overflow: hidden !important;
+            flex-shrink: 0 !important;
+            border: none !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        .timeline-photo img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            display: block !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        .timeline-text {
+            flex: 1 !important;
+            text-align: left !important;
+            padding: 1.8rem !important;
+        }
+        .timeline-year {
+            font-family: 'Unbounded', sans-serif !important;
+            font-weight: 800 !important;
+            font-size: 2rem !important;
+            color: var(--red-59) !important;
+            line-height: 1 !important;
+            margin-bottom: 0.2rem !important;
+        }
+        .timeline-title {
+            font-family: 'Unbounded', sans-serif !important;
+            font-weight: 700 !important;
+            font-size: 1.2rem !important;
+            color: var(--azure-27) !important;
+            margin-bottom: 0.4rem !important;
+            text-decoration: none !important;
+        }
+        .timeline-desc {
+            font-size: 0.95rem !important;
+            color: #3D393A !important;
+            line-height: 1.6 !important;
+        }
+        .timeline-marker {
+            position: absolute !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            width: 18px !important;
+            height: 18px !important;
+            background: var(--red-59) !important;
+            border: 3px solid white !important;
+            border-radius: 50% !important;
+            box-shadow: 0 0 0 4px rgba(232,69,77,0.2) !important;
+            z-index: 3 !important;
+            top: 90px !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        /* ----- НОВАЯ МИССИЯ И ФИЛОСОФИЯ ----- */
+        .mission-section {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 2.5rem !important;
+            margin: 4rem 0 !important;
+        }
+        .mission-block {
+            background: #F8F7F6 !important;
+            border-radius: 28px !important;
+            padding: 2.5rem !important;
+            transition: background 0.3s !important;
+            border: 1px solid transparent !important;
+            text-align: left !important;
+        }
+        .mission-block:hover {
+            background: #fff !important;
+            border-color: var(--grey-89) !important;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.03) !important;
+        }
+        .mission-block h2 {
+            font-family: 'Unbounded', sans-serif !important;
+            font-weight: 700 !important;
+            font-size: 1.8rem !important;
+            color: var(--azure-27) !important;
+            margin-bottom: 1.2rem !important;
+            text-decoration: none !important;
+        }
+        .mission-block p {
+            margin-bottom: 1rem !important;
+            font-size: 1.05rem !important;
+        }
+        .quote {
+            margin-top: 1.5rem !important;
+            font-style: italic !important;
+            font-weight: 600 !important;
+            color: var(--azure-35) !important;
+            border-left: 5px solid var(--red-59) !important;
+            padding-left: 1.5rem !important;
+            font-size: clamp(2.4rem, 5vw, 3.6rem) !important;
+            line-height: 1.3 !important;
+        }
+
+        /* ============================================= */
+        /* МОДАЛЬНОЕ ОКНО ГАЛЕРЕИ (БЕЗ ИЗМЕНЕНИЙ)       */
+        /* ============================================= */
+        .gallery-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 100000; display: none; opacity: 0; transition: opacity 0.3s ease;
+        }
+        .gallery-modal.active { display: block; opacity: 1; }
+        .gallery-modal-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(5px);
+        }
+        .gallery-modal-container {
+            position: relative; width: 100%; height: 100%; display: flex;
+            align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;
+        }
+        .gallery-modal-content {
+            position: relative; max-width: 90%; max-height: 90vh; display: flex;
+            align-items: center; justify-content: center; z-index: 1;
+        }
+        .gallery-modal-content img {
+            max-width: 100%; max-height: 90vh; width: auto; height: auto;
+            object-fit: contain; border-radius: 8px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            user-select: none; -webkit-user-select: none;
+        }
+        .gallery-modal-close, .gallery-modal-prev, .gallery-modal-next {
+            position: absolute; background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3); color: white; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;
+            z-index: 10; backdrop-filter: blur(4px);
+        }
+        .gallery-modal-close:hover, .gallery-modal-prev:hover, .gallery-modal-next:hover {
+            background: rgba(255, 255, 255, 0.25); border-color: rgba(255, 255, 255, 0.5); transform: scale(1.05);
+        }
+        .gallery-modal-close { top: 20px; right: 20px; width: 48px; height: 48px; border-radius: 50%; font-size: 24px; }
+        .gallery-modal-prev, .gallery-modal-next { top: 50%; transform: translateY(-50%); width: 56px; height: 56px; border-radius: 50%; font-size: 28px; }
+        .gallery-modal-prev { left: 20px; }
+        .gallery-modal-next { right: 20px; }
+        .gallery-modal-prev:hover { transform: translateY(-50%) scale(1.05); }
+        .gallery-modal-next:hover { transform: translateY(-50%) scale(1.05); }
+        .gallery-modal-counter {
+            position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.6); color: white; padding: 8px 20px; border-radius: 40px;
+            font-family: 'Unbounded', sans-serif; font-size: 14px; font-weight: 600;
+            backdrop-filter: blur(4px); border: 1px solid rgba(255, 255, 255, 0.2); z-index: 10;
+        }
+        body.modal-open { overflow: hidden !important; }
+
+        /* ============================================= */
+        /* АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ (360px)              */
+        /* ============================================= */
+        @media (max-width: 860px) {
+            .timeline-container::before { left: 24px !important; }
+            .timeline-item.left, .timeline-item.right {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                padding-left: 50px !important;
+                padding-right: 0 !important;
+                margin-bottom: 2rem !important;
+            }
+            .timeline-content { width: 100% !important; }
+            .timeline-marker { left: 24px !important; top: 90px !important; }
+            .mission-section { 
+                grid-template-columns: 1fr !important; 
+                gap: 1.5rem !important;
+                margin: 2rem 0 !important;
+            }
+            .mission-block { padding: 1.5rem !important; }
+            .timeline-section { padding: 2rem 0 2.5rem !important; }
+            .timeline-photo { height: 160px !important; }
+            .quote { font-size: clamp(1.8rem, 4vw, 2.4rem) !important; }
+            
+            /* Увеличенные отступы для блоков худрук, награды, галерея */
+            .director-highlight { margin: 3rem 0 !important; padding: 2rem !important; }
+            .awards-section { margin: 3rem 0 !important; }
+            .gallery-section { margin: 3rem 0 !important; }
+            .awards-grid { gap: 1.5rem !important; margin: 2rem 0 3rem !important; }
+            .show-more-wrapper { margin: 2rem 0 3rem !important; }
+            
+            .gallery-modal-container { padding: 10px; }
+            .gallery-modal-content { max-width: 95%; }
+            .gallery-modal-close { top: 12px; right: 12px; width: 44px; height: 44px; font-size: 20px; }
+            .gallery-modal-prev, .gallery-modal-next { width: 48px; height: 48px; font-size: 24px; }
+            .gallery-modal-prev { left: 8px; }
+            .gallery-modal-next { right: 8px; }
+            .gallery-modal-counter { bottom: 20px; padding: 6px 16px; font-size: 13px; }
+        }
+        
+        @media (max-width: 480px) {
+            .gallery-modal-prev, .gallery-modal-next { width: 40px; height: 40px; font-size: 20px; }
+            .gallery-modal-prev { left: 5px; }
+            .gallery-modal-next { right: 5px; }
+            .timeline-text { padding: 1.2rem !important; }
+            .timeline-photo { height: 140px !important; }
+            .timeline-year { font-size: 1.6rem !important; }
+            .timeline-title { font-size: 1.1rem !important; }
+            .timeline-desc { font-size: 0.9rem !important; }
+            .mission-block { padding: 1.2rem !important; }
+            .mission-block h2 { font-size: 1.5rem !important; }
+            .mission-block p { font-size: 0.95rem !important; }
+            .quote { font-size: 1.6rem !important; padding-left: 1rem !important; }
+            .timeline-section { padding: 1.5rem 0 2rem !important; }
+            .timeline-item { margin-bottom: 1.5rem !important; }
+            .mission-section { gap: 1rem !important; margin: 1.5rem 0 !important; }
+            .director-highlight { margin: 2.5rem 0 !important; padding: 1.5rem !important; }
+            .director-name { font-size: 1.8rem !important; }
+            .awards-section { margin: 2.5rem 0 !important; }
+            .gallery-section { margin: 2.5rem 0 !important; }
+            .awards-grid { gap: 1rem !important; }
+            .award-card { padding: 1.2rem !important; }
+        }
+        
+        @media (max-width: 360px) {
+            .page-title-about { font-size: 2.2rem !important; }
+            .timeline-section .section-title { font-size: 1.6rem !important; margin-bottom: 1.5rem !important; }
+            .timeline-photo { height: 120px !important; }
+            .timeline-text { padding: 1rem !important; }
+            .timeline-year { font-size: 1.4rem !important; }
+            .timeline-title { font-size: 1rem !important; }
+            .timeline-desc { font-size: 0.85rem !important; }
+            .quote { font-size: 1.4rem !important; }
+            .mission-block h2 { font-size: 1.3rem !important; }
+            .mission-block p { font-size: 0.9rem !important; }
+            .director-name { font-size: 1.5rem !important; }
+            .director-position { font-size: 0.9rem !important; }
+            .director-bio { font-size: 0.9rem !important; }
+            .award-title { font-size: 1.1rem !important; }
+            .award-desc { font-size: 0.85rem !important; }
+        }
+    </style>
+</head>
+<body>
+<div class="shop-container">
+    <!-- HEADER -->
+    <div id="site-header"></div>
+    <div class="mobile-nav" id="mobileNav"><div class="close-mobile-menu" id="closeMobileMenu">✕</div><ul><li><a href="#">Главная</a></li><li><a href="#">Афиша</a></li><li><a href="#">Заказчикам</a></li><li><a href="#">Брендбук</a></li><li><a href="#">Спектакли</a></li><li><a href="#">Команда</a></li><li><a href="#">О театре</a></li><li><a href="#">Магазин</a></li><li><a href="#">Контакты</a></li></ul></div>
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Основной контент страницы О театре -->
+    <div class="about-page">
+        <div class="page-header-about">
+            <h1 class="page-title-about">О театре «Микос»</h1>
+            <p class="page-subtitle-about">Самый эксцентричный театр клоунады России. Безумцы, гениально усложняющие простые вещи.</p>
+        </div>
+
+        <!-- История театра (ТАЙМЛАЙН НА ОСНОВЕ ФАКТОВ) -->
+        <div class="timeline-section">
+            <h2 class="section-title">История театра</h2>
+            <div class="timeline-container" id="timelineContainer"></div>
+        </div>
+
+        <!-- Миссия и философия (ПЕРЕПИСАНО ПОД КЛОУНАДУ) -->
+        <div class="mission-section">
+            <div class="mission-block">
+                <h2>Наша миссия</h2>
+                <p>Мы создаём театр, в котором эксцентрика и абсурд помогают говорить о самом важном — искренне, громко и без фальши. Мы не просто смешим, мы исследуем мир через маску клоуна.</p>
+                <p>Каждое выступление — это гениальное упрощение сложных вещей. Мы убеждены, что язык клоунады универсален и понятен каждому, независимо от возраста и культуры.</p>
+                <div class="quote"><p>«Мы не боимся быть смешными. Мы боимся быть скучными».</p></div>
+            </div>
+            <div class="mission-block">
+                <h2>Философия</h2>
+                <p>Мы за живой, непосредственный контакт со зрителем. В нашей труппе нет места равнодушию — каждый артист является соавтором той магии, что рождается на сцене.</p>
+                <p>Мы экспериментируем с формой, жонглируем жанрами и нарушаем правила, создавая тот самый неповторимый стиль «Микос», который покорил зрителей в России, Европе и Америке.</p>
+                <p>Открытость миру, виртуозное мастерство и бесконечная любовь к игре — вот три кита, на которых стоит наш театр.</p>
+            </div>
+        </div>
+
+        <!-- Художественный руководитель (ИСПРАВЛЕНО) -->
+        <div class="director-highlight">
+            <div class="director-photo">
+                <img src="images/content/actors/Давыдов-4.jpg" alt="Сергей Давыдов">
+            </div>
+            <div class="director-info">
+                <div class="director-tag">ХУДОЖЕСТВЕННЫЙ РУКОВОДИТЕЛЬ</div>
+                <div class="director-name">Сергей <span>«Паганель»</span> Давыдов</div>
+                <div class="director-position">Основатель театра, режиссёр, один из самых известных русских клоунов в мире</div>
+                <div class="director-bio">Создатель и идейный вдохновитель «Микоса». Под его руководством театр из студенческого эксперимента превратился в легендарный коллектив, покоривший мировые площадки. Носитель уникального актёрского метода, сочетающего искромётную импровизацию и филигранную технику.</div>
+                <button class="director-btn">Подробнее</button>
+            </div>
+        </div>
+
+        <!-- Награды и признание (ИСПРАВЛЕНО) -->
+        <div class="awards-section">
+            <h2 class="section-title">Награды и признание</h2>
+            <div class="awards-grid">
+                <div class="award-card">
+                    <div class="award-year">Международное признание</div>
+                    <div class="award-title">Приз Юрия Никулина</div>
+                    <div class="award-desc">Почётная награда Московского фестиваля клоунов, вручённая за выдающийся вклад в искусство клоунады.</div>
+                </div>
+                <div class="award-card">
+                    <div class="award-year">Мировой успех</div>
+                    <div class="award-title">Авиньонский фестиваль</div>
+                    <div class="award-desc">Первое место и Приз прессы на престижном международном конкурсе во Франции.</div>
+                </div>
+                <div class="award-card">
+                    <div class="award-year">Россия</div>
+                    <div class="award-title">Самый эксцентричный театр</div>
+                    <div class="award-desc">Негласный статус, закрепившийся за театром благодаря уникальному стилю и смелым сценическим решениям.</div>
+                </div>
+                <div class="award-card">
+                    <div class="award-year">Мировые гастроли</div>
+                    <div class="award-title">Признание в Европе и Америке</div>
+                    <div class="award-desc">Слава театра давно вышла за пределы России, собрав аншлаги на ведущих мировых площадках.</div>
+                </div>
+                <div class="award-card">
+                    <div class="award-year">1991</div>
+                    <div class="award-title">Первый успех</div>
+                    <div class="award-desc">Студенческий вечер в Киеве, положивший начало легендарной истории театра.</div>
+                </div>
+                <div class="award-card">
+                    <div class="award-year">Сегодня</div>
+                    <div class="award-title">Живая легенда</div>
+                    <div class="award-desc">Десятки лет на сцене, тысячи поклонников и неугасающая жажда эксперимента.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Галерея (ОСТАВЛЕНО БЕЗ ИЗМЕНЕНИЙ) -->
+        <div class="gallery-section">
+            <h2 class="section-title">Галерея</h2>
+            <div class="gallery-grid" id="galleryGrid"></div>
+            <div class="show-more-wrapper">
+                <button class="show-more-btn" id="showMoreGalleryBtn">Показать еще</button>
+            </div>
+        </div>
+    </div>
+    <!-- Модальное окно галереи (ОСТАВЛЕНО БЕЗ ИЗМЕНЕНИЙ) -->
+    <div class="gallery-modal" id="galleryModal">
+        <div class="gallery-modal-overlay"></div>
+        <div class="gallery-modal-container">
+            <button class="gallery-modal-close" id="galleryModalClose"><i class="fas fa-times"></i></button>
+            <button class="gallery-modal-prev" id="galleryModalPrev"><i class="fas fa-chevron-left"></i></button>
+            <button class="gallery-modal-next" id="galleryModalNext"><i class="fas fa-chevron-right"></i></button>
+            <div class="gallery-modal-content">
+                <img id="galleryModalImage" src="" alt="Галерея">
+            </div>
+            <div class="gallery-modal-counter" id="galleryModalCounter">
+                <span id="currentImageIndex">1</span> / <span id="totalImagesCount">3</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div id="site-footer"></div>
+</div>
+  <script src="js/loader-animation.js"></script>
+  <script src="js/components-loader.js"></script>
+<script src="js/header-scripts.js"></script>
+<script src="js/common.js"></script>
+<script>
+    // Галерея (19 фото) - ОРИГИНАЛЬНЫЙ МАССИВ
+    const galleryImages = [
+        'images/content/performances/6.jpg', 'images/content/performances/7.jpg', 'images/content/performances/8.jpg',
+        'images/content/performances/13.jpg', 'images/content/performances/14.jpg', 'images/content/performances/15.jpg',
+        'images/content/performances/21.jpg', 'images/content/performances/24.jpg', 'images/content/performances/19.jpg',
+        'images/content/performances/22.jpg', 'images/content/performances/23.jpg', 'images/content/performances/20.jpg',
+        'images/content/performances/18.jpg', 'images/content/performances/3.jpg', 'images/content/performances/4.jpg',
+        'images/content/performances/9.jpg', 'images/content/performances/10.jpg', 'images/content/performances/17.jpg',
+        'images/content/performances/16.jpg'
+    ];
+
+    // Данные для нового таймлайна (ОСНОВАНО НА ВАШИХ ФАКТАХ)
+        // Данные для нового таймлайна (ОСНОВАНО НА ФАКТАХ) - ИСПРАВЛЕН СИНТАКСИС
+    const timelineData = [
+        { year: 1991, title: 'Первый выход', desc: '2 апреля в Киеве на студенческом вечере состоялось первое официальное выступление будущих звёзд клоунады.', img: 'images/content/history/1.png' },
+        { year: '1990-е', title: 'Становление стиля', desc: 'Формирование уникального почерка театра. Зарождение духа эксцентрики и абсурда, ставшего визитной карточкой «Микоса».', img: 'images/content/history/1.png' },
+        { year: '2000-е', title: 'Российская слава', desc: 'Приз Юрия Никулина на Московском фестивале клоунов. Театр громко заявляет о себе на всю страну.', img: 'images/content/history/1.png' },
+        { year: '2010-е', title: 'Мировое признание', desc: 'Первое место и приз прессы в Авиньоне. «Микос» покоряет Европу и Америку, становясь одним из самых известных русских театров.', img: 'images/content/history/1.png' },
+        { year: 2025, title: 'Настоящее время', desc: 'Продолжение легендарной истории. «Микос» остаётся территорией свободы, смеха и виртуозной клоунады.', img: 'images/content/history/1.png' }
+    ];
+    
+    let visibleGallery = 3;
+    let currentGalleryIndex = 0;
+
+    // ---------- НОВЫЙ РЕНДЕР ТАЙМЛАЙНА ----------
+    function renderTimeline() {
+        const container = document.getElementById('timelineContainer');
+        if (!container) return;
+        container.innerHTML = '';
+        timelineData.forEach((item, index) => {
+            const side = index % 2 === 0 ? 'left' : 'right';
+            const div = document.createElement('div');
+            div.className = `timeline-item ${side}`;
+            div.setAttribute('data-animate', 'true');
+            div.innerHTML = `
+                <div class="timeline-content">
+                    <div class="timeline-photo"><img src="${item.img}" alt="${item.year}" onerror="this.src='https://placehold.co/600x400/2A3D5E/white?text=${item.year}'"></div>
+                    <div class="timeline-text">
+                        <div class="timeline-year">${item.year}</div>
+                        <div class="timeline-title">${item.title}</div>
+                        <div class="timeline-desc">${item.desc}</div>
+                    </div>
+                </div>
+                <div class="timeline-marker"></div>
+            `;
+            container.appendChild(div);
+        });
+    }
+
+    // ---------- ОРИГИНАЛЬНЫЙ РЕНДЕР ГАЛЕРЕИ ----------
+    function renderGallery() {
+        const grid = document.getElementById('galleryGrid');
+        const displayItems = galleryImages.slice(0, visibleGallery);
+        grid.innerHTML = '';
+        displayItems.forEach((img, index) => {
+            const item = document.createElement('div');
+            item.className = 'gallery-item';
+            item.setAttribute('data-index', index);
+            item.setAttribute('data-src', img);
+            item.innerHTML = `<img src="${img}" alt="Сцена из спектакля">`;
+            item.addEventListener('click', function() {
+                openGalleryModal(parseInt(this.getAttribute('data-index')));
+            });
+            grid.appendChild(item);
+        });
+        const showMoreBtn = document.getElementById('showMoreGalleryBtn');
+        if (showMoreBtn) {
+            showMoreBtn.style.display = visibleGallery >= galleryImages.length ? 'none' : 'block';
+        }
+    }
+
+    // ---------- ОРИГИНАЛЬНЫЕ ФУНКЦИИ МОДАЛЬНОГО ОКНА ----------
+    function openGalleryModal(startIndex) {
+        currentGalleryIndex = startIndex;
+        const modal = document.getElementById('galleryModal');
+        const modalImage = document.getElementById('galleryModalImage');
+        const currentSpan = document.getElementById('currentImageIndex');
+        const totalSpan = document.getElementById('totalImagesCount');
+        if (!modal || !modalImage) return;
+        modalImage.src = galleryImages[currentGalleryIndex];
+        if (currentSpan && totalSpan) {
+            currentSpan.textContent = currentGalleryIndex + 1;
+            totalSpan.textContent = galleryImages.length;
+        }
+        modal.classList.add('active');
+        document.body.classList.add('modal-open');
+        updateNavigationButtons();
+    }
+
+    function closeGalleryModal() {
+        const modal = document.getElementById('galleryModal');
+        if (modal) { modal.classList.remove('active'); document.body.classList.remove('modal-open'); }
+    }
+
+    function prevImage() { if (currentGalleryIndex > 0) { currentGalleryIndex--; updateModalImage(); } }
+    function nextImage() { if (currentGalleryIndex < galleryImages.length - 1) { currentGalleryIndex++; updateModalImage(); } }
+
+    function updateModalImage() {
+        const modalImage = document.getElementById('galleryModalImage');
+        const currentSpan = document.getElementById('currentImageIndex');
+        if (modalImage) modalImage.src = galleryImages[currentGalleryIndex];
+        if (currentSpan) currentSpan.textContent = currentGalleryIndex + 1;
+        updateNavigationButtons();
+    }
+
+    function updateNavigationButtons() {
+        const prevBtn = document.getElementById('galleryModalPrev');
+        const nextBtn = document.getElementById('galleryModalNext');
+        if (prevBtn) { prevBtn.style.opacity = currentGalleryIndex === 0 ? '0.5' : '1'; prevBtn.style.cursor = currentGalleryIndex === 0 ? 'not-allowed' : 'pointer'; }
+        if (nextBtn) { nextBtn.style.opacity = currentGalleryIndex === galleryImages.length - 1 ? '0.5' : '1'; nextBtn.style.cursor = currentGalleryIndex === galleryImages.length - 1 ? 'not-allowed' : 'pointer'; }
+    }
+
+    function initGalleryModal() {
+        const modal = document.getElementById('galleryModal');
+        document.getElementById('galleryModalClose')?.addEventListener('click', closeGalleryModal);
+        document.querySelector('.gallery-modal-overlay')?.addEventListener('click', closeGalleryModal);
+        document.getElementById('galleryModalPrev')?.addEventListener('click', prevImage);
+        document.getElementById('galleryModalNext')?.addEventListener('click', nextImage);
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) closeGalleryModal();
+            if (modal.classList.contains('active')) {
+                if (e.key === 'ArrowLeft') { e.preventDefault(); if (currentGalleryIndex > 0) prevImage(); }
+                else if (e.key === 'ArrowRight') { e.preventDefault(); if (currentGalleryIndex < galleryImages.length - 1) nextImage(); }
+            }
+        });
+        let touchStartX = 0;
+        modal.addEventListener('touchstart', function(e) { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+        modal.addEventListener('touchend', function(e) {
+            const diff = touchStartX - e.changedTouches[0].screenX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0 && currentGalleryIndex < galleryImages.length - 1) nextImage();
+                else if (diff < 0 && currentGalleryIndex > 0) prevImage();
+            }
+        }, { passive: true });
+    }
+
+    // ---------- АНИМАЦИЯ ПРИ СКРОЛЛЕ (для нового таймлайна) ----------
+    function observeAnimatedItems() {
+        const elements = document.querySelectorAll('[data-animate="true"]');
+        if (!('IntersectionObserver' in window)) {
+            elements.forEach(el => el.classList.add('visible'));
+            return;
+        }
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+        elements.forEach(el => observer.observe(el));
+    }
+
+    // Кнопка "Показать еще"
+    document.getElementById('showMoreGalleryBtn')?.addEventListener('click', () => {
+        if (visibleGallery < galleryImages.length) {
+            visibleGallery = Math.min(visibleGallery + 3, galleryImages.length);
+            renderGallery();
+        }
+    });
+
+    // Запуск
+    renderTimeline();
+    renderGallery();
+    initGalleryModal();
+    setTimeout(observeAnimatedItems, 100);
+</script>
+<script src="js/common.js"></script>
+</body>
+</html>

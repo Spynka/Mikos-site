@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Театр клоунады «Микос» | Спектакль</title>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header-footer.css"> 
+    <link rel="icon" type="image/svg+xml" href="SVG/logo-2.svg" sizes="any">
+    <script src="js/tour-data.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+<div class="shop-container">
+    <!-- HEADER (идентичен) -->
+    <div id="site-header"></div>
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Динамический контент спектакля -->
+    <div class="performance-page" id="performanceDetailsContainer">
+        <!-- JS заполнит -->
+    </div>
+
+    <!-- FOOTER -->
+    <div id="site-footer"></div>
+</div>
+  <script src="js/loader-animation.js"></script>
+  <script src="js/components-loader.js"></script>
+<script src="js/header-scripts.js"></script>
+<script src="js/common.js"></script>
+
+<script>
+(function(){
+    'use strict';
+    
+    // 🔥 ИСПОЛЬЗУЕМ tour-data.js ТОЛЬКО для дат, мест и цен
+    // Оригинальные данные для отображения (фото, описание, актёры) оставляем как есть
+    
+    // ----- ОРИГИНАЛЬНЫЕ ДАННЫЕ ДЛЯ ОТОБРАЖЕНИЯ (стиль, фото, текст) -----
+    const performancesDisplayData = {
+        1: {
+            title: 'Лишь бы не было детей',
+            age: '18+', duration: '90 минут', premiere: '2019 год',
+            desc: 'История сосуществования в одном пространстве нескольких людей — очень разных. Они пытаются выжить, сохранить своё «я», не сойти с ума. И всё это — через призму клоунады, самого человечного из искусств.',
+            directorNote: '«Это спектакль о нас. О том, как мы пытаемся быть вместе, но оставаться собой. О страхах, мечтах и несбывшихся надеждах».',
+            review: '«Лишь бы не было детей — это не просто спектакль, это опыт проживания чужих жизней. Театр снова доказывает, что клоунада — про человеческую душу.»',
+            reviewAuthor: 'Театральный обозреватель «Коммерсантъ»',
+            price: '1 500 ₽', // 🔹 Оставляем оригинальный формат цены
+            poster: 'images/content/performances/11.jpg', 
+            poster_small: 'images/content/performances/14.jpg',
+            cast: [
+                {initials:'СД', name:'Сергей Давыдов', role:'Режиссер, актёр'},
+                {initials:'КИ', name:'Ксения Иванова', role:'Актриса'},
+                {initials:'ТЦ', name:'Тотраз Циукаев', role:'Актёр'},
+                {initials:'МГ', name:'Максим Гамаюнов', role:'Актёр'}
+            ],
+            technical: { 
+                stage:'Основная сцена', duration:'90 минут', premiere:'2019', 
+                genre:'Клоунада, драма', age:'18+', 
+                director:'Сергей «Паганель» Давыдов', artist:'Анна Крылова', composer:'Дмитрий Орлов' 
+            }
+        },
+        2: {
+            title: 'Богатыри', age:'12+', duration:'100 минут', premiere:'2021 год',
+            desc: 'Былины в современном прочтении. Сила, честь и юмор в одном флаконе. Эпическая комедия для всей семьи.',
+            directorNote: '«Мы играем с архетипами: Илья, Добрыня, Алёша — они среди нас. Им тоже знакомы офисные битвы и пробки, но в душе они богатыри».',
+            review: '«Задорно, смешно и очень по-русски. Отличный спектакль для семейного просмотра.»', 
+            reviewAuthor: 'Афиша Daily',
+            price: '1 400 ₽', 
+            poster: 'images/content/performances/3.jpg', 
+            poster_small: 'images/content/performances/3.jpg',
+            cast: [
+                {initials:'СД', name:'Сергей Давыдов', role:'Режиссер, актёр'},
+                {initials:'КИ', name:'Ксения Иванова', role:'Актриса'},
+                {initials:'ТЦ', name:'Тотраз Циукаев', role:'Актёр'},
+                {initials:'МГ', name:'Максим Гамаюнов', role:'Актёр'}
+            ],
+            technical: { 
+                stage:'Основная сцена', duration:'100 минут', premiere:'2021', 
+                genre:'Комедия, фолк-фэнтези', age:'12+', director:'Сергей Давыдов' 
+            }
+        },
+        3: {
+            title: 'Ожидание', age:'16+', duration:'80 минут', premiere:'2022 год',
+            desc: 'Трогательная история о времени, надежде и встречах. Минимализм и глубина.',
+            directorNote: '«Ожидание — самое деятельное состояние. Мы ждём, и в этом вся жизнь».',
+            review: '«Камерный шедевр. Актёры работают на разрыв.»', 
+            reviewAuthor: 'Театрал', 
+            price: '1 200 ₽', 
+            poster: 'images/content/performances/9.jpg', 
+            poster_small: 'images/content/performances/9.jpg',
+            cast: [
+                {initials:'СД', name:'Сергей Давыдов', role:'Режиссер, актёр'},
+                {initials:'КИ', name:'Ксения Иванова', role:'Актриса'},
+                {initials:'ТЦ', name:'Тотраз Циукаев', role:'Актёр'},
+                {initials:'МГ', name:'Максим Гамаюнов', role:'Актёр'}
+            ],
+            technical: { stage:'Малая сцена', duration:'80 минут', premiere:'2022', genre:'Драма', age:'16+' }
+        },
+        4: {
+            title: 'Ушли за ...', age:'18+', duration:'110 минут', premiere:'2020 год',
+            desc: 'Феерия клоунады и музыки. Яркое кабаре с цирковыми номерами и живым оркестром.',
+            review: '«Праздник, который всегда с тобой. Зрители танцуют в проходах!»', 
+            reviewAuthor: 'TimeOut', 
+            price: '1 800 ₽', 
+            poster: 'images/content/performances/10.jpg', 
+            poster_small: 'images/content/performances/10.jpg',
+            cast: [
+                {initials:'СД', name:'Сергей Давыдов', role:'Режиссер, актёр'},
+                {initials:'КИ', name:'Ксения Иванова', role:'Актриса'},
+                {initials:'ТЦ', name:'Тотраз Циукаев', role:'Актёр'},
+                {initials:'МГ', name:'Максим Гамаюнов', role:'Актёр'}
+            ],
+            technical: { stage:'Основная сцена', duration:'110 минут', premiere:'2020', genre:'Кабаре, клоунада', age:'18+' }
+        },
+        5: {
+            title: 'Авиаторы', age:'16+', duration:'95 минут', premiere:'2023 год',
+            desc: 'О мечтах, полетах и свободе. История о людях, которые стремятся в небо, оставляя земные заботы.',
+            review: '«Вдохновляющая постановка. Хочется расправить крылья.»', 
+            reviewAuthor: 'Культура.РФ', 
+            price: '1 600 ₽', 
+            poster: 'images/content/performances/12.jpg', 
+            poster_small: 'images/content/performances/6.jpg',
+            cast: [
+                {initials:'СД', name:'Сергей Давыдов', role:'Режиссер, актёр'},
+                {initials:'КИ', name:'Ксения Иванова', role:'Актриса'},
+                {initials:'ТЦ', name:'Тотраз Циукаев', role:'Актёр'},
+                {initials:'МГ', name:'Максим Гамаюнов', role:'Актёр'}
+            ],
+            technical: { stage:'Основная сцена', duration:'95 минут', premiere:'2023', genre:'Драма, приключения', age:'16+' }
+        }
+    };
+
+    // Получить ID из URL
+    const params = new URLSearchParams(window.location.search);
+    let perfId = parseInt(params.get('id')) || 1;
+    if (!performancesDisplayData[perfId]) perfId = 1;
+    
+    const displayData = performancesDisplayData[perfId];
+    const container = document.getElementById('performanceDetailsContainer');
+    
+    // =============================================
+    // 🔥 ЕДИНАЯ ФУНКЦИЯ ПЕРЕХОДА К ОФОРМЛЕНИЮ
+    // =============================================
+    window.goToCheckout = function(eventId) {
+        const event = TOUR_SCHEDULE.find(ev => ev.id === eventId);
+        if (!event) { console.error('Событие не найдено:', eventId); return; }
+        
+        const orderInfo = {
+            title: event.title,
+            dateTime: formatEventDate(event.date, event.time),
+            hall: event.venueWithCity || event.venue,
+            address: event.address,
+            price: displayData.price, // 🔹 Берём оригинальную цену из displayData
+            poster: event.image,
+            eventId: event.id,
+            performanceId: event.performanceId
+        };
+        
+        localStorage.setItem('selectedPerformance', JSON.stringify(orderInfo));
+        window.location.href = 'checkout.html';
+    };
+    
+    // =============================================
+    // РЕНДЕР ДЕТАЛЕЙ СПЕКТАКЛЯ
+    // =============================================
+    function renderDetails() {
+        const tech = displayData.technical || {};
+        
+        // 🔥 БЕРЁМ РАСПИСАНИЕ ИЗ tour-data.js (только будущие даты)
+        const events = filterEventsByPerformance(perfId, getUpcomingEvents(TOUR_SCHEDULE));
+        const sortedEvents = sortEventsByDate(events);
+        
+        // Сборка расписания с НОВЫМИ датами и местами
+        let scheduleHtml = '';
+        if (sortedEvents.length > 0) {
+            sortedEvents.forEach(ev => {
+                const hasTickets = !!ev.ticketUrl;
+                // 🔹 Используем venueWithCity если есть, иначе venue
+                const venueDisplay = ev.venueWithCity || ev.venue;
+                
+                scheduleHtml += `
+                    <div class="schedule-item" data-event-id="${ev.id}">
+                        <div>
+                            <!-- 🔥 Форматируем дату через formatEventDate (родительный падеж) -->
+                            <div class="schedule-date">${formatEventDate(ev.date, '')}</div>
+                            <div class="schedule-time">${ev.time}</div>
+                            <!-- 🔹 Показываем город + театр -->
+                            <div class="schedule-venue" style="font-size:12px;color:#5A5556;margin-top:4px;">
+                                <i class="fas fa-map-marker-alt"></i> ${venueDisplay}
+                            </div>
+                        </div>
+                        <div>
+                            <!-- 🔹 Оставляем оригинальные бейджи, но можно добавить логику -->
+                            <span class="seats-badge ${hasTickets ? 'seats-blue' : 'seats-gray'}">
+                                ${hasTickets ? 'Есть билеты' : 'Скоро'}
+                            </span>
+                        </div>
+                        <button class="schedule-buy" data-event-id="${ev.id}" ${!hasTickets ? 'disabled style="opacity:0.5;cursor:not-allowed"' : ''}>
+                            Купить билеты
+                        </button>
+                    </div>
+                `;
+            });
+        } else {
+            scheduleHtml = '<div style="color:#5A5556;padding:20px;text-align:center;">🎭 Показы на этот спектакль пока не запланированы. Следите за обновлениями!</div>';
+        }
+        
+        // Актёры (без изменений)
+        let castHtml = '';
+        displayData.cast?.forEach(c => { 
+            castHtml += `<div class="cast-card"><div class="cast-avatar">${c.initials}</div><div><div class="cast-name">${c.name}</div><div class="cast-role">${c.role}</div></div></div>`; 
+        });
+        
+        const html = `
+            <div class="breadcrumbs"><a href="index.html">Главная</a> <span>/</span> <a href="performances.html">Спектакли</a> <span>/</span> <span>${displayData.title}</span></div>
+            <div class="performance-hero">
+                <div class="performance-poster"><img src="${displayData.poster}" alt="${displayData.title}"></div>
+                <div class="performance-info">
+                    <h1 class="performance-title">${displayData.title}</h1>
+                    <div class="performance-meta">
+                        <div class="meta-item"><span class="meta-label">Возраст</span><span class="meta-value">${displayData.age}</span></div>
+                        <div class="meta-item"><span class="meta-label">Длительность</span><span class="meta-value">${displayData.duration}</span></div>
+                        <div class="meta-item"><span class="meta-label">Премьера</span><span class="meta-value">${displayData.premiere}</span></div>
+                    </div>
+                    <div class="performance-description"><h3>О спектакле</h3><p>${displayData.desc}</p><h3>Режиссёр о спектакле</h3><p>${displayData.directorNote || '«Этот спектакль — наша попытка поговорить со зрителем на важные темы языком клоунады».'}</p></div>
+                    <div class="review-block"><div class="review-text">«${displayData.review || 'Яркая, запоминающаяся работа театра.»'}»</div><div class="review-author">— ${displayData.reviewAuthor || 'Пресса'}</div></div>
+                    <!-- 🔹 ОРИГИНАЛЬНАЯ ЦЕНА БЕЗ "УТОЧНЯЙТЕ" -->
+                    <div class="performance-price">от ${displayData.price}</div>
+                    <button class="buy-ticket-main" data-performance-id="${perfId}">Купить билет</button>
+                </div>
+            </div>
+            <div class="schedule-section"><div class="schedule-header"><h3 class="schedule-title">Расписание сеансов</h3></div><div class="schedule-list">${scheduleHtml}</div></div>
+            <div class="cast-section"><h3 class="cast-title">Актёрский состав</h3><div class="cast-grid">${castHtml}</div></div>
+            <div class="technical-section"><h3 class="technical-title">Техническая информация</h3><div class="technical-grid">
+                <div class="technical-item"><span class="technical-label">Сцена: </span><span class="technical-value">${tech.stage || 'Основная сцена'}</span></div>
+                <div class="technical-item"><span class="technical-label">Продолжительность: </span><span class="technical-value">${tech.duration || displayData.duration}</span></div>
+                <div class="technical-item"><span class="technical-label">Премьера: </span><span class="technical-value">${tech.premiere || displayData.premiere}</span></div>
+                <div class="technical-item"><span class="technical-label">Жанр: </span><span class="technical-value">${tech.genre || 'Клоунада'}</span></div>
+                <div class="technical-item"><span class="technical-label">Возраст: </span><span class="technical-value">${tech.age || displayData.age}</span></div>
+                <div class="technical-item"><span class="technical-label">Режиссёр: </span><span class="technical-value">${tech.director || 'Сергей Давыдов'}</span></div>
+            </div></div>
+            <div class="similar-section"><div class="similar-header"><h3 class="similar-title">Похожие спектакли</h3></div><div class="similar-grid" id="similarGrid"></div></div>
+        `;
+        container.innerHTML = html;
+
+        // Заполняем "похожие" (без изменений, только ссылки)
+        const similarGrid = document.getElementById('similarGrid');
+        if (similarGrid) {
+            let similarHtml = '';
+            Object.entries(performancesDisplayData).forEach(([id, p]) => {
+                if (parseInt(id) === perfId) return;
+                similarHtml += `<div class="similar-card"><img class="similar-img" src="${p.poster_small}" alt="${p.title}"><div class="similar-content"><div class="similar-tags"><span class="similar-tag">${p.age}</span></div><h4 class="similar-name">${p.title}</h4><p class="similar-desc">${p.desc.substring(0,70)}…</p><div class="similar-footer"><span class="similar-price">от ${p.price}</span><button class="similar-btn" data-id="${id}">Подробнее</button></div></div></div>`;
+            });
+            similarGrid.innerHTML = similarHtml;
+            document.querySelectorAll('.similar-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const id = btn.dataset.id;
+                    window.location.href = `performance.html?id=${id}`;
+                });
+            });
+        }
+    }
+    renderDetails();
+
+    // 🔥 Кнопки покупки — единая функция
+    container.addEventListener('click', (e) => {
+        const buyButton = e.target.closest('.buy-ticket-main') || e.target.closest('.schedule-buy');
+        if (!buyButton || buyButton.disabled) return;
+        
+        e.preventDefault();
+        
+        const eventId = buyButton.dataset.eventId;
+        const perfId = buyButton.dataset.performanceId;
+        
+        if (eventId) {
+            // Конкретный сеанс → сразу покупка
+            goToCheckout(eventId);
+        } else if (perfId) {
+            // Только спектакль → берём ближайший доступный сеанс
+            const events = filterEventsByPerformance(parseInt(perfId), getUpcomingEvents(TOUR_SCHEDULE));
+            if (events[0]) {
+                goToCheckout(events[0].id);
+            } else {
+                alert('Показы на этот спектакль пока не запланированы.');
+            }
+        }
+    });
+
+    // Хедер / бургер (без изменений)
+    const dots = document.getElementById('dotsIcon'), closeIc = document.getElementById('closeIcon'), extra = document.getElementById('extraMenuRow');
+    if(dots) dots.addEventListener('click', ()=>{ extra.classList.add('open'); dots.style.display='none'; closeIc.style.display='inline-flex'; });
+    if(closeIc) closeIc.addEventListener('click', ()=>{ extra.classList.remove('open'); dots.style.display='inline-flex'; closeIc.style.display='none'; });
+    const burger = document.getElementById('burgerIcon'), mob = document.getElementById('mobileNav'), ov = document.getElementById('overlay'), clsMob = document.getElementById('closeMobileMenu');
+    function openMob(){ mob.classList.add('open'); ov.classList.add('active'); document.body.style.overflow='hidden'; }
+    function closeMob(){ mob.classList.remove('open'); ov.classList.remove('active'); document.body.style.overflow=''; }
+    burger?.addEventListener('click', openMob); clsMob?.addEventListener('click', closeMob); ov?.addEventListener('click', closeMob);
+    
+    document.getElementById('subscribeBtn')?.addEventListener('click', ()=>{
+        const chk = document.getElementById('consentCheckbox');
+        if(!chk.checked) { document.getElementById('consentError').style.display='block'; setTimeout(()=> document.getElementById('consentError').style.display='none',2000); }
+        else { alert('Подписка оформлена'); document.getElementById('subscribeEmail').value=''; chk.checked=false; }
+    });
+})();
+</script>
+<script src="js/common.js"></script>
+</body>
+</html>

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Театр клоунады «Микос» | Команда</title>
+    <link rel="icon" type="image/svg+xml" href="SVG/logo-2.svg" sizes="any">
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header-footer.css">
+    
+    <!-- СТИЛИ МОДАЛЬНОГО ОКНА КОМАНДЫ -->
+    <style>
+        /* ===== МОДАЛКА КОМАНДЫ ===== */
+        .team-modal-overlay {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            background-color: rgba(0, 0, 0, 0.85) !important;
+            backdrop-filter: blur(6px) !important;
+            z-index: 99999 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+            transition: opacity 0.3s ease, visibility 0.3s ease !important;
+            padding: 20px !important;
+            box-sizing: border-box !important;
+            contain: layout style paint !important;
+        }
+        .team-modal-overlay.active {
+            opacity: 1 !important;
+            visibility: visible !important;
+            display: flex !important;
+        }
+
+        .team-modal-content {
+            background: #1A1A1A !important;
+            border-radius: 24px !important;
+            max-width: 900px !important;
+            width: 100% !important;
+            max-height: 85vh !important;
+            overflow-y: auto !important;
+            position: relative !important;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            transform: scale(0.95) !important;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+            margin: auto !important;
+        }
+        .team-modal-overlay.active .team-modal-content {
+            transform: scale(1) !important;
+        }
+
+        .team-modal-close {
+            position: absolute !important;
+            top: 20px !important;
+            right: 20px !important;
+            width: 44px !important;
+            height: 44px !important;
+            border-radius: 50% !important;
+            background: rgba(255, 255, 255, 0.05) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: rgba(255, 255, 255, 0.8) !important;
+            font-size: 24px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            cursor: pointer !important;
+            z-index: 10 !important;
+            transition: all 0.2s ease !important;
+        }
+        .team-modal-close:hover {
+            background: #E8454D !important;
+            color: white !important;
+            border-color: #E8454D !important;
+            transform: rotate(90deg) !important;
+        }
+
+        .team-modal-body { display: flex !important; flex-direction: column !important; }
+        .team-modal-photo {
+            width: 100% !important; height: 350px !important; overflow: hidden !important;
+            border-radius: 24px 24px 0 0 !important; flex-shrink: 0 !important;
+        }
+        .team-modal-photo img {
+            width: 100% !important; height: 100% !important;
+            object-fit: cover !important; display: block !important;
+        }
+        .team-modal-info { padding: 30px !important; }
+        .team-modal-name {
+            font-family: 'Unbounded', sans-serif !important; font-size: 32px !important;
+            font-weight: 700 !important; color: #FFFFFF !important; margin-bottom: 6px !important;
+        }
+        .team-modal-nickname {
+            color: #E8454D !important; font-weight: 700 !important; font-size: 18px !important;
+            margin-bottom: 12px !important;
+        }
+        .team-modal-position {
+            font-size: 13px !important; font-weight: 700 !important; color: #4A6294 !important;
+            text-transform: uppercase !important; letter-spacing: 1.5px !important;
+            margin-bottom: 20px !important; padding-bottom: 16px !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+        }
+        .team-modal-section-title {
+            font-family: 'Unbounded', sans-serif !important; font-size: 18px !important;
+            font-weight: 700 !important; color: #F8F7F6 !important;
+            margin-top: 24px !important; margin-bottom: 14px !important;
+            border-left: 4px solid #E8454D !important; padding-left: 16px !important;
+        }
+        .team-modal-bio {
+            color: rgba(255, 255, 255, 0.85) !important;
+            font-family: 'Nunito Sans', sans-serif !important;
+            line-height: 1.6 !important; font-size: 15px !important;
+            margin-bottom: 8px !important; white-space: pre-line !important;
+        }
+        .team-performances-list {
+            display: flex !important; flex-direction: column !important;
+            margin-top: 8px !important; margin-bottom: 8px !important;
+        }
+        .team-performance-item {
+            display: flex !important; align-items: baseline !important;
+            padding: 12px 0 !important; border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+            color: rgba(255, 255, 255, 0.9) !important; font-size: 15px !important;
+        }
+        .team-performance-item:last-child { border-bottom: none !important; }
+        .team-performance-bullet {
+            color: #4A6294 !important; font-weight: 700 !important; font-size: 20px !important;
+            margin-right: 16px !important; min-width: 16px !important;
+        }
+        .team-performance-text { line-height: 1.5 !important; flex: 1 !important; }
+
+        /* Адаптив */
+        @media (min-width: 768px) {
+            .team-modal-body { flex-direction: row !important; }
+            .team-modal-photo {
+                width: 40% !important; height: auto !important;
+                border-radius: 24px 0 0 24px !important;
+            }
+            .team-modal-info { width: 60% !important; padding: 36px !important; }
+        }
+        @media (max-width: 480px) {
+            .team-modal-info { padding: 24px 20px !important; }
+            .team-modal-name { font-size: 28px !important; }
+            .team-modal-close { top: 16px !important; right: 16px !important; }
+        }
+
+        /* Кликабельность карточек актеров */
+        .actor-photo-card {
+            cursor: pointer;
+            transition: transform 0.25s ease, filter 0.25s ease;
+        }
+        .actor-photo-card:hover {
+            transform: scale(1.02);
+            filter: brightness(1.1);
+        }
+        .director-btn { cursor: pointer; }
+    </style>
+</head>
+<body>
+<div class="shop-container">
+    <div id="site-header"></div>
+    
+    <!-- Мобильное меню -->
+    <div class="mobile-nav" id="mobileNav">
+        <div class="close-mobile-menu" id="closeMobileMenu">✕</div>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="affiche.html">Афиша</a></li>
+            <li><a href="for-customers.html">Заказчикам</a></li>
+            <li><a href="#">Брендбук</a></li>
+            <li><a href="performances.html">Спектакли</a></li>
+            <li><a href="team.html">Команда</a></li>
+            <li><a href="#">О театре</a></li>
+            <li><a href="shop.html">Магазин</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+    </div>
+    
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Основной контент страницы -->
+    <div class="team-page">
+        <div class="page-header-team">
+            <h1 class="page-title-team">Команда</h1>
+            <p class="page-subtitle-team">Люди, создающие искусство каждый день.</p>
+        </div>
+
+        <div class="director-highlight">
+            <div class="director-photo">
+                <img src="images/content/actors/Давыдов-4.jpg" alt="Сергей Давыдов">
+            </div>
+            <div class="director-info">
+                <div class="director-tag">ХУДОЖЕСТВЕННЫЙ РУКОВОДИТЕЛЬ</div>
+                <div class="director-name">Сергей <span>«Паганель»</span> Давыдов</div>
+                <div class="director-position">Основатель театра, режиссер, народный артист РФ</div>
+                <div class="director-bio">Выпускник ГИТИСа, ученик Петра Фоменко. За 28 лет поставил более 40 спектаклей. Обладатель трех премий «Золотая маска», лауреат международных фестивалей. Разработал авторскую систему актерского тренинга.</div>
+                <button class="director-btn" id="directorModalBtn">Подробнее</button>
+            </div>
+        </div>
+
+        <div class="stats-row">
+            <div class="stat-item"><div class="stat-number">4</div><div class="stat-label">действующих актера</div></div>
+            <div class="stat-item"><div class="stat-number">35</div><div class="stat-label">лет истории</div></div>
+            <div class="stat-item"><div class="stat-number">5</div><div class="stat-label">действующих спектаклей</div></div>
+        </div>
+
+        <div class="work-with-us">
+            <div class="work-image">
+                <img src="SVG/Zercalo.svg" alt="Присоединяйтесь">
+            </div>
+            <div class="work-content">
+                <h3 class="work-title">Хотите с нами работать?</h3>
+                <p class="work-text">Заполните небольшую анкету, перейдя по кнопке ниже.<br>Мы вам обязательно напишем в течение одного дня.</p>
+                <button class="work-btn">Хочу тут работать</button>
+            </div>
+        </div>
+
+        <div class="section-header-team">
+            <h2 class="section-title-team">Актерская труппа</h2>
+            <span class="section-count">4 актера</span>
+        </div>
+        <div id="actorsContainer"></div>
+
+        <div class="show-more-wrapper">
+            <button class="show-more-btn" id="showMoreActorsBtn">Показать еще</button>
+        </div>
+    </div>
+
+    <div id="site-footer"></div>
+</div>
+
+<!-- 🔥 МОДАЛЬНОЕ ОКНО КОМАНДЫ — ДОБАВЛЕНО ПЕРЕД </body> -->
+<div class="team-modal-overlay" id="infoModal" style="display:none;">
+    <div class="team-modal-content">
+        <button class="team-modal-close" id="modalCloseBtn">&times;</button>
+        <div class="team-modal-body" id="modalBody"></div>
+    </div>
+</div>
+
+<!-- Скрипты компонентов -->
+<script src="js/loader-animation.js"></script>
+<script src="js/components-loader.js"></script>
+<script src="js/header-scripts.js"></script>
+<script src="js/common.js"></script>
+
+<!-- Основной скрипт страницы -->
+<script>
+(function() {
+    'use strict';
+    
+    // ===== ДАННЫЕ ДЛЯ МОДАЛЬНОГО ОКНА ХУДРУКА =====
+    const directorInfo = {
+        name: 'Сергей Давыдов',
+        nickname: 'Паганель',
+        photo: 'images/content/actors/Давыдов-4.jpg',
+        position: 'Художественный руководитель, режиссёр',
+        bio: 'Основатель и бессменный худрук театра с 1991 года. Создатель уникального пластического стиля «Микос», объединившего клоунаду, акробатику и буффонаду. Лауреат международных фестивалей в Париже, Авиньоне и Монте-Карло. Разработчик авторской методики актерского тренинга.',
+        performances: [
+            '«Лишь бы не было детей»',
+            '«Богатыри»',
+            '«Ушли за ...»',
+            '«Ожидание»',
+            '«Авиаторы»'
+        ]
+    };
+
+    // Данные актеров с полной информацией для модалки
+    const actorsFullData = [
+        {
+            name: 'Сергей Давыдов',
+            nickname: 'Паганель',
+            photos: [
+                'SVG/Давыдов-вбок.svg',
+                'images/content/actors/Давыдов-3.jpg',
+                'images/content/actors/Давыдов-2.jpg'
+            ],
+            mobileSvg: 'SVG/Давыдов-прямо.svg',
+            photoMain: 'images/content/actors/Давыдов-3.jpg',
+            position: 'Художественный руководитель, режиссёр',
+            bio: `С 1991г. основатель и художественный руководитель театра клоунады «Микос»
+В 1991 году из рук Юрия Никулина получил «серебро» на 1-м Международном фестивале клоунов в Москве.
+В 1994 году в Швейцарии на Международном конгрессе деятелей культуры театр был представлены как «Новые направления в искусстве».
+В 1995 году на мировом фестивале во Франции «Цирк завтрашнего дня» было взято второе место.
+В 1996 году на фестивале «Авиньон» также во Франции, в открытом конкурсе заняли первое место.
+В 2003 году театр «Микос» вернулся в Москву и до 2013 года проработал в Цирке на Цветном Бульваре в компании "Росгорцирк". Полгода труппа выступала там, оставшееся время — за границей.`,
+            performances: [
+                '«Лишь бы не было детей»',
+                '«Богатыри»',
+                '«Ушли за ...»',
+                '«Ожидание»',
+                '«Авиаторы»'
+            ]
+        },
+        {
+            name: 'Ксения Иванова',
+            nickname: '',
+            photos: [
+                'SVG/Иванова-вбок.svg',
+                'images/content/actors/Иванова-3.jpg',
+                'images/content/actors/Иванова-2.jpg'
+            ],
+            mobileSvg: 'SVG/Иванова-прямо.svg',
+            photoMain: 'images/content/actors/Иванова-3.jpg',
+            position: 'Ведущая актриса, продюсер, директор',
+            bio: `В 2004 окончила ГОУ СПО Удмуртское республиканское училище культуры (курс Желтышевой О.Е.)
+С 2018 года клоун театра клоунады «Микос»
+С 2024 года ещё и директор театра клоунады «Микос»`,
+            performances: [
+                '«Лишь бы не было детей»',
+                '«Богатыри»',
+                '«Ушли за ...»',
+                '«Ожидание»',
+                '«Авиаторы»'
+            ]
+        },
+        {
+            name: 'Максим Гамаюнов',
+            nickname: '',
+            photos: [
+                'SVG/Гамаюнов-вбок.svg',
+                'images/content/actors/Гамаюнов-3.jpg',
+                'images/content/actors/Гамаюнов-2.jpg'
+            ],
+            mobileSvg: 'SVG/Гамаюнов-прямо.svg',
+            photoMain: 'images/content/actors/Гамаюнов-3.jpg',
+            position: 'Актёр, музыкант',
+            bio: `В 2005 году закончил училище циркового и эстрадного искусства имени М.Н. Румянцева
+С 2005 года работал в компании "Росгорцирк" руководителем номера
+с 2014 года клоун в театре клоунады "Высокие Братья"
+с 2018 года клоун в театре клоунады "Микос"`,
+            performances: [
+                '«Лишь бы не было детей»',
+                '«Богатыри»',
+                '«Ушли за ...»',
+                '«Ожидание»',
+                '«Авиаторы»'
+            ]
+        },
+        {
+            name: 'Тотраз Циукаев',
+            nickname: '',
+            photos: [
+                'SVG/Циукаев-вбок.svg',
+                'images/content/actors/Циукаев-3.jpg',
+                'images/content/actors/Циукаев-2.jpg'
+            ],
+            mobileSvg: 'SVG/Циукаев-прямо.svg',
+            photoMain: 'images/content/actors/Циукаев-3.jpg',
+            position: 'Актёр, музыкант',
+            bio: `Актер театра и кино, оперный певец,клоун, педагог, лауреат международных конкурсов, артист театра клоунады «Micos», преподаватель ВГИК имени Герасимова.
+В 2018 году окончил Высшее театральное училище (институт) имени М. С. Щепкина при ГАМТ России (курс народного артиста России Б. В. Клюева)
+В 2023 году окончил РАМ имени Гнесиных (класс З. Т. Березовой).
+Основатель ряда творческих проектов таких как: фестиваль «Алмазы Осетии», циклы концертов «Музыка и слово», «Магия русского слова», «Всероссийского конкурса ораторского мастерства».
+За годы творческой деятельности сотрудничал со следующими государственными учреждениями культуры: Большой театр, театр «Мастерская Петра Фоменко», ВТУ (институт) имени М. С. Щепкина, ТИ им. Б. Щукина, Арт кластер «Таврида-АРТ».`,
+            performances: [
+                '«Богатыри»',
+                '«Ожидание»'
+            ]
+        }
+    ];
+
+    // ===== СОСТОЯНИЕ =====
+    let visibleActors = 4;
+    let isMobile = window.innerWidth <= 860;
+    
+    // Элементы модального окна
+    let modal = null;
+    let modalBody = null;
+    let modalClose = null;
+
+    // ===== ФУНКЦИИ МОДАЛЬНОГО ОКНА =====
+    function closeModal() {
+        if (!modal) return;
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function openModal(data) {
+        if (!modal || !modalBody) return;
+        
+        const nicknameHtml = data.nickname ? `<div class="team-modal-nickname">«${data.nickname}»</div>` : '';
+        const performancesHtml = data.performances ? data.performances.map(p => `
+            <div class="team-performance-item">
+                <span class="team-performance-bullet">•</span>
+                <span class="team-performance-text">${p}</span>
+            </div>
+        `).join('') : '';
+
+        modalBody.innerHTML = `
+            <div class="team-modal-photo">
+                <img src="${data.photo}" alt="${data.name}" loading="lazy">
+            </div>
+            <div class="team-modal-info">
+                <div class="team-modal-name">${data.name}</div>
+                ${nicknameHtml}
+                <div class="team-modal-position">${data.position}</div>
+                
+                ${data.bio ? `
+                <div class="team-modal-section-title">Творческий путь</div>
+                <div class="team-modal-bio">${data.bio}</div>
+                ` : ''}
+                
+                ${data.performances && data.performances.length ? `
+                <div class="team-modal-section-title">Спектакли в репертуаре</div>
+                <div class="team-performances-list">
+                    ${performancesHtml}
+                </div>
+                ` : ''}
+            </div>
+        `;
+        
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // ===== ИНИЦИАЛИЗАЦИЯ МОДАЛОК =====
+    function initModals() {
+        // Находим элементы модалки
+        modal = document.getElementById('infoModal');
+        modalBody = document.getElementById('modalBody');
+        modalClose = document.getElementById('modalCloseBtn');
+        
+        if (modal && modalBody && modalClose) {
+            // Обработчики закрытия
+            modalClose.onclick = () => closeModal();
+            modal.onclick = (e) => { if (e.target === modal) closeModal(); };
+            document.onkeydown = (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) closeModal(); };
+            
+            // Кнопка худрука
+            document.getElementById('directorModalBtn')?.addEventListener('click', () => {
+                openModal(directorInfo);
+            });
+        }
+    }
+
+    // ===== ПРОВЕРКА МОБИЛЬНОГО УСТРОЙСТВА =====
+    function checkMobile() {
+        return window.innerWidth <= 860;
+    }
+
+    // ===== РЕНДЕР КАРТОЧЕК АКТЕРОВ =====
+    function renderActors() {
+        const container = document.getElementById('actorsContainer');
+        if (!container) return;
+        
+        const displayActors = actorsFullData.slice(0, visibleActors);
+        const currentIsMobile = checkMobile();
+        
+        container.innerHTML = '';
+        
+        displayActors.forEach(actor => {
+            const actorBlock = document.createElement('div');
+            actorBlock.className = 'actor-block';
+            
+            const nameDiv = document.createElement('div');
+            nameDiv.className = 'actor-name';
+            nameDiv.textContent = actor.name;
+            
+            const photosGrid = document.createElement('div');
+            photosGrid.className = 'actor-photos-grid';
+            
+            // Копируем массив фото
+            const photosToShow = [...actor.photos];
+            
+            // Если мобильное разрешение — заменяем первый SVG на альтернативный
+            if (currentIsMobile && actor.mobileSvg) {
+                photosToShow[0] = actor.mobileSvg;
+            }
+            
+            photosToShow.forEach(photoUrl => {
+                const photoCard = document.createElement('div');
+                photoCard.className = 'actor-photo-card';
+                const img = document.createElement('img');
+                img.src = photoUrl;
+                img.alt = actor.name;
+                img.loading = 'lazy';
+                photoCard.appendChild(img);
+                
+                // При клике открываем модалку с правильным фото
+                photoCard.addEventListener('click', () => {
+                    openModal({
+                        ...actor,
+                        photo: actor.photoMain || actor.photos[1] || actor.photos[0]
+                    });
+                });
+                
+                photosGrid.appendChild(photoCard);
+            });
+            
+            actorBlock.appendChild(nameDiv);
+            actorBlock.appendChild(photosGrid);
+            container.appendChild(actorBlock);
+        });
+        
+        // Управление кнопкой "Показать еще"
+        const showMoreBtn = document.getElementById('showMoreActorsBtn');
+        if (showMoreBtn) {
+            showMoreBtn.style.display = visibleActors >= actorsFullData.length ? 'none' : 'block';
+        }
+        
+        isMobile = currentIsMobile;
+    }
+
+    // ===== ОБРАБОТЧИК КНОПКИ "ПОКАЗАТЬ ЕЩЕ" =====
+    document.getElementById('showMoreActorsBtn')?.addEventListener('click', () => {
+        if (visibleActors < actorsFullData.length) {
+            visibleActors = Math.min(visibleActors + 3, actorsFullData.length);
+            renderActors();
+        }
+    });
+
+    // ===== ОТСЛЕЖИВАНИЕ ИЗМЕНЕНИЯ РАЗМЕРА ОКНА =====
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            const newIsMobile = checkMobile();
+            if (newIsMobile !== isMobile) {
+                renderActors();
+            }
+        }, 150);
+    });
+
+    // ===== ОБРАБОТЧИК КНОПКИ "ХОЧУ ТУТ РАБОТАТЬ" =====
+    document.querySelector('.work-btn')?.addEventListener('click', () => {
+        alert('Форма для заполнения анкеты будет доступна скоро');
+    });
+
+    // ===== БУРГЕР-МЕНЮ =====
+    const burgerIcon = document.getElementById('burgerIcon');
+    const mobileNav = document.getElementById('mobileNav');
+    const overlay = document.getElementById('overlay');
+    const closeMobileBtn = document.getElementById('closeMobileMenu');
+    
+    if (burgerIcon && mobileNav && overlay && closeMobileBtn) {
+        function openMobileMenu() {
+            mobileNav.classList.add('open');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeMobileMenu() {
+            mobileNav.classList.remove('open');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        burgerIcon.addEventListener('click', openMobileMenu);
+        closeMobileBtn.addEventListener('click', closeMobileMenu);
+        overlay.addEventListener('click', closeMobileMenu);
+    }
+
+    // ===== ЗАПУСК: ЖДЁМ ЗАВЕРШЕНИЯ ЗАГРУЗКИ КОМПОНЕНТОВ =====
+    // Вариант 1: через событие от components-loader.js
+    window.addEventListener('componentsLoaded', () => {
+        initModals();
+        renderActors();
+    }, { once: true });
+    
+    // Вариант 2: страховка по таймеру (если событие не сработает)
+    setTimeout(() => {
+        if (!window.modalsInitialized) {
+            initModals();
+            renderActors();
+            window.modalsInitialized = true;
+        }
+    }, 3000);
+    
+    // Вариант 3: если DOM уже готов и лоадер не активен
+    if (document.readyState === 'complete' && !document.getElementById('loaderOverlay')) {
+        initModals();
+        renderActors();
+    }
+})();
+</script>
+</body>
+</html>

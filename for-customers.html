@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Театр клоунады «Микос» | Заказчикам</title>
+    <link rel="icon" type="image/svg+xml" href="SVG/logo-2.svg" sizes="any">
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="js/emailjs-integration.js"></script>
+    <link rel="stylesheet" href="css/header-footer.css"> 
+    <style>
+    /* --- Базовые стили для формы --- */
+    .form-group-custom {
+        margin-bottom: 16px;
+        width: 100%;
+        min-width: 0;
+    }
+    
+    .form-row {
+        display: flex;
+        gap: 16px;
+        width: 100%;
+    }
+    
+    .form-row .form-group-custom {
+        flex: 1;
+        min-width: 0;
+    }
+
+    /* --- SVG-иконки --- */
+    #eventDate {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%234A6294' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2' ry='2'%3E%3C/rect%3E%3Cline x1='16' y1='2' x2='16' y2='6'%3E%3C/line%3E%3Cline x1='8' y1='2' x2='8' y2='6'%3E%3C/line%3E%3Cline x1='3' y1='10' x2='21' y2='10'%3E%3C/line%3E%3C/svg%3E") !important;
+        background-repeat: no-repeat !important;
+        background-position: right 12px center !important;
+        background-size: 18px 18px !important;
+        padding-right: 40px !important;
+        cursor: pointer !important;
+    }
+    
+    .custom-select-btn {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%234A6294' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
+        background-repeat: no-repeat !important;
+        background-position: right 16px center !important;
+        background-size: 14px 14px !important;
+        padding-right: 40px !important;
+    }
+    
+    .custom-select-btn.active {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23E8454D' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='18 15 12 9 6 15'%3E%3C/polyline%3E%3C/svg%3E") !important;
+    }
+
+    /* --- Валидация --- */
+    .form-input-customers.error {
+        border-color: #E8454D !important;
+        box-shadow: 0 0 0 3px rgba(232, 69, 77, 0.1) !important;
+    }
+    .form-input-customers.valid {
+        border-color: #4A6294 !important;
+        box-shadow: 0 0 0 3px rgba(74, 98, 148, 0.1) !important;
+    }
+
+    .hidden-date-picker {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+        width: 0;
+        height: 0;
+    }
+
+    /* --- Кастомные селекты --- */
+    .custom-select-wrapper {
+        position: relative;
+        display: block !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    .custom-select-btn {
+        width: 100% !important;
+        background-color: #FFFFFF;
+        border: 2px solid #E5E3E1;
+        border-radius: 8px;
+        padding: 12px 16px;
+        text-align: left;
+        font-family: 'Nunito Sans', sans-serif;
+        font-size: 15px;
+        color: #1A1718;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex !important;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+    }
+    
+    .custom-select-btn:hover {
+        border-color: #4A6294;
+    }
+    
+    .custom-select-dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #FFFFFF;
+        border: 2px solid #4A6294;
+        border-radius: 8px;
+        margin-top: 4px;
+        z-index: 99999;
+        display: none;
+        max-height: 240px;
+        overflow-y: auto;
+        box-shadow: 0 8px 24px rgba(26, 23, 24, 0.15);
+    }
+    
+    .custom-select-dropdown.show {
+        display: block !important;
+    }
+    
+    .custom-select-option {
+        padding: 10px 16px;
+        cursor: pointer;
+        font-family: 'Nunito Sans', sans-serif;
+        transition: background 0.2s;
+        color: #1A1718;
+    }
+    
+    .custom-select-option:hover {
+        background: #F8F7F6;
+    }
+    
+    .custom-select-option.selected {
+        background: #E8EEF7;
+        font-weight: 600;
+        color: #2A3D5E;
+    }
+
+    /* --- Модальное окно --- */
+    .success-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.85);
+        backdrop-filter: blur(8px);
+        z-index: 20000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    
+    .success-modal-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .success-modal-content {
+        background: #FFFFFF;
+        border-radius: 24px;
+        max-width: 480px;
+        width: 100%;
+        padding: 40px 32px;
+        text-align: center;
+        box-shadow: 0 25px 50px -12px rgba(0,0,0,0.4);
+        border: 1px solid rgba(232,69,77,0.2);
+        transform: scale(0.9);
+        transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+        position: relative;
+    }
+    
+    .success-modal-overlay.active .success-modal-content {
+        transform: scale(1);
+    }
+    
+    .success-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #E8454D, #D62830);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 24px;
+        animation: pulse 0.6s ease-out;
+    }
+    
+    @keyframes pulse {
+        0% { transform: scale(0.8); opacity: 0.7; }
+        50% { transform: scale(1.1); opacity: 1; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+    
+    .success-icon i {
+        font-size: 36px;
+        color: white;
+    }
+    
+    .success-modal-title {
+        font-family: 'Unbounded', sans-serif;
+        font-size: 24px;
+        font-weight: 700;
+        color: #1A1718;
+        margin-bottom: 12px;
+    }
+    
+    .success-modal-text {
+        font-family: 'Nunito Sans', sans-serif;
+        font-size: 16px;
+        color: #5A5556;
+        line-height: 1.5;
+        margin-bottom: 28px;
+    }
+    
+    .success-modal-btn {
+        background: #E8454D;
+        color: white;
+        border: none;
+        padding: 14px 32px;
+        border-radius: 10px;
+        font-family: 'Unbounded', sans-serif;
+        font-weight: 600;
+        font-size: 15px;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .success-modal-btn:hover {
+        background: #D62830;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(232,69,77,0.3);
+    }
+    
+    .success-modal-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #F8F7F6;
+        border: 1px solid #E5E3E1;
+        color: #5A5556;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    
+    .success-modal-close:hover {
+        background: #E8454D;
+        color: white;
+        border-color: #E8454D;
+    }
+
+    .form-group-custom .required-star {
+        color: #E8454D;
+        margin-left: 2px;
+    }
+
+    .service-card.illustrated {
+        position: relative;
+        overflow: visible;
+    }
+    
+    .service-card-illustration {
+        position: absolute;
+        width: auto;
+        height: 260px;
+        z-index: 2;
+        pointer-events: none;
+        top: -50%;
+        left: 50%;
+        transform: translateX(20%);
+    }
+
+    .text-nowrap {
+        display: inline-block;
+    }
+    
+    .dash-icon {
+        width: 20px;
+        height: 16px;
+        margin-right: 8px;
+        vertical-align: middle;
+    }
+
+    /* --- Адаптив для 768px --- */
+    @media (max-width: 768px) {
+        .form-row {
+            flex-direction: column;
+            gap: 0;
+        }
+        
+        .custom-select-dropdown {
+            max-height: 200px;
+            z-index: 99999;
+            position: absolute;
+            width: 100%;
+        }
+        
+        .custom-select-btn {
+            background-position: right 12px center !important;
+            padding: 12px 36px 12px 14px !important;
+            font-size: 14px;
+        }
+        
+        #eventDate {
+            background-position: right 8px center !important;
+            padding-right: 34px !important;
+        }
+        
+        .builder-preview {
+            scroll-margin-top: 20px;
+        }
+        
+        .service-card-illustration {
+            height: 200px;
+            top: -40%;
+            left: 50%;
+            transform: translateX(15%);
+        }
+    }
+
+    /* --- Адаптив для 360px-480px --- */
+    @media (max-width: 480px) {
+        .form-group-custom {
+            margin-bottom: 12px;
+            width: 100% !important;
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+        
+        .form-row {
+            flex-direction: column;
+            gap: 0;
+        }
+        
+        .form-row .form-group-custom {
+            width: 100% !important;
+            flex: none !important;
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+        
+        .custom-select-wrapper {
+            width: 100% !important;
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+        
+        .custom-select-btn {
+            width: 100% !important;
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            font-size: 14px;
+            padding: 10px 36px 10px 12px !important;
+        }
+        
+        .custom-select-dropdown {
+            max-height: 180px;
+            width: 100% !important;
+            display: none;
+        }
+        
+        .custom-select-dropdown.show {
+            display: block !important;
+        }
+        
+   
+        
+        .success-modal-content {
+            padding: 32px 24px;
+        }
+        
+        .success-icon {
+            width: 70px;
+            height: 70px;
+        }
+        
+        .success-icon i {
+            font-size: 30px;
+        }
+        
+        .success-modal-title {
+            font-size: 20px;
+        }
+        
+        .success-modal-text {
+            font-size: 15px;
+        }
+        
+        .service-card-illustration {
+            height: 180px;
+            top: -50%;
+            left: 50%;
+            transform: translateX(10%);
+        }
+    }
+
+        
+        .dash-icon { width: 20px; height: 16px; margin-right: 8px; vertical-align: middle; }
+    </style>
+</head>
+<body>
+<div class="shop-container">
+    <div id="site-header"></div>
+    <div class="mobile-nav" id="mobileNav">
+        <div class="close-mobile-menu" id="closeMobileMenu">✕</div>
+        <ul><li><a href="index.html">Главная</a></li><li><a href="affiche.html">Афиша</a></li><li><a href="for-customers.html">Заказчикам</a></li><li><a href="brandbook.html">Брендбук</a></li><li><a href="performances.html">Спектакли</a></li><li><a href="team.html">Команда</a></li><li><a href="history.html">О театре</a></li><li><a href="shop.html">Магазин</a></li><li><a href="contacts.html">Контакты</a></li></ul>
+    </div>
+    <div class="overlay" id="overlay"></div>
+
+    <main class="customers-page">
+        <h1 class="page-title-customers">Сотрудничество и частные мероприятия</h1>
+        <p class="page-subtitle-customers">Организуем закрытые показы, корпоративные события и частные мероприятия.<br>Адаптируем спектакли под вашу площадку и задачи.</p>
+
+        <!-- Услуги -->
+        <section>
+            <div class="section-header-custom"><h2 class="section-title-custom">Услуги</h2><a href="#" class="section-link-custom">Все услуги <i class="fas fa-arrow-right"></i></a></div>
+            <div class="services-grid">
+                <article class="service-card">
+  <div class="service-number">/01</div>
+  <h3 class="service-title">Корпоративные показы</h3>
+  <p class="service-desc">
+    Закрытые спектакли для компаний. Полное техническое сопровождение,
+    <span class="text-nowrap">адаптация под любую площадку.</span>
+  </p>
+  <a href="#" class="service-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+</article>
+                
+                <article class="service-card illustrated">
+                    <img src="SVG/Давыдов-сидит.svg" alt="Персонаж" class="service-card-illustration">
+                    <div class="service-number">/02</div>
+                    <h3 class="service-title">Частные события</h3>
+                    <p class="service-desc">Эксклюзивные постановки для свадеб, юбилеев, дней рождений. Разработка уникального сценария.</p>
+                    <a href="#" class="service-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </article>
+                
+                <article class="service-card"><div class="service-number">/03</div><h3 class="service-title">Образовательные проекты</h3><p class="service-desc">Мастер-классы и лекции от актеров и режиссеров. Для школ, вузов и корпоративных университетов.</p><a href="#" class="service-link">Подробнее <i class="fas fa-arrow-right"></i></a></article>
+            </div>
+        </section>
+
+        <!-- Конструктор запроса -->
+        <section>
+            <div class="section-header-custom"><h2 class="section-title-custom">Конструктор запроса</h2><a href="#" class="section-link-custom">Как это работает <i class="fas fa-arrow-right"></i></a></div>
+            <div class="request-builder">
+                <form class="builder-form" id="requestForm">
+                    <div class="form-row">
+                        <div class="form-group-custom"><label for="requestName">Имя <span class="required-star">*</span></label><input type="text" id="requestName" name="requestName" placeholder="Александр" class="form-input-customers" required autocomplete="name"></div>
+                        <div class="form-group-custom"><label for="requestCompany">Компания</label><input type="text" id="requestCompany" name="requestCompany" placeholder="Название (необязательно)" class="form-input-customers" autocomplete="organization"></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group-custom"><label for="requestEmail">Email <span class="required-star">*</span></label><input type="email" id="requestEmail" name="requestEmail" placeholder="partner@company.ru" class="form-input-customers" required autocomplete="email"></div>
+                        <div class="form-group-custom"><label for="requestPhone">Телефон <span class="required-star">*</span></label><input type="tel" id="requestPhone" name="requestPhone" placeholder="+7 (___) ___-__-__" class="form-input-customers" required autocomplete="tel"></div>
+                    </div>
+                    <div class="form-group-custom"><label for="eventType">Тип мероприятия</label><select id="eventType" name="eventType" class="form-select-customers"><option value="corporate">Корпоративный показ</option><option value="private">Частное событие</option><option value="education">Образовательный проект</option></select></div>
+                    <div class="form-row">
+                        <div class="form-group-custom"><label for="eventDate">Предполагаемая дата</label><div class="date-input-wrapper"><input type="text" id="eventDate" name="eventDate" placeholder="ДД.ММ.ГГГГ" autocomplete="off" class="form-input-customers"></div></div>
+                        <div class="form-group-custom"><label for="audienceCount">Количество зрителей</label><select id="audienceCount" name="audienceCount" class="form-select-customers"><option value="up-to-100">до 100</option><option value="100-300">100–300</option><option value="300-plus">300+</option></select></div>
+                    </div>
+                    <div class="form-group-custom"><label for="eventFormat">Формат</label><select id="eventFormat" name="eventFormat" class="form-select-customers"><option value="ready">Готовый спектакль</option><option value="custom">Индивидуальная постановка</option><option value="workshop">Мастер-класс</option></select></div>
+                    <div class="form-group-custom"><label for="extraWishes">Дополнительные пожелания</label><textarea id="extraWishes" name="extraWishes" placeholder="Опишите задачу, площадку, бюджет..."></textarea></div>
+                    <div style="display: flex; gap: 16px; flex-wrap: wrap;"><button type="button" class="submit-request-btn" id="previewBtn">Сформировать запрос</button><button type="button" class="submit-request-btn secondary" id="resetBtn">Сбросить</button></div>
+                </form>
+                <aside class="builder-preview" id="builderPreview">
+                    <div class="preview-header"><span class="preview-title">Предварительный запрос</span><span class="preview-draft">черновик</span></div>
+                    <div id="previewContent">
+                        <div class="preview-item"><div class="preview-label">Имя</div><div class="preview-value">—</div></div>
+                        <div class="preview-item"><div class="preview-label">Компания</div><div class="preview-value">—</div></div>
+                        <div class="preview-item"><div class="preview-label">Email</div><div class="preview-value">—</div></div>
+                        <div class="preview-item"><div class="preview-label">Телефон</div><div class="preview-value">—</div></div>
+                        <div class="preview-item"><div class="preview-label">Тип</div><div class="preview-value">—</div></div>
+                        <div class="preview-item"><div class="preview-label">Дата</div><div class="preview-value">—</div></div>
+                        <div class="preview-item"><div class="preview-label">Зрителей</div><div class="preview-value">—</div></div>
+                        <div class="preview-item"><div class="preview-label">Формат</div><div class="preview-value">—</div></div>
+                        <div class="preview-item"><div class="preview-label">Пожелания</div><div class="preview-value">—</div></div>
+                    </div>
+                    <button class="submit-request-btn" id="sendRequestBtn">Отправить запрос</button>
+                </aside>
+            </div>
+        </section>
+
+        <!-- Технический райдер -->
+        <section>
+            <div class="section-header-custom"><h2 class="section-title-custom">Технический райдер</h2><a href="images/content/Tex_райдер_Микос.pdf" class="section-link-custom" download>Полная документация <i class="fas fa-arrow-right"></i></a></div>
+            <div class="rider-section"><div class="rider-info"><h3>В один клик</h3><p>Готовая документация для вашей площадки. Свет, звук, видео, сцена и монтаж. Адаптируем под любые условия.</p><div class="rider-features"><div class="rider-feature"><i class="fas fa-check-circle"></i><span>Световое оборудование (18+ позиций)</span></div><div class="rider-feature"><i class="fas fa-check-circle"></i><span>Звуковое усиление и микрофоны</span></div><div class="rider-feature"><i class="fas fa-check-circle"></i><span>Видеопроекция и медиаконтент</span></div><div class="rider-feature"><i class="fas fa-check-circle"></i><span>Параметры сцены и кулис</span></div></div></div><div class="rider-card"><h4>Технический райдер</h4><div class="rider-meta">Актуальная версия · февраль 2025</div><div class="rider-meta">Формат PDF, 2.1 МБ</div><div class="rider-file"><i class="fas fa-file-pdf"></i><div class="rider-file-info"><div class="rider-file-name">Технический_райдер_Микос.pdf</div><div class="rider-file-date">Обновлен: 10.02.2025</div></div><a href="images/content/Tex_райдер_Микос.pdf" download><i class="fas fa-download"></i></a></div></div></div>
+        </section>
+
+        <!-- Условия сотрудничества -->
+        <section>
+            <div class="section-header-custom"><h2 class="section-title-custom">Условия сотрудничества</h2><a href="#" class="section-link-custom">Скачать договор <i class="fas fa-arrow-right"></i></a></div>
+            <div class="terms-grid"><div class="terms-card"><h4><i class="fas fa-file-contract"></i> Договор</h4><ul class="terms-list"><li><img src="SVG/nos.svg" alt="" class="dash-icon"><span>Предоплата 50% при подписании</span></li><li><img src="SVG/nos.svg" alt="" class="dash-icon"><span>Полный расчет за 3 дня до события</span></li><li><img src="SVG/nos.svg" alt="" class="dash-icon"><span>Работа с юрлицами и НДС</span></li><li><img src="SVG/nos.svg" alt="" class="dash-icon"><span>Закрывающие документы в день показа</span></li><li><img src="SVG/nos.svg" alt="" class="dash-icon"><span>NDA по запросу</span></li></ul></div><div class="terms-card"><h4><i class="fas fa-calendar-alt"></i> Порядок работы</h4><ul class="terms-list"><li><img src="SVG/nos.svg" alt="" class="dash-icon"><span>Заявка — 2–3 дня на расчет</span></li><li><img src="SVG/nos.svg" alt="" class="dash-icon"><span>Утверждение сметы и графика</span></li><li><img src="SVG/nos.svg" alt="" class="dash-icon"><span>Предпродакшн: 1–3 недели</span></li><li><img src="SVG/nos.svg" alt="" class="dash-icon"><span>Монтаж: за 4–6 часов до старта</span></li><li><img src="SVG/nos.svg" alt="" class="dash-icon"><span>Фотоотчет и постпродакшн</span></li></ul></div></div>
+        </section>
+
+        <!-- Связаться с нами -->
+        <section>
+            <div class="section-header-custom"><h2 class="section-title-custom">Связаться с нами</h2><a href="contacts.html" class="section-link-custom">Все контакты <i class="fas fa-arrow-right"></i></a></div>
+            <div class="contact-form-section"><div class="contact-info"><h3>Остались вопросы?</h3><p>Заполните форму — менеджер театра ответит в течение 2 часов в рабочие дни.</p><div class="contact-details"><div class="contact-item"><div class="contact-label">Email</div><div class="contact-value"><a href="mailto:partner@teatr-sreda.ru">partner@teatr-sreda.ru</a></div></div><div class="contact-item"><div class="contact-label">Телефон</div><div class="contact-value"><a href="tel:+74951234567">+7 (495) 123-45-67</a></div></div><div class="contact-item"><div class="contact-label">Время работы</div><div class="contact-value">Пн–Пт, 11:00 – 19:00</div></div></div></div><form class="contact-form-right" id="contactForm"><div class="form-group-custom"><label for="contactName">Имя</label><input type="text" id="contactName" name="contactName" placeholder="Александр" required></div><div class="form-group-custom"><label for="contactCompany">Компания</label><input type="text" id="contactCompany" name="contactCompany" placeholder="Название"></div><div class="form-group-custom"><label for="contactEmail">Email</label><input type="email" id="contactEmail" name="contactEmail" placeholder="partner@company.ru" required></div><div class="form-group-custom"><label for="contactPhone">Телефон</label><input type="tel" id="contactPhone" name="contactPhone" placeholder="+7 (___) ___-__-__" required></div><div class="form-group-custom"><label for="contactMessage">Сообщение</label><textarea id="contactMessage" name="contactMessage" placeholder="Расскажите о вашем мероприятии..." required></textarea></div><button type="submit" class="submit-request-btn" id="sendContactBtn">Отправить сообщение</button></form></div>
+        </section>
+    </main>
+
+    <div id="site-footer"></div>
+</div>
+
+<!-- МОДАЛЬНОЕ ОКНО УСПЕХА -->
+<div class="success-modal-overlay" id="successModal">
+    <div class="success-modal-content">
+        <button class="success-modal-close" id="successModalClose">&times;</button>
+        <div class="success-icon"><i class="fas fa-check"></i></div>
+        <h3 class="success-modal-title" id="successModalTitle">Заявка отправлена!</h3>
+        <p class="success-modal-text" id="successModalText">Спасибо за обращение! Наш менеджер свяжется с вами в ближайшее время.</p>
+        <button class="success-modal-btn" id="successModalBtn"><i class="fas fa-home"></i> Закрыть</button>
+    </div>
+</div>
+
+<script src="js/loader-animation.js"></script>
+<script src="js/components-loader.js"></script>
+<script src="js/header-scripts.js"></script>
+<script src="js/common.js"></script>
+<script>
+(function() {
+    'use strict';
+
+    // Ждем полной загрузки всех компонентов
+    function whenReady(callback) {
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            setTimeout(callback, 300);
+        } else {
+            document.addEventListener('DOMContentLoaded', function() {
+                setTimeout(callback, 300);
+            });
+        }
+    }
+
+    whenReady(function() {
+        initAll();
+        // Дополнительные попытки для динамических компонентов
+        setTimeout(initAll, 800);
+        setTimeout(initAll, 2000);
+    });
+
+    function initAll() {
+        console.log('initAll called');
+        initCustomSelects();
+        initDateField();
+        initPhoneMasks();
+        initFormHandlers();
+        initModalHandlers();
+    }
+
+    // ==================== МОДАЛЬНОЕ ОКНО ====================
+    function initModalHandlers() {
+        const successModal = document.getElementById('successModal');
+        const successModalClose = document.getElementById('successModalClose');
+        const successModalBtn = document.getElementById('successModalBtn');
+
+        if (!successModal) return;
+
+        if (successModalClose) {
+            successModalClose.onclick = closeModal;
+        }
+        if (successModalBtn) {
+            successModalBtn.onclick = closeModal;
+        }
+        successModal.onclick = function(e) {
+            if (e.target === successModal) closeModal();
+        };
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && successModal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    }
+
+    function openModal(title, message) {
+        const modal = document.getElementById('successModal');
+        const titleEl = document.getElementById('successModalTitle');
+        const textEl = document.getElementById('successModalText');
+        if (!modal || !titleEl || !textEl) return;
+        titleEl.textContent = title;
+        textEl.textContent = message;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('successModal');
+        if (!modal) return;
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // ==================== МАСКА ТЕЛЕФОНА ====================
+    function initPhoneMasks() {
+        applyPhoneMask('requestPhone');
+        applyPhoneMask('contactPhone');
+    }
+
+    function applyPhoneMask(inputId) {
+        const input = document.getElementById(inputId);
+        if (!input) return;
+
+        input.addEventListener('input', function() {
+            let value = this.value.replace(/\D/g, '');
+            if (value.length > 11) value = value.slice(0, 11);
+            let formatted = '';
+            if (value.length > 0) {
+                formatted = '+7';
+                if (value.length > 1) formatted += ' (' + value.slice(1, 4);
+                if (value.length >= 4) formatted += ') ' + value.slice(4, 7);
+                if (value.length >= 7) formatted += '-' + value.slice(7, 9);
+                if (value.length >= 9) formatted += '-' + value.slice(9, 11);
+            }
+            this.value = formatted;
+        });
+
+        input.addEventListener('focus', function() {
+            if (!this.value || this.value === '+7' || this.value === '+7 (') {
+                this.value = '+7 (';
+            }
+        });
+
+        input.addEventListener('blur', function() {
+            if (this.value === '+7 (' || this.value === '+7') {
+                this.value = '';
+            }
+        });
+    }
+
+    // ==================== ВАЛИДАЦИЯ ====================
+    function validateField(field, type) {
+        if (!field) return true;
+        const value = field.value.trim();
+        let isValid = true;
+
+        switch(type) {
+            case 'name': isValid = value.length >= 2; break;
+            case 'email': isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value); break;
+            case 'phone': 
+                const d = value.replace(/\D/g, '');
+                isValid = d.length === 11 && d.startsWith('7');
+                break;
+            case 'required': isValid = value.length > 0; break;
+        }
+
+        field.classList.remove('error', 'valid');
+        if (value.length > 0) {
+            field.classList.add(isValid ? 'valid' : 'error');
+        }
+        return isValid;
+    }
+
+    // ==================== КАСТОМНЫЕ СЕЛЕКТЫ ====================
+    function initCustomSelects() {
+        const ids = ['eventType', 'audienceCount', 'eventFormat'];
+        
+        ids.forEach(function(id) {
+            const select = document.getElementById(id);
+            if (!select) {
+                console.log('Select not found:', id);
+                return;
+            }
+            
+            // Проверяем, не обернут ли уже
+            if (select.parentElement && select.parentElement.classList.contains('custom-select-wrapper')) {
+                console.log('Already wrapped:', id);
+                return;
+            }
+
+            console.log('Wrapping select:', id);
+
+            // Создаем обертку
+            const wrapper = document.createElement('div');
+            wrapper.className = 'custom-select-wrapper';
+            wrapper.style.display = 'block';
+            wrapper.style.width = '100%';
+            wrapper.style.visibility = 'visible';
+            wrapper.style.opacity = '1';
+
+            // Создаем кнопку
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'custom-select-btn';
+            btn.textContent = select.options[select.selectedIndex]?.text || 'Выберите...';
+            btn.style.display = 'flex';
+            btn.style.visibility = 'visible';
+            btn.style.opacity = '1';
+
+            // Создаем выпадающий список
+            const dropdown = document.createElement('div');
+            dropdown.className = 'custom-select-dropdown';
+
+            Array.from(select.options).forEach(function(option, index) {
+                const item = document.createElement('div');
+                item.className = 'custom-select-option';
+                if (index === select.selectedIndex) item.classList.add('selected');
+                item.textContent = option.text;
+                item.dataset.value = option.value;
+
+                item.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    select.value = this.dataset.value;
+                    btn.textContent = this.textContent;
+                    dropdown.querySelectorAll('.custom-select-option').forEach(function(el) {
+                        el.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                    dropdown.classList.remove('show');
+                    btn.classList.remove('active');
+                });
+
+                dropdown.appendChild(item);
+            });
+
+            // Обработчик клика по кнопке
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                
+                const isOpen = dropdown.classList.contains('show');
+                
+                // Закрываем все другие дропдауны
+                document.querySelectorAll('.custom-select-dropdown.show').forEach(function(d) {
+                    d.classList.remove('show');
+                    if (d.previousElementSibling) {
+                        d.previousElementSibling.classList.remove('active');
+                    }
+                });
+
+                if (!isOpen) {
+                    dropdown.classList.add('show');
+                    btn.classList.add('active');
+                } else {
+                    dropdown.classList.remove('show');
+                    btn.classList.remove('active');
+                }
+            });
+
+            // Замена оригинального селекта
+            select.parentNode.insertBefore(wrapper, select);
+            wrapper.appendChild(btn);
+            wrapper.appendChild(dropdown);
+            wrapper.appendChild(select);
+            select.style.display = 'none';
+        });
+
+        // Закрытие дропдаунов при клике вне
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.custom-select-wrapper')) {
+                document.querySelectorAll('.custom-select-dropdown.show').forEach(function(d) {
+                    d.classList.remove('show');
+                    if (d.previousElementSibling) {
+                        d.previousElementSibling.classList.remove('active');
+                    }
+                });
+            }
+        });
+
+        // Закрытие дропдаунов по Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.custom-select-dropdown.show').forEach(function(d) {
+                    d.classList.remove('show');
+                    if (d.previousElementSibling) {
+                        d.previousElementSibling.classList.remove('active');
+                    }
+                });
+            }
+        });
+    }
+
+    // ==================== ПОЛЕ ДАТЫ ====================
+    function initDateField() {
+        const dateInput = document.getElementById('eventDate');
+        if (!dateInput || dateInput.dataset.initialized === 'true') return;
+
+        const wrapper = dateInput.closest('.date-input-wrapper');
+        if (!wrapper) return;
+
+        const oldPicker = wrapper.querySelector('.hidden-date-picker');
+        if (oldPicker) oldPicker.remove();
+
+        const picker = document.createElement('input');
+        picker.type = 'date';
+        picker.className = 'hidden-date-picker';
+        wrapper.appendChild(picker);
+
+        dateInput.addEventListener('input', function() {
+            let v = this.value.replace(/\D/g, '').slice(0, 8);
+            let f = '';
+            if (v.length > 0) { f = v.slice(0, 2); if (v.length > 2) f += '.' + v.slice(2, 4); if (v.length > 4) f += '.' + v.slice(4, 8); }
+            this.value = f;
+        });
+
+        dateInput.addEventListener('click', function() {
+            const r = dateInput.getBoundingClientRect();
+            Object.assign(picker.style, { position: 'fixed', left: r.left + 'px', top: (r.bottom + 4) + 'px', width: '0', height: '0', opacity: '0', pointerEvents: 'auto' });
+            const m = dateInput.value.match(/^(\d{2})\.(\d{2})\.(\d{4})$/);
+            picker.value = m ? `${m[3]}-${m[2]}-${m[1]}` : '';
+            if (picker.showPicker) picker.showPicker(); else { picker.focus(); picker.click(); }
+        });
+
+        picker.addEventListener('change', function() {
+            if (this.value) {
+                const [y, m, d] = this.value.split('-');
+                dateInput.value = `${d}.${m}.${y}`;
+            }
+            Object.assign(picker.style, { position: 'absolute', pointerEvents: 'none', width: '0', height: '0', opacity: '0' });
+        });
+
+        dateInput.dataset.initialized = 'true';
+    }
+
+    // ==================== ОБРАБОТЧИКИ ФОРМ ====================
+    function initFormHandlers() {
+        // Превью
+        const previewBtn = document.getElementById('previewBtn');
+        if (previewBtn) {
+            previewBtn.onclick = function() {
+                let valid = true;
+                if (!validateField(document.getElementById('requestName'), 'name')) valid = false;
+                if (!validateField(document.getElementById('requestEmail'), 'email')) valid = false;
+                if (!validateField(document.getElementById('requestPhone'), 'phone')) valid = false;
+                if (!valid) return;
+                updatePreview();
+                const bp = document.getElementById('builderPreview');
+                if (window.innerWidth <= 768 && bp) setTimeout(() => bp.scrollIntoView({ behavior: 'smooth' }), 150);
+            };
+        }
+
+        // Сброс
+        const resetBtn = document.getElementById('resetBtn');
+        if (resetBtn) {
+            resetBtn.onclick = function() {
+                const form = document.getElementById('requestForm');
+                if (form) form.reset();
+                document.querySelectorAll('.custom-select-wrapper select').forEach(function(s) {
+                    s.selectedIndex = 0;
+                    const wrapper = s.closest('.custom-select-wrapper');
+                    if (wrapper) {
+                        const btn = wrapper.querySelector('.custom-select-btn');
+                        if (btn) btn.textContent = s.options[0].text;
+                        wrapper.querySelectorAll('.custom-select-option').forEach(function(o, i) {
+                            o.classList.toggle('selected', i === 0);
+                        });
+                    }
+                });
+                document.querySelectorAll('.error, .valid').forEach(e => e.classList.remove('error', 'valid'));
+                const ph = document.getElementById('requestPhone');
+                if (ph) ph.value = '';
+                resetPreview();
+            };
+        }
+
+        // Отправка
+        const sendBtn = document.getElementById('sendRequestBtn');
+        if (sendBtn) {
+            sendBtn.onclick = async function() {
+    let valid = true;
+    if (!validateField(document.getElementById('requestName'), 'name')) valid = false;
+    if (!validateField(document.getElementById('requestEmail'), 'email')) valid = false;
+    if (!validateField(document.getElementById('requestPhone'), 'phone')) valid = false;
+    if (!valid) { openModal('Ошибка', 'Проверьте обязательные поля.'); return; }
+
+    const getVal = function(id) {
+        const el = document.querySelector('.custom-select-wrapper select#' + id) || document.getElementById(id);
+        return el ? el.value : '';
+    };
+
+    const params = {
+        name: document.getElementById('requestName').value,
+        company: document.getElementById('requestCompany').value,
+        email: document.getElementById('requestEmail').value,
+        phone: document.getElementById('requestPhone').value,
+        event_type: getVal('eventType'),
+        event_date: document.getElementById('eventDate').value,
+        audience: getVal('audienceCount'),
+        format: getVal('eventFormat'),
+        wishes: document.getElementById('extraWishes').value
+    };
+
+    // Отправка через EmailJS
+    try {
+        await window.sendRequestBuilder(params);
+        openModal('Запрос отправлен!', 'Менеджер свяжется с вами в ближайшее время. Письмо с деталями отправлено на ваш email.');
+    } catch(e) {
+        console.error(e);
+        openModal('Ошибка отправки', 'Не удалось отправить письмо. Попробуйте позже.');
+    }
+};
+        }
+
+        // Контактная форма
+                const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.onsubmit = async function(e) {
+                e.preventDefault();
+                let valid = true;
+                if (!validateField(document.getElementById('contactName'), 'name')) valid = false;
+                if (!validateField(document.getElementById('contactEmail'), 'email')) valid = false;
+                if (!validateField(document.getElementById('contactPhone'), 'phone')) valid = false;
+                if (!validateField(document.getElementById('contactMessage'), 'required')) valid = false;
+                if (!valid) { openModal('Ошибка', 'Заполните все поля корректно.'); return; }
+
+                const params = {
+                    name: document.getElementById('contactName').value.trim(),
+                    company: document.getElementById('contactCompany')?.value.trim() || '',
+                    email: document.getElementById('contactEmail').value.trim(),
+                    phone: document.getElementById('contactPhone').value.trim(),
+                    message: document.getElementById('contactMessage').value.trim()
+                };
+
+                try {
+                    await window.sendContactForm(params);
+                    contactForm.reset();
+                    openModal('Сообщение отправлено!', 'Спасибо! Мы ответим в течение 2 часов. Письмо с подтверждением уже на вашей почте.');
+                } catch(e) {
+                    console.error(e);
+                    openModal('Ошибка отправки', 'Не удалось отправить письмо. Попробуйте позже.');
+                }
+            };
+        }
+    }
+
+    function updatePreview() {
+        const pc = document.getElementById('previewContent');
+        if (!pc) return;
+
+        const getText = function(id) {
+            const el = document.querySelector('.custom-select-wrapper select#' + id) || document.getElementById(id);
+            return el?.options[el.selectedIndex]?.text || '—';
+        };
+
+        const esc = function(t) { const d = document.createElement('div'); d.textContent = t; return d.innerHTML; };
+        const v = function(id) { return esc(document.getElementById(id)?.value || '—'); };
+
+        pc.innerHTML = 
+            `<div class="preview-item"><div class="preview-label">Имя</div><div class="preview-value">${v('requestName')}</div></div>
+            <div class="preview-item"><div class="preview-label">Компания</div><div class="preview-value">${v('requestCompany')}</div></div>
+            <div class="preview-item"><div class="preview-label">Email</div><div class="preview-value">${v('requestEmail')}</div></div>
+            <div class="preview-item"><div class="preview-label">Телефон</div><div class="preview-value">${v('requestPhone')}</div></div>
+            <div class="preview-item"><div class="preview-label">Тип</div><div class="preview-value">${getText('eventType')}</div></div>
+            <div class="preview-item"><div class="preview-label">Дата</div><div class="preview-value">${v('eventDate')}</div></div>
+            <div class="preview-item"><div class="preview-label">Зрителей</div><div class="preview-value">${getText('audienceCount')}</div></div>
+            <div class="preview-item"><div class="preview-label">Формат</div><div class="preview-value">${getText('eventFormat')}</div></div>
+            <div class="preview-item"><div class="preview-label">Пожелания</div><div class="preview-value">${v('extraWishes')}</div></div>`;
+    }
+
+    function resetPreview() {
+        const pc = document.getElementById('previewContent');
+        if (!pc) return;
+        pc.innerHTML = ['Имя','Компания','Email','Телефон','Тип','Дата','Зрителей','Формат','Пожелания']
+            .map(l => `<div class="preview-item"><div class="preview-label">${l}</div><div class="preview-value">—</div></div>`).join('');
+    }
+
+})();
+</script>
+</body>
+</html>

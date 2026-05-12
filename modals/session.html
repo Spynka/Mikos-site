@@ -1,0 +1,27 @@
+<div class="modal-overlay" id="session-modal">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h3>Выбор сеанса: {{performanceTitle}}</h3>
+      <button class="modal-close" data-modal-close><i class="fas fa-times"></i></button>
+    </div>
+    
+    <div class="modal-body">
+      <div class="modal-performance-title">
+        <i class="fas fa-ticket-alt"></i>
+        <span>{{performanceTitle}}</span>
+      </div>
+      
+      <!-- Фильтр по месяцам -->
+      <div class="date-filter" id="dateFilterContainer"></div>
+      
+      <!-- Список сеансов -->
+      <div class="sessions-list" id="sessionsListContainer"></div>
+    </div>
+    
+    <div class="modal-footer">
+      <button class="modal-confirm-btn" id="confirmSessionBtn" disabled>
+        <i class="fas fa-shopping-cart"></i> Перейти к покупке
+      </button>
+    </div>
+  </div>
+</div>

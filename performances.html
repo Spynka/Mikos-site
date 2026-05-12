@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Театр клоунады «Микос» | Спектакли</title>
+    <link rel="icon" type="image/svg+xml" href="SVG/logo-2.svg" sizes="any">
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header-footer.css"> 
+    <script src="js/tour-data.js"></script>
+        <style>
+        /* Дополнительные стили для модального окна в стиле сайта */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: flex-start; /* Меняем на flex-start, чтобы контейнер не центрировался по вертикали */
+            justify-content: center;
+            z-index: 10000; /* Увеличиваем z-index, чтобы быть выше хедера */
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.3s ease;
+            padding: 20px;
+            padding-top: 100px; /* Добавляем отступ сверху, чтобы не прилипало к хедеру */
+            box-sizing: border-box;
+            overflow-y: auto; /* Добавляем скролл для оверлея */
+        }
+        .modal-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        .modal-container {
+            background: #FFFFFF;
+            max-width: 520px;
+            width: 100%;
+            max-height: calc(90vh - 100px); /* Учитываем отступ сверху */
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+            border: 1px solid #E5E3E1;
+            margin: 0 auto; /* Центрируем */
+        }
+        .active .modal-container {
+            transform: scale(1);
+        }
+        .modal-header {
+            padding: 24px 24px 16px;
+            border-bottom: 1px solid #E5E3E1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .modal-header h3 {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #1A1718;
+            margin: 0;
+            padding-left: 12px;
+            position: relative;
+        }
+        .modal-header h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: #E8454D;
+            border-radius: 1.5px;
+        }
+        .modal-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #F8F7F6;
+            border: 1px solid #E5E3E1;
+            color: #5A5556;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .modal-close:hover {
+            background: #E8454D;
+            color: #FFFFFF;
+            border-color: #E8454D;
+        }
+        .modal-body {
+            padding: 24px;
+            overflow-y: auto;
+            flex: 1;
+        }
+        .modal-performance-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #3D393A;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed #E5E3E1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .modal-performance-title i {
+            color: #E8454D;
+            font-size: 16px;
+        }
+        .modal-performance-title span {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 600;
+            color: #1A1718;
+        }
+
+        /* Фильтр по месяцам */
+        .date-filter {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+        .filter-btn {
+            background: #F8F7F6;
+            border: 1px solid #E5E3E1;
+            color: #404040;
+            padding: 8px 16px;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Unbounded', sans-serif;
+        }
+        .filter-btn:hover {
+            background: #E9E7E5;
+            border-color: #D5D3D1;
+        }
+        .filter-btn.active {
+            background: #2A3D5E;
+            border-color: #2A3D5E;
+            color: #FFFFFF;
+        }
+
+        /* Список сеансов */
+        .sessions-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .session-item {
+            background: #F8F7F6;
+            border-radius: 12px;
+            padding: 16px 18px;
+            border: 1px solid #E5E3E1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .session-item:hover {
+            border-color: #4A6294;
+            background: #FFFFFF;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transform: translateX(4px);
+        }
+        .session-item.selected {
+            border-color: #4A6294;
+            background: #E8EEF7;
+            box-shadow: 0 0 0 2px rgba(74, 98, 148, 0.15);
+        }
+        .session-info {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .session-date {
+            font-weight: 700;
+            font-size: 16px;
+            color: #1A1718;
+            font-family: 'Unbounded', sans-serif;
+        }
+        .session-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 14px;
+            color: #5A5556;
+        }
+        .session-meta i {
+            width: 16px;
+            margin-right: 4px;
+            color: #4A6294;
+        }
+        .session-select-indicator {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid #D5D3D1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            background: transparent;
+            flex-shrink: 0;
+        }
+        .session-item.selected .session-select-indicator {
+            background: #4A6294;
+            border-color: #4A6294;
+        }
+        .no-sessions {
+            text-align: center;
+            padding: 40px 20px;
+            color: #5A5556;
+            font-style: italic;
+            background: #F8F7F6;
+            border-radius: 12px;
+            border: 1px dashed #E5E3E1;
+        }
+
+        .modal-footer {
+            padding: 20px 24px;
+            border-top: 1px solid #E5E3E1;
+            background: #FFFFFF;
+        }
+        .modal-confirm-btn {
+            width: 100%;
+            background: #E8454D;
+            color: #FFFFFF;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            font-family: 'Unbounded', sans-serif;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .modal-confirm-btn:disabled {
+            background: #E5E3E1;
+            color: #9A9896;
+            cursor: not-allowed;
+            border: 1px solid #D5D3D1;
+        }
+        .modal-confirm-btn:not(:disabled):hover {
+            background: #D62830;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 860px) {
+            .modal-overlay {
+                padding-top: 80px;
+            }
+            .modal-container {
+                max-height: calc(90vh - 80px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .modal-overlay {
+                align-items: flex-end;
+                padding: 0;
+                padding-top: 60px;
+            }
+            .modal-container {
+                max-width: 100%;
+                border-radius: 16px 16px 0 0;
+                max-height: calc(90vh - 60px);
+            }
+            .active .modal-container {
+                transform: scale(1);
+            }
+            .modal-header {
+                padding: 20px 20px 12px;
+            }
+            .modal-body {
+                padding: 20px;
+            }
+            .modal-footer {
+                padding: 16px 20px;
+            }
+            .session-item {
+                padding: 14px 16px;
+            }
+            .filter-btn {
+                padding: 8px 14px;
+                font-size: 13px;
+            }
+        }
+
+        /* Добавляем отступ снизу для контейнера с карточками */
+        .performances-page {
+            margin-bottom: 0px;
+        }
+    </style>
+</head>
+<body>
+<div class="shop-container">
+    <!-- HEADER (сохранён) -->
+    <div id="site-header"></div>
+    <div class="mobile-nav" id="mobileNav"><div class="close-mobile-menu" id="closeMobileMenu">✕</div><ul><li><a href="#">Главная</a></li><li><a href="#">Афиша</a></li><li><a href="#">Заказчикам</a></li><li><a href="#">Брендбук</a></li><li><a href="#">Спектакли</a></li><li><a href="#">Команда</a></li><li><a href="#">О театре</a></li><li><a href="#">Магазин</a></li><li><a href="#">Контакты</a></li></ul></div>
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Основной контент: 5 карточек -->
+    <div class="performances-page">
+        <div class="section-header">
+            <h1 class="section-title">Спектакли</h1>
+            <a href="affiche.html" class="section-link">Вся афиша <i class="fas fa-arrow-right"></i></a>
+        </div>
+        
+        <div class="performances-grid" id="performancesGrid"></div>
+        <!-- Кнопка "показать еще" скрыта -->
+        <div class="show-more-wrapper">
+            <button class="show-more-btn" id="showMorePerformancesBtn" style="display: none;">Показать еще</button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div id="site-footer"></div>
+</div>
+
+<!-- МОДАЛЬНОЕ ОКНО ВЫБОРА ДАТЫ И ВРЕМЕНИ -->
+<div class="modal-overlay" id="sessionModal">
+    <div class="modal-container">
+        <div class="modal-header">
+            <h3>Выбор сеанса</h3>
+            <button class="modal-close" onclick="closeSessionModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-performance-title">
+                <i class="fas fa-ticket-alt"></i> 
+                <span id="selectedPlayTitle"></span>
+            </div>
+            
+            <!-- Фильтр по месяцам -->
+            <div class="date-filter" id="dateFilterContainer">
+                <!-- Кнопки фильтра генерируются динамически -->
+            </div>
+            
+            <!-- Список сеансов -->
+            <div class="sessions-list" id="sessionsListContainer">
+                <!-- Список генерируется динамически -->
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-confirm-btn" id="confirmSessionBtn" disabled>
+                <i class="fas fa-shopping-cart"></i> Перейти к покупке
+            </button>
+        </div>
+    </div>
+</div>
+
+  <script src="js/loader-animation.js"></script>
+  <script src="js/components-loader.js"></script>
+<script src="js/header-scripts.js"></script>
+<script src="js/common.js"></script>
+
+<script>
+(function() {
+    'use strict';
+    
+    // 🔥 ИСПОЛЬЗУЕМ ДАННЫЕ ИЗ tour-data.js
+    // Локальные массивы performances и extendedSessions больше не нужны!
+    
+    // ===== СОСТОЯНИЕ ДЛЯ МОДАЛКИ =====
+    let currentEvent = null;
+    let selectedSession = null;
+    let currentMonthFilter = 'all';
+    
+    const grid = document.getElementById('performancesGrid');
+    
+    // =============================================
+    // 🔥 ЕДИНАЯ ФУНКЦИЯ ОБРАБОТКИ КНОПОК "КУПИТЬ"
+    // Определяет действие по атрибуту:
+    // • data-event-id → сразу переход на checkout
+    // • data-performance-id → открывает модалку выбора даты
+    // =============================================
+    window.handleBuyClick = function(btn) {
+        const eventId = btn.dataset.eventId;
+        const perfId = btn.dataset.performanceId;
+        
+        if (eventId) {
+            // Есть конкретное событие → сразу оформление
+            goToCheckout(eventId);
+        } else if (perfId) {
+            // Только спектакль → открываем выбор даты
+            openSessionModalByPerfId(parseInt(perfId));
+        }
+    };
+    
+    // =============================================
+    // ЕДИНАЯ ФУНКЦИЯ ПЕРЕХОДА К ОФОРМЛЕНИЮ
+    // =============================================
+    window.goToCheckout = function(eventId) {
+        const event = TOUR_SCHEDULE.find(ev => ev.id === eventId);
+        if (!event) { console.error('Событие не найдено:', eventId); return; }
+        
+        const orderInfo = {
+            title: event.title,
+            dateTime: formatEventDate(event.date, event.time),
+            hall: event.venue,
+            address: event.address,
+            price: event.price ? `от ${event.price.min.toLocaleString('ru-RU')} ₽` : 'Уточняйте',
+            poster: event.image,
+            eventId: event.id,
+            performanceId: event.performanceId
+        };
+        
+        localStorage.setItem('selectedPerformance', JSON.stringify(orderInfo));
+        window.location.href = 'checkout.html';
+    };
+    
+    // =============================================
+    // ОТКРЫТИЕ МОДАЛКИ ВЫБОРА ДАТЫ ПО ID СПЕКТАКЛЯ
+    // =============================================
+    function openSessionModalByPerfId(performanceId) {
+        const events = filterEventsByPerformance(performanceId, getUpcomingEvents(TOUR_SCHEDULE));
+        if (!events.length) {
+            alert('На этот спектакль пока нет запланированных показов. Следите за обновлениями!');
+            return;
+        }
+        openSessionModal(events[0]);
+    }
+    
+    // =============================================
+    // РЕНДЕР КАРТОЧЕК СПЕКТАКЛЕЙ (использует tour-data.js)
+    // =============================================
+    function renderCards() {
+        if (!grid) return;
+        
+        // Группируем события по performanceId, берём по одному представителю на спектакль
+        const uniquePerformances = {};
+        TOUR_SCHEDULE.forEach(event => {
+            if (!uniquePerformances[event.performanceId]) {
+                uniquePerformances[event.performanceId] = event;
+            }
+        });
+        
+        const cards = Object.values(uniquePerformances).map(event => {
+            return `
+                <div class="performance-card">
+                    <img class="performance-img" src="${event.image}" alt="${event.title}">
+                    <div class="performance-content">
+                        <div class="performance-tags">
+                            <span class="tag tag-age">${event.age}</span>
+                            <span class="tag tag-time">${event.duration}</span>
+                        </div>
+                        <h3 class="performance-name">${event.title}</h3>
+                        <p class="performance-desc">${event.description}</p>
+                        <div class="performance-btns">
+                            <button class="btn-details" data-performance-id="${event.performanceId}">Подробнее</button>
+                            <button class="btn-buy" data-performance-id="${event.performanceId}">Купить билет</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+        
+        grid.innerHTML = cards;
+        attachPerformanceEvents();
+    }
+    
+    // 🔥 ЕДИНЫЙ ОБРАБОТЧИК ДЛЯ ВСЕХ КНОПОК
+    function attachPerformanceEvents() {
+        // Кнопка "Подробнее"
+        document.querySelectorAll('.btn-details').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const perfId = parseInt(e.currentTarget.dataset.performanceId);
+                window.location.href = `performance.html?id=${perfId}`;
+            });
+        });
+        
+        // 🔥 Все кнопки "Купить билет" обрабатываются одной функцией
+        document.querySelectorAll('.btn-buy').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                handleBuyClick(e.currentTarget);
+            });
+        });
+    }
+    
+    // =============================================
+    // МОДАЛКА ВЫБОРА СЕАНСА
+    // =============================================
+    function openSessionModal(event) {
+        currentEvent = event;
+        selectedSession = null;
+        currentMonthFilter = 'all';
+        
+        document.getElementById('selectedPlayTitle').textContent = event.title;
+        
+        renderMonthFilter(event.performanceId);
+        renderSessionsList(event.performanceId);
+        
+        document.getElementById('confirmSessionBtn').disabled = true;
+        document.getElementById('sessionModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    window.closeSessionModal = function() {
+        document.getElementById('sessionModal').classList.remove('active');
+        document.body.style.overflow = '';
+        currentEvent = null;
+        selectedSession = null;
+    };
+    
+    function renderMonthFilter(performanceId) {
+        const container = document.getElementById('dateFilterContainer');
+        const events = filterEventsByPerformance(performanceId, getUpcomingEvents(TOUR_SCHEDULE));
+        const months = getEventMonths(events);
+        
+        let html = `<button class="filter-btn ${currentMonthFilter === 'all' ? 'active' : ''}" data-month="all">Все даты</button>`;
+        months.forEach(month => {
+            html += `<button class="filter-btn ${currentMonthFilter === `${month.name}-${month.year}` ? 'active' : ''}" data-month="${month.name}-${month.year}">${month.name} ${month.year}</button>`;
+        });
+        container.innerHTML = html;
+        
+        container.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                currentMonthFilter = btn.dataset.month;
+                renderMonthFilter(performanceId);
+                renderSessionsList(performanceId);
+            });
+        });
+    }
+    
+    function renderSessionsList(performanceId) {
+        const container = document.getElementById('sessionsListContainer');
+        let events = filterEventsByPerformance(performanceId, getUpcomingEvents(TOUR_SCHEDULE));
+        
+        if (currentMonthFilter !== 'all') {
+            events = filterEventsByMonth(events, currentMonthFilter);
+        }
+        events = sortEventsByDate(events);
+        
+        if (!events.length) {
+            container.innerHTML = '<div class="no-sessions"><i class="far fa-calendar-times"></i> Нет сеансов в выбранном периоде</div>';
+            return;
+        }
+        
+        container.innerHTML = events.map(ev => {
+            const isSelected = selectedSession?.id === ev.id;
+            return `
+                <div class="session-item ${isSelected ? 'selected' : ''}" data-event-id="${ev.id}">
+                    <div class="session-info">
+                        <div class="session-date">${formatEventDate(ev.date, ev.time)}</div>
+                        <div class="session-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> ${ev.venue}${ev.address ? ', ' + ev.address.split(',')[0] : ''}</span>
+                            <span><i class="far fa-clock"></i> ${ev.duration}</span>
+                        </div>
+                        ${ev.price ? `<div class="session-price">от ${ev.price.min.toLocaleString('ru-RU')} ₽</div>` : ''}
+                    </div>
+                    <div class="session-select-indicator">${isSelected ? '<i class="fas fa-check"></i>' : ''}</div>
+                </div>
+            `;
+        }).join('');
+        
+        container.querySelectorAll('.session-item').forEach(item => {
+            item.addEventListener('click', () => {
+                selectedSession = TOUR_SCHEDULE.find(ev => ev.id === item.dataset.eventId);
+                renderSessionsList(performanceId);
+                document.getElementById('confirmSessionBtn').disabled = false;
+            });
+        });
+    }
+    
+    // Подтверждение выбора сеанса
+    document.getElementById('confirmSessionBtn')?.addEventListener('click', () => {
+        if (selectedSession) {
+            goToCheckout(selectedSession.id);
+        }
+    });
+    
+    // Закрытие модалки по клику на оверлей
+    document.getElementById('sessionModal')?.addEventListener('click', (e) => {
+        if (e.target.classList.contains('modal-overlay')) closeSessionModal();
+    });
+    
+    // =============================================
+    // ХЕДЕР И БУРГЕР-МЕНЮ
+    // =============================================
+    function initHeader() {
+        const dotsIcon = document.getElementById('dotsIcon');
+        const closeIcon = document.getElementById('closeIcon');
+        const extraRow = document.getElementById('extraMenuRow');
+        
+        if (dotsIcon && closeIcon && extraRow) {
+            dotsIcon.addEventListener('click', () => { extraRow.classList.add('open'); dotsIcon.style.display = 'none'; closeIcon.style.display = 'inline-flex'; });
+            closeIcon.addEventListener('click', () => { extraRow.classList.remove('open'); dotsIcon.style.display = 'inline-flex'; closeIcon.style.display = 'none'; });
+        }
+        
+        const burgerIcon = document.getElementById('burgerIcon');
+        const mobileNav = document.getElementById('mobileNav');
+        const overlay = document.getElementById('overlay');
+        const closeMobileBtn = document.getElementById('closeMobileMenu');
+        
+        if (burgerIcon && mobileNav && overlay) {
+            const openMobile = () => { mobileNav.classList.add('open'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; };
+            const closeMobile = () => { mobileNav.classList.remove('open'); overlay.classList.remove('active'); document.body.style.overflow = ''; };
+            burgerIcon.addEventListener('click', openMobile);
+            closeMobileBtn?.addEventListener('click', closeMobile);
+            overlay.addEventListener('click', closeMobile);
+        }
+    }
+    
+    // =============================================
+    // ПОДПИСКА В ФУТЕРЕ
+    // =============================================
+    function initFooter() {
+        document.getElementById('subscribeBtn')?.addEventListener('click', () => {
+            const chk = document.getElementById('consentCheckbox');
+            const err = document.getElementById('consentError');
+            if (!chk?.checked) {
+                if (err) { err.style.display = 'block'; setTimeout(() => err.style.display = 'none', 2000); }
+            } else {
+                alert('Спасибо за подписку!');
+                document.getElementById('subscribeEmail').value = '';
+                if (chk) chk.checked = false;
+            }
+        });
+        
+        document.querySelectorAll('.footer-btn-primary, .buy-ticket-btn').forEach(b => 
+            b.addEventListener('click', () => alert('Билеты скоро в продаже'))
+        );
+        document.querySelector('.footer-btn-secondary')?.addEventListener('click', () => 
+            alert('Заказ шоу: +7 (495) 123-45-67')
+        );
+    }
+    
+    // =============================================
+    // ГЛОБАЛЬНЫЙ ОБРАБОТЧИК ESCAPE
+    // =============================================
+    document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Escape') return;
+        const modal = document.getElementById('sessionModal');
+        if (modal?.classList.contains('active')) closeSessionModal();
+    });
+    
+    // =============================================
+    // ИНИЦИАЛИЗАЦИЯ
+    // =============================================
+    document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+            renderCards();
+            initHeader();
+            initFooter();
+        }, 100);
+    });
+    
+})();
+</script>
+
+</body>
+</html>

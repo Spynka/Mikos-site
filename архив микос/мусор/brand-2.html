@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Театр клоунады «Микос» | Брендбук</title>
+<meta name="description" content="Кодекс визуальной и смысловой идентичности театра клоунады «Микос»">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<!-- Шрифты -->
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Nunito+Sans:opsz,wght@6..12,300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="css/header-footer.css">
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="SVG/logo-2.svg">
+<!-- Основные стили (встроенные для автономности) -->
+<style>
+/* ===== DESIGN TOKENS ===== */
+:root {
+  --color-bg-light: #F2F1F0; --color-bg-dark: #231F20;
+  --color-accent-red: #F43139; --color-deep-blue: #2C4068; --color-gold: #D4BF95;
+  --color-text-primary: var(--color-bg-dark); --color-text-secondary: #5A5A5A;
+  --color-text-inverse: var(--color-bg-light);
+  --color-border: rgba(35, 31, 32, 0.12); --color-shadow: rgba(35, 31, 32, 0.08);
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Nunito Sans', system-ui, sans-serif;
+  --text-xs: 0.75rem; --text-sm: 0.875rem; --text-base: 1rem;
+  --text-lg: 1.125rem; --text-xl: 1.25rem; --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem; --text-4xl: 2.25rem; --text-5xl: 3rem; --text-6xl: 3.75rem;
+  --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem;
+  --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem;
+  --space-12: 3rem; --space-16: 4rem;
+  --container-max: 1440px; --container-padding: var(--space-6);
+  --border-radius: 12px; --border-radius-lg: 20px;
+  --transition: 0.2s ease; --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --blue-900: #2C4068; --blue-200: #DCE4F0; --red-59: #E8454D;
+  --white-95: rgba(242, 241, 240, 0.95);
+  --grey-90: rgba(35, 31, 32, 0.12);
+  --primary-red: #E8454D;
+}
+/* ===== БАЗОВЫЕ СТИЛИ ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--font-body); font-size: var(--text-base); line-height: 1.6;
+  color: var(--color-text-primary); background: var(--color-bg-light);
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; border: none; background: none; }
+.brandbook-container { min-height: 100vh; display: flex; flex-direction: column; }
+.content-wrapper {
+  max-width: var(--container-max); margin: 0 auto;
+  padding: var(--space-12) var(--container-padding); width: 100%;
+}
+/* ===== HEADER ===== */
+.main-header {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(242, 241, 240, 0.98); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border); transition: var(--transition);
+}
+.main-header.scrolled { box-shadow: 0 4px 20px var(--color-shadow); }
+.header-inner {
+  max-width: var(--container-max); margin: 0 auto;
+  padding: var(--space-4) var(--container-padding);
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);
+}
+.header-left { display: flex; align-items: center; gap: var(--space-6); flex: 1; }
+.logo-group { display: flex; align-items: center; gap: var(--space-3); }
+.logo-img { height: 32px; width: auto; object-fit: contain; }
+.brandbook-label {
+  font-family: var(--font-display); font-weight: 700; font-size: var(--text-xl);
+  color: var(--color-accent-red); letter-spacing: -0.02em;
+  padding-left: var(--space-4); border-left: 2px solid var(--color-border);
+}
+.nav-menu {
+  display: flex; align-items: center; gap: var(--space-2);
+  list-style: none; margin-left: auto; flex-wrap: wrap;
+}
+.nav-btn {
+  padding: var(--space-2) var(--space-4); font-family: var(--font-display);
+  font-weight: 600; font-size: var(--text-sm); color: var(--color-text-secondary);
+  border-radius: 8px; transition: var(--transition); position: relative;
+  white-space: nowrap;
+}
+.nav-btn:hover, .nav-btn.active {
+  color: var(--color-bg-dark); background: rgba(244, 49, 57, 0.08);
+}
+.nav-btn.active::after {
+  content: ''; position: absolute; bottom: -2px; left: 50%;
+  transform: translateX(-50%); width: 20px; height: 3px;
+  background: var(--color-accent-red); border-radius: 2px;
+}
+.burger-icon {
+  display: none; font-size: var(--text-2xl); color: var(--color-bg-dark);
+  padding: var(--space-2); border-radius: 8px; transition: var(--transition);
+  order: 99; margin-left: auto;
+}
+.burger-icon:hover { background: rgba(35, 31, 32, 0.08); }
+/* ===== МОБИЛЬНОЕ МЕНЮ ===== */
+.mobile-nav {
+  position: fixed; top: 0; right: -100%; width: 75%; max-width: 320px;
+  min-width: 240px; height: 100vh; height: -webkit-fill-available;
+  background: #1A1A1A; z-index: 10000;
+  transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 70px 20px 30px 20px; overflow-y: auto; overflow-x: hidden;
+  display: flex; flex-direction: column; box-sizing: border-box;
+  border-radius: 0; box-shadow: -4px 0 16px rgba(0, 0, 0, 0.25);
+}
+.mobile-nav.open { right: 0; }
+.mobile-logo-group {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 12px; margin-bottom: 16px; padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.close-mobile-menu {
+  position: absolute; top: 16px; right: 16px;
+  width: 38px; height: 38px; display: flex; align-items: center;
+  justify-content: center; background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%; color: #fff; font-size: 20px; cursor: pointer;
+  z-index: 10001; border: none; transition: background 0.2s;
+}
+.close-mobile-menu:hover { background: rgba(255, 255, 255, 0.2); }
+.mobile-nav ul {
+  list-style: none; display: flex; flex-direction: column;
+  gap: 12px; margin: 0; padding: 0;
+}
+.mobile-nav ul li a {
+  color: var(--color-bg-light); font-family: var(--font-display);
+  font-size: 15px; text-decoration: none; display: block;
+  padding: 6px 0; line-height: 1.2; transition: color 0.2s;
+}
+.mobile-nav ul li a:hover, .mobile-nav ul li a.active { color: var(--color-accent-red); }
+.overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5); z-index: 9999;
+  display: none; opacity: 0; transition: opacity 0.3s ease;
+}
+.overlay.active { display: block; opacity: 1; }
+/* ===== HERO ===== */
+.hero-brand {
+  padding: var(--space-16) var(--container-padding);
+  text-align: center; color: var(--color-text-inverse);
+  position: relative; overflow: hidden;
+}
+.hero-brand::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.4) 100%); z-index: 1;
+}
+.hero-brand-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
+.hero-brand h1 {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(var(--text-4xl), 8vw, var(--text-6xl));
+  line-height: 1.1; letter-spacing: -0.03em;
+  margin-bottom: var(--space-4); text-transform: uppercase;
+}
+.hero-brand p {
+  font-size: var(--text-xl); font-weight: 400; opacity: 0.95;
+  max-width: 600px; margin: 0 auto;
+}
+.hero-brand[data-color="dark"] { background: var(--color-bg-dark); }
+.hero-brand[data-color="blue"] { background: var(--color-deep-blue); }
+.hero-brand[data-color="red"] { background: var(--color-accent-red); }
+.hero-brand[data-color="gold"] { background: var(--color-gold); color: var(--color-bg-dark); }
+/* ===== СЕТКА И КАРТОЧКИ ===== */
+.grid-2col { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-6); margin-bottom: var(--space-10); }
+.grid-3col { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-5); margin-bottom: var(--space-10); }
+.brand-card {
+  background: #fff; border-radius: var(--border-radius-lg);
+  padding: var(--space-6); box-shadow: 0 4px 20px var(--color-shadow);
+  transition: var(--transition-smooth); border: 1px solid var(--color-border);
+}
+.brand-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px var(--color-shadow); }
+.brand-card h3 {
+  font-family: var(--font-display); font-weight: 700; font-size: var(--text-xl);
+  color: var(--color-bg-dark); margin-bottom: var(--space-3); line-height: 1.3;
+}
+.brand-card p { color: var(--color-text-secondary); font-size: var(--text-base); line-height: 1.7; }
+/* ===== ЛОГОТИПЫ И ПАЛИТРА ===== */
+.logo-demo-box { display: flex; flex-wrap: wrap; gap: var(--space-6); justify-content: center; padding: var(--space-8) 0; margin-bottom: var(--space-10); }
+.logo-version { text-align: center; padding: var(--space-5); background: #fff; border-radius: var(--border-radius); border: 1px solid var(--color-border); min-width: 180px; }
+.logo-version img { margin: 0 auto var(--space-3); border-radius: 6px; }
+.logo-version p { font-size: var(--text-sm); color: var(--color-text-secondary); font-weight: 500; }
+.color-palette { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: var(--space-4); margin-bottom: var(--space-10); }
+.swatch { background: #fff; border-radius: var(--border-radius); overflow: hidden; box-shadow: 0 4px 16px var(--color-shadow); border: 1px solid var(--color-border); }
+.swatch-color { height: 80px; width: 100%; }
+.swatch-info { padding: var(--space-3); text-align: center; }
+.swatch-name { font-family: var(--font-display); font-weight: 600; font-size: var(--text-sm); display: block; margin-bottom: var(--space-1); }
+.swatch-info code { font-family: monospace; font-size: var(--text-xs); color: var(--color-text-secondary); background: rgba(0,0,0,0.04); padding: 2px 6px; border-radius: 4px; }
+.mistake-badge { margin-top: var(--space-4); padding: var(--space-3) var(--space-4); background: rgba(244, 49, 57, 0.08); border-left: 3px solid var(--color-accent-red); border-radius: 0 8px 8px 0; font-size: var(--text-sm); color: var(--color-text-primary); }
+/* ===== ФОТО-БЛОКИ ===== */
+.photo-large, .photo-medium { border-radius: var(--border-radius-lg); overflow: hidden; box-shadow: 0 8px 32px var(--color-shadow); margin: var(--space-6) 0; }
+.photo-large img { width: 100%; height: auto; aspect-ratio: 16/6; object-fit: cover; transition: var(--transition-smooth); }
+.photo-large:hover img { transform: scale(1.02); }
+.photo-medium { border-radius: var(--border-radius); }
+.photo-medium img { width: 100%; height: auto; aspect-ratio: 4/3; object-fit: cover; }
+/* ===== КНОПКИ ===== */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); padding: var(--space-3) var(--space-6); font-family: var(--font-display); font-weight: 600; font-size: var(--text-sm); border-radius: 10px; transition: var(--transition); text-transform: uppercase; letter-spacing: 0.02em; }
+.btn-primary { background: var(--color-accent-red); color: #fff; }
+.btn-primary:hover { background: #d62a31; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(244, 49, 57, 0.3); }
+.btn-secondary { background: transparent; color: var(--color-bg-dark); border: 2px solid var(--color-border); }
+.btn-secondary:hover { border-color: var(--color-bg-dark); background: rgba(35, 31, 32, 0.04); }
+/* ===== СТРАНИЦЫ ===== */
+.page-section { display: none; animation: fadeIn 0.4s ease; }
+.page-section.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+/* ===== КАРУСЕЛЬ НОСИТЕЛЕЙ ===== */
+.media-carousel-wrapper { position: relative; margin: var(--space-8) 0; padding: 0 var(--space-4); }
+.media-carousel { display: flex; gap: var(--space-5); overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: var(--space-2) 0; scrollbar-width: none; }
+.media-carousel::-webkit-scrollbar { display: none; }
+.media-card { flex: 0 0 280px; scroll-snap-align: start; background: #fff; border-radius: var(--border-radius-lg); overflow: hidden; box-shadow: 0 4px 20px var(--color-shadow); border: 1px solid var(--color-border); transition: var(--transition-smooth); cursor: pointer; }
+.media-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px var(--color-shadow); }
+.media-card-image { position: relative; height: 180px; overflow: hidden; }
+.media-card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+.media-card:hover .media-card-image img { transform: scale(1.05); }
+.media-card-tag { position: absolute; top: var(--space-3); left: var(--space-3); background: var(--color-accent-red); color: #fff; font-size: var(--text-xs); font-weight: 600; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.03em; }
+.media-card-content { padding: var(--space-5); }
+.media-card-content h3 { font-family: var(--font-display); font-weight: 700; font-size: var(--text-xl); margin-bottom: var(--space-2); color: var(--color-bg-dark); }
+.media-card-content p { color: var(--color-text-secondary); font-size: var(--text-sm); margin-bottom: var(--space-4); line-height: 1.5; }
+.media-card-meta { display: flex; gap: var(--space-3); font-size: var(--text-xs); color: var(--color-text-secondary); margin-bottom: var(--space-4); }
+.media-card-meta i { color: var(--color-accent-red); margin-right: 4px; }
+.carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; background: #fff; border: 1px solid var(--color-border); color: var(--color-bg-dark); font-size: var(--text-lg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px var(--color-shadow); transition: var(--transition); z-index: 10; }
+.carousel-btn:hover { background: var(--color-accent-red); color: #fff; border-color: var(--color-accent-red); }
+.carousel-btn.prev { left: -10px; }
+.carousel-btn.next { right: -10px; }
+.carousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: var(--space-4); }
+.carousel-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--color-border); cursor: pointer; transition: var(--transition); }
+.carousel-dot.active { background: var(--color-accent-red); transform: scale(1.2); }
+/* ===== ДЕТАЛЬНАЯ СТРАНИЦА НОСИТЕЛЯ ===== */
+.media-detail-page { display: none; animation: slideIn 0.3s ease; }
+.media-detail-page.active { display: block; }
+@keyframes slideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+.media-detail-header { background: var(--color-bg-dark); color: var(--color-text-inverse); padding: var(--space-8) var(--container-padding); text-align: center; position: relative; }
+.media-detail-header .btn-secondary { position: absolute; left: var(--container-padding); top: var(--space-4); background: rgba(255,255,255,0.15); color: #fff; border-color: rgba(255,255,255,0.3); }
+.media-detail-header .btn-secondary:hover { background: rgba(255,255,255,0.25); }
+.media-detail-tag { display: inline-block; background: var(--color-accent-red); color: #fff; font-size: var(--text-xs); font-weight: 600; padding: 4px 12px; border-radius: 20px; margin-bottom: var(--space-3); text-transform: uppercase; letter-spacing: 0.05em; }
+.media-detail-title h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(var(--text-3xl), 6vw, var(--text-5xl)); margin-bottom: var(--space-2); line-height: 1.1; }
+.media-detail-title p { font-size: var(--text-lg); opacity: 0.9; max-width: 600px; margin: 0 auto; }
+.media-detail-content { max-width: var(--container-max); margin: 0 auto; padding: var(--space-10) var(--container-padding); }
+.media-gallery { margin-bottom: var(--space-8); }
+.gallery-main { position: relative; border-radius: var(--border-radius-lg); overflow: hidden; box-shadow: 0 12px 40px var(--color-shadow); margin-bottom: var(--space-4); }
+.gallery-main img { width: 100%; height: auto; aspect-ratio: 16/10; object-fit: cover; display: block; }
+.gallery-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; border-radius: 50%; background: rgba(35, 31, 32, 0.7); color: #fff; border: none; font-size: var(--text-xl); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: var(--transition); z-index: 5; }
+.gallery-nav:hover { background: var(--color-accent-red); }
+.gallery-nav.prev { left: var(--space-4); }
+.gallery-nav.next { right: var(--space-4); }
+.gallery-thumbs { display: flex; gap: var(--space-3); overflow-x: auto; padding: var(--space-2) 0; scrollbar-width: thin; }
+.gallery-thumbs::-webkit-scrollbar { height: 6px; }
+.gallery-thumbs::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+.thumb { flex: 0 0 100px; height: 66px; border-radius: 8px; object-fit: cover; cursor: pointer; opacity: 0.7; transition: var(--transition); border: 2px solid transparent; }
+.thumb:hover, .thumb.active { opacity: 1; border-color: var(--color-accent-red); transform: scale(1.03); }
+.media-specs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-6); margin-bottom: var(--space-8); }
+.specs-table { width: 100%; border-collapse: collapse; font-size: var(--text-sm); }
+.specs-table th, .specs-table td { padding: var(--space-3) var(--space-4); text-align: left; border-bottom: 1px solid var(--color-border); }
+.specs-table th { font-weight: 600; color: var(--color-text-primary); width: 45%; }
+.specs-table td { color: var(--color-text-secondary); }
+.downloads-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-4); }
+.download-item { display: flex; align-items: flex-start; gap: var(--space-3); padding: var(--space-4); background: rgba(244, 49, 57, 0.06); border-radius: var(--border-radius); border: 1px solid var(--color-border); transition: var(--transition); }
+.download-item:hover { background: rgba(244, 49, 57, 0.12); transform: translateY(-2px); }
+.download-item i { font-size: var(--text-2xl); color: var(--color-accent-red); margin-top: 2px; }
+.download-item strong { display: block; font-size: var(--text-base); margin-bottom: 2px; }
+.download-item small { color: var(--color-text-secondary); font-size: var(--text-xs); }
+/* ===== ТИПОГРАФИКА: ПАНЕЛЬ УПРАВЛЕНИЯ (sticky) ===== */
+.typo-controls { position: sticky; top: 90px; z-index: 150; background: rgba(242, 241, 240, 0.98); backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-border); border-top: 1px solid var(--color-border); padding: var(--space-4) var(--container-padding); display: none; flex-wrap: wrap; gap: var(--space-4); align-items: center; justify-content: space-between; transition: var(--transition); }
+.typo-controls.active { display: flex; }
+.main-header.scrolled + .typo-controls { box-shadow: 0 4px 20px var(--color-shadow); top: 73px; }
+.font-family-selector { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+.font-weight-selector { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+.weight-btn { padding: var(--space-2) var(--space-4); font-family: var(--font-display); font-weight: 600; font-size: var(--text-sm); border: 2px solid var(--color-border); border-radius: 8px; background: #fff; color: var(--color-text-secondary); transition: var(--transition); cursor: pointer; white-space: nowrap; }
+.weight-btn:hover, .weight-btn.active { border-color: var(--color-accent-red); color: var(--color-accent-red); background: rgba(244, 49, 57, 0.08); }
+.font-family-btn { padding: var(--space-2) var(--space-4); font-family: var(--font-display); font-weight: 600; font-size: var(--text-sm); border: 2px solid var(--color-border); border-radius: 8px; background: #fff; color: var(--color-text-secondary); transition: var(--transition); cursor: pointer; white-space: nowrap; }
+.font-family-btn:hover, .font-family-btn.active { border-color: var(--color-accent-red); color: var(--color-accent-red); background: rgba(244, 49, 57, 0.08); }
+.preview-size { display: flex; align-items: center; gap: var(--space-3); }
+.preview-size label { font-family: var(--font-display); font-weight: 600; font-size: var(--text-sm); color: var(--color-text-secondary); white-space: nowrap; }
+.preview-size input { width: 60px; padding: var(--space-1) var(--space-2); border: 1px solid var(--color-border); border-radius: 6px; font-family: var(--font-body); font-size: var(--text-sm); text-align: center; }
+/* ===== ПРЕДПРОСМОТР ШРИФТА ===== */
+.font-preview { background: #fff; border-radius: var(--border-radius-lg); padding: var(--space-6) var(--space-8); box-shadow: 0 4px 20px var(--color-shadow); border: 1px solid var(--color-border); margin-bottom: var(--space-8); display: none; }
+.font-preview.active { display: block; }
+.preview-title { font-family: var(--font-display); font-weight: 700; font-size: var(--text-lg); color: var(--color-bg-dark); margin-bottom: var(--space-4); display: flex; align-items: center; gap: var(--space-3); }
+.preview-title i { color: var(--color-accent-red); }
+.preview-content { font-size: 2.5rem; line-height: 1.3; letter-spacing: 0.02em; margin-bottom: var(--space-6); transition: var(--transition-smooth); word-break: break-word; }
+.preview-meta { display: flex; gap: var(--space-4); flex-wrap: wrap; font-size: var(--text-sm); color: var(--color-text-secondary); padding-top: var(--space-4); border-top: 1px solid var(--color-border); }
+.preview-meta span { display: flex; align-items: center; gap: var(--space-2); }
+.preview-meta i { color: var(--color-accent-red); }
+/* ===== СЕТКА СИМВОЛОВ 2×2 ===== */
+.symbols-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6); margin-bottom: var(--space-8); display: none; }
+.symbols-grid.active { display: grid; }
+.symbol-card { background: #fff; border-radius: var(--border-radius-lg); padding: var(--space-5) var(--space-6); box-shadow: 0 4px 20px var(--color-shadow); border: 1px solid var(--color-border); }
+.symbol-card h4 { font-family: var(--font-display); font-weight: 700; font-size: var(--text-lg); color: var(--color-bg-dark); margin-bottom: var(--space-4); display: flex; align-items: center; gap: var(--space-3); }
+.symbol-card h4 i { color: var(--color-accent-red); }
+.symbol-block { font-size: 1.1rem; line-height: 1.8; letter-spacing: 0.05em; color: var(--color-text-primary); padding: var(--space-4); background: var(--color-bg-light); border-radius: 8px; display: block; width: 100%; word-break: break-all; user-select: text; text-align: left; }
+.symbol-block.cyrillic { font-size: 1.25rem; line-height: 2; }
+.symbol-block.latin { font-size: 1.15rem; line-height: 1.9; }
+.symbol-block.numbers { font-size: 1.5rem; letter-spacing: 0.15em; }
+.symbol-block.symbols { font-size: 1.3rem; letter-spacing: 0.1em; line-height: 2.2; }
+/* ===== АДАПТИВ ===== */
+@media (min-width: 1600px) { :root { --container-padding: var(--space-10); } .hero-brand h1 { font-size: clamp(var(--text-5xl), 5vw, var(--text-6xl)); } .content-wrapper { padding: var(--space-16) var(--container-padding); } .brand-card { padding: var(--space-8); } }
+@media (max-width: 1024px) { .nav-menu { display: none; } .burger-icon { display: flex; align-items: center; } .header-left { gap: var(--space-4); } .brandbook-label { font-size: var(--text-lg); padding-left: var(--space-3); } .typo-controls { flex-direction: column; align-items: flex-start; top: 68px; } .main-header.scrolled + .typo-controls { top: 69px; } }
+@media (max-width: 768px) { .media-card { flex: 0 0 240px; } .carousel-btn { display: none; } .gallery-nav { width: 40px; height: 40px; font-size: var(--text-lg); } .thumb { flex: 0 0 80px; height: 53px; } .media-detail-header .btn-secondary { position: static; margin-bottom: var(--space-4); } .grid-2col, .grid-3col { grid-template-columns: 1fr; } .hero-brand { padding: var(--space-12) var(--container-padding); } .symbols-grid { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { :root { --container-padding: var(--space-4); --space-12: 2.5rem; --space-16: 3rem; } .header-inner { padding: var(--space-3) var(--container-padding); } .logo-img { height: 28px; } .hero-brand { padding: var(--space-10) var(--container-padding); } .hero-brand h1 { font-size: clamp(var(--text-3xl), 10vw, var(--text-5xl)); } .content-wrapper { padding: var(--space-8) var(--container-padding); } .brand-card { padding: var(--space-5); } .photo-large img { aspect-ratio: 4/3; } .typo-controls { top: 64px; } .main-header.scrolled + .typo-controls { top: 65px; } .symbol-block { font-size: 0.95rem !important; line-height: 1.6; } .symbol-block.cyrillic, .symbol-block.latin { font-size: 1.05rem !important; } .symbol-block.numbers { font-size: 1.2rem !important; } .symbol-block.symbols { font-size: 1.1rem !important; } }
+/* ===== ГАРАНТИЯ СКРЫТИЯ ДЕТАЛЬНЫХ СТРАНИЦ ===== */
+.media-detail-page { display: none !important; position: absolute; left: -9999px; top: 0; width: 100%; pointer-events: none; }
+.media-detail-page.active { display: block !important; position: static; left: auto; pointer-events: auto; animation: slideIn 0.3s ease; }
+/* ===== УТИЛИТЫ ===== */
+.text-center { text-align: center; } .mt-4 { margin-top: var(--space-4); } .mt-6 { margin-top: var(--space-6); } .mt-8 { margin-top: var(--space-8); } .mb-4 { margin-bottom: var(--space-4); } .mb-6 { margin-bottom: var(--space-6); } .hidden { display: none !important; }
+@supports (-webkit-touch-callout: none) { .mobile-nav { height: -webkit-fill-available !important; } }
+.mobile-logo-group { display: flex !important; flex-direction: column !important; align-items: center !important; gap: 12px !important; margin-bottom: 16px !important; padding-bottom: 16px !important; border-bottom: 1px solid rgba(255,255,255,.08) !important; }
+.mobile-logo-group img { max-width: 110px !important; height: auto !important; }
+.close-mobile-menu:hover { background: rgba(255,255,255,.2) !important; }
+.mobile-nav ul li a { color: #F2F1F0 !important; font-family: 'Unbounded', sans-serif !important; font-size: 15px !important; text-decoration: none !important; display: block !important; padding: 6px 0 !important; line-height: 1.2 !important; transition: color .2s !important; }
+.mobile-nav ul li a:hover, .mobile-nav ul li a.active { color: #E8454D !important; }
+@media (max-width: 860px) { .mobile-nav { z-index: 100000 !important; } .overlay { z-index: 99999 !important; } .burger-icon { z-index: 100001 !important; } .main-header { z-index: 99998 !important; } }
+@media (max-width: 1024px) { .content-wrapper { padding: var(--space-8) var(--container-padding) !important; } }
+@media (max-width: 860px) { .content-wrapper { padding: var(--space-6) var(--space-4) !important; } .main-header { background: transparent !important; backdrop-filter: none !important; border-bottom: none !important; box-shadow: none !important; position: absolute !important; top: 0 !important; left: 0 !important; width: 100% !important; z-index: 99998 !important; } .header-inner { justify-content: flex-end !important; height: 0 !important; padding: 0 var(--space-4) !important; background: transparent !important; } .header-left { display: none !important; } .nav-menu { display: none !important; } .burger-icon { display: flex !important; position: fixed !important; top: 19px !important; right: 20px !important; z-index: 100001 !important; width: 52px !important; height: 52px !important; background: #fff !important; border-radius: 50% !important; box-shadow: 0 2px 10px rgba(0,0,0,.15) !important; color: #231F20 !important; font-size: 26px !important; align-items: center !important; justify-content: center !important; transition: all .2s !important; } .burger-icon:hover { color: var(--color-accent-red) !important; transform: scale(1.02) !important; } }
+@media (max-width: 860px) { .mobile-nav ul li a { padding: 12px 0 !important; font-size: 16px !important; min-height: 44px !important; display: flex !important; align-items: center !important; } .mobile-logo-group { padding-top: 10px !important; } .close-mobile-menu { width: 44px !important; height: 44px !important; font-size: 22px !important; } }
+@media (max-width: 480px) { .content-wrapper { padding: var(--space-4) var(--space-3) !important; } .hero-brand h1 { font-size: clamp(var(--text-3xl), 12vw, var(--text-5xl)) !important; } .hero-brand p { font-size: var(--text-base) !important; } .brand-card { padding: var(--space-4) !important; } .grid-2col, .grid-3col { gap: var(--space-4) !important; } .media-card { flex: 0 0 calc(100vw - 32px) !important; width: calc(100vw - 32px) !important; margin: 0 8px !important; } .media-carousel-wrapper { padding: 0 var(--space-2) !important; } .carousel-btn { display: none !important; } .typo-controls { flex-direction: column !important; align-items: stretch !important; gap: var(--space-3) !important; padding: var(--space-3) var(--space-4) !important; } .preview-content { font-size: 1.5rem !important; } .symbol-block { font-size: 0.9rem !important; line-height: 1.5 !important; } }
+@media (max-width: 860px) { input, textarea, select { font-size: 16px !important; } }
+@media (max-width: 860px) { * { -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; } .brand-card, .symbol-block, .preview-content, .hero-brand-content { -webkit-user-select: text !important; user-select: text !important; } .media-carousel, .gallery-thumbs { scroll-behavior: smooth !important; -webkit-overflow-scrolling: touch !important; } }
+@supports (position: sticky) { @media (max-width: 860px) { .typo-controls { top: 60px !important; } .main-header.scrolled + .typo-controls { top: 61px !important; } } }
+@media (max-width: 860px) { .photo-large img { aspect-ratio: 4/3 !important; object-fit: cover !important; } .photo-medium img { aspect-ratio: 1/1 !important; } .logo-demo-box { gap: var(--space-4) !important; } .logo-version { min-width: 140px !important; padding: var(--space-4) !important; } }
+@media (max-width: 860px) { .nav-btn, .btn, .media-open-btn, .carousel-dot, .thumb { min-height: 44px !important; min-width: 44px !important; display: flex !important; align-items: center !important; justify-content: center !important; } .mobile-nav ul li a { color: #F2F1F0 !important; } .mobile-nav ul li a:hover, .mobile-nav ul li a.active { color: var(--color-accent-red) !important; } }
+.main-footer { background: #2C4068 !important; }
+@media (max-width: 860px) { .page-title, .page-title-about, .page-title-team, .page-title-contacts, .page-title-customers, .hero-brand h1, .section-title { padding-top: 20px !important; } .hero-brand { padding-top: clamp(70px, 15vw, 100px) !important; } .afisha-page, .performances-page, .about-page, .team-page, .contacts-page, .customers-page { padding-top: 80px !important; } }
+/* ===== НОВЫЕ СТИЛИ ДЛЯ СТРАНИЦЫ ЛОГОТИПА ===== */
+.section-title { font-family: var(--font-display); font-weight: 700; font-size: var(--text-2xl); color: var(--color-bg-dark); margin-bottom: var(--space-4); }
+.logo-variants-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); margin-bottom: var(--space-10); }
+.logo-variant-item { border-radius: var(--border-radius); overflow: hidden; border: 1px solid var(--color-border); background: #fff; padding: var(--space-4); text-align: center; transition: var(--transition-smooth); position: relative; }
+.logo-variant-item:hover { transform: translateY(-4px); box-shadow: 0 12px 24px var(--color-shadow); }
+.logo-variant-item.light-bg { background: #F2F1F0; }
+.logo-variant-item.dark-bg { background: #221E1F; color: var(--color-text-inverse); }
+.logo-variant-item p { margin-top: var(--space-3); font-family: var(--font-display); font-weight: 600; font-size: var(--text-sm); color: inherit; opacity: 0.85; }
+.variant-placeholder { width: 100%; height: 200px; display: flex; align-items: center; justify-content: center; cursor: grab; position: relative; padding: var(--space-3); box-sizing: border-box; }
+.variant-placeholder:active { cursor: grabbing; }
+.variant-placeholder img, .variant-placeholder object { max-width: 100%; max-height: 100%; object-fit: contain; pointer-events: none; }
+.variant-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; opacity: 0; transition: var(--transition); border-radius: var(--border-radius); pointer-events: none; }
+.logo-variant-item:hover .variant-overlay { opacity: 1; }
+.variant-overlay i { color: #fff; font-size: var(--text-2xl); margin-right: var(--space-2); }
+.variant-overlay span { color: #fff; font-family: var(--font-display); font-weight: 600; font-size: var(--text-sm); }
+/* Сетка охранных полей */
+.clearspace-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6); margin-bottom: var(--space-10); }
+.clearspace-demo { background: #fff; border-radius: var(--border-radius-lg); padding: var(--space-5); border: 1px solid var(--color-border); box-shadow: 0 4px 20px var(--color-shadow); text-align: center; }
+.clearspace-demo p { margin-top: var(--space-4); font-family: var(--font-display); font-weight: 600; font-size: var(--text-sm); color: var(--color-text-secondary); }
+.clearspace-box { width: 100%; height: 200px; display: flex; align-items: center; justify-content: center; border: 2px dashed rgba(0,0,0,0.15); border-radius: var(--border-radius); position: relative; cursor: grab; background: var(--color-bg-light) !important; padding: var(--space-4); box-sizing: border-box; }
+.clearspace-box:active { cursor: grabbing; }
+.clearspace-box.light-bg { height: 450px; background: #F2F1F0 !important; }
+.clearspace-box.dark-bg { background: #F2F1F0 !important; border-color: rgba(0,0,0,0.15) !important; }
+.clearspace-box.vertical { height: 250px; }
+.clearspace-inner { width: 100%; height: 100%; padding: 20px; background: transparent; display: flex; align-items: center; justify-content: center; }
+.clearspace-inner img { max-width: 100%; max-height: 100%; }
+/* Минимальный размер (ИСПРАВЛЕНО: оригинальный размер SVG) */
+.min-size-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); margin-bottom: var(--space-10); }
+.min-size-item { background: #fff; border-radius: var(--border-radius-lg); padding: var(--space-4); border: 1px solid var(--color-border); box-shadow: 0 4px 20px var(--color-shadow); text-align: center; }
+.min-size-visual { display: inline-block; position: relative; margin-bottom: var(--space-4); border: 1px solid var(--color-border); padding: var(--space-4); background: #F2F1F0; border-radius: var(--border-radius); cursor: grab; width: auto; min-height: 100px; }
+.min-size-visual:active { cursor: grabbing; }
+/* Переопределение универсальных правил для min-size-visual */
+.min-size-visual img, .min-size-visual object { width: auto !important; height: auto !important; max-width: 100% !important; display: block; margin: 0 auto; object-fit: contain; }
+.size-indicator { position: absolute; bottom: -8px; right: -8px; background: var(--color-accent-red); color: #fff; font-family: var(--font-display); font-size: var(--text-xs); font-weight: 700; padding: 2px 10px; border-radius: 12px; white-space: nowrap; letter-spacing: 0.03em; box-shadow: 0 2px 8px rgba(0,0,0,0.15); z-index: 2; }
+/* Горизонтальный скролл для модификаций с кнопками */
+.scroll-gallery-wrapper { position: relative; margin-bottom: var(--space-8); }
+.scroll-gallery { display: flex; gap: var(--space-4); overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: var(--space-2) var(--space-8); scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.scroll-gallery::-webkit-scrollbar { display: none; }
+.scroll-item { flex: 0 0 280px; scroll-snap-align: start; background: #fff; border-radius: var(--border-radius-lg); overflow: hidden; border: 1px solid var(--color-border); box-shadow: 0 4px 20px var(--color-shadow); transition: var(--transition-smooth); }
+.scroll-item:hover { transform: translateY(-4px); box-shadow: 0 12px 40px var(--color-shadow); }
+.scroll-item-image { height: 180px; display: flex; align-items: center; justify-content: center; background: var(--color-bg-light); cursor: grab; position: relative; padding: var(--space-4); box-sizing: border-box; }
+.scroll-item-image:active { cursor: grabbing; }
+.scroll-item-image img, .scroll-item-image object { max-width: 100%; max-height: 100%; object-fit: contain; pointer-events: none; }
+.scroll-item-image::after { content: '\f065'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #fff; font-size: var(--text-2xl); background: rgba(0,0,0,0.5); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; transition: var(--transition); pointer-events: none; }
+.scroll-item-image:hover::after { opacity: 1; }
+.scroll-item-content { padding: var(--space-4); text-align: center; }
+.scroll-item-content h4 { font-family: var(--font-display); font-weight: 600; font-size: var(--text-sm); color: var(--color-bg-dark); margin-bottom: var(--space-2); }
+.scroll-item-content p { font-size: var(--text-xs); color: var(--color-text-secondary); }
+.scroll-nav-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; border-radius: 50%; background: #fff; border: 1px solid var(--color-border); color: var(--color-bg-dark); font-size: var(--text-lg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px var(--color-shadow); transition: var(--transition); z-index: 10; cursor: pointer; }
+.scroll-nav-btn:hover { background: var(--color-accent-red); color: #fff; border-color: var(--color-accent-red); }
+.scroll-nav-btn.prev { left: 0; }
+.scroll-nav-btn.next { right: 0; }
+.scroll-nav-btn:disabled { opacity: 0.4; cursor: not-allowed; background: #fff; color: var(--color-border); }
+.forbidden-scroll .scroll-item { border-color: var(--color-accent-red); }
+.forbidden-scroll .scroll-item-image { background: rgba(244, 49, 57, 0.05); }
+.forbidden-scroll .scroll-item-content h4 { color: var(--color-bg-dark); }
+.forbidden-scroll .scroll-item-content p { color: var(--color-text-secondary); }
+/* ===== FULLSCREEN LIGHTBOX (ИСПРАВЛЕНО: БЕЗ НАЛОЖЕНИЯ) ===== */
+.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 100000; display: none; align-items: center; justify-content: center; padding: var(--space-6); animation: fadeIn 0.3s ease; }
+.lightbox.active { display: flex; }
+.lightbox-content { 
+  max-width: 90vw; max-height: 90vh; 
+  background: #fff; border-radius: var(--border-radius); 
+  padding: var(--space-6); box-shadow: 0 20px 60px rgba(0,0,0,0.5); 
+  display: flex; flex-direction: column; 
+  transition: background 0.2s ease; position: relative;
+}
+.lightbox-content[data-bg="light"] { background: var(--color-bg-light); }
+.lightbox-content[data-bg="dark"] { background: #221E1F; }
+.lightbox-content[data-bg="blue"] { background: var(--color-deep-blue); }
+.lightbox-content[data-bg="gold"] { background: var(--color-gold); }
+.lightbox-media-container { flex: 1; display: flex; align-items: center; justify-content: center; min-height: 0; margin-bottom: var(--space-4); }
+.lightbox-media-container img, .lightbox-media-container object { max-width: 100%; max-height: 70vh; object-fit: contain; border-radius: var(--border-radius); display: block; }
+.lightbox-close { position: absolute; top: 10px; right: 10px; color: #fff; font-size: var(--text-2xl); cursor: pointer; transition: var(--transition); padding: var(--space-2); background: rgba(0,0,0,0.3); border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; z-index: 5; }
+.lightbox-close:hover { background: var(--color-accent-red); color: #fff; }
+.lightbox-footer { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-3); padding-top: var(--space-4); border-top: 1px solid rgba(0,0,0,0.1); }
+.lightbox-info { color: var(--color-text-primary); font-family: var(--font-display); font-weight: 600; font-size: var(--text-sm); background: rgba(0,0,0,0.08); padding: var(--space-2) var(--space-4); border-radius: 20px; }
+.lightbox-content[data-bg="dark"] .lightbox-info, .lightbox-content[data-bg="blue"] .lightbox-info { background: rgba(255,255,255,0.15); color: #fff; }
+.lightbox-download { display: inline-flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-4); background: var(--color-accent-red); color: #fff; border-radius: 20px; font-family: var(--font-display); font-weight: 600; font-size: var(--text-sm); text-decoration: none; transition: var(--transition); }
+.lightbox-download:hover { background: #d62a31; }
+/* ===== ФИЛЬТРЫ ===== */
+.filters-section { margin: var(--space-8) 0 var(--space-6); padding: 0 var(--container-padding); }
+.filter-chips { display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center; }
+.filter-chip { padding: var(--space-2) var(--space-5); font-family: var(--font-display); font-weight: 600; font-size: var(--text-sm); border-radius: 30px; border: 2px solid var(--color-border); background: #fff; color: var(--color-text-secondary); cursor: pointer; transition: var(--transition); white-space: nowrap; }
+.filter-chip:hover { border-color: var(--color-accent-red); color: var(--color-accent-red); }
+.filter-chip.active { background: var(--color-accent-red); border-color: var(--color-accent-red); color: #fff; }
+/* ===== КАРТОЧКИ НОСИТЕЛЕЙ (сетка) ===== */
+.media-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--space-5); padding: 0 var(--container-padding); margin-bottom: var(--space-10); }
+.media-card-new { background: #fff; border-radius: var(--border-radius-lg); overflow: hidden; box-shadow: 0 4px 20px var(--color-shadow); border: 1px solid var(--color-border); display: flex; flex-direction: column; transition: var(--transition-smooth); }
+.media-card-new:hover { transform: translateY(-4px); box-shadow: 0 12px 40px var(--color-shadow); }
+.media-card-image { height: 200px; overflow: hidden; position: relative; }
+.media-card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+.media-card-new:hover .media-card-image img { transform: scale(1.05); }
+.media-card-tag { position: absolute; top: var(--space-3); left: var(--space-3); background: var(--color-accent-red); color: #fff; font-size: var(--text-xs); font-weight: 600; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.03em; }
+.media-card-content { padding: var(--space-5); flex: 1; display: flex; flex-direction: column; }
+.media-card-content h3 { font-family: var(--font-display); font-weight: 700; font-size: var(--text-xl); margin-bottom: var(--space-2); color: var(--color-bg-dark); }
+.media-card-content p { color: var(--color-text-secondary); font-size: var(--text-sm); line-height: 1.5; margin-bottom: var(--space-4); flex: 1; }
+.media-card-btn { align-self: flex-start; }
+.show-more-wrapper { text-align: center; margin: var(--space-8) 0; }
+.show-more-btn { padding: var(--space-3) var(--space-8); font-family: var(--font-display); font-weight: 600; font-size: var(--text-base); border: 2px solid var(--color-border); border-radius: 30px; background: #fff; color: var(--color-text-primary); cursor: pointer; transition: var(--transition); }
+.show-more-btn:hover { border-color: var(--color-accent-red); color: var(--color-accent-red); }
+.media-detail-container { display: none; padding: var(--space-10) var(--container-padding); max-width: var(--container-max); margin: 0 auto; }
+.media-detail-container.active { display: block; animation: fadeIn 0.3s ease; }
+.download-item { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-4); background: rgba(244, 49, 57, 0.06); border-radius: var(--border-radius); border: 1px solid var(--color-border); transition: var(--transition); text-decoration: none; color: inherit; }
+.download-item:hover { background: rgba(244, 49, 57, 0.12); transform: translateY(-2px); }
+.download-item i { font-size: var(--text-2xl); color: var(--color-accent-red); }
+.download-item strong { display: block; font-size: var(--text-base); margin-bottom: 2px; }
+.download-item small { color: var(--color-text-secondary); font-size: var(--text-xs); }
+/* ===== МОБИЛЬНАЯ ВЕРСТКА ДЛЯ ЛОГОТИПОВ ===== */
+@media (max-width: 1024px) { .logo-variants-grid { grid-template-columns: repeat(2, 1fr); } .clearspace-grid { grid-template-columns: 1fr; } .min-size-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .logo-variants-grid { grid-template-columns: 1fr; } .min-size-grid { grid-template-columns: 1fr; } .scroll-item { flex: 0 0 calc(100vw - 48px); } .scroll-nav-btn { display: none; } .lightbox-media-container img, .lightbox-media-container object { max-height: 50vh; } }
+</style>
+</head>
+<body>
+<div class="brandbook-container">
+<!-- HEADER -->
+<header class="main-header" id="mainHeader">
+<div class="header-inner">
+<div class="header-left">
+<a href="index.html" class="logo-link" aria-label="На главную">
+<div class="logo-group">
+<img class="logo-img" src="SVG/logo-2.svg" alt="Знак" loading="lazy">
+<img class="logo-img" src="SVG/logo.svg" alt="Логотип" loading="lazy">
+</div>
+</a>
+<span class="brandbook-label">Брендбук</span>
+</div>
+<nav class="nav-menu" id="brandNav" aria-label="Основная навигация">
+<li><button class="nav-btn" onclick="window.location.href='index.html'" data-page="about">Сайт театра</button></li>
+<li><button class="nav-btn active" data-page="about">О бренде</button></li>
+<li><button class="nav-btn" data-page="logo">Логотип</button></li>
+<li><button class="nav-btn" data-page="colors">Цвета</button></li>
+<li><button class="nav-btn" data-page="typo">Типографика</button></li>
+<li><button class="nav-btn" data-page="graphics">Графика</button></li>
+<li><button class="nav-btn" data-page="photo">Фотостиль</button></li>
+<li><button class="nav-btn" data-page="media">Носители</button></li>
+</nav>
+<button class="burger-icon" id="burgerIcon" aria-label="Открыть меню" aria-expanded="false">
+<i class="fas fa-bars"></i>
+</button>
+</div>
+</header>
+<!-- МОБИЛЬНОЕ МЕНЮ -->
+<aside class="mobile-nav" id="mobileNav" aria-hidden="true">
+<button class="close-mobile-menu" id="closeMobileMenu" aria-label="Закрыть меню">
+<i class="fas fa-times"></i>
+</button>
+<a href="index.html" class="logo-link mobile-logo-link" aria-label="На главную">
+<div class="mobile-logo-group">
+<img class="logo-img" src="SVG/logo-black.svg" alt="Знак">
+<img class="logo-img" src="SVG/logo-black-2.svg" alt="Логотип">
+</div>
+</a>
+<nav aria-label="Мобильная навигация">
+<ul>
+<li><a href="index.html">Сайт театра</a></li>
+<li><a href="#" data-mobile-page="about">О бренде</a></li>
+<li><a href="#" data-mobile-page="logo">Логотип</a></li>
+<li><a href="#" data-mobile-page="colors">Цвета</a></li>
+<li><a href="#" data-mobile-page="typo">Типографика</a></li>
+<li><a href="#" data-mobile-page="graphics">Графика</a></li>
+<li><a href="#" data-mobile-page="photo">Фотостиль</a></li>
+<li><a href="#" data-mobile-page="media">Носители</a></li>
+</ul>
+</nav>
+</aside>
+<div class="overlay" id="overlay" aria-hidden="true"></div>
+<!-- СТРАНИЦА: О БРЕНДЕ -->
+<section class="page-section active" id="page-about">
+<div class="hero-brand" data-color="blue">
+<div class="hero-brand-content"><h1>О бренде</h1><p>Кодекс визуальной и смысловой идентичности театра клоунады «Микос»</p></div>
+</div>
+<div class="content-wrapper">
+<div class="grid-3col">
+<article class="brand-card"><h3>Кратко о бренде</h3><p>Экспериментальный театр, где клоунада становится языком глубокого диалога между сценой и зрителем.</p></article>
+<article class="brand-card"><h3>Цели бренда</h3><p>Создать узнаваемый культурный бренд с сильным визуальным кодом, привлечь новую интеллектуальную аудиторию.</p></article>
+<article class="brand-card"><h3>Задачи брендбука</h3><p>Единая система коммуникации: от афиш до соцсетей, сохранение характера «структурированного спектакля».</p></article>
+</div>
+<figure class="photo-large"><img src="https://placehold.co/1400x420/2C4068/F2F1F0?text=МИССИЯ+ТЕАТРА+КЛОУНАДЫ" alt="Миссия" loading="lazy"></figure>
+<div class="grid-2col">
+<article class="brand-card"><h3>Миссия</h3><p>Дарить зрителю опыт живого сопереживания через синтез клоунады, драмы и пластики. Смех, который остаётся в сердце.</p><h3 class="mt-6">Ключевое сообщение</h3><p><strong>«Искусство улыбаться всерьёз»</strong></p></article>
+<article class="brand-card"><h3>Позиционирование</h3><p>Новаторский театр для думающей аудитории 20–45 лет, семьи, корпоративные клиенты.</p><h3 class="mt-4">Задачи</h3><p>Рост узнаваемости на 40%, увеличение продаж билетов, формирование комьюнити вокруг бренда.</p></article>
+</div>
+<div class="grid-3col">
+<article class="brand-card"><h3>Название / Слоган</h3><p>Театр клоунады «Микос» · <em>«Игра, которая остаётся в сердце»</em></p></article>
+<article class="brand-card"><h3>Креативная концепция</h3><p>Контраст строгой геометрической типографики и живой клоунады. Красный акцент как «свет рампы».</p></article>
+<article class="brand-card"><h3>Визуальная стратегия</h3><p>Крупные эмоциональные портреты, высокий контраст, глубокий синий фон, золотые детали.</p></article>
+</div>
+</div>
+</section>
+<!-- СТРАНИЦА: ЛОГОТИП -->
+<section class="page-section" id="page-logo">
+<div class="hero-brand" data-color="dark">
+<div class="hero-brand-content"><h1>Логотип</h1><p>Структура, модификации, охранное поле</p></div>
+</div>
+<div class="content-wrapper">
+<div style="text-align: right; margin-bottom: var(--space-6);">
+<a href="files/ai/ИТОГОВЫЕ ЛОГОТИПЫ.ai" class="btn btn-primary" download><i class="fas fa-file-vector"></i> Скачать все логотипы (.ai)</a>
+</div>
+<h2 class="section-title">Вариации логотипа</h2>
+<h3 style="font-family:var(--font-display); font-weight:600; margin: var(--space-6) 0 var(--space-4); color: var(--color-text-secondary);">На светлом фоне (#F2F1F0)</h3>
+<div class="logo-variants-grid">
+<div class="logo-variant-item light-bg">
+<div class="variant-placeholder" data-fullscreen="SVG/znak-sv.svg" data-name="Знаковая часть на светлом фоне" data-bg="light">
+<img src="SVG/znak-sv.svg" alt="Знаковая часть на светлом фоне" onerror="this.src='https://placehold.co/120x60/F2F1F0/231F20?text=ЗНАК'">
+<div class="variant-overlay"><i class="fas fa-expand"></i><span>Полный экран</span></div>
+</div><p></p>
+</div>
+<div class="logo-variant-item light-bg">
+<div class="variant-placeholder" data-fullscreen="SVG/all-sv.svg" data-name="Полный логотип красный" data-bg="light">
+<img src="SVG/all-sv.svg" alt="Полный красный" onerror="this.src='https://placehold.co/120x60/F2F1F0/F43139?text=ПОЛНЫЙ'">
+<div class="variant-overlay"><i class="fas fa-expand"></i><span>Полный экран</span></div>
+</div><p></p>
+</div>
+<div class="logo-variant-item light-bg">
+<div class="variant-placeholder" data-fullscreen="SVG/text+sv.svg" data-name="Текст + знак синий" data-bg="light">
+<img src="SVG/text+sv.svg" alt="Текст + знак" onerror="this.src='https://placehold.co/120x60/F2F1F0/2C4068?text=ТЕКСТ+'">
+<div class="variant-overlay"><i class="fas fa-expand"></i><span>Полный экран</span></div>
+</div><p></p>
+</div>
+<div class="logo-variant-item light-bg">
+<div class="variant-placeholder" data-fullscreen="SVG/text-sv.svg" data-name="Текстовый золотой" data-bg="light">
+<img src="SVG/text-sv.svg" alt="Текстовый" onerror="this.src='https://placehold.co/120x60/F2F1F0/D4BF95?text=ТЕКСТ'">
+<div class="variant-overlay"><i class="fas fa-expand"></i><span>Полный экран</span></div>
+</div><p></p>
+</div>
+</div>
+<h3 style="font-family:var(--font-display); font-weight:600; margin: var(--space-6) 0 var(--space-4); color: var(--color-text-secondary);">На тёмном фоне (#221E1F)</h3>
+<div class="logo-variants-grid">
+<div class="logo-variant-item dark-bg">
+<div class="variant-placeholder" data-fullscreen="SVG/znak-tm.svg" data-name="Знаковая часть на темном фоне" data-bg="dark">
+<img src="SVG/znak-tm.svg" alt="Знак тёмный" onerror="this.src='https://placehold.co/120x60/221E1F/F2F1F0?text=ЗНАК'">
+<div class="variant-overlay"><i class="fas fa-expand"></i><span>Полный экран</span></div>
+</div><p></p>
+</div>
+<div class="logo-variant-item dark-bg">
+<div class="variant-placeholder" data-fullscreen="SVG/all-tm.svg" data-name="Полный красный на тёмном" data-bg="dark">
+<img src="SVG/all-tm.svg" alt="Полный красный" onerror="this.src='https://placehold.co/120x60/221E1F/F43139?text=ПОЛНЫЙ'">
+<div class="variant-overlay"><i class="fas fa-expand"></i><span>Полный экран</span></div>
+</div><p>Полный · Красный</p>
+</div>
+<div class="logo-variant-item dark-bg">
+<div class="variant-placeholder" data-fullscreen="SVG/text+tm.svg" data-name="Текст + знак на тёмном" data-bg="dark">
+<img src="SVG/text+tm.svg" alt="Текст + знак" onerror="this.src='https://placehold.co/120x60/221E1F/2C4068?text=ТЕКСТ+'">
+<div class="variant-overlay"><i class="fas fa-expand"></i><span>Полный экран</span></div>
+</div><p>Текст + знак · Синий</p>
+</div>
+<div class="logo-variant-item dark-bg">
+<div class="variant-placeholder" data-fullscreen="SVG/text-tm.svg" data-name="Текстовый на тёмном" data-bg="dark">
+<img src="SVG/text-tm.svg" alt="Текстовый" onerror="this.src='https://placehold.co/120x60/221E1F/D4BF95?text=ТЕКСТ'">
+<div class="variant-overlay"><i class="fas fa-expand"></i><span>Полный экран</span></div>
+</div><p>Текстовый · Золотой</p>
+</div>
+</div>
+<h2 class="section-title mt-8">Структура логотипа</h2>
+<div style="background:#fff; border-radius:var(--border-radius-lg); padding:var(--space-6); border:1px solid var(--color-border); box-shadow:0 4px 20px var(--color-shadow); margin-bottom:var(--space-10);">
+<div class="variant-placeholder" style="height:500px; background:var(--color-bg-light); border-radius:var(--border-radius);" data-fullscreen="SVG/src.png" data-name="Структура логотипа" data-bg="light">
+<img src="SVG/src.png" alt="Структура логотипа" style="max-height:100%;">
+<div class="variant-overlay"><i class="fas fa-expand"></i><span>Полный экран</span></div>
+</div>
+<p style="margin-top:var(--space-4); font-family:var(--font-display); font-weight:600; color:var(--color-text-secondary); text-align:center;">Соотношения элементов, пропорции и сетка построения логотипа</p>
+</div>
+<h2 class="section-title mt-8">Охранные поля</h2>
+<div class="clearspace-grid">
+<div class="clearspace-demo">
+<div class="clearspace-box light-bg" data-fullscreen="SVG/znak-ox.svg" data-name="Охранное поле · Горизонтальное" data-bg="light">
+<div class="clearspace-inner"><img src="SVG/znak-ox.svg" alt="fallback"></div>
+</div><p>Светлый фон · Горизонтальное поле</p>
+</div>
+<div class="clearspace-demo">
+<div class="clearspace-box light-bg" data-fullscreen="SVG/all-ox.svg" data-name="Охранное поле · Горизонтальное" data-bg="light">
+<div class="clearspace-inner"><img src="SVG/all-ox.svg" alt="Логотип"></div>
+</div><p>Светлый фон · Горизонтальное поле</p>
+</div>
+<div class="clearspace-demo">
+<div class="clearspace-box light-bg vertical" data-fullscreen="SVG/text+ox.svg" data-name="Охранное поле · Вертикальное" data-bg="light">
+<div class="clearspace-inner"><img src="SVG/text+ox.svg" alt="Логотип"></div>
+</div><p>Светлый фон · Вертикальное поле</p>
+</div>
+<div class="clearspace-demo">
+<div class="clearspace-box light-bg vertical" data-fullscreen="SVG/text-ox.svg" data-name="Охранное поле · Вертикальное" data-bg="light">
+<div class="clearspace-inner"><img src="SVG/text-ox.svg"></div>
+</div><p>Светлый фон · Вертикальное поле</p>
+</div>
+</div>
+<h2 class="section-title mt-8">Минимальные размеры для экранов</h2>
+<div class="min-size-grid">
+<div class="min-size-item">
+<div class="min-size-visual" data-fullscreen="SVG/znak-min-web.svg" data-name="Мин. размер 25 мм" data-bg="light">
+<img src="SVG/znak-min-web.svg" alt="Мин. размер">
+<div class="size-indicator">16 px</div>
+</div><p style="font-family:var(--font-display); font-weight:600; font-size:var(--text-sm);">Печать · 25 мм</p>
+</div>
+<div class="min-size-item">
+<div class="min-size-visual" data-fullscreen="SVG/all-min-web.svg" data-name="Высота 104 px" data-bg="light">
+<img src="SVG/all-min-web.svg" alt="Мин. размер">
+<div class="size-indicator">104 px</div>
+</div><p style="font-family:var(--font-display); font-weight:600; font-size:var(--text-sm);">Digital · 72 px</p>
+</div>
+<div class="min-size-item">
+<div class="min-size-visual" data-fullscreen="SVG/text+min-web.svg" data-name="Высота 32 px" data-bg="light">
+<img src="SVG/text+min-web.svg" alt="Мин. знак">
+<div class="size-indicator">32 px</div>
+</div><p style="font-family:var(--font-display); font-weight:600; font-size:var(--text-sm);">Знак · 15 мм</p>
+</div>
+<div class="min-size-item">
+<div class="min-size-visual" data-fullscreen="SVG/text-min-web.svg" data-name="Высота 20 px" data-bg="light">
+<img src="SVG/text-min-web.svg" alt="Мин. знак">
+<div class="size-indicator">20 px</div>
+</div><p style="font-family:var(--font-display); font-weight:600; font-size:var(--text-sm);">Знак · 48 px</p>
+</div>
+</div>
+<h2 class="section-title mt-8">Минимальные размеры для печати</h2>
+<div class="min-size-grid">
+<div class="min-size-item">
+<div class="min-size-visual" data-fullscreen="SVG/znak-min-print.svg" data-name="Высота 6 мм" data-bg="light">
+<img src="SVG/znak-min-print.svg" alt="Мин. размер">
+<div class="size-indicator">6 мм</div>
+</div><p style="font-family:var(--font-display); font-weight:600; font-size:var(--text-sm);">Печать · 25 мм</p>
+</div>
+<div class="min-size-item">
+<div class="min-size-visual" data-fullscreen="SVG/all-min-print.svg" data-name="Высота 40 мм" data-bg="light">
+<img src="SVG/all-min-print.svg" alt="Мин. размер">
+<div class="size-indicator">40 мм</div>
+</div><p style="font-family:var(--font-display); font-weight:600; font-size:var(--text-sm);">Digital · 72 px</p>
+</div>
+<div class="min-size-item">
+<div class="min-size-visual" data-fullscreen="SVG/text+min-print.svg" data-name="Высота 15 мм" data-bg="light">
+<img src="SVG/text+min-print.svg" alt="Мин. знак">
+<div class="size-indicator">15 px</div>
+</div><p style="font-family:var(--font-display); font-weight:600; font-size:var(--text-sm);">Знак · 15 мм</p>
+</div>
+<div class="min-size-item">
+<div class="min-size-visual" data-fullscreen="SVG/text-min-print.svg" data-name="Высота 10 мм" data-bg="light">
+<img src="SVG/text-min-print.svg" alt="Мин. знак">
+<div class="size-indicator">10 мм</div>
+</div><p style="font-family:var(--font-display); font-weight:600; font-size:var(--text-sm);">Знак · 48 px</p>
+</div>
+</div>
+<h2 class="section-title mt-8">Разрешённые модификации</h2>
+<p style="color:var(--color-text-secondary); margin-bottom:var(--space-4);">Варианты использования логотипа, допустимые в брендбуке:</p>
+<div class="scroll-gallery-wrapper">
+<button class="scroll-nav-btn prev" data-target="allowedScroll"><i class="fas fa-chevron-left"></i></button>
+<div class="scroll-gallery" id="allowedScroll">
+<div class="scroll-item"><div class="scroll-item-image" data-fullscreen="https://placehold.co/400x300/F2F1F0/231F20?text=Монохром" data-name="Монохромная версия" data-bg="light"><img src="https://placehold.co/280x180/F2F1F0/231F20?text=Монохром" alt="Монохром"></div><div class="scroll-item-content"><h4>Монохром</h4><p>Ч/б для газет</p></div></div>
+<div class="scroll-item"><div class="scroll-item-image" data-fullscreen="https://placehold.co/400x300/2C4068/F2F1F0?text=Инверсия" data-name="Инверсия цветов" data-bg="blue"><img src="https://placehold.co/280x180/2C4068/F2F1F0?text=Инверсия" alt="Инверсия"></div><div class="scroll-item-content"><h4>Инверсия</h4><p>На цветных фонах</p></div></div>
+<div class="scroll-item"><div class="scroll-item-image" data-fullscreen="https://placehold.co/400x300/D4BF95/231F20?text=Золотой+фон" data-name="На золотом фоне" data-bg="gold"><img src="https://placehold.co/280x180/D4BF95/231F20?text=Золотой+фон" alt="Золотой фон"></div><div class="scroll-item-content"><h4>Золотой фон</h4><p>Премиум-материалы</p></div></div>
+<div class="scroll-item"><div class="scroll-item-image" data-fullscreen="https://placehold.co/400x300/F2F1F0/F43139?text=Красный+текст" data-name="Красный текст" data-bg="light"><img src="https://placehold.co/280x180/F2F1F0/F43139?text=Красный+текст" alt="Красный текст"></div><div class="scroll-item-content"><h4>Красный текст</h4><p>Акцентные материалы</p></div></div>
+<div class="scroll-item"><div class="scroll-item-image" data-fullscreen="https://placehold.co/400x300/231F20/F2F1F0?text=Тиснение" data-name="Тиснение" data-bg="dark"><img src="https://placehold.co/280x180/231F20/F2F1F0?text=Тиснение" alt="Тиснение"></div><div class="scroll-item-content"><h4>Тиснение</h4><p>Бизнес-карты</p></div></div>
+<div class="scroll-item"><div class="scroll-item-image" data-fullscreen="https://placehold.co/400x300/F2F1F0/2C4068?text=Вышивка" data-name="Вышивка" data-bg="light"><img src="https://placehold.co/280x180/F2F1F0/2C4068?text=Вышивка" alt="Вышивка"></div><div class="scroll-item-content"><h4>Вышивка</h4><p>Мерч и одежда</p></div></div>
+</div>
+<button class="scroll-nav-btn next" data-target="allowedScroll"><i class="fas fa-chevron-right"></i></button>
+</div>
+<h2 class="section-title mt-8">Запрещённые модификации</h2>
+<p style="color:var(--color-text-secondary); margin-bottom:var(--space-4);">Примеры некорректного использования логотипа — <strong>не допускаются</strong>:</p>
+<div class="scroll-gallery-wrapper">
+<button class="scroll-nav-btn prev" data-target="forbiddenScroll"><i class="fas fa-chevron-left"></i></button>
+<div class="scroll-gallery forbidden-scroll" id="forbiddenScroll">
+<div class="scroll-item"><div class="scroll-item-image" data-fullscreen="https://placehold.co/400x300/FFCCCC/E8454D?text=Растянут" data-name="Растянут по вертикали" data-bg="light"><img src="https://placehold.co/280x180/FFCCCC/E8454D?text=Растянут" alt="Растянут"></div><div class="scroll-item-content"><h4>Растянут</h4><p>Нарушение пропорций</p></div></div>
+<div class="scroll-item"><div class="scroll-item-image" data-fullscreen="https://placehold.co/400x300/FFCCCC/E8454D?text=Повёрнут" data-name="Повёрнут под углом" data-bg="light"><img src="https://placehold.co/280x180/FFCCCC/E8454D?text=Повёрнут" alt="Повёрнут"></div><div class="scroll-item-content"><h4>Повёрнут</h4><p>Угол наклона запрещён</p></div></div>
+<div class="scroll-item"><div class="scroll-item-image" data-fullscreen="https://placehold.co/400x300/FFCCCC/E8454D?text=Тень" data-name="Добавлена тень" data-bg="light"><img src="https://placehold.co/280x180/FFCCCC/E8454D?text=Тень" alt="Тень"></div><div class="scroll-item-content"><h4>С тенью</h4><p>Эффекты запрещены</p></div></div>
+<div class="scroll-item"><div class="scroll-item-image" data-fullscreen="https://placehold.co/400x300/FFCCCC/E8454D?text=Градиент" data-name="Градиентная заливка" data-bg="light"><img src="https://placehold.co/280x180/FFCCCC/E8454D?text=Градиент" alt="Градиент"></div><div class="scroll-item-content"><h4>Градиент</h4><p>Только сплошной цвет</p></div></div>
+<div class="scroll-item"><div class="scroll-item-image" data-fullscreen="https://placehold.co/400x300/FFCCCC/E8454D?text=Обводка" data-name="Добавлена обводка" data-bg="light"><img src="https://placehold.co/280x180/FFCCCC/E8454D?text=Обводка" alt="Обводка"></div><div class="scroll-item-content"><h4>С обводкой</h4><p>Без дополнительных контуров</p></div></div>
+<div class="scroll-item"><div class="scroll-item-image" data-fullscreen="https://placehold.co/400x300/FFCCCC/E8454D?text=Прозрачность" data-name="Изменена прозрачность" data-bg="light"><img src="https://placehold.co/280x180/FFCCCC/E8454D?text=Прозрачность" alt="Прозрачность"></div><div class="scroll-item-content"><h4>Прозрачный</h4><p>Не менее 100% opacity</p></div></div>
+</div>
+<button class="scroll-nav-btn next" data-target="forbiddenScroll"><i class="fas fa-chevron-right"></i></button>
+</div>
+</div>
+</section>
+<!-- СТРАНИЦА: ЦВЕТА -->
+<section class="page-section" id="page-colors">
+<div class="hero-brand" data-color="gold"><div class="hero-brand-content"><h1>Фирменные цвета</h1><p>Палитра контрастов и театрального света</p></div></div>
+<div class="content-wrapper">
+<div class="color-palette">
+<div class="swatch"><div class="swatch-color" style="background:#F2F1F0;"></div><div class="swatch-info"><span class="swatch-name">Светлый фон</span><code>#F2F1F0</code></div></div>
+<div class="swatch"><div class="swatch-color" style="background:#231F20;"></div><div class="swatch-info"><span class="swatch-name">Тёмный</span><code>#231F20</code></div></div>
+<div class="swatch"><div class="swatch-color" style="background:#F43139;"></div><div class="swatch-info"><span class="swatch-name">Красный акцент</span><code>#F43139</code></div></div>
+<div class="swatch"><div class="swatch-color" style="background:#2C4068;"></div><div class="swatch-info"><span class="swatch-name">Глубокий синий</span><code>#2C4068</code></div></div>
+<div class="swatch"><div class="swatch-color" style="background:#D4BF95;"></div><div class="swatch-info"><span class="swatch-name">Золотой</span><code>#D4BF95</code></div></div>
+</div>
+<div class="grid-2col">
+<article class="brand-card"><h3>Палитра</h3><p><strong>Основная:</strong> <code>#F2F1F0</code> + <code>#231F20</code><br><strong>Акцентные:</strong> <code>#F43139</code> (драйв), <code>#2C4068</code> (интеллект), <code>#D4BF95</code> (теплота сцены).</p></article>
+<article class="brand-card"><h3>Сочетания</h3><p>Тёмный текст на светлом, красный для кнопок/заголовков, синий для фоновых блоков. Запрещены сторонние оттенки.</p></article>
+</div>
+</div>
+</section>
+<!-- СТРАНИЦА: ТИПОГРАФИКА -->
+<section class="page-section" id="page-typo">
+<div class="hero-brand" data-color="blue"><div class="hero-brand-content"><h1>Типографика</h1><p>Фирменные шрифты и правила их использования</p></div></div>
+<div class="typo-controls active">
+<div class="font-family-selector">
+<button class="font-family-btn active" data-font="unbounded">Unbounded</button>
+<button class="font-family-btn" data-font="nunito">Nunito Sans</button>
+</div>
+<div class="font-weight-selector" id="weightButtons"></div>
+<div class="preview-size"><label for="fontSize">Размер:</label><input type="number" id="fontSize" value="40" min="16" max="120" step="2"><span style="font-size: var(--text-sm); color: var(--color-text-secondary);">px</span></div>
+</div>
+<div class="content-wrapper">
+<div class="font-preview active">
+<div class="preview-title"><i class="fas fa-eye"></i><span>Предпросмотр</span></div>
+<div class="preview-content" id="previewText" style="font-family: 'Unbounded'; font-weight: 700; font-size: 40px;">Театр клоунады «Микос» — искусство улыбаться всерьёз</div>
+<div class="preview-meta">
+<span><i class="fas fa-font"></i> <span id="currentFont">Unbounded</span></span>
+<span><i class="fas fa-weight-hanging"></i> <span id="currentWeight">Bold</span></span>
+<span><i class="fas fa-ruler"></i> <span id="currentSize">40px</span></span>
+</div>
+</div>
+<div class="symbols-grid active">
+<div class="symbol-card"><h4><i class="fas fa-language"></i> Кириллица</h4><div class="symbol-block cyrillic" style="font-family: 'Unbounded'; font-weight: 700;">Аа Бб Вв Гг Дд Ее Ёё Жж Зз Ии Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Фф Хх Цц Чч Шш Щщ Ъъ Ыы Ьь Ээ Юю Яя</div></div>
+<div class="symbol-card"><h4><i class="fas fa-globe"></i> Латиница</h4><div class="symbol-block latin" style="font-family: 'Unbounded'; font-weight: 700;">Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz</div></div>
+<div class="symbol-card"><h4><i class="fas fa-hashtag"></i> Цифры</h4><div class="symbol-block numbers" style="font-family: 'Unbounded'; font-weight: 700;">0 1 2 3 4 5 6 7 8 9</div></div>
+<div class="symbol-card"><h4><i class="fas fa-signs-post"></i> Символы</h4><div class="symbol-block symbols" style="font-family: 'Unbounded'; font-weight: 700;">. , : ; – ! ? « » / * ( ) [ ] { } @ # $ % ^ & + = \ | ~ ` ' "</div></div>
+</div>
+<div class="brand-card mt-8">
+<h3><i class="fas fa-book"></i> Правила использования типографики</h3>
+<ul class="rules-list mt-4" style="list-style: none; padding-left: 0;">
+<li style="padding: var(--space-3) 0; padding-left: var(--space-6); border-bottom: 1px solid var(--color-border); position: relative;"><strong>Заголовки:</strong> использовать шрифт <strong>Unbounded</strong>, начертания <strong>Bold</strong> или <strong>ExtraBold</strong>, размер от 24px</li>
+<li style="padding: var(--space-3) 0; padding-left: var(--space-6); border-bottom: 1px solid var(--color-border); position: relative;"><strong>Подзаголовки:</strong> <strong>Unbounded SemiBold</strong>, размер 18–22px</li>
+<li style="padding: var(--space-3) 0; padding-left: var(--space-6); border-bottom: 1px solid var(--color-border); position: relative;"><strong>Основной текст:</strong> шрифт <strong>Nunito Sans</strong>, начертание <strong>Regular</strong> или <strong>SemiBold</strong>, размер 16–18px</li>
+<li style="padding: var(--space-3) 0; padding-left: var(--space-6); border-bottom: 1px solid var(--color-border); position: relative;"><strong>Интерлиньяж:</strong> для заголовков — 1.2, для основного текста — 1.5–1.6</li>
+<li style="padding: var(--space-3) 0; padding-left: var(--space-6); border-bottom: 1px solid var(--color-border); position: relative;"><strong>Межбуквенный интервал:</strong> для заголовков — -0.02em, для основного текста — 0</li>
+<li style="padding: var(--space-3) 0; padding-left: var(--space-6); border-bottom: 1px solid var(--color-border); position: relative;"><strong>Выравнивание:</strong> по левому краю для длинных текстов, по центру — только для коротких заголовков</li>
+<li style="padding: var(--space-3) 0; padding-left: var(--space-6); position: relative;"><strong>Ограничения:</strong> не использовать более двух гарнитур в одном макете; не применять курсив — использовать жирное начертание или цвет</li>
+</ul>
+</div>
+<div class="grid-2col mt-8">
+<article class="brand-card">
+<h3><i class="fas fa-download"></i> Скачать шрифты</h3>
+<p class="mb-4">Официальные файлы шрифтов для использования в проектах театра «Микос».</p>
+<div style="display: grid; gap: var(--space-3);">
+<a href="https://fonts.google.com/download?family=Unbounded" class="btn btn-primary" target="_blank" rel="noopener"><i class="fas fa-file-font"></i> Unbounded (Google Fonts)</a>
+<a href="https://fonts.google.com/download?family=Nunito+Sans" class="btn btn-primary" target="_blank" rel="noopener"><i class="fas fa-file-font"></i> Nunito Sans (Google Fonts)</a>
+</div>
+</article>
+<article class="brand-card">
+<h3><i class="fas fa-lightbulb"></i> Рекомендации</h3>
+<p><strong>Для цифровых носителей:</strong> использовать веб-версии шрифтов с подгрузкой через Google Fonts или локально.</p>
+<p class="mt-4"><strong>Для полиграфии:</strong> обязательно конвертировать текст в кривые при передаче макетов в типографию.</p>
+<p class="mt-4"><strong>Доступность:</strong> минимальный размер текста для чтения — 14px; для основного контента — не менее 16px.</p>
+</article>
+</div>
+</div>
+</section>
+<!-- СТРАНИЦА: ГРАФИКА -->
+<section class="page-section" id="page-graphics">
+<div class="hero-brand" data-color="dark"><div class="hero-brand-content"><h1>Графические элементы</h1></div></div>
+<div class="content-wrapper">
+<div class="grid-3col">
+<article class="brand-card"><h3>Маска / знак</h3><p>Стилизованная клоунская маска — самостоятельный паттерн, используется на мерче и постерах.</p></article>
+<article class="brand-card"><h3>Линии кулис</h3><p>Вертикальные и горизонтальные полосы, напоминающие театральные кулисы — для динамики.</p></article>
+<article class="brand-card"><h3>Условия</h3><p>Только фирменные цвета. Не перекрывать логотип, соблюдать охранное поле.</p></article>
+</div>
+<figure class="photo-medium mt-8" style="max-width: 900px; margin: 0 auto;"><img src="https://placehold.co/900x450/2C4068/F2F1F0?text=ГРАФИЧЕСКИЙ+ЭЛЕМЕНТ+МИКОС" alt="Графика" loading="lazy"></figure>
+</div>
+</section>
+<!-- СТРАНИЦА: ФОТОСТИЛЬ -->
+<section class="page-section" id="page-photo">
+<div class="hero-brand" data-color="red"><div class="hero-brand-content"><h1>Фотостиль</h1><p>Эмоция, свет, театральный контраст</p></div></div>
+<div class="content-wrapper">
+<figure class="photo-large"><img src="https://placehold.co/1400x450/231F20/F2F1F0?text=КРУПНЫЙ+ПЛАН+ЭМОЦИИ" alt="Эмоция" loading="lazy"></figure>
+<div class="grid-3col">
+<figure class="photo-medium"><img src="https://placehold.co/500x350/2C4068/white?text=ДВИЖЕНИЕ" alt="Движение" loading="lazy"></figure>
+<figure class="photo-medium"><img src="https://placehold.co/500x350/D4BF95/231F20?text=ЗАКУЛИСЬЕ" alt="Закулисье" loading="lazy"></figure>
+<figure class="photo-medium"><img src="https://placehold.co/500x350/F43139/white?text=РЕПЕТИЦИЯ" alt="Репетиция" loading="lazy"></figure>
+</div>
+<article class="brand-card mt-8"><h3>Принципы фотостиля</h3><p>Естественное освещение, крупные портреты, высокий контраст (chiaroscuro), эмоциональная выразительность. Красный — единственный яркий акцент.</p></article>
+</div>
+</section>
+<!-- ===== НОСИТЕЛИ ===== -->
+<section class="page-section" id="page-media" style="display:none;">
+<div class="hero-brand" data-color="blue"><div class="hero-brand-content"><h1>Носители</h1><p>Применение бренда в разных контекстах</p></div></div>
+<div class="content-wrapper">
+<article class="brand-card mb-6"><h3>Общие правила</h3><ul style="list-style:none; padding-left:0; display:grid; gap:var(--space-2);"><li>• <strong>Охранное поле:</strong> не менее высоты буквы «М» вокруг логотипа</li><li>• <strong>Цвета:</strong> только палитра брендбука</li><li>• <strong>Шрифты:</strong> Unbounded / Nunito Sans</li><li>• <strong>Фото:</strong> высокий контраст, эмоциональные крупные планы</li><li>• <strong>Экспорт:</strong> PDF/X-4 для печати, PNG@2x для digital</li></ul></article>
+<div class="filters-section"><div class="filter-chips" id="filterChips"><div class="filter-chip active" data-filter="all">Все носители</div><div class="filter-chip" data-filter="clothes">Одежда</div><div class="filter-chip" data-filter="accessories">Аксессуары</div><div class="filter-chip" data-filter="printed">Полиграфия</div><div class="filter-chip" data-filter="souvenirs">Сувениры</div><div class="filter-chip" data-filter="digital">Digital</div><div class="filter-chip" data-filter="home">Товары для дома</div><div class="filter-chip" data-filter="art">Графика</div></div></div>
+<div class="media-grid" id="mediaGrid"></div>
+<div class="show-more-wrapper"><button class="show-more-btn" id="showMoreMediaBtn">Показать ещё</button></div>
+</div>
+</section>
+<!-- ===== УНИВЕРСАЛЬНЫЙ ДЕТАЛЬНЫЙ ПРОСМОТР НОСИТЕЛЯ ===== -->
+<div class="media-detail-page" id="mediaDetailContainer" style="display:none;">
+<div class="media-detail-header">
+<button class="btn btn-secondary media-back-btn" id="mediaBackBtn"><i class="fas fa-arrow-left"></i> Назад к носителям</button>
+<div class="media-detail-title"><span class="media-detail-tag" id="detailTag"></span><h1 id="detailTitle"></h1><p id="detailSubtitle"></p></div>
+</div>
+<div class="media-detail-content">
+<div class="media-gallery" id="detailGallery" style="display:none;"><div class="gallery-main"><img id="detailMainImg" src="" alt=""><button class="gallery-nav prev" id="detailPrev"><i class="fas fa-chevron-left"></i></button><button class="gallery-nav next" id="detailNext"><i class="fas fa-chevron-right"></i></button></div><div class="gallery-thumbs" id="detailThumbs"></div></div>
+<div class="media-specs-grid" id="detailSpecsGrid"></div>
+<div class="downloads-grid" id="detailDownloads"></div>
+</div>
+</div>
+<!-- ===== FULLSCREEN LIGHTBOX ===== -->
+<div class="lightbox" id="lightbox">
+<div class="lightbox-content" id="lightboxContent">
+<button class="lightbox-close" id="lightboxClose"><i class="fas fa-times"></i></button>
+<div class="lightbox-media-container">
+<img id="lightboxImg" src="" alt="" style="display:none;">
+<object id="lightboxSvg" type="image/svg+xml" data="" style="display:none; width:100%; height:100%;"></object>
+</div>
+<div class="lightbox-footer">
+<div class="lightbox-info" id="lightboxInfo"></div>
+<a href="#" class="lightbox-download" id="lightboxDownload" download><i class="fas fa-download"></i> Скачать .ai</a>
+</div>
+</div>
+</div>
+<!-- FOOTER -->
+<div id="site-footer" >
+<p style="font-size: var(--text-sm);">© 2026 Театр клоунады «Микос». Все права защищены.</p>
+<p style="font-size: var(--text-xs); margin-top: var(--space-2);">Брендбук · Версия 2.1 · Обновлено: апрель 2026</p>
+</div>
+</div>
+<script src="js/loader-animation.js"></script>
+<script src="js/components-loader.js"></script>
+<!-- СКРИПТЫ -->
+<script>
+// ===== ТИПОГРАФИКА =====
+const fonts = {
+  unbounded: { name:'Unbounded', weights:[{value:400,label:'Regular'},{value:600,label:'SemiBold'},{value:700,label:'Bold'},{value:800,label:'ExtraBold'}], defaultWeight:700 },
+  nunito:   { name:'Nunito Sans', weights:[{value:300,label:'Light'},{value:400,label:'Regular'},{value:600,label:'SemiBold'},{value:700,label:'Bold'}], defaultWeight:400 }
+};
+let typoState = { font:'unbounded', weight:700, size:40 };
+const pages = {
+  about: document.getElementById('page-about'),
+  logo: document.getElementById('page-logo'),
+  colors: document.getElementById('page-colors'),
+  typo: document.getElementById('page-typo'),
+  graphics: document.getElementById('page-graphics'),
+  photo: document.getElementById('page-photo'),
+  media: document.getElementById('page-media')
+};
+function switchPage(id) {
+  const det = document.getElementById('mediaDetailContainer');
+  if (det && det.style.display === 'block') closeMediaDetail();
+  Object.values(pages).forEach(p => { if(p) { p.classList.remove('active'); p.style.display='none'; } });
+  if (pages[id]) {
+    pages[id].classList.add('active');
+    pages[id].style.display='block';
+    const controls = document.querySelector('.typo-controls'), preview = document.querySelector('.font-preview'), grid = document.querySelector('.symbols-grid');
+    if (id==='typo') { controls?.classList.add('active'); preview?.classList.add('active'); grid?.classList.add('active'); }
+    else { controls?.classList.remove('active'); preview?.classList.remove('active'); grid?.classList.remove('active'); }
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.toggle('active', b.dataset.page===id));
+}
+function closeMediaDetail() {
+  const det = document.getElementById('mediaDetailContainer');
+  if (det) { det.style.display = 'none'; det.classList.remove('active'); }
+  const mp = document.getElementById('page-media');
+  if (mp) { const hero = mp.querySelector('.hero-brand'); if (hero) hero.style.display = ''; const cw = mp.querySelector('.content-wrapper'); if (cw) cw.style.display = ''; }
+}
+function initWeightButtons() {
+  const container = document.getElementById('weightButtons'); if (!container) return;
+  container.innerHTML = '';
+  fonts[typoState.font].weights.forEach(w => {
+    const btn = document.createElement('button');
+    btn.className = `weight-btn ${w.value===typoState.weight?'active':''}`;
+    btn.textContent = w.label; btn.dataset.weight = w.value;
+    btn.addEventListener('click',()=>{ typoState.weight=parseInt(w.value); document.querySelectorAll('.weight-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); updateTypoPreview(); });
+    container.appendChild(btn);
+  });
+}
+function updateTypoPreview() {
+  const preview = document.getElementById('previewText'); if(!preview) return;
+  const fd = fonts[typoState.font];
+  preview.style.fontFamily = `'${fd.name}'`; preview.style.fontWeight = typoState.weight; preview.style.fontSize = `${typoState.size}px`;
+  document.getElementById('currentFont')&&(document.getElementById('currentFont').textContent=fd.name);
+  document.getElementById('currentWeight')&&(document.getElementById('currentWeight').textContent=fd.weights.find(w=>w.value===typoState.weight)?.label||typoState.weight);
+  document.getElementById('currentSize')&&(document.getElementById('currentSize').textContent=`${typoState.size}px`);
+  document.querySelectorAll('.symbol-block').forEach(b=>{ b.style.fontFamily=`'${fd.name}'`; b.style.fontWeight=typoState.weight; });
+}
+// Мобильное меню
+const mobileNav=document.getElementById('mobileNav'), overlay=document.getElementById('overlay'),
+burgerIcon=document.getElementById('burgerIcon'), closeMobileBtn=document.getElementById('closeMobileMenu');
+function openMobileMenu(){ if(!mobileNav||!overlay)return; mobileNav.classList.add('open'); overlay.classList.add('active'); document.body.style.overflow='hidden'; burgerIcon?.setAttribute('aria-expanded','true'); }
+function closeMobileMenu(){ if(!mobileNav||!overlay)return; mobileNav.classList.remove('open'); overlay.classList.remove('active'); document.body.style.overflow=''; burgerIcon?.setAttribute('aria-expanded','false'); }
+
+// ===== LIGHTBOX ДЛЯ ПОЛНОЭКРАННОГО ПРОСМОТРА (ИСПРАВЛЕНО) =====
+const lightbox = document.getElementById('lightbox');
+const lightboxContent = document.getElementById('lightboxContent');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxSvg = document.getElementById('lightboxSvg');
+const lightboxInfo = document.getElementById('lightboxInfo');
+const lightboxDownload = document.getElementById('lightboxDownload');
+const lightboxClose = document.getElementById('lightboxClose');
+
+function openLightbox(src, name, downloadHref, bgType = 'light') {
+  // 1. Полный сброс состояния
+  lightboxImg.style.display = 'none';
+  lightboxSvg.style.display = 'none';
+  lightboxImg.removeAttribute('src');
+  lightboxSvg.removeAttribute('data');
+  lightboxContent.setAttribute('data-bg', bgType);
+  lightboxInfo.textContent = name;
+
+  if (downloadHref && downloadHref !== '#') { lightboxDownload.href = downloadHref; lightboxDownload.style.display = 'inline-flex'; } 
+  else { lightboxDownload.style.display = 'none'; }
+
+  // 2. Определение типа и принудительная перезагрузка для SVG
+  const isSvg = src.toLowerCase().endsWith('.svg') || src.includes('image/svg');
+  if (isSvg) {
+    // Очистка кэша и форсирование ререндера
+    lightboxSvg.setAttribute('data', '');
+    void lightboxSvg.offsetWidth; // Trigger reflow
+    lightboxSvg.setAttribute('data', src);
+    lightboxSvg.style.display = 'block';
+  } else {
+    lightboxImg.src = src;
+    lightboxImg.onload = () => { lightboxImg.style.display = 'block'; };
+    lightboxImg.onerror = () => { lightboxImg.src = 'https://placehold.co/800x600/F2F1F0/231F20?text=Изображение+не+найдено'; };
+  }
+
+  lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('active');
+  document.body.style.overflow = '';
+  lightboxSvg.removeAttribute('data');
+  lightboxImg.removeAttribute('src');
+}
+
+// Делегирование событий
+document.addEventListener('click', function(e) {
+  const target = e.target.closest('[data-fullscreen]');
+  if (target) {
+    e.preventDefault();
+    let src = target.dataset.fullscreen;
+    const name = target.dataset.name || 'Изображение';
+    const bgType = target.dataset.bg || 'light';
+    const parent = target.closest('.logo-variant-item, .min-size-item, .clearspace-demo, .scroll-item');
+    const downloadLink = parent?.querySelector('.logo-download')?.href || '#';
+    openLightbox(src, name, downloadLink, bgType);
+  }
+});
+
+lightboxClose.addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    if (lightbox.classList.contains('active')) closeLightbox();
+    if (mobileNav?.classList.contains('open')) closeMobileMenu();
+    const det = document.getElementById('mediaDetailContainer');
+    if (det && det.style.display === 'block') closeMediaDetail();
+  }
+});
+
+// ===== НАВИГАЦИЯ ДЛЯ СКРОЛЛ-ГАЛЕРЕЙ =====
+document.querySelectorAll('.scroll-nav-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const targetId = this.dataset.target;
+    const gallery = document.getElementById(targetId);
+    if (!gallery) return;
+    const scrollAmount = 300;
+    const direction = this.classList.contains('prev') ? -1 : 1;
+    gallery.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+  });
+});
+document.querySelectorAll('.scroll-gallery').forEach(gallery => {
+  const updateButtons = () => {
+    const prevBtn = gallery.parentElement.querySelector('.scroll-nav-btn.prev');
+    const nextBtn = gallery.parentElement.querySelector('.scroll-nav-btn.next');
+    if (!prevBtn || !nextBtn) return;
+    const maxScroll = gallery.scrollWidth - gallery.clientWidth;
+    prevBtn.disabled = gallery.scrollLeft <= 0;
+    nextBtn.disabled = gallery.scrollLeft >= maxScroll - 1;
+  };
+  gallery.addEventListener('scroll', updateButtons);
+  window.addEventListener('resize', updateButtons);
+  updateButtons();
+});
+
+// Drag to scroll
+document.querySelectorAll('.scroll-gallery, .variant-placeholder, .clearspace-box, .min-size-visual, .scroll-item-image').forEach(el => {
+  let isDown = false, startX, scrollLeft;
+  el.addEventListener('mousedown', (e) => {
+    if (e.target.closest('a') || e.target.closest('button')) return;
+    isDown = true; el.classList.add('active');
+    startX = e.pageX - el.offsetLeft;
+    scrollLeft = el.scrollLeft || 0;
+    e.preventDefault();
+  });
+  el.addEventListener('mouseleave', () => { isDown = false; el.classList.remove('active'); });
+  el.addEventListener('mouseup', () => { isDown = false; el.classList.remove('active'); });
+  el.addEventListener('mousemove', (e) => {
+    if (!isDown) return; e.preventDefault();
+    const x = e.pageX - el.offsetLeft;
+    const walk = (x - startX) * 2;
+    if (el.scrollLeft !== undefined) el.scrollLeft = scrollLeft - walk;
+  });
+});
+
+// ===== НОСИТЕЛИ (ДАННЫЕ) =====
+const mediaItems = [
+{ id:'business-card', title:'Визитная карточка', category:'printed', desc:'Двусторонняя визитка с тиснением', images:['https://placehold.co/800x500/231F20/D4BF95?text=Визитка+лицевая','https://placehold.co/800x500/D4BF95/231F20?text=Визитка+оборот'], specs:[['Формат','90×50 мм'],['Цвет','CMYK / RGB']], downloads:[{label:'PDF макет', href:'files/business-card.pdf', icon:'fa-file-pdf'},{label:'INDD шаблон', href:'files/business-card.indd', icon:'fa-file'}] },
+{ id:'poster', title:'Афиша спектакля', category:'printed', desc:'Формат А2 и А1', images:['https://placehold.co/800x500/2C4068/F2F1F0?text=Афиша+А1'], specs:[['Форматы','А1, А2']], downloads:[{label:'PDF', href:'files/poster.pdf', icon:'fa-file-pdf'}] },
+{ id:'social', title:'Шаблоны для соцсетей', category:'digital', desc:'Stories, посты, обложки', images:['https://placehold.co/800x500/F43139/white?text=Соцсети'], specs:[['Размеры','1080×1920 px']], downloads:[{label:'Figma', href:'https://figma.com/mikos', icon:'fa-palette'}] },
+{ id:'merch', title:'Фирменный мерч', category:'souvenirs', desc:'Футболки, шоперы, значки', images:['https://placehold.co/800x500/D4BF95/231F20?text=Мерч'], specs:[['Материалы','хлопок']], downloads:[{label:'Вектор', href:'files/merch.ai', icon:'fa-file-vector'}] },
+{ id:'ticket', title:'Электронный билет', category:'digital', desc:'QR-код, информация', images:['https://placehold.co/800x500/231F20/F43139?text=Билет'], specs:[['Формат','210×70 мм']], downloads:[{label:'PDF + HTML', href:'files/ticket.zip', icon:'fa-file-code'}] },
+{ id:'panamka', title:'Панамка', category:'clothes', desc:'Лёгкая панама с вышитым знаком', images:['https://placehold.co/800x500/2C4068/F2F1F0?text=Панамка'], specs:[['Материал','хлопок']], downloads:[{label:'Макет вышивки', href:'files/panamka.dst', icon:'fa-file-vector'}] },
+{ id:'backpack-pendant', title:'Подвес на рюкзак', category:'accessories', desc:'Металлический подвес «Микос Team»', images:['https://placehold.co/800x500/D4BF95/231F20?text=Подвес'], specs:[['Размер','40×25 мм']], downloads:[{label:'3D-модель', href:'files/pendant.stl', icon:'fa-cube'}] },
+{ id:'socks', title:'Носки', category:'clothes', desc:'Принт с логотипом', images:['https://placehold.co/800x500/F43139/white?text=Носки'], specs:[['Состав','хлопок 80%']], downloads:[{label:'Шаблон принта', href:'files/socks.ai', icon:'fa-image'}] },
+{ id:'tshirt-mikos', title:'Футболка «Микос тут»', category:'clothes', desc:'Хлопковая футболка с авторским принтом', images:['https://placehold.co/800x500/231F20/D4BF95?text=Футболка+Микос'], specs:[['Размеры','S–XXL']], downloads:[{label:'Макет DTG', href:'files/tshirt-mikos.ai', icon:'fa-file'}] },
+{ id:'limited-tshirt', title:'Лимитка-футболка', category:'clothes', desc:'Лимитированная серия', images:['https://placehold.co/800x500/2C4068/F2F1F0?text=Лимитка+футболка'], specs:[['Тираж','100 шт.']], downloads:[{label:'Макет', href:'files/limited-tshirt.ai', icon:'fa-file-pdf'}] },
+{ id:'limited-hoodie', title:'Лимитка-худи', category:'clothes', desc:'Худи с вышивкой', images:['https://placehold.co/800x500/231F20/F2F1F0?text=Лимитка+худи'], specs:[['Размеры','M–XL']], downloads:[{label:'Вектор', href:'files/limited-hoodie.ai', icon:'fa-file-vector'}] },
+{ id:'limited-notebook', title:'Лимитка-блокнот', category:'souvenirs', desc:'Блокнот с символикой', images:['https://placehold.co/800x500/D4BF95/231F20?text=Блокнот'], specs:[['Формат','А5']], downloads:[{label:'Обложка', href:'files/notebook-cover.ai', icon:'fa-file-image'}] },
+{ id:'badges', title:'Значки', category:'souvenirs', desc:'Набор значков', images:['https://placehold.co/800x500/F43139/white?text=Значки'], specs:[['Диаметр','38 мм']], downloads:[{label:'AI шаблон', href:'files/badges.ai', icon:'fa-file-vector'}] },
+{ id:'thermo-stickers', title:'Термобутылка с наклейками', category:'home', desc:'Бутылка + набор стикеров', images:['https://placehold.co/800x500/2C4068/F2F1F0?text=Термобутылка'], specs:[['Объём','500 мл']], downloads:[{label:'Наклейки', href:'files/stickers.ai', icon:'fa-file-image'}] },
+{ id:'hoodie-stickers', title:'Худи с наклейками', category:'clothes', desc:'Худи и лист наклеек', images:['https://placehold.co/800x500/231F20/D4BF95?text=Худи+наклейки'], specs:[['Размеры','S–XXL']], downloads:[{label:'Наклейки', href:'files/hoodie-stickers.ai', icon:'fa-file-image'}] },
+{ id:'ad-booklet', title:'Буклет рекламный', category:'printed', desc:'Информационный буклет', images:['https://placehold.co/800x500/2C4068/F2F1F0?text=Буклет'], specs:[['Формат','А4 (фальц)']], downloads:[{label:'PDF', href:'files/booklet.pdf', icon:'fa-file-pdf'}] },
+{ id:'chair', title:'Стул', category:'home', desc:'Брендированный стул', images:['https://placehold.co/800x500/231F20/F2F1F0?text=Стул'], specs:[['Материал','дерево']], downloads:[{label:'Чертёж', href:'files/chair.dwg', icon:'fa-file-pdf'}] },
+{ id:'drip-coffee', title:'Дрип-кофе', category:'home', desc:'Порционный кофе в фирменной упаковке', images:['https://placehold.co/800x500/D4BF95/231F20?text=Дрип+кофе'], specs:[['Вес','10 г']], downloads:[{label:'Макет упаковки', href:'files/coffee-pack.ai', icon:'fa-file-image'}] },
+{ id:'shopper', title:'Шопер-пакет', category:'accessories', desc:'Эко-сумка', images:['https://placehold.co/800x500/2C4068/F2F1F0?text=Шопер'], specs:[['Размер','35×40 см']], downloads:[{label:'Макет', href:'files/shopper.ai', icon:'fa-file-pdf'}] },
+{ id:'lanyard', title:'Лента с бейджем', category:'accessories', desc:'Репсовая лента + пластиковый бейдж', images:['https://placehold.co/800x500/F43139/white?text=Лента+бейдж'], specs:[['Ширина','15 мм']], downloads:[{label:'Макет', href:'files/lanyard.ai', icon:'fa-file-pdf'}] },
+{ id:'envelope', title:'Конверт', category:'printed', desc:'Фирменный конверт', images:['https://placehold.co/800x500/231F20/D4BF95?text=Конверт'], specs:[['Формат','C6']], downloads:[{label:'PDF', href:'files/envelope.pdf', icon:'fa-file-pdf'}] },
+{ id:'tshirt-characters', title:'Футболка с персонажами', category:'clothes', desc:'Принт с персонажами спектаклей', images:['https://placehold.co/800x500/2C4068/F2F1F0?text=Футболка+персонажи'], specs:[['Размеры','S–XXL']], downloads:[{label:'Макет', href:'files/tshirt-characters.ai', icon:'fa-file'}] },
+{ id:'two-clowns', title:'Два клоуна смотрят друг на друга', category:'art', desc:'Художественный постер', images:['https://placehold.co/800x500/D4BF95/231F20?text=Два+клоуна'], specs:[['Размер','А3']], downloads:[{label:'TIFF для печати', href:'files/two-clowns.tiff', icon:'fa-file-image'}] },
+{ id:'social-stickers', title:'Стикеры для соцсетей', category:'digital', desc:'Набор стикеров Telegram / VK', images:['https://placehold.co/800x500/F43139/white?text=Стикеры'], specs:[['Формат','PNG 512×512']], downloads:[{label:'Скачать стикеры', href:'files/stickers-pack.zip', icon:'fa-telegram'}] }
+];
+let activeCategory = 'all';
+let visibleCount = 8;
+const STEP = 4;
+const grid = document.getElementById('mediaGrid');
+const showMoreBtn = document.getElementById('showMoreMediaBtn');
+const detailContainer = document.getElementById('mediaDetailContainer');
+
+function categoryLabel(cat) {
+  return {clothes:'Одежда',accessories:'Аксессуары',printed:'Полиграфия',souvenirs:'Сувениры',digital:'Digital',home:'Товары для дома',art:'Графика'}[cat]||cat;
+}
+function renderMediaCards() {
+  const filtered = activeCategory==='all' ? mediaItems : mediaItems.filter(i=>i.category===activeCategory);
+  const toShow = filtered.slice(0, visibleCount);
+  grid.innerHTML = '';
+  if (toShow.length===0) { grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:#5A5A5A;">Носителей не найдено</p>'; showMoreBtn.style.display='none'; return; }
+  toShow.forEach(item => {
+    const img = item.images?.[0] || 'https://placehold.co/600x400/cccccc/white?text=Нет+фото';
+    const card = document.createElement('div');
+    card.className = 'media-card-new';
+    card.innerHTML = `<div class="media-card-image"><img src="${img}" alt="${item.title}" loading="lazy"><span class="media-card-tag">${categoryLabel(item.category)}</span></div><div class="media-card-content"><h3>${item.title}</h3><p>${item.desc}</p><button class="btn btn-primary media-card-btn media-open-btn" data-id="${item.id}">Подробнее <i class="fas fa-arrow-right"></i></button></div>`;
+    grid.appendChild(card);
+  });
+  document.querySelectorAll('.media-open-btn').forEach(btn => { btn.addEventListener('click', e => { e.stopPropagation(); openDetail(btn.dataset.id); }); });
+  showMoreBtn.style.display = visibleCount >= filtered.length ? 'none' : 'block';
+}
+function openDetail(id) {
+  const item = mediaItems.find(i=>i.id===id); if(!item) return;
+  const mp = document.getElementById('page-media');
+  if (mp) { const hero = mp.querySelector('.hero-brand'); if (hero) hero.style.display='none'; const cw = mp.querySelector('.content-wrapper'); if (cw) cw.style.display='none'; }
+  document.getElementById('detailTag').textContent = categoryLabel(item.category);
+  document.getElementById('detailTitle').textContent = item.title;
+  document.getElementById('detailSubtitle').textContent = item.desc;
+  const gallery = document.getElementById('detailGallery');
+  const mainImg = document.getElementById('detailMainImg');
+  const thumbsContainer = document.getElementById('detailThumbs');
+  const prevBtn = document.getElementById('detailPrev');
+  const nextBtn = document.getElementById('detailNext');
+  if (item.images?.length) {
+    gallery.style.display = 'block';
+    mainImg.src = item.images[0]; mainImg.alt = item.title;
+    thumbsContainer.innerHTML = '';
+    let currentIdx = 0;
+    const updateThumbs = () => { document.querySelectorAll('#detailThumbs .thumb').forEach((t,i) => t.classList.toggle('active', i===currentIdx)); };
+    if (item.images.length > 1) {
+      item.images.forEach((src, idx) => {
+        const thumb = document.createElement('img'); thumb.src = src; thumb.alt = `Фото ${idx+1}`;
+        thumb.className = `thumb ${idx===0?'active':''}`;
+        thumb.addEventListener('click', () => { mainImg.src=src; currentIdx=idx; updateThumbs(); });
+        thumbsContainer.appendChild(thumb);
+      });
+    }
+    prevBtn.onclick = () => { currentIdx = (currentIdx-1+item.images.length)%item.images.length; mainImg.src=item.images[currentIdx]; updateThumbs(); };
+    nextBtn.onclick = () => { currentIdx = (currentIdx+1)%item.images.length; mainImg.src=item.images[currentIdx]; updateThumbs(); };
+  } else { gallery.style.display = 'none'; }
+  const specsGrid = document.getElementById('detailSpecsGrid'); specsGrid.innerHTML = '';
+  if (item.specs?.length) {
+    const card = document.createElement('article'); card.className = 'brand-card';
+    let table = '<table class="specs-table"><tbody>';
+    item.specs.forEach(([k,v]) => table += `<tr><th>${k}</th><td>${v}</td></tr>`);
+    table += '</tbody></table>';
+    card.innerHTML = `<h3>Параметры</h3>${table}`;
+    specsGrid.appendChild(card);
+  }
+  const downloadsContainer = document.getElementById('detailDownloads'); downloadsContainer.innerHTML = '';
+  if (item.downloads?.length) {
+    item.downloads.forEach(dl => {
+      const a = document.createElement('a'); a.href = dl.href || '#'; a.className = 'download-item';
+      a.target = dl.href && dl.href !== '#' ? '_blank' : undefined;
+      a.innerHTML = `<i class="fas ${dl.icon}"></i><div><strong>${dl.label}</strong><small>Скачать</small></div>`;
+      downloadsContainer.appendChild(a);
+    });
+  }
+  detailContainer.style.display = 'block'; detailContainer.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.getElementById('mediaBackBtn').addEventListener('click', closeMediaDetail);
+document.querySelectorAll('.filter-chip').forEach(chip => {
+  chip.addEventListener('click', function() {
+    document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active')); this.classList.add('active');
+    activeCategory = this.dataset.filter; visibleCount = 8; renderMediaCards();
+    if (detailContainer.style.display === 'block') closeMediaDetail();
+  });
+});
+showMoreBtn.addEventListener('click', () => { visibleCount += STEP; renderMediaCards(); });
+
+// ===== ИНИЦИАЛИЗАЦИЯ =====
+document.addEventListener('DOMContentLoaded', () => {
+  initWeightButtons(); updateTypoPreview(); renderMediaCards();
+  document.querySelectorAll('.nav-btn').forEach(btn => { btn.addEventListener('click', e => { e.preventDefault(); if(btn.dataset.page) switchPage(btn.dataset.page); }); });
+  burgerIcon?.addEventListener('click', openMobileMenu);
+  closeMobileBtn?.addEventListener('click', closeMobileMenu);
+  overlay?.addEventListener('click', closeMobileMenu);
+  document.querySelectorAll('[data-mobile-page]').forEach(link => {
+    link.addEventListener('click', e => { e.preventDefault(); const id = link.dataset.mobilePage; if (id) { switchPage(id); closeMobileMenu(); } });
+  });
+  const header = document.getElementById('mainHeader');
+  window.addEventListener('scroll', () => header?.classList.toggle('scrolled', window.scrollY>10), {passive:true});
+  document.addEventListener('keydown', e => {
+    if (e.key==='Escape') {
+      if (mobileNav?.classList.contains('open')) closeMobileMenu();
+      if (detailContainer && detailContainer.style.display==='block') closeMediaDetail();
+      if (lightbox.classList.contains('active')) closeLightbox();
+    }
+  });
+  document.querySelectorAll('.font-family-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      typoState.font = btn.dataset.font;
+      document.querySelectorAll('.font-family-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      typoState.weight = fonts[typoState.font].defaultWeight;
+      initWeightButtons(); updateTypoPreview();
+    });
+  });
+  document.getElementById('fontSize')?.addEventListener('input', e => {
+    typoState.size = Math.max(16, Math.min(120, parseInt(e.target.value)||40));
+    e.target.value = typoState.size; updateTypoPreview();
+  });
+});
+</script>
+</body>
+</html>

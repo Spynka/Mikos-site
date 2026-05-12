@@ -1,0 +1,1553 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Театр клоунады «Микос» | Главная</title>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/header-footer.css"> 
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/modals.css">
+    <link rel="icon" type="image/svg+xml" href="SVG/logo-2.svg" sizes="any">
+    <script src="js/tour-data.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="js/emailjs-integration.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/imask@7.3.0/dist/imask.min.js"></script>
+    
+    <style>
+        /* ===== СТИЛИ МОДАЛЬНОГО ОКНА КОМАНДЫ ===== */
+        .modal--team .team-modal-body { display: flex; flex-direction: column; }
+        .modal--team .team-modal-photo {
+            width: 100%; height: 350px; overflow: hidden;
+            border-radius: 24px 24px 0 0; flex-shrink: 0;
+        }
+        .modal--team .team-modal-photo img {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+        }
+        .modal--team .team-modal-info { padding: 30px; }
+        .modal--team .team-modal-name {
+            font-family: 'Unbounded', sans-serif; font-size: 32px;
+            font-weight: 700; color: #FFFFFF; margin-bottom: 6px; line-height: 1.2;
+        }
+        .modal--team .team-modal-nickname {
+            color: #E8454D; font-weight: 700; font-size: 18px;
+            margin-bottom: 12px; font-family: 'Nunito Sans', sans-serif;
+        }
+        .modal--team .team-modal-position {
+            font-size: 13px; font-weight: 700; color: #4A6294;
+            text-transform: uppercase; letter-spacing: 1.5px;
+            margin-bottom: 20px; padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .modal--team .team-modal-section-title {
+            font-family: 'Unbounded', sans-serif; font-size: 18px;
+            font-weight: 700; color: #F8F7F6;
+            margin-top: 24px; margin-bottom: 14px;
+            border-left: 4px solid #E8454D; padding-left: 16px;
+        }
+        .modal--team .team-modal-bio {
+            white-space: pre-line;
+            color: rgba(255, 255, 255, 0.85);
+            font-family: 'Nunito Sans', sans-serif;
+            line-height: 1.6; font-size: 15px;
+            margin-bottom: 8px;
+        }
+        .modal--team .team-performances-list {
+            display: flex; flex-direction: column;
+            margin-top: 8px; margin-bottom: 8px;
+        }
+        .modal--team .team-performance-item {
+            display: flex; align-items: baseline;
+            padding: 12px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            color: rgba(255, 255, 255, 0.9);
+            font-family: 'Nunito Sans', sans-serif; font-size: 15px;
+        }
+        .modal--team .team-performance-item:last-child { border-bottom: none; }
+        .modal--team .team-performance-bullet {
+            color: #4A6294; font-weight: 700; font-size: 20px;
+            margin-right: 16px; min-width: 16px;
+        }
+        .modal--team .team-performance-text { line-height: 1.5; flex: 1; }
+
+        @media (min-width: 768px) {
+            .modal--team .team-modal-body { flex-direction: row; }
+            .modal--team .team-modal-photo {
+                width: 40%; height: auto;
+                border-radius: 24px 0 0 24px;
+            }
+            .modal--team .team-modal-info { width: 60%; padding: 36px; }
+        }
+        @media (max-width: 480px) {
+            .modal--team .team-modal-info { padding: 24px 20px; }
+            .modal--team .team-modal-name { font-size: 28px; }
+        }
+
+        /* Кликабельность карточек команды */
+        .team-card {
+            cursor: pointer;
+            transition: transform 0.25s ease, filter 0.25s ease;
+        }
+        .team-card:hover {
+            transform: scale(1.02);
+            filter: brightness(1.1);
+        }
+
+        /* ===== СТИЛИ ГАЛЕРЕИ ИЗОБРАЖЕНИЙ ===== */
+        .modal--gallery .gallery-container {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: default;
+        }
+        .modal--gallery .gallery-main-img {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+        .modal--gallery .gallery-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            z-index: 10;
+            backdrop-filter: blur(4px);
+        }
+        .modal--gallery .gallery-nav-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-50%) scale(1.1);
+        }
+        .modal--gallery .gallery-nav-btn.prev { left: 20px; }
+        .modal--gallery .gallery-nav-btn.next { right: 20px; }
+        .modal--gallery .gallery-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-family: 'Unbounded', sans-serif;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .modal--gallery .gallery-thumbs {
+            position: absolute;
+            bottom: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+        .modal--gallery .gallery-thumb {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+            opacity: 0.6;
+        }
+        .modal--gallery .gallery-thumb.active {
+            border-color: #E8454D;
+            opacity: 1;
+        }
+        .modal--gallery .gallery-thumb:hover { opacity: 0.9; }
+        .modal--gallery .gallery-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Кликабельность карточек мерча */
+        .merch-card {
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            position: relative;
+            overflow: hidden;
+            background: #fff;
+            border-radius: 12px;
+        }
+        .merch-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+        .merch-img-wrapper {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+        .merch-img {
+            width: 100%;
+            display: block;
+            pointer-events: none;
+            transition: transform 0.3s ease;
+        }
+        .merch-card:hover .merch-img { transform: scale(1.05); }
+        .merch-photo-count {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            color: white;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            font-family: 'Nunito Sans', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            z-index: 2;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            pointer-events: none;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            opacity: 0;
+            transform: translateY(-5px);
+        }
+        .merch-card:hover .merch-photo-count,
+        .merch-card.force-visible .merch-photo-count {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+
+        /* Иллюстрация персонажа на форме заявки */
+        .clients-form.illustrated { position: relative; overflow: visible; }
+        .clients-form-illustration {
+            position: absolute;
+            width: auto;
+            height: 280px;
+            z-index: 2;
+            pointer-events: none;
+            top: -27%;
+            right: 85%;
+            transform: translateX(0);
+            transition: transform 0.3s ease;
+        }
+        .clients-form.illustrated:hover .clients-form-illustration {
+            transform: translateY(-4px);
+        }
+        @media (max-width: 1024px) {
+            .clients-form-illustration { height: 190px; right: -10%; top: -40%; }
+        }
+        @media (max-width: 768px) {
+            .clients-form-illustration { height: 160px; right: -5%; top: -35%; }
+        }
+        @media (max-width: 480px) {
+            .clients-form-illustration { height: 120px; right: 0; top: -30%; }
+        }
+
+        /* Фикс хедера */
+        @media (min-width: 861px) {
+            .main-header {
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                width: 100% !important;
+                max-width: 100vw !important;
+                z-index: 9999 !important;
+                backdrop-filter: blur(10px) !important;
+                box-shadow: rgba(0, 0, 0, 0.04) 0px 4px 12px !important;
+                transform: translateY(0) !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                background: rgba(255, 255, 255, 0.98) !important;
+                border-bottom: 1px solid rgba(229, 227, 225, 0.5) !important;
+                margin: 0 !important;
+                transition: none !important;
+                will-change: transform;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Заглушка для подгрузки хедера -->
+    <div id="site-header"></div>
+    
+    <div class="shop-container">
+        <div class="overlay" id="overlay"></div>
+
+        <!-- Бегущая строка -->
+        <div class="ticker">
+            <div class="ticker-content">
+                <span class="red-dot">•</span><span>Премьера 25 июля: «Лишь бы не было детей» • Билеты уже в продаже</span>
+                <span class="red-dot">•</span><span>Специальные условия для корпоративных клиентов</span>
+                <span class="red-dot">•</span><span>Новая коллекция мерча уже в магазине</span>
+                <span class="red-dot">•</span><span>Премьера 25 июля: «Лишь бы не было детей» • Билеты уже в продаже</span>
+            </div>
+        </div>
+
+        <!-- Hero слайдер -->
+        <div id="site-hero-slider"></div>
+
+        <!-- Ближайшие спектакли -->
+        <div class="plays-section" style="margin-top: 60px;">
+            <div class="container-main">
+                <div class="section-header">
+                    <h2 class="section-title">Ближайшие спектакли</h2>
+                    <a href="affiche.html" class="section-link">Вся афиша <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="scroll-container">
+                    <div class="scroll-wrapper" id="upcomingScroll"></div>
+                    <div class="scroll-btn left" onclick="scrollHorizontally('upcomingScroll', -400)"><i class="fas fa-chevron-left"></i></div>
+                    <div class="scroll-btn right" onclick="scrollHorizontally('upcomingScroll', 400)"><i class="fas fa-chevron-right"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- О театре -->
+        <div class="about-section">
+            <div class="container-main">
+                <div class="section-header">
+                    <h2 class="section-title">О театре</h2>
+                </div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>История создания</h3>
+                        <p>Московский театр клоунады «Микос» основан в <strong>1991 году</strong> Сергеем «Паганелем» Давыдовым и Николаем Берёзой...</p>
+                    </div>
+                    <div class="about-img">
+                        <img src="SVG/main.svg" alt="История театра">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Заказчикам -->
+        <div class="clients-section">
+            <div class="container-main">
+                <div class="section-header">
+                    <h2 class="section-title">Заказчикам</h2>
+                    <a href="for-customers.html" class="section-link">Все условия сотрудничества <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="clients-grid">
+                    <div class="clients-info">
+                        <h3>Условия сотрудничества</h3>
+                        <p>Мы предлагаем полный цикл организации мероприятий...</p>
+                        <div class="features-list">
+                            <div class="feature-item"><i class="fas fa-check-circle"></i><strong>Корпоративные мероприятия</strong><span>Специальные показы, тимбилдинги, праздники компании</span></div>
+                            <div class="feature-item"><i class="fas fa-check-circle"></i><strong>Частные события</strong><span>Эксклюзивные постановки для дней рождений, свадеб, юбилеев</span></div>
+                            <div class="feature-item"><i class="fas fa-check-circle"></i><strong>Образовательные программы</strong><span>Мастер-классы, лекции, интенсивы для школ и вузов</span></div>
+                        </div>
+                        <div class="download-tech">
+                            <a href="images/content/Tex_райдер_Микос.pdf" download class="download-btn-tech">
+                                <i class="fas fa-download"></i> Скачать тех. райдер
+                            </a>
+                        </div>
+                    </div>
+                    <div class="clients-form illustrated">
+                        <img src="SVG/Гамаюнов-сидит.svg" alt="Персонаж Гамаюнов" class="clients-form-illustration" loading="lazy">
+                        <h3>Отправить заявку</h3>
+                        <form id="clientFormMain" novalidate>
+                            <div class="form-group">
+                                <label>Имя <span class="required">*</span></label>
+                                <input type="text" id="clientName" class="form-input" placeholder="Ваше имя" required minlength="2" maxlength="50">
+                                <span class="error-message" id="clientNameError">Введите корректное имя (мин. 2 символа)</span>
+                            </div>
+                            <div class="form-group">
+                                <label>Компания <span class="required">*</span></label>
+                                <input type="text" id="clientCompany" class="form-input" placeholder="Название компании" required minlength="2" maxlength="100">
+                                <span class="error-message" id="clientCompanyError">Укажите название компании</span>
+                            </div>
+                            <div class="form-group">
+                                <label>Email <span class="required">*</span></label>
+                                <input type="email" id="clientEmail" class="form-input" placeholder="email@example.com" required>
+                                <span class="error-message" id="clientEmailError">Введите корректный email</span>
+                            </div>
+                            <div class="form-group">
+                                <label>Сообщение <span class="required">*</span></label>
+                                <textarea id="clientMessage" class="form-textarea form-input" placeholder="Опишите вашу задачу" required minlength="10" maxlength="1000"></textarea>
+                                <span class="error-message" id="clientMessageError">Сообщение должно содержать минимум 10 символов</span>
+                            </div>
+                            <button type="submit" class="submit-client-btn modal-confirm-btn" style="width:100%;margin-top:8px;">
+                                Отправить заявку
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Спектакли (все) -->
+        <div class="plays-section">
+            <div class="container-main">
+                <div class="section-header">
+                    <h2 class="section-title">Спектакли</h2>
+                    <a href="performances.html" class="section-link">Все спектакли <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="scroll-container">
+                    <div class="scroll-wrapper" id="allPlaysScroll"></div>
+                    <div class="scroll-btn left" onclick="scrollHorizontally('allPlaysScroll', -400)"><i class="fas fa-chevron-left"></i></div>
+                    <div class="scroll-btn right" onclick="scrollHorizontally('allPlaysScroll', 400)"><i class="fas fa-chevron-right"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Команда -->
+        <div class="team-section">
+            <div class="container-main">
+                <div class="section-header">
+                    <h2 class="section-title">Команда</h2>
+                    <a href="team.html" class="section-link">Вся команда <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="team-scroll-wrapper">
+                    <div class="team-card" data-member="Сергей Давыдов">
+                        <img class="team-img" src="images/content/actors/Давыдов-2.jpg" alt="Сергей Давыдов">
+                        <h3 class="team-name">Сергей Давыдов</h3>
+                        <p class="team-position">Художественный руководитель</p>
+                    </div>
+                    <div class="team-card" data-member="Ксения Иванова">
+                        <img class="team-img" src="images/content/actors/Иванова-2.jpg" alt="Ксения Иванова">
+                        <h3 class="team-name">Ксения Иванова</h3>
+                        <p class="team-position">Актриса, директор, продюсер</p>
+                    </div>
+                    <div class="team-card" data-member="Максим Гамаюнов">
+                        <img class="team-img" src="images/content/actors/Гамаюнов-2.jpg" alt="Максим Гамаюнов">
+                        <h3 class="team-name">Максим Гамаюнов</h3>
+                        <p class="team-position">Актёр</p>
+                    </div>
+                    <div class="team-card" data-member="Тотраз Циукаев">
+                        <img class="team-img" src="images/content/actors/Циукаев-2.jpg" alt="Тотраз Циукаев">
+                        <h3 class="team-name">Тотраз Циукаев</h3>
+                        <p class="team-position">Актёр</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Магазин -->
+        <div class="shop-section">
+            <div class="container-main">
+                <div class="section-header">
+                    <h2 class="section-title">Магазин</h2>
+                    <a href="shop.html" class="section-link">Весь магазин <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="scroll-container">
+                    <div class="scroll-wrapper" id="merchScroll"></div>
+                    <div class="scroll-btn left" onclick="scrollHorizontally('merchScroll', -320)"><i class="fas fa-chevron-left"></i></div>
+                    <div class="scroll-btn right" onclick="scrollHorizontally('merchScroll', 320)"><i class="fas fa-chevron-right"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Заглушка для подгрузки футера -->
+        <div id="site-footer"></div>
+    </div>
+
+    <!-- МОДАЛЬНЫЕ ОКНА (Единый компонент) -->
+    <div id="site-modals">
+        <!-- 1. Выбор сеанса -->
+        <div id="modal-session" class="modal-overlay" data-modal="session">
+            <div class="modal-container">
+                <div class="modal-header">
+                    <h3 id="session-modal-title">Выбор сеанса</h3>
+                    <button class="modal-close" data-modal-close><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-performance-title"><i class="fas fa-ticket-alt"></i> <span id="session-play-title"></span></div>
+                    <div class="date-filter" id="session-date-filter"></div>
+                    <div class="sessions-list" id="session-list"></div>
+                </div>
+                <div class="modal-footer">
+                    <button class="modal-confirm-btn" id="session-confirm-btn" disabled><i class="fas fa-shopping-cart"></i> Перейти к покупке</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Товар / Корзина -->
+        <div id="modal-product" class="modal-overlay" data-modal="product">
+            <div class="modal-container">
+                <div class="modal-header">
+                    <h3 id="product-modal-title">Товар</h3>
+                    <button class="modal-close" data-modal-close><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body" id="product-modal-body"></div>
+                <div class="modal-footer" id="product-modal-footer"></div>
+            </div>
+        </div>
+
+        <!-- 3. Контакты / Оформление -->
+        <div id="modal-contacts" class="modal-overlay" data-modal="contacts">
+            <div class="modal-container">
+                <div class="modal-header">
+                    <h3>Оформление заказа</h3>
+                    <button class="modal-close" data-modal-close><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <div id="contacts-order-summary" class="cart-summary"></div>
+                    <div id="contacts-form-fields"></div>
+                </div>
+                <div class="modal-footer">
+                    <button class="modal-confirm-btn" id="contacts-submit-btn"><i class="fas fa-check"></i> Оформить заказ</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Успешное действие -->
+        <div id="modal-success" class="modal-overlay modal--success" data-modal="success">
+            <div class="modal-container">
+                <button class="modal-close" data-modal-close><i class="fas fa-times"></i></button>
+                <div class="success-icon"><i class="fas fa-check"></i></div>
+                <h3 class="success-modal-title" id="success-title">Готово!</h3>
+                <p class="success-modal-text" id="success-text"></p>
+                <button class="success-modal-btn" id="success-btn">OK</button>
+            </div>
+        </div>
+
+        <!-- 5. Команда -->
+        <div id="modal-team" class="modal-overlay modal--team" data-modal="team">
+            <div class="modal-container">
+                <button class="modal-close" data-modal-close><i class="fas fa-times"></i></button>
+                <div class="modal-body team-modal-body" id="team-modal-body"></div>
+            </div>
+        </div>
+
+        <!-- 6. Галерея изображений -->
+        <div id="modal-gallery" class="modal-overlay modal--gallery" data-modal="gallery">
+            <button class="gallery-close-btn" data-modal-close><i class="fas fa-times"></i></button>
+            <div class="gallery-container">
+                <button class="gallery-nav-btn prev" id="gallery-prev"><i class="fas fa-chevron-left"></i></button>
+                <img class="gallery-main-img" id="gallery-img" src="" alt="">
+                <button class="gallery-nav-btn next" id="gallery-next"><i class="fas fa-chevron-right"></i></button>
+                <div class="gallery-counter" id="gallery-counter"></div>
+                <div class="gallery-thumbs" id="gallery-thumbs"></div>
+            </div>
+        </div>
+
+        <!-- 7. Промо / Скоро / Раскуплено -->
+        <div id="modal-promo" class="modal-overlay" data-modal="promo">
+            <div class="modal-container modal--promo">
+                <button class="modal-close" data-modal-close><i class="fas fa-times"></i></button>
+                <div id="promo-modal-content"></div>
+            </div>
+        </div>
+
+        <!-- 8. Все гастроли -->
+        <div id="modal-tour" class="modal-overlay" data-modal="tour">
+            <div class="modal-container modal--tour">
+                <button class="modal-close" data-modal-close><i class="fas fa-times"></i></button>
+                <div class="modal-header">
+                    <h3>Все гастроли театра</h3>
+                </div>
+                <div class="modal-body">
+                    <div id="tour-modal-list"></div>
+                </div>
+                <div class="modal-footer"><i class="fas fa-ticket-alt"></i> Билеты поступают в продажу за 30 дней</div>
+            </div>
+        </div>
+
+        <!-- 9. Фильтр по месяцам -->
+        <div id="modal-month" class="modal-overlay" data-modal="month">
+            <div class="modal-container modal--month">
+                <button class="modal-close" data-modal-close><i class="fas fa-times"></i></button>
+                <h3 class="modal-month-title">Выберите месяц</h3>
+                <div class="month-options-list" id="month-options"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/loader-animation.js"></script>
+    <script src="js/components-loader.js"></script>
+    <script src="js/header-scripts.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/slider-scripts.js"></script>
+    
+    <!-- Modal Controller -->
+    <script>
+    /**
+     * ModalController - единый менеджер модальных окон
+     */
+    class ModalController {
+        constructor() {
+            this.activeModals = new Set();
+            this.galleryState = { images: [], index: 0 };
+            this.bindGlobalEvents();
+        }
+
+        open(id, options = {}) {
+            const modal = document.getElementById(id);
+            if (!modal) return console.warn(`Modal #${id} not found`);
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            this.activeModals.add(modal);
+
+            if (options.onOpen && typeof options.onOpen === 'function') options.onOpen(modal);
+            return modal;
+        }
+
+        close(id) {
+            const modal = typeof id === 'string' ? document.getElementById(id) : id;
+            if (!modal) return;
+
+            modal.classList.remove('active');
+            if (this.activeModals.size <= 1) document.body.style.overflow = '';
+            this.activeModals.delete(modal);
+        }
+
+        closeAll() {
+            this.activeModals.forEach(m => this.close(m));
+        }
+
+        bindGlobalEvents() {
+            document.addEventListener('click', (e) => {
+                const overlay = e.target.closest('.modal-overlay');
+                const closeBtn = e.target.closest('[data-modal-close]');
+                
+                if (closeBtn) {
+                    this.close(overlay);
+                    e.stopPropagation();
+                }
+                if (overlay && e.target === overlay) {
+                    this.close(overlay);
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && this.activeModals.size > 0) {
+                    this.close([...this.activeModals].pop());
+                }
+            });
+
+            // Галерея: клавиатура
+            document.addEventListener('keydown', (e) => {
+                const galleryModal = document.getElementById('modal-gallery');
+                if (!galleryModal?.classList.contains('active')) return;
+                if (e.key === 'ArrowLeft') { e.preventDefault(); this.galleryPrev(); }
+                if (e.key === 'ArrowRight') { e.preventDefault(); this.galleryNext(); }
+            });
+        }
+
+        // Галерея хелперы
+        initGallery(images, startIndex = 0) {
+            if (!images?.length) return;
+            this.galleryState = { images, index: startIndex };
+            this.renderGallery();
+            this.open('modal-gallery');
+        }
+        
+        galleryPrev() {
+            const s = this.galleryState;
+            if (s.images.length <= 1) return;
+            s.index = (s.index - 1 + s.images.length) % s.images.length;
+            this.renderGallery();
+        }
+        
+        galleryNext() {
+            const s = this.galleryState;
+            if (s.images.length <= 1) return;
+            s.index = (s.index + 1) % s.images.length;
+            this.renderGallery();
+        }
+        
+        renderGallery() {
+            const s = this.galleryState;
+            const img = document.getElementById('gallery-img');
+            const counter = document.getElementById('gallery-counter');
+            const prevBtn = document.getElementById('gallery-prev');
+            const nextBtn = document.getElementById('gallery-next');
+            const thumbs = document.getElementById('gallery-thumbs');
+            
+            if (img) img.src = s.images[s.index];
+            if (counter) counter.textContent = `${s.index + 1} / ${s.images.length}`;
+            if (prevBtn) prevBtn.style.display = s.images.length > 1 ? 'flex' : 'none';
+            if (nextBtn) nextBtn.style.display = s.images.length > 1 ? 'flex' : 'none';
+            
+            if (thumbs) {
+                thumbs.innerHTML = '';
+                if (s.images.length <= 1) { 
+                    thumbs.style.display = 'none'; 
+                    return; 
+                }
+                thumbs.style.display = 'flex';
+                s.images.forEach((src, i) => {
+                    const t = document.createElement('div');
+                    t.className = `gallery-thumb ${i === s.index ? 'active' : ''}`;
+                    t.innerHTML = `<img src="${src}" alt="thumb">`;
+                    t.onclick = (e) => { 
+                        e.stopPropagation(); 
+                        this.galleryState.index = i; 
+                        this.renderGallery(); 
+                    };
+                    thumbs.appendChild(t);
+                });
+            }
+        }
+    }
+
+    // Глобальный экземпляр
+    window.ModalCtrl = new ModalController();
+    </script>
+    
+    <!-- Основной скрипт страницы -->
+    <script>
+    (function() {
+        'use strict';
+        
+        // ===== ДАННЫЕ ТОВАРОВ =====
+        const products = [
+            { id: 1, name: 'Носки', desc: 'Принт с логотипом театра', price: 500, isClothing: false, images: ['images/content/shop/2.png'], category: 'clothes' },
+            { id: 2, name: 'Подвес на рюкзак "Микос Team"', desc: 'Современный аксессуар', price: 900, isClothing: false, images: ['images/content/shop/3.png'], category: 'accessories' },
+            { id: 3, name: 'Футболка', desc: 'Хлопковая футболка', price: 2500, isClothing: true, images: ['images/content/shop/5.png', 'images/content/shop/1.png'], category: 'clothes' },
+            { id: 4, name: 'Футболка', desc: 'Хлопковая футболка', price: 2500, isClothing: true, images: ['images/content/shop/7.png', 'images/content/shop/5.png'], category: 'clothes' },
+            { id: 5, name: 'Футболка', desc: 'Хлопковая футболка', price: 2500, isClothing: true, images: ['images/content/shop/8.png', 'images/content/shop/5.png'], category: 'clothes' },
+            { id: 6, name: 'Сумка шоппер', desc: 'Эко-сумка', price: 1800, isClothing: false, images: ['images/content/shop/9.png'], category: 'accessories' },
+            { id: 7, name: 'Футболка', desc: 'Хлопковая футболка с логотипом театра', price: 2500, isClothing: true, images: ['images/content/shop/1.png', 'images/content/shop/5.png'], category: 'clothes' },
+            { id: 8, name: 'Кружка театральная', desc: 'Фарфор', price: 1200, isClothing: false, images: ['https://placehold.co/428x220/2A3D5E/white?text=Кружка'], category: 'tableware' },
+            { id: 9, name: 'Магнит символ', desc: 'Сувенирный магнит', price: 450, isClothing: false, images: ['https://placehold.co/428x220/4A6294/white?text=Магнит'], category: 'souvenirs' },
+            { id: 10, name: 'Программа спектакля', desc: 'Иллюстрированная', price: 350, isClothing: false, images: ['https://placehold.co/428x220/2A3D5E/white?text=Программа'], category: 'printed' }
+        ];
+
+        // ===== ДАННЫЕ КОМАНДЫ ДЛЯ МОДАЛКИ =====
+        const teamMembersData = {
+            'Сергей Давыдов': { 
+                name: 'Давыдов Сергей Валерьевич', 
+                nickname: 'Паганель', 
+                photo: 'images/content/actors/Давыдов-3.jpg', 
+                position: 'Художественный руководитель, режиссёр', 
+                bio: `С 1991г. основатель и художественный руководитель театра клоунады «Микос»
+В 1991 году из рук Юрия Никулина получил «серебро» на 1-м Международном фестивале клоунов в Москве.
+В 1994 году в Швейцарии на Международном конгрессе деятелей культуры театр был представлены как «Новые направления в искусстве».
+В 1995 году на мировом фестивале во Франции «Цирк завтрашнего дня» было взято второе место.
+В 1996 году на фестивале «Авиньон» также во Франции, в открытом конкурсе заняли первое место.
+В 2003 году театр «Микос» вернулся в Москву и до 2013 года проработал в Цирке на Цветном Бульваре в компании "Росгорцирк". Полгода труппа выступала там, оставшееся время — за границей.`,
+                performances: ['«Лишь бы не было детей»', '«Богатыри»', '«Ушли за ...»', '«Ожидание»', '«Авиаторы»'] 
+            },
+            'Ксения Иванова': { 
+                name: 'Иванова Ксения Степановна', 
+                nickname: '', 
+                photo: 'images/content/actors/Иванова-3.jpg', 
+                position: 'Ведущая актриса, продюсер, директор', 
+                bio: `В 2004 окончила ГОУ СПО Удмуртское республиканское училище культуры (курс Желтышевой О.Е.)
+С 2018 года клоун театра клоунады «Микос»  
+С 2024 года ещё и директор театра клоунады «Микос»`,
+                performances: ['«Лишь бы не было детей»', '«Богатыри»', '«Ушли за ...»', '«Ожидание»', '«Авиаторы»'] 
+            },
+            'Максим Гамаюнов': { 
+                name: 'Гамаюнов Максим Валентинович', 
+                nickname: '', 
+                photo: 'images/content/actors/Гамаюнов-3.jpg', 
+                position: 'Актёр, музыкант', 
+                bio: `В 2005 году закончил училище циркового и эстрадного искусства имени М.Н. Румянцева
+С 2005 года работал в компании "Росгорцирк" руководителем номера
+с 2014 года клоун в театре клоунады "Высокие Братья"
+с 2018 года клоун в театре клоунады "Микос"`, 
+                performances: ['«Лишь бы не было детей»', '«Богатыри»', '«Ушли за ...»', '«Ожидание»', '«Авиаторы»'] 
+            },
+            'Тотраз Циукаев': { 
+                name: 'Циукаев Тотраз Вячеславович', 
+                nickname: '', 
+                photo: 'images/content/actors/Циукаев-3.jpg', 
+                position: 'Актёр, музыкант', 
+                bio: `Актер театра и кино, оперный певец,клоун, педагог, лауреат международных конкурсов, артист театра клоунады «Micos», преподаватель ВГИК имени Герасимова.
+В 2018 году окончил Высшее театральное училище (институт) имени М. С. Щепкина при ГАМТ России (курс народного артиста России Б. В. Клюева)
+В 2023 году окончил РАМ имени Гнесиных (класс З. Т. Березовой). 
+Основатель ряда творческих проектов таких как: фестиваль «Алмазы Осетии», циклы концертов «Музыка и слово», «Магия русского слова», «Всероссийского конкурса ораторского мастерства». 
+За годы творческой деятельности сотрудничал со следующими государственными учреждениями культуры: Большой театр, театр «Мастерская Петра Фоменко», ВТУ (институт) имени М. С. Щепкина, ТИ им. Б. Щукина, Арт кластер «Таврида-АРТ».`,
+                performances: ['«Богатыри»', '«Ожидание»'] 
+            }
+        };
+
+        // ===== СОСТОЯНИЕ =====
+        let currentEvent = null, selectedSession = null, currentMonthFilter = 'all';
+        let cartItems = [], currentProduct = null, editingIndex = -1;
+        let phoneMask = null;
+
+        // ===== ВАЛИДАЦИЯ ФОРМ =====
+        const validators = {
+            name: (value) => value.trim().length >= 2 && value.trim().length <= 50 && /^[а-яА-ЯёЁa-zA-Z\s\-']+$/.test(value.trim()),
+            company: (value) => value.trim().length >= 2 && value.trim().length <= 100,
+            email: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim()),
+            phone: (value) => {
+                const cleaned = value.replace(/\D/g, '');
+                return cleaned.length === 11 && cleaned.startsWith('7');
+            },
+            message: (value) => value.trim().length >= 10 && value.trim().length <= 1000,
+            method: (value) => value.trim().length >= 3
+        };
+
+        function showError(input, errorId) {
+            input.classList.add('error');
+            const errorEl = document.getElementById(errorId);
+            if (errorEl) errorEl.classList.add('visible');
+        }
+
+        function hideError(input, errorId) {
+            input.classList.remove('error');
+            const errorEl = document.getElementById(errorId);
+            if (errorEl) errorEl.classList.remove('visible');
+        }
+
+        function validateField(input, validator, errorId) {
+            const value = input.value;
+            if (!value.trim() && input.hasAttribute('required')) {
+                showError(input, errorId);
+                return false;
+            }
+            if (value.trim() && !validator(value)) {
+                showError(input, errorId);
+                return false;
+            }
+            hideError(input, errorId);
+            return true;
+        }
+
+        function validateForm(formId, fields) {
+            let isValid = true;
+            fields.forEach(field => {
+                const input = document.getElementById(field.id);
+                if (input) {
+                    if (!validateField(input, validators[field.validator], field.errorId)) {
+                        isValid = false;
+                    }
+                }
+            });
+            return isValid;
+        }
+
+        // ===== ИНИЦИАЛИЗАЦИЯ МАСОК =====
+        function initMasks() {
+            const phoneInput = document.getElementById('contactPhone');
+            if (phoneInput && window.IMask) {
+                phoneMask = IMask(phoneInput, {
+                    mask: '+{7} (000) 000-00-00',
+                    lazy: false,
+                    placeholderChar: '_'
+                });
+            }
+        }
+
+        // ===== ОТКРЫТИЕ МОДАЛОК ЧЕРЕЗ CONTROLLER =====
+        function openSessionModal(event) {
+            currentEvent = event; 
+            selectedSession = null; 
+            currentMonthFilter = 'all';
+            
+            const playTitle = document.getElementById('session-play-title');
+            const modalTitle = document.getElementById('session-modal-title');
+            if (playTitle) playTitle.textContent = event.title;
+            if (modalTitle) modalTitle.textContent = `Выбор сеанса: ${event.title}`;
+            
+            renderMonthFilter(event.performanceId); 
+            renderSessionsList(event.performanceId);
+            
+            const confirmBtn = document.getElementById('session-confirm-btn');
+            if (confirmBtn) confirmBtn.disabled = true;
+            
+            window.ModalCtrl.open('modal-session');
+        }
+
+        function closeSessionModal() {
+            window.ModalCtrl.close('modal-session');
+            currentEvent = null; 
+            selectedSession = null;
+        }
+
+        function renderMonthFilter(performanceId) {
+            const container = document.getElementById('session-date-filter');
+            if (!container) return;
+            
+            const events = filterEventsByPerformance(performanceId, getUpcomingEvents(TOUR_SCHEDULE));
+            const months = getEventMonths(events);
+            
+            let html = `<button class="filter-btn ${currentMonthFilter==='all'?'active':''}" data-month="all">Все даты</button>`;
+            months.forEach(m => { 
+                const value = `${m.name}-${m.year}`;
+                const label = m.name.charAt(0).toUpperCase() + m.name.slice(1) + ' ' + m.year;
+                html += `<button class="filter-btn ${currentMonthFilter===value?'active':''}" data-month="${value}">${label}</button>`; 
+            });
+            container.innerHTML = html;
+            
+            container.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => { 
+                    currentMonthFilter = btn.dataset.month; 
+                    renderMonthFilter(performanceId); 
+                    renderSessionsList(performanceId); 
+                });
+            });
+        }
+
+        function renderSessionsList(performanceId) {
+            const container = document.getElementById('session-list');
+            if (!container) return;
+            
+            let events = filterEventsByPerformance(performanceId, getUpcomingEvents(TOUR_SCHEDULE));
+            if (currentMonthFilter !== 'all') events = filterEventsByMonth(events, currentMonthFilter);
+            events = sortEventsByDate(events);
+            
+            if (!events.length) { 
+                container.innerHTML = '<div class="no-sessions"><i class="far fa-calendar-times"></i> Нет сеансов в выбранном периоде</div>'; 
+                return; 
+            }
+            
+            container.innerHTML = events.map(ev => {
+                const isSelected = selectedSession?.id === ev.id;
+                return `<div class="session-item ${isSelected?'selected':''}" data-event-id="${ev.id}">
+                    <div class="session-info">
+                        <div class="session-date">${formatEventDate(ev.date, ev.time)}</div>
+                        <div class="session-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> ${ev.venue}${ev.address?', '+ev.address.split(',')[0]:''}</span>
+                            <span><i class="far fa-clock"></i> ${ev.duration}</span>
+                        </div>
+                        ${ev.price?`<div class="session-price">от ${ev.price.min.toLocaleString('ru-RU')} ₽</div>`:''}
+                    </div>
+                    <div class="session-select-indicator">${isSelected?'<i class="fas fa-check"></i>':''}</div>
+                </div>`;
+            }).join('');
+            
+            container.querySelectorAll('.session-item').forEach(item => {
+                item.addEventListener('click', () => { 
+                    selectedSession = TOUR_SCHEDULE.find(ev => ev.id === item.dataset.eventId); 
+                    renderSessionsList(performanceId); 
+                    const confirmBtn = document.getElementById('session-confirm-btn');
+                    if (confirmBtn) confirmBtn.disabled = false; 
+                });
+            });
+        }
+
+        // ===== ГАЛЕРЕЯ =====
+        function openGallery(images) {
+            if (!images?.length) return;
+            window.ModalCtrl.initGallery(images, 0);
+        }
+
+        // ===== МОДАЛКА КОМАНДЫ =====
+        function openTeamModal(memberName) {
+            const data = teamMembersData[memberName]; 
+            if (!data) return;
+            
+            const teamModalBody = document.getElementById('team-modal-body');
+            if (!teamModalBody) return;
+            
+            const nicknameHtml = data.nickname ? `<div class="team-modal-nickname">«${data.nickname}»</div>` : '';
+            const perfHtml = data.performances?.map(p => 
+                `<div class="team-performance-item">
+                    <span class="team-performance-bullet">•</span>
+                    <span class="team-performance-text">${p}</span>
+                </div>`
+            ).join('') || '';
+            
+            teamModalBody.innerHTML = `
+                <div class="team-modal-photo">
+                    <img src="${data.photo}" alt="${data.name}" loading="lazy">
+                </div>
+                <div class="team-modal-info">
+                    <div class="team-modal-name">${data.name}</div>
+                    ${nicknameHtml}
+                    <div class="team-modal-position">${data.position}</div>
+                    ${data.bio ? `
+                        <div class="team-modal-section-title">Творческий путь</div>
+                        <div class="team-modal-bio">${data.bio}</div>
+                    ` : ''}
+                    ${data.performances?.length ? `
+                        <div class="team-modal-section-title">Спектакли в репертуаре</div>
+                        <div class="team-performances-list">${perfHtml}</div>
+                    ` : ''}
+                </div>
+            `;
+            
+            window.ModalCtrl.open('modal-team');
+        }
+
+        // ===== УСПЕШНОЕ ДЕЙСТВИЕ =====
+        function openSuccessModal(title, text, redirectTo = null) {
+            const titleEl = document.getElementById('success-title');
+            const textEl = document.getElementById('success-text');
+            const btn = document.getElementById('success-btn');
+            
+            if (titleEl) titleEl.textContent = title;
+            if (textEl) textEl.textContent = text;
+            
+            if (btn) {
+                btn.onclick = () => {
+                    window.ModalCtrl.close('modal-success');
+                    if (redirectTo) window.location.href = redirectTo;
+                };
+            }
+            
+            window.ModalCtrl.open('modal-success');
+        }
+
+        // ===== МОДАЛКА ТОВАРА =====
+        function openProductModal(product) {
+            currentProduct = product; 
+            editingIndex = -1; 
+            renderProductModalContent();
+            
+            const footer = document.getElementById('product-modal-footer');
+            if (footer) {
+                footer.innerHTML = `<div class="modal-buttons">
+                    <button class="modal-btn btn-outline-modal" id="moreItemsBtn">Выбрать еще</button>
+                    <button class="modal-btn btn-primary-modal" id="buyNowBtn">Купить</button>
+                </div>`;
+            }
+            
+            const title = document.getElementById('product-modal-title');
+            if (title) title.textContent = product.name;
+            
+            window.ModalCtrl.open('modal-product', {
+                onOpen: () => {
+                    document.getElementById('moreItemsBtn')?.addEventListener('click', () => { 
+                        if (addCurrentToCart()) window.ModalCtrl.closeAll(); 
+                    });
+                    document.getElementById('buyNowBtn')?.addEventListener('click', () => { 
+                        if (addCurrentToCart()) { 
+                            window.ModalCtrl.closeAll(); 
+                            openContactsModal(); 
+                        } 
+                    });
+                }
+            });
+        }
+
+        function renderProductModalContent() {
+            const container = document.getElementById('product-modal-body'); 
+            if (!container) return;
+            
+            let html = '';
+            if (cartItems.length && editingIndex === -1) {
+                html += `<div style="font-size:18px;font-weight:700;margin-bottom:16px;">Корзина</div><div class="cart-summary">`;
+                let total = 0;
+                cartItems.forEach((it, idx) => { 
+                    total += it.price * it.quantity; 
+                    const sz = it.size?` (${it.size})`:'';
+                    html += `<div class="cart-item">
+                        <div class="cart-item-info">
+                            <span class="cart-item-name">${it.name}${sz}</span>
+                            <span class="cart-item-details">${it.quantity} шт. × ${it.price.toLocaleString()} ₽</span>
+                        </div>
+                        <div class="cart-item-actions">
+                            <button class="edit-item" data-index="${idx}"><i class="fas fa-pencil-alt"></i></button>
+                            <button class="delete-item" data-index="${idx}"><i class="fas fa-trash-alt"></i></button>
+                        </div>
+                        <div class="cart-item-price">${(it.price*it.quantity).toLocaleString()} ₽</div>
+                    </div>`;
+                });
+                html += `<div class="total-row"><span>Итого</span><span>${total.toLocaleString()} ₽</span></div></div>`;
+            }
+            
+            html += `<div class="form-group"><label>Количество</label><input type="number" id="productQuantity" min="1" value="1" class="form-input"></div>`;
+            if (currentProduct?.isClothing) {
+                html += `<div class="form-group"><label>Размер</label>
+                    <select id="productSize" class="form-select">
+                        <option value="S">S</option>
+                        <option value="M" selected>M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                    </select>
+                </div>`;
+            }
+            container.innerHTML = html;
+            
+            if (cartItems.length && editingIndex === -1) {
+                document.querySelectorAll('.delete-item').forEach(b => 
+                    b.addEventListener('click', (e) => { 
+                        cartItems.splice(parseInt(b.dataset.index),1); 
+                        renderProductModalContent(); 
+                    })
+                );
+                document.querySelectorAll('.edit-item').forEach(b => 
+                    b.addEventListener('click', (e) => openEditModal(parseInt(b.dataset.index)))
+                );
+            }
+        }
+
+        function openEditModal(idx) {
+            const it = cartItems[idx]; 
+            if (!it) return;
+            
+            currentProduct = { id: it.id, name: it.name, price: it.price, isClothing: it.isClothing }; 
+            editingIndex = idx;
+            renderProductModalContent();
+            
+            const qtyInput = document.getElementById('productQuantity');
+            if (qtyInput) qtyInput.value = it.quantity;
+            
+            if (it.isClothing) {
+                const sizeSelect = document.getElementById('productSize');
+                if (sizeSelect) sizeSelect.value = it.size || 'M';
+            }
+            
+            const footer = document.getElementById('product-modal-footer');
+            if (footer) {
+                footer.innerHTML = `<div class="modal-buttons">
+                    <button class="modal-btn btn-outline-modal" id="cancelEditBtn">Отмена</button>
+                    <button class="modal-btn btn-primary-modal" id="saveEditBtn">Сохранить</button>
+                </div>`;
+            }
+            
+            const title = document.getElementById('product-modal-title');
+            if (title) title.textContent = it.name;
+            
+            document.getElementById('cancelEditBtn')?.addEventListener('click', () => window.ModalCtrl.closeAll());
+            document.getElementById('saveEditBtn')?.addEventListener('click', () => { 
+                if (saveEditItem()) window.ModalCtrl.closeAll(); 
+            });
+        }
+
+        function addCurrentToCart() {
+            const qty = parseInt(document.getElementById('productQuantity')?.value || '1');
+            if (qty < 1) { alert('Введите количество от 1'); return false; }
+            let size = null; 
+            if (currentProduct.isClothing) { 
+                const sel = document.getElementById('productSize'); 
+                if (sel) size = sel.value; 
+            }
+            cartItems.push({ 
+                id: currentProduct.id, 
+                name: currentProduct.name, 
+                price: currentProduct.price, 
+                quantity: qty, 
+                size, 
+                isClothing: currentProduct.isClothing 
+            });
+            return true;
+        }
+        
+        function saveEditItem() {
+            if (editingIndex === -1) return false;
+            const qty = parseInt(document.getElementById('productQuantity')?.value || '1');
+            if (qty < 1) { alert('Введите количество от 1'); return false; }
+            let size = null; 
+            if (currentProduct.isClothing) { 
+                const sel = document.getElementById('productSize'); 
+                if (sel) size = sel.value; 
+            }
+            cartItems[editingIndex] = { ...cartItems[editingIndex], quantity: qty, size };
+            return true;
+        }
+
+        // ===== МОДАЛКА КОНТАКТОВ =====
+        function openContactsModal() {
+            if (!cartItems.length) { alert("Корзина пуста"); return; }
+            updateOrderSummary();
+            
+            ['contactName','contactPhone','contactEmail','contactMethod'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) { el.value = ''; hideError(el, id + 'Error'); }
+            });
+            
+            // Добавляем поля формы динамически
+            const formFields = document.getElementById('contacts-form-fields');
+            if (formFields) {
+                formFields.innerHTML = `
+                    <div class="form-group">
+                        <label>Имя <span class="required">*</span></label>
+                        <input type="text" id="contactName" class="form-input" placeholder="Иван Иванов" required minlength="2">
+                        <span class="error-message" id="contactNameError">Введите корректное имя</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Телефон <span class="required">*</span></label>
+                        <input type="tel" id="contactPhone" class="form-input" placeholder="+7 (___) ___-__-__" required>
+                        <span class="error-message" id="contactPhoneError">Введите корректный номер телефона</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Email <span class="required">*</span></label>
+                        <input type="email" id="contactEmail" class="form-input" placeholder="mail@example.com" required>
+                        <span class="error-message" id="contactEmailError">Введите корректный email</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Способ связи <span class="required">*</span></label>
+                        <input type="text" id="contactMethod" class="form-input" placeholder="Telegram / WhatsApp / звонок" required minlength="3">
+                        <span class="error-message" id="contactMethodError">Укажите предпочтительный способ связи</span>
+                    </div>
+                `;
+                
+                // Переинициализация маски
+                if (phoneMask) {
+                    const phoneInput = document.getElementById('contactPhone');
+                    if (phoneInput && phoneInput !== phoneMask.el) {
+                        phoneMask.updateOptions({});
+                    }
+                }
+            }
+            
+            window.ModalCtrl.open('modal-contacts', {
+                onOpen: () => {
+                    // Валидация в реальном времени
+                    ['contactName', 'contactPhone', 'contactEmail', 'contactMethod'].forEach(id => {
+                        const input = document.getElementById(id);
+                        if (input) {
+                            input.addEventListener('blur', () => {
+                                const fieldMap = {
+                                    'contactName': { validator: 'name', errorId: 'contactNameError' },
+                                    'contactPhone': { validator: 'phone', errorId: 'contactPhoneError' },
+                                    'contactEmail': { validator: 'email', errorId: 'contactEmailError' },
+                                    'contactMethod': { validator: 'method', errorId: 'contactMethodError' }
+                                };
+                                const field = fieldMap[id];
+                                if (field) validateField(input, validators[field.validator], field.errorId);
+                            });
+                        }
+                    });
+                    
+                    // Обработчик отправки
+                    document.getElementById('contacts-submit-btn')?.addEventListener('click', submitOrder);
+                }
+            });
+        }
+        
+        function updateOrderSummary() {
+            const container = document.getElementById('contacts-order-summary'); 
+            if (!container) return;
+            
+            if (!cartItems.length) { 
+                container.innerHTML = '<div style="text-align:center;padding:16px;color:#5A5556;">Корзина пуста</div>'; 
+                return; 
+            }
+            
+            let html = '', total = 0;
+            cartItems.forEach(it => { 
+                const t = it.price * it.quantity; 
+                total += t; 
+                const sz = it.size?` (${it.size})`:'';
+                html += `<div class="cart-item">
+                    <div class="cart-item-info">
+                        <span class="cart-item-name">${it.name}${sz}</span>
+                        <span class="cart-item-details">${it.quantity} шт. × ${it.price.toLocaleString()} ₽</span>
+                    </div>
+                    <div class="cart-item-price">${t.toLocaleString()} ₽</div>
+                </div>`;
+            });
+            html += `<div class="total-row"><span>Итого</span><span>${total.toLocaleString()} ₽</span></div>`;
+            container.innerHTML = html;
+        }
+        
+        function submitOrder() {
+            const fields = [
+                { id: 'contactName', validator: 'name', errorId: 'contactNameError' },
+                { id: 'contactPhone', validator: 'phone', errorId: 'contactPhoneError' },
+                { id: 'contactEmail', validator: 'email', errorId: 'contactEmailError' },
+                { id: 'contactMethod', validator: 'method', errorId: 'contactMethodError' }
+            ];
+            
+            if (!validateForm('contactsModal', fields)) {
+                const firstError = document.querySelector('.form-input.error, .form-textarea.error');
+                if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+            
+            const name = document.getElementById('contactName')?.value.trim();
+            const phone = document.getElementById('contactPhone')?.value.trim();
+            const email = document.getElementById('contactEmail')?.value.trim();
+            const method = document.getElementById('contactMethod')?.value.trim();
+            
+            localStorage.setItem('mikos_order_success', JSON.stringify({ 
+                customerName: name, 
+                customerPhone: phone, 
+                customerEmail: email, 
+                contactMethod: method, 
+                items: [...cartItems], 
+                total: cartItems.reduce((s,it) => s + it.price * it.quantity, 0), 
+                timestamp: new Date().toISOString(), 
+                source: 'index-home' 
+            }));
+            
+            cartItems = [];
+            window.ModalCtrl.close('modal-contacts');
+            openSuccessModal(
+                'Заказ оформлен! 🎉', 
+                'Спасибо за покупку! Наш менеджер свяжется с вами в ближайшее время для подтверждения заказа.',
+                'shop.html?order=success'
+            );
+        }
+
+        // ===== ЕДИНЫЕ ФУНКЦИИ ПОКУПКИ =====
+        window.handleBuyClick = function(btn) {
+            const eventId = btn.dataset.eventId;
+            const perfId = btn.dataset.performanceId;
+            if (eventId) {
+                goToCheckout(eventId);
+            } else if (perfId) {
+                openSessionModalByPerfId(parseInt(perfId));
+            }
+        };
+
+        window.goToCheckout = function(eventId) {
+            const event = TOUR_SCHEDULE.find(ev => ev.id === eventId);
+            if (!event) { console.error('Событие не найдено:', eventId); return; }
+            const orderInfo = {
+                title: event.title, 
+                dateTime: formatEventDate(event.date, event.time), 
+                hall: event.venue,
+                address: event.address, 
+                price: event.price ? `от ${event.price.min.toLocaleString('ru-RU')} ₽` : 'Уточняйте',
+                poster: event.image, 
+                eventId: event.id, 
+                performanceId: event.performanceId
+            };
+            localStorage.setItem('selectedPerformance', JSON.stringify(orderInfo));
+            window.location.href = 'checkout.html';
+        };
+
+        function openSessionModalByPerfId(performanceId) {
+            const events = filterEventsByPerformance(performanceId, getUpcomingEvents(TOUR_SCHEDULE));
+            if (!events.length) { 
+                alert('На этот спектакль пока нет запланированных показов. Следите за обновлениями!'); 
+                return; 
+            }
+            openSessionModal(events[0]);
+        }
+
+        // ===== РЕНДЕР СПЕКТАКЛЕЙ =====
+        function renderUpcomingScroll() {
+            const wrapper = document.getElementById('upcomingScroll'); 
+            if (!wrapper) return; 
+            wrapper.innerHTML = '';
+            
+            const upcoming = getNearestEvents(6, TOUR_SCHEDULE);
+            if (!upcoming.length) { 
+                wrapper.innerHTML = '<div style="color:#5A5556;padding:20px;">🎭 Скоро новые показы. Следите за афишей!</div>'; 
+                return; 
+            }
+            
+            upcoming.forEach(event => {
+                const card = document.createElement('div'); 
+                card.className = 'performance-card';
+                card.innerHTML = `
+                    <img class="performance-img" src="${event.image}" alt="${event.title}">
+                    <div class="performance-content">
+                        <div class="performance-tags">
+                            <span class="tag tag-age">${event.age}</span>
+                            <span class="tag tag-time">${event.duration}</span>
+                            ${event.isPremiere?'<span class="tag tag-premiere">🎉</span>':''}
+                            <span class="tag tag-tickets">${event.ticketUrl?'Есть билеты':'Скоро'}</span>
+                        </div>
+                        <h3 class="performance-name">${event.title}</h3>
+                        <div class="performance-date">${formatEventDate(event.date, event.time)}</div>
+                        <p class="performance-desc">${event.description}</p>
+                        <div class="event-venue">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>${event.venue}${event.address?', '+event.address.split(',')[0]:''}</span>
+                        </div>
+                        <div class="performance-btns">
+                            <button class="btn-details" data-performance-id="${event.performanceId}">Подробнее</button>
+                            ${event.ticketUrl?
+                                `<button class="btn-buy" data-event-id="${event.id}">Купить билет</button>`:
+                                `<button class="btn-buy disabled" disabled>Скоро</button>`
+                            }
+                        </div>
+                    </div>
+                `;
+                wrapper.appendChild(card);
+            });
+            attachPerformanceEvents();
+        }
+
+        function renderAllPlaysScroll() {
+            const wrapper = document.getElementById('allPlaysScroll'); 
+            if (!wrapper) return; 
+            wrapper.innerHTML = '';
+            
+            const unique = {};
+            TOUR_SCHEDULE.forEach(ev => { 
+                if (!unique[ev.performanceId]) unique[ev.performanceId] = ev; 
+            });
+            
+            Object.values(unique).forEach(event => {
+                const card = document.createElement('div'); 
+                card.className = 'performance-card';
+                card.innerHTML = `
+                    <img class="performance-img" src="${event.image}" alt="${event.title}">
+                    <div class="performance-content">
+                        <div class="performance-tags">
+                            <span class="tag tag-age">${event.age}</span>
+                            <span class="tag tag-time">${event.duration}</span>
+                        </div>
+                        <h3 class="performance-name">${event.title}</h3>
+                        <p class="performance-desc">${event.description}</p>
+                        <div class="performance-btns">
+                            <button class="btn-details" data-performance-id="${event.performanceId}">Подробнее</button>
+                            <button class="btn-buy" data-performance-id="${event.performanceId}">Купить билет</button>
+                        </div>
+                    </div>
+                `;
+                wrapper.appendChild(card);
+            });
+            attachPerformanceEvents();
+        }
+
+        function attachPerformanceEvents() {
+            document.querySelectorAll('.btn-details').forEach(btn => {
+                btn.addEventListener('click', (e) => { 
+                    window.location.href = `performance.html?id=${parseInt(e.currentTarget.dataset.performanceId)}`; 
+                });
+            });
+            document.querySelectorAll('.btn-buy').forEach(btn => {
+                btn.addEventListener('click', (e) => { 
+                    e.preventDefault(); 
+                    handleBuyClick(e.currentTarget); 
+                });
+            });
+        }
+
+        // ===== РЕНДЕР МАГАЗИНА =====
+        function renderMerchScroll() {
+            const wrapper = document.getElementById('merchScroll'); 
+            if (!wrapper) return; 
+            wrapper.innerHTML = '';
+            
+            products.forEach(item => {
+                const card = document.createElement('div'); 
+                card.className = 'merch-card';
+                const mainImg = item.images?.[0] || 'https://placehold.co/428x220/cccccc/white?text=Нет+фото';
+                const hasMulti = item.images?.length > 1;
+                
+                card.innerHTML = `
+                    <div class="merch-img-wrapper">
+                        <img class="merch-img" src="${mainImg}" alt="${item.name}">
+                        ${hasMulti?`<span class="merch-photo-count"><i class="fas fa-images"></i> ${item.images.length}</span>`:''}
+                    </div>
+                    <div class="merch-content">
+                        <h3 class="merch-name">${item.name}</h3>
+                        <div class="merch-price">${item.price.toLocaleString('ru-RU')} ₽</div>
+                        <button class="merch-btn" data-id="${item.id}">Купить</button>
+                    </div>
+                `;
+                
+                card.addEventListener('click', (e) => { 
+                    if (!e.target.classList.contains('merch-btn') && item.images?.length) {
+                        openGallery(item.images); 
+                    }
+                });
+                wrapper.appendChild(card);
+            });
+            
+            document.querySelectorAll('.merch-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => { 
+                    e.stopPropagation(); 
+                    const p = products.find(x => x.id === parseInt(btn.dataset.id)); 
+                    if (p) openProductModal(p); 
+                });
+            });
+        }
+
+        // ===== ФОРМА ЗАКАЗЧИКАМ =====
+        const clientForm = document.getElementById('clientFormMain');
+        if (clientForm) {
+            clientForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const fields = [
+                    { id: 'clientName', validator: 'name', errorId: 'clientNameError' },
+                    { id: 'clientCompany', validator: 'company', errorId: 'clientCompanyError' },
+                    { id: 'clientEmail', validator: 'email', errorId: 'clientEmailError' },
+                    { id: 'clientMessage', validator: 'message', errorId: 'clientMessageError' }
+                ];
+                
+                if (!validateForm('clientFormMain', fields)) {
+                    const firstError = document.querySelector('#clientFormMain .form-input.error, #clientFormMain .form-textarea.error');
+                    if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    return;
+                }
+                
+                const formData = {
+                    name: document.getElementById('clientName').value.trim(),
+                    company: document.getElementById('clientCompany').value.trim(),
+                    email: document.getElementById('clientEmail').value.trim(),
+                    message: document.getElementById('clientMessage').value.trim(),
+                    timestamp: new Date().toISOString(),
+                    source: 'index-clients-form'
+                };
+
+                try { 
+                    await window.sendClientRequest(formData); 
+                } catch(err) { 
+                    console.error(err); 
+                }
+                
+                localStorage.setItem('mikos_client_request', JSON.stringify(formData));
+                
+                clientForm.reset();
+                ['clientName', 'clientCompany', 'clientEmail', 'clientMessage'].forEach(id => {
+                    const input = document.getElementById(id);
+                    if (input) hideError(input, id + 'Error');
+                });
+                
+                openSuccessModal(
+                    'Заявка отправлена! ✨', 
+                    'Спасибо за интерес к нашему театру! Менеджер свяжется с вами в течение рабочего дня для обсуждения деталей сотрудничества.',
+                    null
+                );
+            });
+            
+            // Валидация в реальном времени
+            ['clientName', 'clientCompany', 'clientEmail', 'clientMessage'].forEach(id => {
+                const input = document.getElementById(id);
+                if (input) {
+                    input.addEventListener('blur', () => {
+                        const fieldMap = {
+                            'clientName': { validator: 'name', errorId: 'clientNameError' },
+                            'clientCompany': { validator: 'company', errorId: 'clientCompanyError' },
+                            'clientEmail': { validator: 'email', errorId: 'clientEmailError' },
+                            'clientMessage': { validator: 'message', errorId: 'clientMessageError' }
+                        };
+                        const field = fieldMap[id];
+                        if (field) validateField(input, validators[field.validator], field.errorId);
+                    });
+                }
+            });
+        }
+
+        // ===== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ =====
+        window.scrollHorizontally = function(id, amount) { 
+            const el = document.getElementById(id); 
+            if (el) el.scrollBy({ left: amount, behavior: 'smooth' }); 
+        };
+        
+        function initTeamCards() {
+            document.querySelectorAll('.team-card').forEach(card => {
+                const name = card.dataset.member; 
+                if (!name) return;
+                card.addEventListener('click', (e) => { 
+                    if (!e.target.closest('a')) openTeamModal(name); 
+                });
+            });
+        }
+
+        // ===== ИНИЦИАЛИЗАЦИЯ =====
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                renderUpcomingScroll();
+                renderAllPlaysScroll();
+                renderMerchScroll();
+                initTeamCards();
+                initMasks();
+                
+                // Инициализация обработчиков для модалок
+                document.getElementById('session-confirm-btn')?.addEventListener('click', () => {
+                    if (selectedSession) goToCheckout(selectedSession.id);
+                });
+            }, 100);
+        });
+    })();
+    </script>
+</body>
+</html>

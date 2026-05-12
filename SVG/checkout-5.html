@@ -1,0 +1,1727 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Театр клоунады «Микос» | Оформление заказа</title>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* === ВСЯ ВЕРСТКА И СТИЛИ ИЗ ИСХОДНОГО ШАБЛОНА (НЕТРОНУТЫ) === */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #ffffff;
+            font-family: 'Nunito Sans', sans-serif;
+            overflow-x: auto;
+            min-width: 320px;
+        }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #E5E3E1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #4A6294; border-radius: 10px; }
+        :root {
+            --white: #FFFFFF;
+            --white-95: rgba(255,255,255,0.95);
+            --grey-90: #E5E5E5;
+            --grey-89: #E5E3E1;
+            --grey-93: #E9ECEF;
+            --grey-96: #F5F5F5;
+            --grey-97: #F8F7F6;
+            --grey-10: #1A1718;
+            --grey-23: #3D393A;
+            --azure-27: #2A3D5E;
+            --azure-35: #3A5078;
+            --azure-44: #4A6294;
+            --red-59: #E8454D;
+            --red-60: #D62830;
+            --blue-900: #1A2840;
+            --blue-800: #2A3D5E;
+            --blue-700: #3A4F79;
+            --blue-200: #DCE4F0;
+        }
+        .shop-container { max-width: 1440px; margin: 0 auto; background: var(--white); position: relative; }
+        
+        /* HEADER */
+        .main-header {
+            width: 100%;
+            background: var(--white-95);
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid var(--grey-90);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-inner {
+            height: 90px;
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .header-left { display: flex; align-items: center; gap: 32px; flex: 1; }
+        .logo-group { display: flex; align-items: center; gap: 32px; }
+        .logo-img { height: 50px; width: auto; object-fit: contain; border-radius: 4px; }
+        .nav-menu { display: flex; align-items: center; gap: 32px; list-style: none; }
+        .nav-menu li a { text-decoration: none; color: #231F20; font-size: 14px; font-family: 'Unbounded', sans-serif; font-weight: 400; line-height: 24px; white-space: nowrap; transition: color 0.2s; }
+        .nav-menu li a:hover { color: var(--red-59); }
+        .burger-icon { display: none; font-size: 28px; cursor: pointer; color: #231F20; }
+        .mobile-nav {
+            position: fixed; top: 90px; left: -100%; width: 80%; max-width: 320px;
+            height: calc(100% - 90px); background: #1A1A1A; z-index: 200;
+            transition: left 0.3s ease; padding: 30px 24px; overflow-y: auto;
+        }
+        .mobile-nav.open { left: 0; }
+        .mobile-nav ul { list-style: none; display: flex; flex-direction: column; gap: 24px; }
+        .mobile-nav ul li a { color: #F2F1F0; font-family: 'Unbounded', sans-serif; font-size: 16px; text-decoration: none; }
+        .close-mobile-menu { position: absolute; top: 20px; right: 20px; font-size: 24px; color: white; cursor: pointer; }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 150; display: none; }
+        .overlay.active { display: block; }
+        .dots-icon, .close-icon { cursor: pointer; font-size: 24px; font-weight: 700; color: #231F20; display: inline-flex; width: 32px; }
+        .close-icon { display: none; font-size: 20px; font-weight: 800; }
+        .extra-menu-row { background: #1A1A1A; height: 90px; width: 100%; display: none; align-items: center; justify-content: center; }
+        .extra-menu-row.open { display: flex; }
+        .extra-nav-list { display: flex; gap: 48px; list-style: none; flex-wrap: wrap; justify-content: center; padding: 0 20px; }
+        .extra-nav-list li a { color: #F2F1F0; font-family: 'Unbounded', sans-serif; font-size: 14px; text-decoration: none; }
+        .buy-ticket-btn {
+            background: #E8454D;
+            border-radius: 8px;
+            padding: 12px 28px;
+            border: none;
+            color: white;
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .buy-ticket-btn:hover { background: #D62830; }
+
+        /* FOOTER */
+        .main-footer { background: var(--blue-900); width: 100%; padding: 70px 60px 50px; margin-top: 80px; }
+        .footer-container { max-width: 1320px; margin: 0 auto; }
+        .footer-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 80px; margin-bottom: 70px; }
+        .footer-brand { flex: 2; max-width: 580px; }
+        .footer-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+        .footer-logo-img { width: 56px; height: 56px; object-fit: contain; border-radius: 8px; }
+        .footer-theater-title { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 20px; color: white; line-height: 1.3; white-space: nowrap; }
+        .footer-description { font-family: 'Nunito Sans', sans-serif; font-size: 16px; line-height: 1.5; color: var(--blue-200); margin: 16px 0 24px; }
+        .newsletter-title { color: white; font-family: 'Unbounded', sans-serif; font-weight: 600; font-size: 20px; margin: 32px 0 12px; }
+        .subscribe-form { display: flex; width: 100%; max-width: 650px; height: 48px; }
+        .subscribe-input {
+            flex: 1;
+            background: #2A3D5E;
+            border: 1px solid #3A5078;
+            padding: 0 18px;
+            border-radius: 6px 0 0 6px;
+            color: white;
+            font-size: 15px;
+            outline: none;
+            font-family: 'Nunito Sans', sans-serif;
+        }
+        .subscribe-input::placeholder { color: #DCE4F0; opacity: 0.8; }
+        .subscribe-btn {
+            background: #4A6294;
+            padding: 0 24px;
+            border: none;
+            border-radius: 0 6px 6px 0;
+            color: white;
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            height: 100%;
+            transition: background 0.2s;
+        }
+        .subscribe-btn:hover { background: #3A4F79; }
+        .checkbox-custom { display: flex; align-items: center; gap: 12px; margin-top: 16px; cursor: pointer; }
+        .checkbox-custom input { display: none; }
+        .checkmark { width: 20px; height: 20px; border: 2px solid #4A6294; border-radius: 4px; display: inline-block; position: relative; background: transparent; flex-shrink: 0; }
+        .checkbox-custom input:checked + .checkmark { background: #4A6294; border-color: #4A6294; }
+        .checkbox-custom input:checked + .checkmark::after { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; font-size: 12px; color: white; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        .checkbox-custom span:last-child { color: var(--blue-200); font-size: 13px; font-family: 'Nunito Sans', sans-serif; line-height: 1.4; }
+        .error-tooltip { color: #ff6b6b; font-size: 12px; margin-top: 6px; display: none; }
+        .social-icons { display: flex; gap: 12px; margin-top: 20px; }
+        .social-circle { width: 40px; height: 40px; background: #2A3D5E; border-radius: 6px; display: flex; align-items: center; justify-content: center; border: 1px solid #3A5078; color: #DCE4F0; font-size: 18px; transition: 0.2s; text-decoration: none; }
+        .social-circle:hover { background: #4A6294; color: white; }
+        .footer-nav { min-width: 180px; }
+        .footer-nav h4 { color: white; font-family: 'Unbounded', sans-serif; font-weight: 600; margin-bottom: 24px; font-size: 16px; }
+        .footer-nav ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+        .footer-nav ul li a { color: #DCE4F0; text-decoration: none; font-size: 15px; transition: opacity 0.2s; }
+        .footer-nav ul li a:hover { opacity: 0.7; color: var(--red-59); }
+        .footer-bottom { border-top: 1px solid #3A5078; padding-top: 40px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; }
+        .copyright { color: #DCE4F0; font-size: 14px; }
+        .footer-buttons { display: flex; gap: 16px; }
+        .footer-btn-primary {
+            background: #E8454D;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 8px;
+            color: white;
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .footer-btn-primary:hover { background: #D62830; }
+        .footer-btn-secondary {
+            background: transparent;
+            border: 1px solid #4A6294;
+            padding: 11px 28px;
+            border-radius: 8px;
+            color: white;
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .footer-btn-secondary:hover { background: #3A4F79; border-color: #3A4F79; }
+
+        /* ОБЩИЕ СТИЛИ СТРАНИЦ */
+        .checkout-page, .seats-page, .payment-page, .success-page {
+            max-width: 1360px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .breadcrumbs {
+            display: flex;
+            gap: 8px;
+            padding: 23px 0 24px;
+            color: #5A5556;
+            font-size: 14px;
+            flex-wrap: wrap;
+        }
+        .breadcrumbs a {
+            color: #5A5556;
+            text-decoration: none;
+        }
+        .breadcrumbs .current {
+            color: #4A6294;
+            font-weight: 600;
+        }
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .progress-step {
+            flex: 1;
+            text-align: center;
+            min-width: 120px;
+            position: relative;
+        }
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: #EFEEED;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: #3D393A;
+            transition: background 0.3s, color 0.3s;
+        }
+        .step-number.active {
+            background: #4A6294 !important;
+            color: white !important;
+        }
+        .step-label {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: #5A5556;
+            transition: color 0.3s;
+        }
+        .step-label.active {
+            color: #4A6294 !important;
+        }
+ 
+
+        /* СЕКЦИИ */
+        .step-section { display: none; animation: fadeIn 0.4s ease; }
+        .step-section.active { display: block; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* СХЕМА ЗАЛА */
+        .hall-scheme {
+            background: white;
+            border-radius: 12px;
+            outline: 1px solid #E5E3E1;
+            padding: 32px;
+            margin-bottom: 40px;
+        }
+        .hall-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #E5E3E1;
+            margin-bottom: 28px;
+        }
+        .hall-title {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #1A1718;
+            position: relative;
+            padding-left: 20px;
+        }
+        .hall-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: #E8454D;
+        }
+        .legend {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        .legend-color.free { background: white; border: 1px solid #D5D3D1; }
+        .legend-color.selected { background: #4A6294; }
+        .legend-color.occupied { background: #E5E3E1; border: 1px solid #D5D3D1; }
+        .stage {
+            background: linear-gradient(176deg, #2A3D5E 0%, #3A5078 100%);
+            border-radius: 8px 8px 0 0;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .stage span {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 2px;
+            color: white;
+        }
+        .seats-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .seat-row {
+            display: flex;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .row-label {
+            width: 60px;
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            color: #4A6294;
+        }
+        .seats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .seat {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .seat.free {
+            background: white;
+            border: 1px solid #E5E3E1;
+            color: #3D393A;
+        }
+        .seat.free:hover {
+            border-color: #4A6294;
+            background: #F8F7F6;
+        }
+        .seat.occupied {
+            background: #EFEEED;
+            border: 1px solid #E5E3E1;
+            color: #9A9896;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+        .seat.selected {
+            background: #4A6294;
+            border: 1px solid #4A6294;
+            color: white;
+        }
+
+        /* БЛОК ЗАКАЗА */
+        .order-summary {
+            background: white;
+            border-radius: 12px;
+            outline: 1px solid #E5E3E1;
+            padding: 32px;
+            margin-bottom: 60px;
+        }
+        .summary-header {
+            padding-bottom: 16px;
+            border-bottom: 1px solid #E5E3E1;
+            margin-bottom: 24px;
+        }
+        .summary-header h3 {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #1A1718;
+        }
+        .summary-item {
+            display: flex;
+            gap: 16px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #E5E3E1;
+            margin-bottom: 20px;
+        }
+        .summary-img {
+            width: 80px;
+            height: 80px;
+            background: #E8EEF7;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4A6294;
+            font-weight: 700;
+            font-size: 12px;
+            text-align: center;
+            padding: 4px;
+        }
+        .summary-details { flex: 1; }
+        .summary-title {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: #1A1718;
+            margin-bottom: 4px;
+        }
+        .summary-meta {
+            font-size: 13px;
+            color: #5A5556;
+        }
+        .selected-seats-list, .summary-row { margin-bottom: 24px; }
+        .selected-seat-item, .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #E5E3E1;
+        }
+        .selected-seat-info {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+        .seat-name {
+            font-weight: 500;
+            font-size: 16px;
+            color: #2A2627;
+        }
+        .seat-price {
+            font-weight: 700;
+            font-size: 16px;
+            color: #4A6294;
+        }
+        .remove-seat {
+            color: #5A5556;
+            font-size: 18px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .remove-seat:hover { color: #E8454D; }
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 24px;
+            border-top: 1px solid #E5E3E1;
+            margin-bottom: 24px;
+        }
+        .total-label, .total-price {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: #1A1718;
+        }
+        .selection-actions {
+            display: flex;
+            gap: 16px;
+        }
+        .btn-back {
+            flex: 1;
+            background: #F8F7F6;
+            border: 1px solid #E5E3E1;
+            border-radius: 8px;
+            padding: 12px;
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            color: #1A1718;
+            cursor: pointer;
+            text-align: center;
+        }
+        .btn-next, .btn-pay {
+            flex: 1;
+            background: #E8454D;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            color: white;
+            cursor: pointer;
+            text-align: center;
+        }
+        .btn-next:hover, .btn-pay:hover { background: #D62830; }
+        .btn-back:hover { background: #E9E7E5; }
+
+        /* ФОРМА ОФОРМЛЕНИЯ */
+        .checkout-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        .checkout-form {
+            flex: 2;
+            min-width: 350px;
+            background: #F8F7F6;
+            border-radius: 12px;
+            outline: 1px solid #E5E3E1;
+            padding: 40px;
+        }
+        .form-section { margin-bottom: 32px; }
+        .form-section h3 {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #1A1718;
+            position: relative;
+            padding-left: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #E5E3E1;
+            margin-bottom: 20px;
+        }
+        .form-section h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: #E8454D;
+            border-radius: 1.5px;
+        }
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .form-group { flex: 1; min-width: 200px; }
+        .form-group label {
+            display: block;
+            font-family: 'Unbounded', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: #2A2627;
+            margin-bottom: 8px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #E5E3E1;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: 'Nunito Sans', sans-serif;
+            background: white;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #4A6294;
+        }
+        .radio-group {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+        .radio-label input {
+            width: 18px;
+            height: 18px;
+            accent-color: #4A6294;
+        }
+        .delivery-hint {
+            background: #F8F7F6;
+            border-left: 3px solid #4A6294;
+            border-radius: 8px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #5A5556;
+        }
+        .delivery-hint i { color: #4A6294; }
+        .agree-check {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 24px 0;
+            flex-wrap: wrap;
+        }
+        .agree-check input {
+            width: 18px;
+            height: 18px;
+            accent-color: #4A6294;
+        }
+        .agree-check label {
+            font-size: 14px;
+            color: #3D393A;
+        }
+        .agree-check a {
+            color: #4A6294;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        /* ОПЛАТА */
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .payment-method {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 17px 20px;
+            background: white;
+            border-radius: 12px;
+            outline: 1px solid #E5E3E1;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .payment-method.selected {
+            outline: 2px solid #4A6294;
+            background: #F8F7F6;
+        }
+        .payment-method input {
+            width: 20px;
+            height: 20px;
+            accent-color: #4A6294;
+        }
+        .payment-icon {
+            width: 48px;
+            height: 40px;
+            background: #E8EEF7;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            color: #4A6294;
+        }
+        .card-details {
+            background: #F8F7F6;
+            border-radius: 12px;
+            outline: 1px solid #E5E3E1;
+            padding: 28px;
+            margin-top: 16px;
+        }
+        .card-details h4 {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #1A1718;
+            margin-bottom: 20px;
+        }
+        .qr-payment {
+            background: #F8F7F6;
+            border-radius: 12px;
+            outline: 1px solid #E5E3E1;
+            padding: 29px 28px;
+            text-align: center;
+            margin-top: 16px;
+        }
+        .qr-placeholder {
+            width: 180px;
+            height: 180px;
+            background: white;
+            border-radius: 12px;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 8px 20px rgba(0,0,0,0.05);
+        }
+        .qr-grid {
+            width: 140px;
+            height: 140px;
+            background: repeating-linear-gradient(0deg, #4A6294 0px, #4A6294 2px, transparent 2px, transparent 10px),
+                        repeating-linear-gradient(90deg, #4A6294 0px, #4A6294 2px, transparent 2px, transparent 10px);
+            opacity: 0.35;
+        }
+        .qr-amount {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #4A6294;
+            margin: 16px 0;
+        }
+        .info-box {
+            background: #F8F7F6;
+            border-left: 4px solid #4A6294;
+            border-radius: 8px;
+            padding: 18px;
+            margin: 24px 0;
+        }
+        .secure-badge {
+            background: #F8F7F6;
+            border-left: 4px solid #4A6294;
+            border-radius: 8px;
+            padding: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .info-block {
+            background: #F8F7F6;
+            border-radius: 10px;
+            padding: 16px 18px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+            color: #5A5556;
+        }
+        .info-block i { color: #4A6294; }
+        .warning-block {
+            background: #EFEEED;
+            border-radius: 8px;
+            padding: 16px;
+            font-size: 13px;
+            color: #5A5556;
+        }
+        .warning-block i { margin-right: 8px; }
+        .hidden { display: none; }
+
+        /* СТРАНИЦА УСПЕХА */
+        .success-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            background: #F8F7F6;
+            border-radius: 50%;
+            outline: 2px solid #4A6294;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 32px;
+        }
+        .success-icon i {
+            font-size: 48px;
+            color: #4A6294;
+        }
+        .success-title {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #1A1718;
+            margin-bottom: 16px;
+        }
+        .success-message {
+            font-size: 18px;
+            color: #3D393A;
+            margin-bottom: 40px;
+        }
+        .order-details {
+            background: #F8F7F6;
+            border-radius: 12px;
+            outline: 1px solid #E5E3E1;
+            padding: 40px;
+            text-align: left;
+            margin-bottom: 32px;
+        }
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #E5E3E1;
+            margin-bottom: 20px;
+        }
+        .order-number {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #1A1718;
+        }
+        .order-status {
+            background: #F4F6FA;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-family: 'Unbounded', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: #4A6294;
+        }
+        .order-info-row {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 12px 0;
+            border-bottom: 1px solid #E5E3E1;
+        }
+        .order-info-label {
+            width: 150px;
+            font-weight: 600;
+            font-size: 14px;
+            color: #5A5556;
+        }
+        .order-info-value {
+            flex: 1;
+            font-weight: 500;
+            font-size: 16px;
+            color: #1A1718;
+        }
+        .ticket-list { margin: 24px 0 20px; }
+        .ticket-list h4 {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: #1A1718;
+            margin-bottom: 16px;
+        }
+        .ticket-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: white;
+            border-radius: 8px;
+            outline: 1px solid #E5E3E1;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+        .ticket-icon {
+            width: 48px;
+            height: 48px;
+            background: #F8F7F6;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4A6294;
+            font-size: 24px;
+        }
+        .ticket-info { flex: 1; }
+        .ticket-title {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: #1A1718;
+            margin-bottom: 4px;
+        }
+        .ticket-meta {
+            font-size: 12px;
+            color: #5A5556;
+        }
+        .ticket-price {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: #E8454D;
+        }
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 24px;
+            border-top: 1px solid #E5E3E1;
+            margin-top: 8px;
+        }
+        .total-label, .total-value {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: #1A1718;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+        .btn-download {
+            background: #F8F7F6;
+            border: 1px solid #E5E3E1;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            color: #1A1718;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .btn-cabinet {
+            background: #E8454D;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            color: white;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .btn-download:hover { background: #E9E7E5; }
+        .btn-cabinet:hover { background: #D62830; }
+        .email-hint {
+            background: #F8F7F6;
+            border-top: 1px solid #E5E3E1;
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #5A5556;
+        }
+        .email-hint i { color: #4A6294; }
+
+        @media (max-width: 1100px) {
+            .checkout-grid { flex-direction: column; }
+            .order-summary { width: 100%; }
+        }
+        @media (max-width: 860px) {
+            .nav-menu { display: none; }
+            .burger-icon { display: block; }
+            .footer-top { flex-direction: column; gap: 40px; }
+            .progress-bar { flex-direction: column; align-items: center; }
+            .progress-step { width: 100%; }
+            .seat-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+            .row-label { width: auto; }
+            .seats { margin-left: 0; }
+            .selection-actions { flex-direction: column; }
+            .form-row { flex-direction: column; }
+            .order-info-label { width: 100%; margin-bottom: 4px; }
+            .action-buttons { flex-direction: column; align-items: center; }
+            .btn-download, .btn-cabinet { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+<div class="shop-container">
+    <!-- HEADER (без изменений) -->
+    <header class="main-header">
+        <div class="header-inner">
+            <div class="header-left">
+                <div class="logo-group">
+                    <img class="logo-img" src="SVG/logo-2.svg" alt="Логотип">
+                    <img class="logo-img" src="SVG/logo.svg" alt="Логотип текст">
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Главная</a></li><li><a href="affiche.html">Афиша</a></li><li><a href="for-customers.html">Заказчикам</a></li><li><a href="brandbook.html">Брендбук</a></li>
+                    <li><span class="dots-icon" id="dotsIcon">⋯</span><span class="close-icon" id="closeIcon">✕</span></li>
+                </ul>
+                <div class="burger-icon" id="burgerIcon"><i class="fas fa-bars"></i></div>
+            </div>
+            <button class="buy-ticket-btn" onclick="window.location.href='performance.html'">Купить билет</button>
+        </div>
+        <div class="extra-menu-row" id="extraMenuRow">
+            <ul class="extra-nav-list"><li><a href="performances.html">Спектакли</a></li><li><a href="team.html">Команда</a></li><li><a href="history.html">О театре</a></li><li><a href="shop.html">Магазин</a></li><li><a href="contacts.html">Контакты</a></li></ul>
+        </div>
+    </header>
+    <div class="mobile-nav" id="mobileNav"><div class="close-mobile-menu" id="closeMobileMenu">✕</div><ul><li><a href="index.html">Главная</a></li><li><a href="affiche.html">Афиша</a></li><li><a href="for-customers.html">Заказчикам</a></li><li><a href="brandbook.html">Брендбук</a></li><li><a href="performances.html">Спектакли</a></li><li><a href="team.html">Команда</a></li><li><a href="history.html">О театре</a></li><li><a href="shop.html">Магазин</a></li><li><a href="contacts.html">Контакты</a></li></ul></div>
+    <div class="overlay" id="overlay"></div>
+
+    <!-- ШАГ 1: ВЫБОР МЕСТ -->
+    <div class="step-section active" id="step1">
+        <div class="seats-page">
+            <div class="breadcrumbs">
+                <a href="index.html">Главная</a> <span>/</span>
+                <a href="affiche.html">Афиша</a> <span>/</span>
+                <a href="#" id="crumbPerformance">Спектакль</a> <span>/</span>
+                <span class="current">Выбор места</span>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-step"><div class="step-number active">1</div><div class="step-label active">Выбор места</div></div>
+                <div class="progress-step"><div class="step-number">2</div><div class="step-label">Данные</div></div>
+                <div class="progress-step"><div class="step-number">3</div><div class="step-label">Оплата</div></div>
+                <div class="progress-step"><div class="step-number">4</div><div class="step-label">Готово</div></div>
+            </div>
+
+            <!-- Динамический блок: схема зала или свободная рассадка -->
+            <div id="dynamicHallBlock"></div>
+
+            <div class="order-summary">
+                <div class="summary-header"><h3>Ваш заказ</h3></div>
+                <div class="summary-item">
+                    <div class="summary-img" id="orderPoster">Афиша</div>
+                    <div class="summary-details">
+                        <div class="summary-title" id="orderTitle">Название спектакля</div>
+                        <div class="summary-meta" id="orderDateTime">Дата и время</div>
+                        <div class="summary-meta" id="orderHall">Зал</div>
+                    </div>
+                </div>
+                <!-- Контейнер для списка выбранных мест или количества билетов -->
+                <div id="selectedItemsContainer"></div>
+                <div class="summary-total"><span class="total-label">Итого</span><span class="total-price" id="totalPrice">0 ₽</span></div>
+                <div class="selection-actions">
+                    <button class="btn-back" id="backBtn1">Назад</button>
+                    <button class="btn-next" id="nextBtn1">Далее</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ШАГ 2: ОФОРМЛЕНИЕ ДАННЫХ -->
+    <div class="step-section" id="step2">
+        <div class="checkout-page">
+            <div class="breadcrumbs">
+                <a href="index.html">Главная</a> <span>/</span>
+                <a href="affiche.html">Афиша</a> <span>/</span>
+                <a href="#" id="crumbPerformance2">Спектакль</a> <span>/</span>
+                <span class="current">Оформление</span>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-step"><div class="step-number">1</div><div class="step-label">Выбор места</div></div>
+                <div class="progress-step"><div class="step-number active">2</div><div class="step-label active">Данные</div></div>
+                <div class="progress-step"><div class="step-number">3</div><div class="step-label">Оплата</div></div>
+                <div class="progress-step"><div class="step-number">4</div><div class="step-label">Готово</div></div>
+            </div>
+
+            <!-- Остальное содержимое шага 2 без изменений -->
+            <div class="checkout-grid">
+                <div class="checkout-form">
+                    <div class="form-section">
+                        <h3>Контактная информация</h3>
+                        <div class="form-row">
+                            <div class="form-group"><label>Имя</label><input type="text" id="firstName" placeholder="Иван" value="Иван"></div>
+                            <div class="form-group"><label>Фамилия</label><input type="text" id="lastName" placeholder="Петров" value="Петров"></div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group"><label>Email</label><input type="email" id="email" placeholder="ivan@example.com" value="ivan@example.com"></div>
+                            <div class="form-group"><label>Телефон</label><input type="tel" id="phone" placeholder="+7 (999) 123-45-67" value="+7 (999) 123-45-67"></div>
+                        </div>
+                    </div>
+                    <div class="form-section">
+                        <h3>Способ получения</h3>
+                        <div class="radio-group">
+                            <label class="radio-label"><input type="radio" name="delivery" value="email" checked> <span>Электронный билет</span></label>
+                            <label class="radio-label"><input type="radio" name="delivery" value="boxoffice"> <span>В кассе перед спектаклем</span></label>
+                        </div>
+                        <div class="delivery-hint">
+                            <i class="fas fa-envelope"></i>
+                            <span>Электронный билет придёт на email после оплаты. Распечатывать не обязательно — можно показать на экране телефона.</span>
+                        </div>
+                    </div>
+                    <div class="agree-check">
+                        <input type="checkbox" id="agreeCheckbox" checked>
+                        <label for="agreeCheckbox">
+                            Я согласен с <a href="#">условиями продажи билетов</a> и <a href="#">политикой обработки персональных данных</a>
+                        </label>
+                    </div>
+                    <div class="selection-actions">
+                        <button class="btn-back" id="backBtn2">Назад</button>
+                        <button class="btn-next" id="nextBtn2">Перейти к оплате</button>
+                    </div>
+                </div>
+                <div class="order-summary">
+                    <div class="summary-header"><h3>Ваш заказ</h3></div>
+                    <div class="summary-item">
+                        <div class="summary-img" id="orderPoster2">Афиша</div>
+                        <div class="summary-details">
+                            <div class="summary-title" id="orderTitle2">Название спектакля</div>
+                            <div class="summary-meta" id="orderDateTime2">Дата и время · Зал</div>
+                        </div>
+                    </div>
+                    <div id="orderSeatsList"></div>
+                    <div class="summary-row"><span>Сервисный сбор</span><span>0 ₽</span></div>
+                    <div class="summary-total"><span class="total-label">Итого</span><span class="total-price" id="totalPrice2">0 ₽</span></div>
+                    <div class="info-block">
+                        <i class="fas fa-envelope"></i>
+                        <span>Билеты придут на email: <span id="orderEmail">ivan@example.com</span></span>
+                    </div>
+                    <div class="warning-block">
+                        <i class="fas fa-clock"></i>
+                        <span>После оплаты билеты будут отправлены на почту.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ШАГ 3: ОПЛАТА (без изменений) -->
+    <div class="step-section" id="step3">
+        <div class="payment-page">
+            <div class="breadcrumbs">
+                <a href="index.html">Главная</a> <span>/</span>
+                <a href="affiche.html">Афиша</a> <span>/</span>
+                <a href="#" id="crumbPerformance3">Спектакль</a> <span>/</span>
+                <span class="current">Оплата</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-step"><div class="step-number">1</div><div class="step-label">Выбор места</div></div>
+                <div class="progress-step"><div class="step-number">2</div><div class="step-label">Данные</div></div>
+                <div class="progress-step"><div class="step-number active">3</div><div class="step-label active">Оплата</div></div>
+                <div class="progress-step"><div class="step-number">4</div><div class="step-label">Готово</div></div>
+            </div>
+            <div class="checkout-grid">
+                <div class="checkout-form">
+                    <div class="form-section">
+                        <h3>Способ оплаты</h3>
+                        <div class="payment-methods">
+                            <div class="payment-method selected" data-method="card">
+                                <input type="radio" name="payment" checked> 
+                                <div class="payment-icon"><i class="fab fa-cc-visa"></i></div>
+                                <div><strong>Банковской картой</strong><br><span style="font-size:13px; color:#5A5556;">Visa, Mastercard, МИР</span></div>
+                            </div>
+                            <div class="payment-method" data-method="apple">
+                                <input type="radio" name="payment"> 
+                                <div class="payment-icon"><i class="fab fa-apple-pay"></i></div>
+                                <div><strong>Apple Pay / Google Pay</strong><br><span style="font-size:13px; color:#5A5556;">Быстрая оплата</span></div>
+                            </div>
+                            <div class="payment-method" data-method="sbp">
+                                <input type="radio" name="payment"> 
+                                <div class="payment-icon"><i class="fas fa-qrcode"></i></div>
+                                <div><strong>СБП (Система быстрых платежей)</strong><br><span style="font-size:13px; color:#5A5556;">По QR-коду</span></div>
+                            </div>
+                        </div>
+                        <div id="cardDetails" class="card-details">
+                            <h4>Введите данные карты</h4>
+                            <div class="form-group"><label>Номер карты</label><input type="text" placeholder="4111 1111 1111 1111" value="4111 1111 1111 1111"></div>
+                            <div class="form-row">
+                                <div class="form-group"><label>Срок действия</label><input type="text" placeholder="12/25" value="12/25"></div>
+                                <div class="form-group"><label>CVV</label><input type="text" placeholder="123" value="123"></div>
+                            </div>
+                            <div class="form-group"><label>Владелец карты</label><input type="text" placeholder="IVAN PETROV" value="IVAN PETROV"></div>
+                        </div>
+                        <div id="sbpDetails" class="qr-payment hidden">
+                            <div class="qr-placeholder"><div class="qr-grid"></div></div>
+                            <div class="qr-amount" id="qrAmount">0 ₽</div>
+                            <div style="font-weight:600; margin-bottom:8px;">Отсканируйте QR-код в приложении банка</div>
+                            <div style="font-size:13px; color:#5A5556;">СБП · Мгновенно · Без комиссии</div>
+                            <div style="margin-top:16px; padding:12px; background:white; border-radius:8px; font-size:13px;"><i class="fas fa-info-circle"></i> Наведите камеру смартфона на QR-код и подтвердите платеж.</div>
+                        </div>
+                        <div class="info-box"><strong>🔒 Безопасная оплата</strong><p style="margin-top:8px;">Данные карты передаются напрямую в платежный шлюз. Мы не храним информацию о вашей карте. Все операции соответствуют стандартам PCI DSS.</p></div>
+                        <div class="secure-badge"><i class="fas fa-lock"></i><span>Платеж защищен. 3D‑Secure подтверждение.</span></div>
+                    </div>
+                    <div class="selection-actions">
+                        <button class="btn-back" id="backBtn3">Назад</button>
+                        <button class="btn-pay" id="payBtn">Оплатить <span id="payAmount">0</span> ₽</button>
+                    </div>
+                </div>
+                <div class="order-summary">
+                    <div class="summary-header"><h3>Ваш заказ</h3></div>
+                    <div class="summary-item">
+                        <div class="summary-img" id="orderPoster3">Афиша</div>
+                        <div class="summary-details">
+                            <div class="summary-title" id="orderTitle3">Название спектакля</div>
+                            <div class="summary-meta" id="orderDateTime3">Дата и время · Зал</div>
+                        </div>
+                    </div>
+                    <div id="orderSeatsList3"></div>
+                    <div class="summary-row"><span>Сервисный сбор</span><span>0 ₽</span></div>
+                    <div class="summary-total"><span class="total-label">Итого</span><span class="total-price" id="totalPrice3">0 ₽</span></div>
+                    <div class="info-block"><i class="fas fa-envelope"></i><span>Билеты придут на email: <span id="orderEmail3">ivan@example.com</span></span></div>
+                    <div class="warning-block"><i class="fas fa-clock"></i><span>После оплаты билеты будут отправлены на почту.</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ШАГ 4: УСПЕХ (без изменений) -->
+    <div class="step-section" id="step4">
+        <div class="success-page">
+            <div class="breadcrumbs">
+                <a href="index.html">Главная</a> <span>/</span>
+                <a href="affiche.html">Афиша</a> <span>/</span>
+                <a href="#" id="crumbPerformance4">Спектакль</a> <span>/</span>
+                <span class="current">Заказ оформлен</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-step"><div class="step-number">1</div><div class="step-label">Выбор места</div></div>
+                <div class="progress-step"><div class="step-number">2</div><div class="step-label">Данные</div></div>
+                <div class="progress-step"><div class="step-number">3</div><div class="step-label">Оплата</div></div>
+                <div class="progress-step"><div class="step-number active">4</div><div class="step-label active">Готово</div></div>
+            </div>
+            <div class="success-container">
+                <div class="success-icon"><i class="fas fa-check"></i></div>
+                <h1 class="success-title">Заказ подтвержден!</h1>
+                <p class="success-message">Спасибо за покупку. Билеты отправлены на ваш email.</p>
+                <div class="order-details">
+                    <div class="order-header"><span class="order-number">Заказ № <span id="orderNumber">МК-2503-0000</span></span><span class="order-status">Оплачен</span></div>
+                    <div class="order-info-row"><div class="order-info-label">Спектакль</div><div class="order-info-value" id="successTitle">Название</div></div>
+                    <div class="order-info-row"><div class="order-info-label">Дата и время</div><div class="order-info-value" id="successDateTime">Дата</div></div>
+                    <div class="order-info-row"><div class="order-info-label">Зал</div><div class="order-info-value" id="successHall">Зал</div></div>
+                    <div class="order-info-row"><div class="order-info-label">Покупатель</div><div class="order-info-value"><span id="successBuyer">Иван Петров</span>, <span id="successEmail">ivan@example.com</span></div></div>
+                    <div class="ticket-list"><h4>Ваши билеты</h4><div id="successTickets"></div></div>
+                    <div class="total-row"><span class="total-label">Всего оплачено</span><span class="total-value" id="successTotal">0 ₽</span></div>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn-download" id="downloadBtn"><i class="fas fa-download"></i> Скачать билеты</button>
+                    <button class="btn-cabinet" id="cabinetBtn"> К афише</button>
+                </div>
+                <div class="email-hint"><i class="fas fa-envelope"></i><span>Письмо с билетами также отправлено на <span id="successEmailHint">ivan@example.com</span>. Если письмо не пришло, проверьте папку «Спам».</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER (без изменений) -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo"><img class="footer-logo-img" src="SVG/logo-black.svg" alt="Микос"><div class="footer-theater-title">Театр клоунады «Микос»</div></div>
+                    <div class="footer-description">Новаторские постановки, экспериментальные формы, классика в современном прочтении.<br>Откройте для себя театр заново.</div>
+                    <div class="newsletter-title">Подписаться на новости</div>
+                    <div class="subscribe-form"><input type="email" placeholder="Ваш email" class="subscribe-input" id="subscribeEmail"><button class="subscribe-btn" id="subscribeBtn">Подписаться</button></div>
+                    <label class="checkbox-custom" id="consentLabel"><input type="checkbox" id="consentCheckbox"><span class="checkmark"></span><span>Я согласен на обработку персональных данных</span></label>
+                    <div class="error-tooltip" id="consentError">Для подписки необходимо согласие на обработку данных</div>
+                    <div class="social-icons"><a href="#" class="social-circle"><i class="fab fa-vk"></i></a><a href="#" class="social-circle"><i class="fab fa-telegram-plane"></i></a></div>
+                </div>
+                <div class="footer-nav"><h4>Навигация</h4><ul><li><a href="index.html">Главная</a></li><li><a href="affiche.html">Афиша</a></li><li><a href="performances.html">Спектакли</a></li><li><a href="for-customers.html">Заказчикам</a></li><li><a href="history.html">О театре</a></li><li><a href="team.html">Команда</a></li><li><a href="shop.html">Магазин</a></li><li><a href="contacts.html">Контакты</a></li><li><a href="brandbook.html">Брендбук</a></li></ul></div>
+                <div class="footer-nav"><h4>Контакты</h4><ul><li><a href="#">Москва, ул. Театральная, 1</a></li><li><a href="tel:+74951234567">+7 (495) 123-45-67</a></li><li><a href="mailto:info@theatre.ru">info@theatre.ru</a></li><li><a href="#">Как добраться</a></li></ul></div>
+            </div>
+            <div class="footer-bottom"><div class="copyright">© 2026 Театр клоунады «Микос». Все права защищены.</div><div class="footer-buttons"><button class="footer-btn-primary">Купить билет</button><button class="footer-btn-secondary">Заказать шоу</button></div></div>
+        </div>
+    </footer>
+</div>
+
+<script>
+    // === ДАННЫЕ О СПЕКТАКЛЯХ (синхронизированы с performance.html) ===
+    const PERFORMANCES = {
+        1: { title: 'Лишь бы не было детей', price: 1500, hall: 'Основная сцена', freeSeating: false, poster: 'https://placehold.co/78x78/2a3f5e/white?text=Дети' },
+        2: { title: 'Богатыри', price: 1400, hall: 'Основная сцена', freeSeating: false, poster: 'https://placehold.co/78x78/4a6294/white?text=Богатыри' },
+        3: { title: 'Ожидание', price: 1200, hall: 'Малая сцена', freeSeating: true, poster: 'https://placehold.co/78x78/3a5078/white?text=Ожидание' },
+        4: { title: 'Кабаре-Шапито', price: 1800, hall: 'Основная сцена', freeSeating: false, poster: 'https://placehold.co/78x78/2e4c7a/white?text=Кабаре' },
+        5: { title: 'Авиаторы', price: 1600, hall: 'Основная сцена', freeSeating: true, poster: 'https://placehold.co/78x78/1f3a5f/white?text=Авиаторы' }
+    };
+
+    let performanceData = null;
+    let selectedSeats = []; // Для фиксированной рассадки
+    let freeQuantity = 1;   // Для свободной рассадки
+    let currentStep = 1;
+
+    // Данные о рядах и местах для фиксированной рассадки
+    const rows = [
+        { row: 1, seats: [1,2,3,4,5,6,7,8,9,10], occupied: [1,2,3,4] },
+        { row: 2, seats: [1,2,3,4,5,6,7,8,9,10], occupied: [1,2] },
+        { row: 3, seats: [1,2,3,4,5,6,7,8,9,10], occupied: [] },
+        { row: 4, seats: [1,2,3,4,5,6,7,8,9,10], occupied: [] },
+        { row: 5, seats: [1,2,3,4,5,6,7,8,9,10], occupied: [] }
+    ];
+
+    // === ИНИЦИАЛИЗАЦИЯ ===
+    document.addEventListener('DOMContentLoaded', function() {
+        loadPerformanceData();
+        updateAllDisplays();
+        renderHallBlock();
+        initEventListeners();
+    });
+
+    function loadPerformanceData() {
+        const stored = localStorage.getItem('selectedPerformance');
+        if (stored) {
+            try {
+                const raw = JSON.parse(stored);
+                // Поиск спектакля по названию в нашем справочнике
+                const found = Object.values(PERFORMANCES).find(p => p.title === raw.title);
+                if (found) {
+                    performanceData = { 
+                        ...found, 
+                        dateTime: raw.dateTime || 'Сегодня, 19:00', 
+                        hall: raw.hall || found.hall 
+                    };
+                } else {
+                    // Если не нашли, берем первый как fallback
+                    performanceData = { ...PERFORMANCES[1], dateTime: 'Сегодня, 19:00' };
+                }
+            } catch(e) {
+                performanceData = { ...PERFORMANCES[1], dateTime: 'Сегодня, 19:00' };
+            }
+        } else {
+            performanceData = { ...PERFORMANCES[1], dateTime: 'Сегодня, 19:00' };
+        }
+
+        // Заполняем хлебные крошки и заголовки
+        const crumbs = document.querySelectorAll('[id^="crumbPerformance"]');
+        crumbs.forEach(crumb => { 
+            if (performanceData?.title) { 
+                crumb.textContent = performanceData.title; 
+                crumb.href = '#'; 
+            } 
+        });
+        
+        const titles = ['orderTitle', 'orderTitle2', 'orderTitle3', 'successTitle'];
+        titles.forEach(id => { const el = document.getElementById(id); if (el) el.textContent = performanceData.title; });
+        
+        const dateTimes = ['orderDateTime', 'successDateTime'];
+        dateTimes.forEach(id => { const el = document.getElementById(id); if (el) el.textContent = performanceData.dateTime; });
+        
+        document.getElementById('orderDateTime2').textContent = `${performanceData.dateTime} · ${performanceData.hall}`;
+        document.getElementById('orderDateTime3').textContent = `${performanceData.dateTime} · ${performanceData.hall}`;
+        
+        const halls = ['orderHall', 'successHall'];
+        halls.forEach(id => { const el = document.getElementById(id); if (el) el.textContent = performanceData.hall; });
+        
+        const posters = document.querySelectorAll('[id^="orderPoster"]');
+        posters.forEach(p => { 
+            p.innerHTML = `<img src="${performanceData.poster}" style="width:100%;height:100%;object-fit:cover;" alt="${performanceData.title}">`; 
+        });
+    }
+
+    function formatPrice(val) { 
+        return val.toLocaleString('ru-RU') + ' ₽'; 
+    }
+    
+    function calculateTotal() {
+        if (!performanceData) return 0;
+        return performanceData.freeSeating ? freeQuantity * performanceData.price : selectedSeats.length * performanceData.price;
+    }
+
+    function updateAllDisplays() {
+        if (!performanceData) return;
+        
+        const total = calculateTotal();
+        const totalFormatted = formatPrice(total);
+        
+        ['totalPrice', 'totalPrice2', 'totalPrice3', 'successTotal'].forEach(id => { 
+            const el = document.getElementById(id); 
+            if(el) el.textContent = totalFormatted; 
+        });
+        
+        const payAmountSpan = document.getElementById('payAmount');
+        if (payAmountSpan) payAmountSpan.textContent = total.toLocaleString('ru-RU');
+        
+        const qrAmountSpan = document.getElementById('qrAmount');
+        if (qrAmountSpan) qrAmountSpan.textContent = totalFormatted;
+        
+        // Обновляем email в сводках
+        const emailInput = document.getElementById('email');
+        const email = emailInput ? emailInput.value : 'ivan@example.com';
+        ['orderEmail', 'orderEmail3', 'successEmail', 'successEmailHint'].forEach(id => { 
+            const el = document.getElementById(id); 
+            if(el) el.textContent = email; 
+        });
+        
+        renderOrderItems();
+    }
+
+    function renderOrderItems() {
+        const container = document.getElementById('selectedItemsContainer');
+        if (!performanceData) return;
+        
+        let html = '';
+        if (performanceData.freeSeating) {
+            html = `<div class="selected-seat-item">
+                <div class="selected-seat-info">
+                    <span class="seat-name">Билет (свободная рассадка)</span>
+                    <span class="seat-price">${performanceData.price} ₽</span>
+                </div>
+                <div style="font-weight:600;">${freeQuantity} шт.</div>
+            </div>`;
+        } else {
+            if (selectedSeats.length === 0) {
+                html = '<div style="text-align:center; padding:20px; color:#5A5556;">Места не выбраны</div>';
+            } else {
+                html = selectedSeats.map(seat => `
+                    <div class="selected-seat-item">
+                        <div class="selected-seat-info">
+                            <span class="seat-name">Ряд ${seat.row}, место ${seat.seat}</span>
+                            <span class="seat-price">${performanceData.price} ₽</span>
+                        </div>
+                        <div class="remove-seat" data-row="${seat.row}" data-seat="${seat.seat}"><i class="fas fa-times"></i></div>
+                    </div>
+                `).join('');
+            }
+        }
+        container.innerHTML = html;
+        
+        // Дублируем для шагов 2 и 3
+        document.getElementById('orderSeatsList').innerHTML = html;
+        document.getElementById('orderSeatsList3').innerHTML = html;
+        
+        // Навешиваем обработчики удаления для фиксированной рассадки
+        if (!performanceData.freeSeating) {
+            document.querySelectorAll('.remove-seat').forEach(btn => {
+                btn.onclick = (e) => {
+                    e.stopPropagation();
+                    const row = parseInt(btn.dataset.row);
+                    const seat = parseInt(btn.dataset.seat);
+                    selectedSeats = selectedSeats.filter(s => !(s.row === row && s.seat === seat));
+                    renderHallBlock(); 
+                    updateAllDisplays();
+                };
+            });
+        }
+    }
+
+    function renderHallBlock() {
+        const container = document.getElementById('dynamicHallBlock');
+        if (!performanceData) return;
+        
+        if (performanceData.freeSeating) {
+            // === СВОБОДНАЯ РАССАДКА (ВЕРСТКА ТОЧНО КАК В ИСХОДНОМ КОДЕ) ===
+            container.innerHTML = `
+                <div class="hall-scheme">
+                    <div class="hall-header">
+                        <h2 class="hall-title">Свободная рассадка</h2>
+                    </div>
+                    <div class="free-seating-block">
+                        <div class="free-seating-icon"><i class="fas fa-couch"></i></div>
+                        <div class="free-seating-badge">
+                            <i class="fas fa-info-circle"></i>
+                            <span>На этот спектакль действует свободная рассадка — места не закрепляются.</span>
+                        </div>
+                        <div class="quantity-selector-wrapper">
+                            <div class="quantity-row">
+                                <span class="quantity-label">Количество билетов</span>
+                                <div class="stepper-inline">
+                                    <div class="stepper-btn" id="freeDecrement">–</div>
+                                    <input type="text" class="quantity-input" id="freeQuantityInput" value="${freeQuantity}" readonly>
+                                    <div class="stepper-btn" id="freeIncrement">+</div>
+                                </div>
+                            </div>
+                            <div class="price-summary-block">
+                                <span class="price-label">Цена за билет:</span>
+                                <span class="price-value">${performanceData.price} ₽</span>
+                            </div>
+                            <div class="arrival-hint">
+                                <i class="fas fa-clock"></i>
+                                <span>Приходите заранее, чтобы удобно расположиться.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('freeDecrement').addEventListener('click', () => {
+                if (freeQuantity > 1) {
+                    freeQuantity--;
+                    document.getElementById('freeQuantityInput').value = freeQuantity;
+                    updateAllDisplays();
+                }
+            });
+            
+            document.getElementById('freeIncrement').addEventListener('click', () => {
+                freeQuantity++;
+                document.getElementById('freeQuantityInput').value = freeQuantity;
+                updateAllDisplays();
+            });
+            
+        } else {
+            // === ФИКСИРОВАННАЯ РАССАДКА ===
+            let seatsHtml = '';
+            rows.forEach(r => {
+                let rowSeats = '';
+                r.seats.forEach(seatNum => {
+                    const isOccupied = r.occupied.includes(seatNum);
+                    const isSelected = selectedSeats.some(s => s.row === r.row && s.seat === seatNum);
+                    let seatClass = 'seat';
+                    if (isOccupied) seatClass += ' occupied';
+                    else if (isSelected) seatClass += ' selected';
+                    else seatClass += ' free';
+                    
+                    rowSeats += `<div class="${seatClass}" data-row="${r.row}" data-seat="${seatNum}">${seatNum}</div>`;
+                });
+                seatsHtml += `<div class="seat-row"><div class="row-label">Ряд ${r.row}</div><div class="seats">${rowSeats}</div></div>`;
+            });
+            
+            container.innerHTML = `
+                <div class="hall-scheme">
+                    <div class="hall-header">
+                        <h2 class="hall-title">Выберите места</h2>
+                        <div class="legend">
+                            <div class="legend-item"><div class="legend-color free"></div><span>Свободно</span></div>
+                            <div class="legend-item"><div class="legend-color selected"></div><span>Выбрано</span></div>
+                            <div class="legend-item"><div class="legend-color occupied"></div><span>Занято</span></div>
+                        </div>
+                    </div>
+                    <div class="stage"><span>СЦЕНА</span></div>
+                    <div class="seats-container" id="seatsContainer">${seatsHtml}</div>
+                </div>
+            `;
+            
+            // Навешиваем обработчики на места
+            container.querySelectorAll('.seat.free, .seat.selected').forEach(el => {
+                el.addEventListener('click', () => {
+                    const row = parseInt(el.dataset.row);
+                    const seat = parseInt(el.dataset.seat);
+                    const index = selectedSeats.findIndex(s => s.row === row && s.seat === seat);
+                    
+                    if (index !== -1) {
+                        selectedSeats.splice(index, 1);
+                    } else {
+                        selectedSeats.push({ row, seat });
+                    }
+                    renderHallBlock();
+                    updateAllDisplays();
+                });
+            });
+        }
+    }
+
+    // === НАВИГАЦИЯ МЕЖДУ ШАГАМИ (С ИСПРАВЛЕННЫМ ПРОГРЕСС-БАРОМ) ===
+    function showStep(step) {
+        document.querySelectorAll('.step-section').forEach(section => section.classList.remove('active'));
+        document.getElementById(`step${step}`).classList.add('active');
+        
+        // ИСПРАВЛЕНИЕ: корректное обновление прогресс-бара
+        const progressBars = document.querySelectorAll('.progress-bar');
+        progressBars.forEach(bar => {
+            const steps = bar.querySelectorAll('.progress-step');
+            steps.forEach((s, index) => {
+                const num = s.querySelector('.step-number');
+                const label = s.querySelector('.step-label');
+                if (index + 1 <= step) {
+                    num.classList.add('active');
+                    label.classList.add('active');
+                } else {
+                    num.classList.remove('active');
+                    label.classList.remove('active');
+                }
+            });
+        });
+        
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        currentStep = step;
+        
+        if (step === 2 || step === 3) {
+            updateAllDisplays();
+        }
+    }
+
+    function initEventListeners() {
+        // Кнопки навигации
+        document.getElementById('nextBtn1').addEventListener('click', () => {
+            if (!performanceData.freeSeating && selectedSeats.length === 0) {
+                alert('Пожалуйста, выберите места');
+                return;
+            }
+            if (performanceData.freeSeating && freeQuantity < 1) {
+                alert('Пожалуйста, выберите количество билетов');
+                return;
+            }
+            showStep(2);
+        });
+        
+        document.getElementById('backBtn2').addEventListener('click', () => showStep(1));
+        
+        document.getElementById('nextBtn2').addEventListener('click', () => {
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const isAgreed = document.getElementById('agreeCheckbox').checked;
+            
+            if (!firstName || !lastName || !email || !phone) {
+                alert('Пожалуйста, заполните все поля контактной информации');
+                return;
+            }
+            if (!isAgreed) {
+                alert('Пожалуйста, согласитесь с условиями продажи билетов');
+                return;
+            }
+            showStep(3);
+        });
+        
+        document.getElementById('backBtn3').addEventListener('click', () => showStep(2));
+        
+        document.getElementById('payBtn').addEventListener('click', () => {
+            // Генерация номера заказа
+            const orderNum = 'МК-' + new Date().getFullYear() + (new Date().getMonth()+1).toString().padStart(2,'0') + '-' + Math.floor(Math.random()*9000+1000);
+            document.getElementById('orderNumber').textContent = orderNum;
+            
+            // Данные покупателя
+            document.getElementById('successBuyer').textContent = document.getElementById('lastName').value + ' ' + document.getElementById('firstName').value;
+            const email = document.getElementById('email').value;
+            document.getElementById('successEmail').textContent = email;
+            document.getElementById('successEmailHint').textContent = email;
+            
+            // Генерация списка билетов на странице успеха
+            const ticketsContainer = document.getElementById('successTickets');
+            if (performanceData.freeSeating) {
+                ticketsContainer.innerHTML = `
+                    <div class="ticket-item">
+                        <div class="ticket-icon"><i class="fas fa-ticket-alt"></i></div>
+                        <div class="ticket-info">
+                            <div class="ticket-title">Свободная рассадка (${freeQuantity} билета)</div>
+                            <div class="ticket-meta">Электронный билет · вход по QR-коду</div>
+                        </div>
+                        <div class="ticket-price">${formatPrice(freeQuantity * performanceData.price)}</div>
+                    </div>
+                `;
+            } else {
+                ticketsContainer.innerHTML = selectedSeats.map(seat => `
+                    <div class="ticket-item">
+                        <div class="ticket-icon"><i class="fas fa-ticket-alt"></i></div>
+                        <div class="ticket-info">
+                            <div class="ticket-title">Ряд ${seat.row}, место ${seat.seat}</div>
+                            <div class="ticket-meta">Электронный билет · вход по QR-коду</div>
+                        </div>
+                        <div class="ticket-price">${performanceData.price} ₽</div>
+                    </div>
+                `).join('');
+            }
+            
+            showStep(4);
+        });
+        
+        // Обработчики способов оплаты
+        const paymentMethods = document.querySelectorAll('.payment-method');
+        const cardDetails = document.getElementById('cardDetails');
+        const sbpDetails = document.getElementById('sbpDetails');
+        
+        paymentMethods.forEach(method => {
+            method.addEventListener('click', () => {
+                paymentMethods.forEach(m => m.classList.remove('selected'));
+                method.classList.add('selected');
+                const radio = method.querySelector('input[type="radio"]');
+                if (radio) radio.checked = true;
+                
+                const methodType = method.dataset.method;
+                if (methodType === 'sbp') {
+                    cardDetails?.classList.add('hidden');
+                    sbpDetails?.classList.remove('hidden');
+                } else if (methodType === 'card') {
+                    cardDetails?.classList.remove('hidden');
+                    sbpDetails?.classList.add('hidden');
+                } else {
+                    cardDetails?.classList.add('hidden');
+                    sbpDetails?.classList.add('hidden');
+                }
+            });
+        });
+        
+        document.getElementById('downloadBtn')?.addEventListener('click', () => {
+            alert('Билеты будут скачаны в формате PDF');
+        });
+        
+        document.getElementById('cabinetBtn')?.addEventListener('click', () => {
+            window.location.href = 'affiche.html';
+        });
+        
+        // Кнопка "Назад" на первом шаге
+        document.getElementById('backBtn1')?.addEventListener('click', () => {
+            window.history.back();
+        });
+        
+        // Подписка в футере
+        document.getElementById('subscribeBtn')?.addEventListener('click', () => {
+            const chk = document.getElementById('consentCheckbox');
+            const err = document.getElementById('consentError');
+            if (!chk?.checked) {
+                if (err) {
+                    err.style.display = 'block';
+                    setTimeout(() => err.style.display = 'none', 2500);
+                }
+            } else {
+                alert('Спасибо за подписку!');
+                document.getElementById('subscribeEmail').value = '';
+                chk.checked = false;
+            }
+        });
+        
+        document.querySelectorAll('.footer-btn-primary, .buy-ticket-btn').forEach(btn => 
+            btn.addEventListener('click', () => alert('Билеты скоро в продаже'))
+        );
+        
+        // === HEADER DROPDOWN ===
+        const dotsIcon = document.getElementById('dotsIcon');
+        const closeIcon = document.getElementById('closeIcon');
+        const extraRow = document.getElementById('extraMenuRow');
+        
+        function openExtraMenu() {
+            extraRow?.classList.add('open');
+            if (dotsIcon) dotsIcon.style.display = 'none';
+            if (closeIcon) closeIcon.style.display = 'inline-flex';
+        }
+        
+        function closeExtraMenu() {
+            extraRow?.classList.remove('open');
+            if (dotsIcon) dotsIcon.style.display = 'inline-flex';
+            if (closeIcon) closeIcon.style.display = 'none';
+        }
+        
+        if (dotsIcon) dotsIcon.addEventListener('click', openExtraMenu);
+        if (closeIcon) closeIcon.addEventListener('click', closeExtraMenu);
+        
+        // === БУРГЕР-МЕНЮ ===
+        const burgerIcon = document.getElementById('burgerIcon');
+        const mobileNav = document.getElementById('mobileNav');
+        const overlay = document.getElementById('overlay');
+        const closeMobileBtn = document.getElementById('closeMobileMenu');
+        
+        function openMobileMenu() {
+            mobileNav?.classList.add('open');
+            overlay?.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMobileMenu() {
+            mobileNav?.classList.remove('open');
+            overlay?.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        if (burgerIcon) burgerIcon.addEventListener('click', openMobileMenu);
+        if (closeMobileBtn) closeMobileBtn.addEventListener('click', closeMobileMenu);
+        if (overlay) overlay.addEventListener('click', closeMobileMenu);
+    }
+</script>
+</body>
+</html>

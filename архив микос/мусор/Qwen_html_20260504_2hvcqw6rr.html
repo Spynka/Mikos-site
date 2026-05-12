@@ -1,0 +1,3323 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Театр клоунады «Микос» | Оформление заказа</title>
+    <link rel="icon" type="image/svg+xml" href="SVG/logo-2.svg" sizes="any">
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/header-footer.css"> 
+    <script src="js/tour-data.js"></script>
+
+    <style>
+        /* ============================================= */
+        /* БАЗОВЫЕ НАСТРОЙКИ — МОБИЛЬНАЯ АДАПТАЦИЯ 360px */
+        /* ============================================= */
+        
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        input, textarea, select, button {
+            -webkit-user-select: auto;
+            -moz-user-select: auto;
+            -ms-user-select: auto;
+            user-select: auto;
+        }
+        
+        body {
+            background: #ffffff;
+            font-family: 'Nunito Sans', sans-serif;
+            overflow-x: hidden;
+            width: 100%;
+            min-width: 320px;
+            font-size: 16px;
+            line-height: 1.4;
+            color: #1A1718;
+            -webkit-text-size-adjust: 100%;
+            -moz-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
+        
+        /* Блокируем горизонтальный свайп для контента */
+        .step-section,
+        .checkout-page,
+        .seats-page,
+        .payment-page,
+        .success-page {
+            overscroll-behavior-x: none;
+            touch-action: pan-y pinch-zoom;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Скроллбар */
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #E5E3E1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4A6294;
+            border-radius: 10px;
+        }
+        
+        :root {
+            --white: #FFFFFF;
+            --white-95: rgba(255,255,255,0.95);
+            --grey-90: #E5E5E5;
+            --grey-89: #E5E3E1;
+            --grey-93: #E9ECEF;
+            --grey-96: #F5F5F5;
+            --grey-97: #F8F7F6;
+            --grey-10: #1A1718;
+            --grey-23: #3D393A;
+            --azure-27: #2A3D5E;
+            --azure-35: #3A5078;
+            --azure-44: #4A6294;
+            --red-59: #E8454D;
+            --red-60: #D62830;
+            --blue-900: #1A2840;
+            --blue-800: #2A3D5E;
+            --blue-700: #3A4F79;
+            --blue-200: #DCE4F0;
+            --header-height: 90px;
+            --header-height-mobile: 70px;
+        }
+        
+        .shop-container {
+            max-width: 100%;
+            margin: 0 auto;
+            background: var(--white);
+            position: relative;
+            width: 100%;
+        }
+        
+        /* ===== ХЕДЕР — МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+        .main-header {
+            width: 100%;
+            background: var(--white-95);
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid var(--grey-90);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            height: var(--header-height);
+        }
+        
+        .header-inner {
+            height: 100%;
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-img {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+        
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            list-style: none;
+        }
+        
+        .nav-menu li a {
+            text-decoration: none;
+            color: #231F20;
+            font-size: 14px;
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 400;
+            line-height: 1.2;
+            white-space: nowrap;
+            transition: color 0.2s;
+            padding: 8px 4px;
+        }
+        
+        .nav-menu li a:hover {
+            color: var(--red-59);
+        }
+        
+        .burger-icon {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #231F20;
+            padding: 8px;
+            min-width: 40px;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .mobile-nav {
+            position: fixed;
+            top: var(--header-height);
+            left: -100%;
+            width: 85%;
+            max-width: 280px;
+            height: calc(100% - var(--header-height));
+            background: #1A1A1A;
+            z-index: 2000;
+            transition: left 0.3s ease;
+            padding: 20px 16px;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+        }
+        
+        .mobile-nav.open {
+            left: 0;
+        }
+        
+        .mobile-nav ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .mobile-nav ul li a {
+            color: #F2F1F0;
+            font-family: 'Unbounded', sans-serif;
+            font-size: 16px;
+            text-decoration: none;
+            padding: 12px 8px;
+            display: block;
+        }
+        
+        .close-mobile-menu {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            padding: 8px;
+            min-width: 40px;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1500;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .overlay.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        .dots-icon,
+        .close-icon {
+            cursor: pointer;
+            font-size: 24px;
+            font-weight: 700;
+            color: #231F20;
+            display: inline-flex;
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .close-icon {
+            display: none;
+            font-size: 20px;
+            font-weight: 800;
+        }
+        
+        .extra-menu-row {
+            background: #1A1A1A;
+            height: var(--header-height);
+            width: 100%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            z-index: 999;
+        }
+        
+        .extra-menu-row.open {
+            display: flex;
+        }
+        
+        .extra-nav-list {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 0 16px;
+        }
+        
+        .extra-nav-list li a {
+            color: #F2F1F0;
+            font-family: 'Unbounded', sans-serif;
+            font-size: 14px;
+            text-decoration: none;
+        }
+        
+        .buy-ticket-btn {
+            background: #E8454D;
+            border-radius: 8px;
+            padding: 10px 20px;
+            border: none;
+            color: white;
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.2s;
+            min-height: 40px;
+            min-width: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .buy-ticket-btn:hover {
+            background: #D62830;
+        }
+        
+        /* ===== ФУТЕР — МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+        .main-footer {
+            background: var(--blue-900);
+            width: 100%;
+            padding: 40px 16px 30px;
+            margin-top: 40px;
+        }
+        
+        .footer-container {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        
+        .footer-top {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 32px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-brand {
+            flex: 2;
+            max-width: 100%;
+            min-width: 280px;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .footer-logo-img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+        
+        .footer-theater-title {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: white;
+            line-height: 1.3;
+        }
+        
+        .footer-description {
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--blue-200);
+            margin: 12px 0 20px;
+        }
+        
+        .newsletter-title {
+            color: white;
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 600;
+            font-size: 18px;
+            margin: 24px 0 10px;
+        }
+        
+        .subscribe-form {
+            display: flex;
+            width: 100%;
+            max-width: 100%;
+            height: 44px;
+            gap: 0;
+        }
+        
+        .subscribe-input {
+            flex: 1;
+            background: #2A3D5E;
+            border: 1px solid #3A5078;
+            padding: 0 14px;
+            border-radius: 6px 0 0 6px;
+            color: white;
+            font-size: 14px;
+            outline: none;
+            font-family: 'Nunito Sans', sans-serif;
+            min-width: 0;
+        }
+        
+        .subscribe-input::placeholder {
+            color: #DCE4F0;
+            opacity: 0.8;
+        }
+        
+        .subscribe-btn {
+            background: #4A6294;
+            padding: 0 16px;
+            border: none;
+            border-radius: 0 6px 6px 0;
+            color: white;
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            height: 100%;
+            transition: background 0.2s;
+            min-width: 80px;
+            flex-shrink: 0;
+        }
+        
+        .subscribe-btn:hover {
+            background: #3A4F79;
+        }
+        
+        .checkbox-custom {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-top: 12px;
+            cursor: pointer;
+        }
+        
+        .checkbox-custom input {
+            display: none;
+        }
+        
+        .checkmark {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #4A6294;
+            border-radius: 4px;
+            display: inline-block;
+            position: relative;
+            background: transparent;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .checkbox-custom input:checked + .checkmark {
+            background: #4A6294;
+            border-color: #4A6294;
+        }
+        
+        .checkbox-custom input:checked + .checkmark::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 11px;
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .checkbox-custom span:last-child {
+            color: var(--blue-200);
+            font-size: 12px;
+            font-family: 'Nunito Sans', sans-serif;
+            line-height: 1.4;
+        }
+        
+        .error-tooltip {
+            color: #ff6b6b;
+            font-size: 11px;
+            margin-top: 4px;
+            display: none;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 10px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .social-circle {
+            width: 36px;
+            height: 36px;
+            background: #2A3D5E;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #3A5078;
+            color: #DCE4F0;
+            font-size: 16px;
+            transition: 0.2s;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+        
+        .social-circle:hover {
+            background: #4A6294;
+            color: white;
+        }
+        
+        .footer-nav {
+            min-width: 160px;
+            flex: 1;
+        }
+        
+        .footer-nav h4 {
+            color: white;
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 600;
+            margin-bottom: 16px;
+            font-size: 15px;
+        }
+        
+        .footer-nav ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .footer-nav ul li a {
+            color: #DCE4F0;
+            text-decoration: none;
+            font-size: 14px;
+            transition: opacity 0.2s;
+        }
+        
+        .footer-nav ul li a:hover {
+            opacity: 0.7;
+            color: var(--red-59);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #3A5078;
+            padding-top: 24px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .copyright {
+            color: #DCE4F0;
+            font-size: 13px;
+        }
+        
+        .footer-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-btn-primary {
+            background: #E8454D;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            color: white;
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-size: 13px;
+            min-height: 40px;
+            min-width: 100px;
+        }
+        
+        .footer-btn-primary:hover {
+            background: #D62830;
+        }
+        
+        .footer-btn-secondary {
+            background: transparent;
+            border: 1px solid #4A6294;
+            padding: 9px 20px;
+            border-radius: 8px;
+            color: white;
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 13px;
+            min-height: 40px;
+            min-width: 100px;
+        }
+        
+        .footer-btn-secondary:hover {
+            background: #3A4F79;
+            border-color: #3A4F79;
+        }
+        
+        /* ===== ОБЩИЕ СТИЛИ СТРАНИЦ ===== */
+        .checkout-page,
+        .seats-page,
+        .payment-page,
+        .success-page {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 16px;
+            width: 100%;
+        }
+        
+        .breadcrumbs {
+            display: flex;
+            gap: 6px;
+            padding: 16px 0 20px;
+            color: #5A5556;
+            font-size: 13px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .breadcrumbs a {
+            color: #5A5556;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        
+        .breadcrumbs .current {
+            color: #4A6294;
+            font-weight: 600;
+        }
+        
+        /* ===== ПРОГРЕСС-БАР — В ОДНУ ЛИНИЮ ===== */
+        .progress-bar {
+            display: flex;
+            justify-content: flex-start;
+            margin: 8px 0 24px;
+            gap: 8px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 8px 4px;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            touch-action: pan-x;
+        }
+        
+        .progress-bar::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .progress-step {
+            flex: 0 0 auto;
+            text-align: center;
+            min-width: 70px;
+            max-width: 90px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: #EFEEED;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            color: #3D393A;
+            transition: background 0.3s, color 0.3s;
+            flex-shrink: 0;
+        }
+        
+        .step-number.active {
+            background: #4A6294 !important;
+            color: white !important;
+        }
+        
+        .step-label {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            color: #5A5556;
+            transition: color 0.3s;
+            text-align: center;
+            line-height: 1.2;
+            white-space: nowrap;
+        }
+        
+        .step-label.active {
+            color: #4A6294 !important;
+        }
+        
+        /* ===== СЕКЦИИ И АНИМАЦИИ ===== */
+        .step-section {
+            display: none;
+            animation: fadeIn 0.3s ease;
+            min-height: calc(100vh - var(--header-height) - 200px);
+        }
+        
+        .step-section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* ===== АНИМАЦИЯ ЗАГРУЗКИ — МОБИЛЬНАЯ ===== */
+        .loader-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            min-height: 200px;
+        }
+        
+        .loader {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #E5E3E1;
+            border-top-color: #4A6294;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        /* ===== СХЕМА ЗАЛА — МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+        .hall-scheme {
+            background: white;
+            border-radius: 12px;
+            outline: 1px solid #E5E3E1;
+            padding: 20px 16px;
+            margin-bottom: 24px;
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        .hall-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #E5E3E1;
+            margin-bottom: 20px;
+        }
+        
+        .hall-title {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #1A1718;
+            position: relative;
+            padding-left: 12px;
+            line-height: 1.3;
+        }
+        
+        .hall-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 2px;
+            width: 3px;
+            height: calc(100% - 4px);
+            background: #E8454D;
+            border-radius: 1.5px;
+        }
+        
+        .legend {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: #5A5556;
+        }
+        
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+        
+        .legend-color.free {
+            background: white;
+            border: 1px solid #D5D3D1;
+        }
+        
+        .legend-color.selected {
+            background: #4A6294;
+        }
+        
+        .legend-color.occupied {
+            background: #E5E3E1;
+            border: 1px solid #D5D3D1;
+        }
+        
+        .stage {
+            background: linear-gradient(176deg, #2A3D5E 0%, #3A5078 100%);
+            border-radius: 8px 8px 0 0;
+            padding: 16px 12px;
+            text-align: center;
+            margin-bottom: 24px;
+            min-width: fit-content;
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+        }
+        
+        .stage span {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 2px;
+            color: white;
+            display: block;
+        }
+        
+        .seats-container {
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            touch-action: pan-x pinch-zoom;
+            padding-bottom: 8px;
+            scrollbar-width: thin;
+        }
+        
+        .seats-container::-webkit-scrollbar {
+            height: 4px;
+        }
+        
+        .seat-row {
+            display: flex;
+            margin-bottom: 12px;
+            flex-wrap: nowrap;
+            align-items: center;
+            min-width: min-content;
+        }
+        
+        .row-label {
+            width: 48px;
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            color: #4A6294;
+            flex-shrink: 0;
+            padding-right: 8px;
+        }
+        
+        .seats {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 6px;
+        }
+        
+        .seat {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.15s;
+            flex-shrink: 0;
+            touch-action: manipulation;
+        }
+        
+        .seat.free {
+            background: white;
+            border: 1px solid #E5E3E1;
+            color: #3D393A;
+        }
+        
+        .seat.free:active,
+        .seat.free:hover {
+            border-color: #4A6294;
+            background: #F8F7F6;
+            transform: scale(1.05);
+        }
+        
+        .seat.occupied {
+            background: #EFEEED;
+            border: 1px solid #E5E3E1;
+            color: #9A9896;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        
+        .seat.selected {
+            background: #4A6294;
+            border: 1px solid #4A6294;
+            color: white;
+        }
+        
+        /* ===== БЛОК ЗАКАЗА ===== */
+        .order-summary {
+            background: white;
+            border-radius: 12px;
+            outline: 1px solid #E5E3E1;
+            padding: 20px 16px;
+            margin-bottom: 32px;
+            width: 100%;
+        }
+        
+        .payment-page .order-summary {
+            margin-bottom: 0;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        
+        .summary-header {
+            padding-bottom: 12px;
+            border-bottom: 1px solid #E5E3E1;
+            margin-bottom: 16px;
+        }
+        
+        .summary-header h3 {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #1A1718;
+        }
+        
+        .summary-item {
+            display: flex;
+            gap: 12px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #E5E3E1;
+            margin-bottom: 16px;
+        }
+        
+        .summary-img {
+            width: 64px;
+            height: 64px;
+            background: #E8EEF7;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4A6294;
+            font-weight: 700;
+            font-size: 11px;
+            text-align: center;
+            padding: 4px;
+            flex-shrink: 0;
+        }
+        
+        .summary-details {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .summary-title {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            color: #1A1718;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+        
+        .summary-meta {
+            font-size: 12px;
+            color: #5A5556;
+            line-height: 1.4;
+        }
+        
+        .selected-seats-list,
+        .summary-row {
+            margin-bottom: 16px;
+        }
+        
+        .selected-seat-item,
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #E5E3E1;
+            gap: 8px;
+        }
+        
+        .selected-seat-info {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            flex-wrap: wrap;
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .seat-name {
+            font-weight: 500;
+            font-size: 14px;
+            color: #2A2627;
+            line-height: 1.3;
+        }
+        
+        .seat-price {
+            font-weight: 700;
+            font-size: 14px;
+            color: #4A6294;
+            flex-shrink: 0;
+        }
+        
+        .remove-seat {
+            color: #5A5556;
+            font-size: 18px;
+            cursor: pointer;
+            transition: color 0.2s;
+            flex-shrink: 0;
+            padding: 4px;
+            min-width: 32px;
+            min-height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .remove-seat:hover {
+            color: #E8454D;
+        }
+        
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 16px;
+            border-top: 1px solid #E5E3E1;
+            margin-bottom: 20px;
+        }
+        
+        .total-label,
+        .total-price {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: #1A1718;
+        }
+        
+        /* ===== КНОПКИ — МОБИЛЬНЫЕ РАЗМЕРЫ ===== */
+        .selection-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-back,
+        .btn-next,
+        .btn-pay {
+            flex: 1;
+            min-width: 120px;
+            padding: 12px 16px;
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            text-align: center;
+            border-radius: 8px;
+            transition: background 0.2s;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            touch-action: manipulation;
+        }
+        
+        .btn-back {
+            background: #F8F7F6;
+            border: 1px solid #E5E3E1;
+            color: #1A1718;
+        }
+        
+        .btn-next,
+        .btn-pay {
+            background: #E8454D;
+            border: none;
+            color: white;
+        }
+        
+        .btn-next:active,
+        .btn-next:hover,
+        .btn-pay:active,
+        .btn-pay:hover {
+            background: #D62830;
+        }
+        
+        .btn-back:active,
+        .btn-back:hover {
+            background: #E9E7E5;
+        }
+        
+        /* ===== ФОРМА ОФОРМЛЕНИЯ ===== */
+        .checkout-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+        
+        .checkout-form {
+            flex: 2;
+            min-width: 100%;
+            background: #F8F7F6;
+            border-radius: 12px;
+            outline: 1px solid #E5E3E1;
+            padding: 20px 16px;
+        }
+        
+        .form-section {
+            margin-bottom: 20px;
+        }
+        
+        .form-section h3 {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #1A1718;
+            position: relative;
+            padding-left: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #E5E3E1;
+            margin-bottom: 14px;
+            line-height: 1.3;
+        }
+        
+        .form-section h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 2px;
+            width: 3px;
+            height: calc(100% - 4px);
+            background: #E8454D;
+            border-radius: 1.5px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .form-group {
+            flex: 1;
+            min-width: 140px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-family: 'Unbounded', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: #2A2627;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1px solid #E5E3E1;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: 'Nunito Sans', sans-serif;
+            background: white;
+            min-height: 44px;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #4A6294;
+        }
+        
+        /* ===== ПРОМОКОД — МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+        .promo-section {
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        
+        .promo-input-row {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+            flex-wrap: wrap;
+        }
+        
+        .promo-input-row .form-group {
+            flex: 1;
+            min-width: 0;
+            margin-bottom: 0;
+        }
+        
+        .promo-input-row .form-group label {
+            font-size: 12px;
+            margin-bottom: 6px;
+            display: block;
+        }
+        
+        .promo-input-row input {
+            width: 100%;
+            padding: 11px 12px;
+            font-size: 15px;
+            box-sizing: border-box;
+            min-height: 44px;
+        }
+        
+        .promo-apply-btn {
+            padding: 11px 16px;
+            background: #4A6294;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: background 0.2s;
+            white-space: nowrap;
+            min-height: 44px;
+            min-width: 90px;
+            flex-shrink: 0;
+            touch-action: manipulation;
+        }
+        
+        .promo-apply-btn:active,
+        .promo-apply-btn:hover {
+            background: #3A5078;
+        }
+        
+        .promo-message {
+            margin-top: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            display: none;
+            line-height: 1.4;
+        }
+        
+        .promo-message.success {
+            display: block;
+            color: #2E7D32;
+        }
+        
+        .promo-message.error {
+            display: block;
+            color: #E8454D;
+        }
+        
+        .promo-discount-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #E5E3E1;
+            color: #2E7D32;
+            font-weight: 600;
+            font-size: 14px;
+            gap: 8px;
+        }
+        
+        .promo-discount-row .discount-badge {
+            background: #E8F5E9;
+            color: #2E7D32;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+        
+        .price-before {
+            text-decoration: line-through;
+            color: #5A5556;
+            margin-right: 8px;
+            font-size: 14px;
+        }
+        
+        .price-after {
+            color: #2E7D32;
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+        
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .radio-label input {
+            width: 18px;
+            height: 18px;
+            accent-color: #4A6294;
+            flex-shrink: 0;
+        }
+        
+        .delivery-hint {
+            background: #F8F7F6;
+            border-left: 3px solid #4A6294;
+            border-radius: 8px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 12px;
+            color: #5A5556;
+            line-height: 1.4;
+        }
+        
+        .delivery-hint i {
+            color: #4A6294;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        
+        /* ===== ЧЕКБОКС "Я СОГЛАСЕН" ===== */
+        .agree-check {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin: 16px 0;
+            flex-wrap: wrap;
+        }
+        
+        .agree-check input {
+            width: 18px;
+            height: 18px;
+            accent-color: #4A6294;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .agree-check label {
+            font-size: 13px;
+            color: #3D393A;
+            flex: 1;
+            min-width: 200px;
+            line-height: 1.4;
+        }
+        
+        .agree-check a {
+            color: #4A6294;
+            font-weight: 600;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        
+        /* ===== ОПЛАТА — МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        
+        .payment-method {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 14px;
+            background: white;
+            border-radius: 12px;
+            outline: 1px solid #E5E3E1;
+            cursor: pointer;
+            transition: all 0.2s;
+            flex-wrap: wrap;
+            touch-action: manipulation;
+        }
+        
+        .payment-method.selected {
+            outline: 2px solid #4A6294;
+            background: #F8F7F6;
+        }
+        
+        .payment-method input {
+            width: 20px;
+            height: 20px;
+            accent-color: #4A6294;
+            flex-shrink: 0;
+        }
+        
+        .payment-icon {
+            width: 40px;
+            height: 36px;
+            background: #E8EEF7;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: #4A6294;
+            flex-shrink: 0;
+        }
+        
+        .card-details {
+            background: #F8F7F6;
+            border-radius: 12px;
+            outline: 1px solid #E5E3E1;
+            padding: 16px;
+            margin-top: 10px;
+        }
+        
+        .card-details h4 {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1A1718;
+            margin-bottom: 12px;
+        }
+        
+        .qr-payment {
+            background: #F8F7F6;
+            border-radius: 12px;
+            outline: 1px solid #E5E3E1;
+            padding: 16px;
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        .qr-placeholder {
+            width: 140px;
+            height: 140px;
+            background: white;
+            border-radius: 12px;
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 6px 16px rgba(0,0,0,0.05);
+        }
+        
+        .qr-grid {
+            width: 110px;
+            height: 110px;
+            background: repeating-linear-gradient(0deg, #4A6294 0px, #4A6294 2px, transparent 2px, transparent 10px),
+                        repeating-linear-gradient(90deg, #4A6294 0px, #4A6294 2px, transparent 2px, transparent 10px);
+            opacity: 0.35;
+        }
+        
+        .qr-amount {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #4A6294;
+            margin: 12px 0;
+        }
+        
+        .info-box {
+            background: #F8F7F6;
+            border-left: 4px solid #4A6294;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 16px 0;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+        
+        .secure-badge {
+            background: #F8F7F6;
+            border-left: 4px solid #4A6294;
+            border-radius: 8px;
+            padding: 10px 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 12px;
+        }
+        
+        .secure-badge i {
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        
+        .info-block {
+            background: #F8F7F6;
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 12px;
+            color: #5A5556;
+            line-height: 1.4;
+        }
+        
+        .info-block i {
+            color: #4A6294;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        
+        .warning-block {
+            background: #EFEEED;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 12px;
+            color: #5A5556;
+            line-height: 1.4;
+        }
+        
+        .warning-block i {
+            margin-right: 6px;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        /* ===== ИЛЛЮСТРАЦИЯ ===== */
+        .payment-summary-illustration {
+            display: block;
+            width: 100%;
+            margin-top: 0;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+            overflow: hidden;
+            line-height: 0;
+        }
+        
+        .payment-summary-illustration img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            max-height: 200px;
+        }
+        
+        /* ===== СТРАНИЦА УСПЕХА ===== */
+        .success-container {
+            max-width: 100%;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 8px;
+        }
+        
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: #F8F7F6;
+            border-radius: 50%;
+            outline: 2px solid #4A6294;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+        }
+        
+        .success-icon i {
+            font-size: 36px;
+            color: #4A6294;
+        }
+        
+        .success-title {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #1A1718;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+        
+        .success-message {
+            font-size: 15px;
+            color: #3D393A;
+            margin-bottom: 28px;
+            line-height: 1.4;
+        }
+        
+        .order-details {
+            background: #F8F7F6;
+            border-radius: 12px;
+            outline: 1px solid #E5E3E1;
+            padding: 24px 16px;
+            text-align: left;
+            margin-bottom: 24px;
+        }
+        
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #E5E3E1;
+            margin-bottom: 16px;
+        }
+        
+        .order-number {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #1A1718;
+            word-break: break-word;
+            line-height: 1.3;
+        }
+        
+        .order-status {
+            background: #4A6294;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-family: 'Unbounded', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            flex-shrink: 0;
+        }
+        
+        .order-status::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 10px;
+        }
+        
+        .order-info-row {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 10px 0;
+            border-bottom: 1px solid #E5E3E1;
+            gap: 4px;
+        }
+        
+        .order-info-label {
+            width: 120px;
+            font-weight: 600;
+            font-size: 13px;
+            color: #5A5556;
+            flex-shrink: 0;
+        }
+        
+        .order-info-value {
+            flex: 1;
+            font-weight: 500;
+            font-size: 14px;
+            color: #1A1718;
+            word-break: break-word;
+            line-height: 1.4;
+        }
+        
+        .ticket-list {
+            margin: 20px 0 16px;
+        }
+        
+        .ticket-list h4 {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1A1718;
+            margin-bottom: 12px;
+        }
+        
+        .ticket-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: white;
+            border-radius: 8px;
+            outline: 1px solid #E5E3E1;
+            padding: 12px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .ticket-icon {
+            width: 40px;
+            height: 40px;
+            background: #F8F7F6;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4A6294;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        
+        .ticket-info {
+            flex: 1;
+            min-width: 140px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .ticket-title {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            color: #1A1718;
+            line-height: 1.3;
+        }
+        
+        .ticket-meta {
+            font-size: 11px;
+            color: #5A5556;
+            line-height: 1.3;
+        }
+        
+        .ticket-price {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: #E8454D;
+            flex-shrink: 0;
+            margin-left: auto;
+        }
+        
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 16px;
+            border-top: 1px solid #E5E3E1;
+            margin-top: 8px;
+        }
+        
+        .total-label,
+        .total-value {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: #1A1718;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .btn-download,
+        .btn-cabinet {
+            padding: 11px 20px;
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border-radius: 8px;
+            transition: background 0.2s;
+            min-height: 44px;
+            min-width: 130px;
+            touch-action: manipulation;
+        }
+        
+        .btn-download {
+            background: #F8F7F6;
+            border: 1px solid #E5E3E1;
+            color: #1A1718;
+        }
+        
+        .btn-cabinet {
+            background: #E8454D;
+            border: none;
+            color: white;
+        }
+        
+        .btn-download:active,
+        .btn-download:hover {
+            background: #E9E7E5;
+        }
+        
+        .btn-cabinet:active,
+        .btn-cabinet:hover {
+            background: #D62830;
+        }
+        
+        .email-hint {
+            background: #F8F7F6;
+            border-top: 1px solid #E5E3E1;
+            border-radius: 8px;
+            padding: 14px 16px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #5A5556;
+            flex-wrap: wrap;
+            text-align: center;
+            line-height: 1.4;
+        }
+        
+        .email-hint i {
+            color: #4A6294;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        
+        /* ===== СВОБОДНАЯ РАССАДКА ===== */
+        .free-seating-block {
+            text-align: center;
+            padding: 12px 0 8px;
+        }
+        
+        .free-seating-icon {
+            font-size: 48px;
+            color: #4A6294;
+            margin-bottom: 12px;
+        }
+        
+        .free-seating-badge {
+            background: #F8F7F6;
+            border-radius: 30px;
+            padding: 10px 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            border: 1px solid #E5E3E1;
+            flex-wrap: wrap;
+            justify-content: center;
+            font-size: 13px;
+            color: #5A5556;
+            line-height: 1.4;
+        }
+        
+        .free-seating-badge i {
+            color: #4A6294;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+        
+        .quantity-selector-wrapper {
+            max-width: 100%;
+            margin: 0 auto;
+            background: #F8F7F6;
+            border-radius: 16px;
+            padding: 20px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .quantity-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 12px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .quantity-label {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            color: #1A1718;
+            text-align: center;
+            flex-shrink: 0;
+            line-height: 1.3;
+        }
+        
+        .stepper-inline {
+            display: flex;
+            align-items: center;
+            background: white;
+            border-radius: 40px;
+            border: 1px solid #E5E3E1;
+            flex-shrink: 0;
+        }
+        
+        .stepper-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 600;
+            color: #4A6294;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.2s;
+            flex-shrink: 0;
+            touch-action: manipulation;
+        }
+        
+        .stepper-btn:active,
+        .stepper-btn:hover {
+            background: #E9ECEF;
+        }
+        
+        .quantity-input {
+            width: 50px;
+            border: none;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+            color: #1A1718;
+            background: transparent;
+            outline: none;
+            flex-shrink: 0;
+        }
+        
+        .price-summary-block {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-top: 1px solid #E5E3E1;
+            margin-bottom: 12px;
+            width: 100%;
+            gap: 8px;
+        }
+        
+        .price-label {
+            color: #5A5556;
+            font-size: 13px;
+        }
+        
+        .price-value {
+            font-weight: 700;
+            color: #4A6294;
+            font-size: 15px;
+        }
+        
+        .arrival-hint {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            background: white;
+            border-radius: 12px;
+            padding: 10px 14px;
+            font-size: 12px;
+            color: #5A5556;
+            width: 100%;
+            justify-content: center;
+            text-align: center;
+            line-height: 1.4;
+        }
+        
+        .arrival-hint i {
+            color: #E8454D;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        /* ===== АДАПТИВНЫЕ СТИЛИ ===== */
+        
+        /* Планшеты и небольшие десктопы */
+        @media (min-width: 561px) and (max-width: 768px) {
+            .promo-input-row {
+                gap: 12px;
+            }
+            
+            .promo-apply-btn {
+                padding: 11px 18px;
+                font-size: 13px;
+            }
+            
+            .promo-input-row input {
+                font-size: 14px;
+            }
+        }
+        
+        /* Мобильные устройства до 560px */
+        @media (max-width: 560px) {
+            .main-header {
+                height: var(--header-height-mobile);
+            }
+            
+            .header-inner {
+                padding: 0 12px;
+                height: var(--header-height-mobile);
+            }
+            
+            .logo-img {
+                height: 36px;
+            }
+            
+            .burger-icon {
+                display: flex;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .buy-ticket-btn {
+                padding: 9px 16px;
+                font-size: 13px;
+                min-height: 38px;
+            }
+            
+            .mobile-nav {
+                top: var(--header-height-mobile);
+                height: calc(100% - var(--header-height-mobile));
+                width: 80%;
+                max-width: 260px;
+            }
+            
+            .extra-menu-row {
+                height: var(--header-height-mobile);
+                top: var(--header-height-mobile);
+            }
+            
+            .breadcrumbs {
+                padding: 12px 0 16px;
+                font-size: 12px;
+            }
+            
+            .progress-step {
+                min-width: 65px;
+                max-width: 80px;
+            }
+            
+            .step-number {
+                width: 28px;
+                height: 28px;
+                font-size: 13px;
+            }
+            
+            .step-label {
+                font-size: 10px;
+            }
+            
+            .hall-scheme {
+                padding: 16px 12px;
+            }
+            
+            .hall-title {
+                font-size: 16px;
+            }
+            
+            .legend {
+                gap: 10px;
+            }
+            
+            .legend-item {
+                font-size: 11px;
+            }
+            
+            .legend-color {
+                width: 14px;
+                height: 14px;
+            }
+            
+            .stage {
+                padding: 14px 10px;
+                margin-bottom: 20px;
+            }
+            
+            .stage span {
+                font-size: 12px;
+            }
+            
+            .row-label {
+                width: 42px;
+                font-size: 12px;
+            }
+            
+            .seat {
+                width: 32px;
+                height: 32px;
+                font-size: 11px;
+            }
+            
+            .order-summary {
+                padding: 16px 12px;
+            }
+            
+            .summary-img {
+                width: 56px;
+                height: 56px;
+            }
+            
+            .summary-title {
+                font-size: 14px;
+            }
+            
+            .seat-name,
+            .seat-price {
+                font-size: 13px;
+            }
+            
+            .total-label,
+            .total-price {
+                font-size: 16px;
+            }
+            
+            .btn-back,
+            .btn-next,
+            .btn-pay {
+                min-width: 100px;
+                padding: 11px 12px;
+                font-size: 13px;
+                min-height: 42px;
+            }
+            
+            .checkout-form {
+                padding: 16px 12px;
+            }
+            
+            .form-section h3 {
+                font-size: 16px;
+            }
+            
+            .form-group input {
+                font-size: 15px;
+                padding: 10px 12px;
+                min-height: 42px;
+            }
+            
+            .promo-input-row {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+            }
+            
+            .promo-input-row .form-group {
+                width: 100%;
+            }
+            
+            .promo-apply-btn {
+                width: 100%;
+                margin-top: 0 !important;
+                padding: 11px 16px;
+                white-space: normal;
+                text-align: center;
+                min-height: 42px;
+            }
+            
+            .promo-input-row input {
+                font-size: 16px;
+                padding: 10px 12px;
+                min-height: 42px;
+            }
+            
+            .promo-message {
+                font-size: 11px;
+                margin-top: 6px;
+            }
+            
+            .promo-discount-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+                font-size: 13px;
+            }
+            
+            .promo-discount-row .discount-badge {
+                align-self: flex-start;
+                font-size: 11px;
+                padding: 3px 8px;
+            }
+            
+            .payment-method {
+                padding: 10px 12px;
+            }
+            
+            .payment-icon {
+                width: 36px;
+                height: 32px;
+                font-size: 20px;
+            }
+            
+            .qr-placeholder {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .qr-grid {
+                width: 95px;
+                height: 95px;
+            }
+            
+            .qr-amount {
+                font-size: 22px;
+            }
+            
+            .success-title {
+                font-size: 22px;
+            }
+            
+            .success-message {
+                font-size: 14px;
+            }
+            
+            .order-details {
+                padding: 20px 14px;
+            }
+            
+            .order-info-label {
+                width: 100px;
+                font-size: 12px;
+            }
+            
+            .order-info-value {
+                font-size: 13px;
+            }
+            
+            .ticket-item {
+                padding: 10px;
+            }
+            
+            .ticket-title {
+                font-size: 13px;
+            }
+            
+            .ticket-price {
+                font-size: 15px;
+            }
+            
+            .btn-download,
+            .btn-cabinet {
+                padding: 10px 16px;
+                font-size: 12px;
+                min-height: 42px;
+                min-width: 120px;
+            }
+            
+            .footer-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .footer-btn-primary,
+            .footer-btn-secondary {
+                width: 100%;
+            }
+        }
+        
+        /* Очень маленькие экраны до 400px */
+        @media (max-width: 400px) {
+            .header-inner {
+                padding: 0 10px;
+            }
+            
+            .logo-img {
+                height: 32px;
+            }
+            
+            .progress-step {
+                min-width: 60px;
+            }
+            
+            .step-number {
+                width: 26px;
+                height: 26px;
+                font-size: 12px;
+            }
+            
+            .step-label {
+                font-size: 9px;
+            }
+            
+            .seat {
+                width: 30px;
+                height: 30px;
+                font-size: 10px;
+            }
+            
+            .row-label {
+                width: 38px;
+                font-size: 11px;
+            }
+            
+            .promo-apply-btn {
+                padding: 10px 14px;
+                font-size: 12px;
+            }
+            
+            .promo-input-row input {
+                padding: 9px 10px;
+                font-size: 15px;
+            }
+            
+            .btn-back,
+            .btn-next,
+            .btn-pay {
+                min-width: 90px;
+                padding: 10px 10px;
+                font-size: 12px;
+            }
+            
+            .form-group input {
+                font-size: 14px;
+            }
+        }
+        
+        /* Десктоп — отступ от фиксированного хедера */
+        @media (min-width: 861px) {
+            .seats-page,
+            .checkout-page,
+            .payment-page,
+            .success-page {
+                padding-top: 110px !important;
+            }
+            
+            .step-section {
+                padding-top: 20px;
+            }
+            
+            .breadcrumbs {
+                padding-top: 23px !important;
+            }
+            
+            .burger-icon {
+                display: none !important;
+            }
+            
+            .nav-menu {
+                display: flex !important;
+            }
+        }
+        
+        .order-summary .promo-section {
+            margin-top: 16px;
+        }
+        
+        /* Убираем выделение текста при долгом тапе */
+        .seat,
+        .btn-back,
+        .btn-next,
+        .btn-pay,
+        .promo-apply-btn,
+        .stepper-btn,
+        .payment-method,
+        .buy-ticket-btn,
+        .footer-btn-primary,
+        .footer-btn-secondary,
+        .btn-download,
+        .btn-cabinet {
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+        }
+        
+        /* Плавная прокрутка для всей страницы */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+<div class="shop-container">
+    <!-- HEADER -->
+    <div id="site-header"></div>
+
+    <!-- ШАГ 1: ВЫБОР МЕСТ -->
+    <div class="step-section active" id="step1">
+        <div class="seats-page">
+            <div class="breadcrumbs">
+                <a href="index.html">Главная</a> <span>/</span>
+                <a href="affiche.html">Афиша</a> <span>/</span>
+                <a href="#" id="crumbPerformance">Спектакль</a> <span>/</span>
+                <span class="current">Выбор места</span>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-step"><div class="step-number active">1</div><div class="step-label active">Выбор места</div></div>
+                <div class="progress-step"><div class="step-number">2</div><div class="step-label">Данные</div></div>
+                <div class="progress-step"><div class="step-number">3</div><div class="step-label">Оплата</div></div>
+                <div class="progress-step"><div class="step-number">4</div><div class="step-label">Готово</div></div>
+            </div>
+
+            <!-- Динамический блок: схема зала или свободная рассадка -->
+            <div id="dynamicHallBlock"></div>
+
+            <div class="order-summary">
+                <div class="summary-header"><h3>Ваш заказ</h3></div>
+                <div class="summary-item">
+                    <div class="summary-img" id="orderPoster">Афиша</div>
+                    <div class="summary-details">
+                        <div class="summary-title" id="orderTitle">Название спектакля</div>
+                        <div class="summary-meta" id="orderDateTime">Дата и время</div>
+                        <div class="summary-meta" id="orderHall">Зал</div>
+                    </div>
+                </div>
+                <div id="selectedItemsContainer"></div>
+                
+                <!-- БЛОК ПРОМОКОДА НА ШАГЕ 1 -->
+                <div class="promo-section">
+                    <div class="promo-input-row">
+                        <div class="form-group">
+                            <label>Промокод</label>
+                            <input type="text" id="promoCodeInput1" placeholder="Введите промокод" autocomplete="off">
+                        </div>
+                        <button class="promo-apply-btn" id="applyPromoBtn1">Применить</button>
+                    </div>
+                    <div class="promo-message" id="promoMessage1"></div>
+                </div>
+                <div id="promoDiscountRow1" class="promo-discount-row" style="display: none;">
+                    <span>Скидка по промокоду (15%)</span>
+                    <span id="promoDiscountAmount1" class="discount-badge">-0 ₽</span>
+                </div>
+
+                <div class="summary-total">
+                    <span class="total-label">Итого</span>
+                    <span class="total-price" id="totalPrice">0 ₽</span>
+                </div>
+                <div class="selection-actions">
+                    <button class="btn-back" id="backBtn1">Назад</button>
+                    <button class="btn-next" id="nextBtn1">Далее</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ШАГ 2: ОФОРМЛЕНИЕ ДАННЫХ -->
+    <div class="step-section" id="step2">
+        <div class="checkout-page">
+            <div class="breadcrumbs">
+                <a href="index.html">Главная</a> <span>/</span>
+                <a href="affiche.html">Афиша</a> <span>/</span>
+                <a href="#" id="crumbPerformance2">Спектакль</a> <span>/</span>
+                <span class="current">Оформление</span>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-step"><div class="step-number">1</div><div class="step-label">Выбор места</div></div>
+                <div class="progress-step"><div class="step-number active">2</div><div class="step-label active">Данные</div></div>
+                <div class="progress-step"><div class="step-number">3</div><div class="step-label">Оплата</div></div>
+                <div class="progress-step"><div class="step-number">4</div><div class="step-label">Готово</div></div>
+            </div>
+
+            <div class="checkout-grid">
+                <div class="checkout-form">
+                    <div class="form-section">
+                        <h3>Контактная информация</h3>
+                        <div class="form-row">
+                            <div class="form-group"><label>Имя</label><input type="text" id="firstName" placeholder="Иван" value="Иван"></div>
+                            <div class="form-group"><label>Фамилия</label><input type="text" id="lastName" placeholder="Петров" value="Петров"></div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group"><label>Email</label><input type="email" id="email" placeholder="ivan@example.com" value="ivan@example.com"></div>
+                            <div class="form-group"><label>Телефон</label><input type="tel" id="phone" placeholder="+7 (999) 123-45-67" value="+7 (999) 123-45-67"></div>
+                        </div>
+                    </div>
+                    <div class="form-section">
+                        <h3>Способ получения</h3>
+                        <div class="radio-group">
+                            <label class="radio-label"><input type="radio" name="delivery" value="email" checked> <span>Электронный билет</span></label>
+                            <label class="radio-label"><input type="radio" name="delivery" value="boxoffice"> <span>В кассе перед спектаклем</span></label>
+                        </div>
+                        <div class="delivery-hint">
+                            <i class="fas fa-envelope"></i>
+                            <span>Электронный билет придёт на email после оплаты. Распечатывать не обязательно — можно показать на экране телефона.</span>
+                        </div>
+                    </div>
+                    <div class="agree-check">
+                        <input type="checkbox" id="agreeCheckbox" checked>
+                        <label for="agreeCheckbox">
+                            Я согласен с <a href="#">условиями продажи билетов</a> и <a href="#">политикой обработки персональных данных</a>
+                        </label>
+                    </div>
+                    <div class="selection-actions">
+                        <button class="btn-back" id="backBtn2">Назад</button>
+                        <button class="btn-next" id="nextBtn2">Перейти к оплате</button>
+                    </div>
+                </div>
+                <div class="order-summary">
+                    <div class="summary-header"><h3>Ваш заказ</h3></div>
+                    <div class="summary-item">
+                        <div class="summary-img" id="orderPoster2">Афиша</div>
+                        <div class="summary-details">
+                            <div class="summary-title" id="orderTitle2">Название спектакля</div>
+                            <div class="summary-meta" id="orderDateTime2">Дата и время · Зал</div>
+                        </div>
+                    </div>
+                    <div id="orderSeatsList"></div>
+                    <div class="summary-row"><span>Сервисный сбор</span><span>0 ₽</span></div>
+                    
+                    <!-- БЛОК ПРОМОКОДА НА ШАГЕ 2 -->
+                    <div class="promo-section">
+                        <div class="promo-input-row">
+                            <div class="form-group">
+                                <label>Промокод</label>
+                                <input type="text" id="promoCodeInput2" placeholder="Введите промокод" autocomplete="off">
+                            </div>
+                            <button class="promo-apply-btn" id="applyPromoBtn2">Применить</button>
+                        </div>
+                        <div class="promo-message" id="promoMessage2"></div>
+                    </div>
+                    <div id="promoDiscountRow2" class="promo-discount-row" style="display: none;">
+                        <span>Скидка по промокоду (15%)</span>
+                        <span id="promoDiscountAmount2" class="discount-badge">-0 ₽</span>
+                    </div>
+
+                    <div class="summary-total"><span class="total-label">Итого</span><span class="total-price" id="totalPrice2">0 ₽</span></div>
+                    <div class="info-block">
+                        <i class="fas fa-envelope"></i>
+                        <span>Билеты придут на email: <span id="orderEmail">ivan@example.com</span></span>
+                    </div>
+                    <div class="warning-block">
+                        <i class="fas fa-clock"></i>
+                        <span>После оплаты билеты будут отправлены на почту.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ШАГ 3: ОПЛАТА -->
+    <div class="step-section" id="step3">
+        <div class="payment-page">
+            <div class="breadcrumbs">
+                <a href="index.html">Главная</a> <span>/</span>
+                <a href="affiche.html">Афиша</a> <span>/</span>
+                <a href="#" id="crumbPerformance3">Спектакль</a> <span>/</span>
+                <span class="current">Оплата</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-step"><div class="step-number">1</div><div class="step-label">Выбор места</div></div>
+                <div class="progress-step"><div class="step-number">2</div><div class="step-label">Данные</div></div>
+                <div class="progress-step"><div class="step-number active">3</div><div class="step-label active">Оплата</div></div>
+                <div class="progress-step"><div class="step-number">4</div><div class="step-label">Готово</div></div>
+            </div>
+            <div class="checkout-grid">
+                <div class="checkout-form">
+                    <div class="form-section">
+                        <h3>Способ оплаты</h3>
+                        <div class="payment-methods">
+                            <div class="payment-method selected" data-method="card">
+                                <input type="radio" name="payment" checked> 
+                                <div class="payment-icon"><i class="fab fa-cc-visa"></i></div>
+                                <div><strong>Банковской картой</strong><br><span style="font-size:12px; color:#5A5556;">Visa, Mastercard, МИР</span></div>
+                            </div>
+                            <div class="payment-method" data-method="apple">
+                                <input type="radio" name="payment"> 
+                                <div class="payment-icon"><i class="fab fa-apple-pay"></i></div>
+                                <div><strong>Mir Pay</strong><br><span style="font-size:12px; color:#5A5556;">Быстрая оплата</span></div>
+                            </div>
+                            <div class="payment-method" data-method="sbp">
+                                <input type="radio" name="payment"> 
+                                <div class="payment-icon"><i class="fas fa-qrcode"></i></div>
+                                <div><strong>СБП (Система быстрых платежей)</strong><br><span style="font-size:12px; color:#5A5556;">По QR-коду</span></div>
+                            </div>
+                        </div>
+                        <div id="cardDetails" class="card-details">
+                            <h4>Введите данные карты</h4>
+                            <div class="form-group"><label>Номер карты</label><input type="text" placeholder="4111 1111 1111 1111" value="4111 1111 1111 1111"></div>
+                            <div class="form-row">
+                                <div class="form-group"><label>Срок действия</label><input type="text" placeholder="12/25" value="12/25"></div>
+                                <div class="form-group"><label>CVV</label><input type="text" placeholder="123" value="123"></div>
+                            </div>
+                            <div class="form-group"><label>Владелец карты</label><input type="text" placeholder="IVAN PETROV" value="IVAN PETROV"></div>
+                        </div>
+                        <div id="sbpDetails" class="qr-payment hidden">
+                            <div class="qr-placeholder"><div class="qr-grid"></div></div>
+                            <div class="qr-amount" id="qrAmount">0 ₽</div>
+                            <div style="font-weight:600; margin-bottom:6px; font-size:13px;">Отсканируйте QR-код в приложении банка</div>
+                            <div style="font-size:12px; color:#5A5556;">СБП · Мгновенно · Без комиссии</div>
+                            <div style="margin-top:12px; padding:10px; background:white; border-radius:8px; font-size:12px;"><i class="fas fa-info-circle"></i> Наведите камеру смартфона на QR-код и подтвердите платеж.</div>
+                        </div>
+                        <div class="info-box"><strong>🔒 Безопасная оплата</strong><p style="margin-top:6px; font-size:12px;">Данные карты передаются напрямую в платежный шлюз. Мы не храним информацию о вашей карте. Все операции соответствуют стандартам PCI DSS.</p></div>
+                        <div class="secure-badge"><i class="fas fa-lock"></i><span>Платеж защищен. 3D‑Secure подтверждение.</span></div>
+                    </div>
+                    <div class="selection-actions">
+                        <button class="btn-back" id="backBtn3">Назад</button>
+                        <button class="btn-pay" id="payBtn">Оплатить <span id="payAmount">0</span> ₽</button>
+                    </div>
+                </div>
+                <div style="flex: 1; min-width: 100%; display: flex; flex-direction: column;">
+                    <div class="order-summary" style="margin-bottom: 0; border-bottom-left-radius: 0; border-bottom-right-radius: 0;">
+                        <div class="summary-header"><h3>Ваш заказ</h3></div>
+                        <div class="summary-item">
+                            <div class="summary-img" id="orderPoster3">Афиша</div>
+                            <div class="summary-details">
+                                <div class="summary-title" id="orderTitle3">Название спектакля</div>
+                                <div class="summary-meta" id="orderDateTime3">Дата и время · Зал</div>
+                            </div>
+                        </div>
+                        <div id="orderSeatsList3"></div>
+                        <div class="summary-row"><span>Сервисный сбор</span><span>0 ₽</span></div>
+                        
+                        <!-- БЛОК ПРОМОКОДА НА ШАГЕ 3 -->
+                        <div class="promo-section">
+                            <div class="promo-input-row">
+                                <div class="form-group">
+                                    <label>Промокод</label>
+                                    <input type="text" id="promoCodeInput3" placeholder="Введите промокод" autocomplete="off">
+                                </div>
+                                <button class="promo-apply-btn" id="applyPromoBtn3">Применить</button>
+                            </div>
+                            <div class="promo-message" id="promoMessage3"></div>
+                        </div>
+                        <div id="promoDiscountRow3" class="promo-discount-row" style="display: none;">
+                            <span>Скидка по промокоду (15%)</span>
+                            <span id="promoDiscountAmount3" class="discount-badge">-0 ₽</span>
+                        </div>
+
+                        <div class="summary-total"><span class="total-label">Итого</span><span class="total-price" id="totalPrice3">0 ₽</span></div>
+                        <div class="info-block"><i class="fas fa-envelope"></i><span>Билеты придут на email: <span id="orderEmail3">ivan@example.com</span></span></div>
+                        <div class="warning-block"><i class="fas fa-clock"></i><span>После оплаты билеты будут отправлены на почту.</span></div>
+                    </div>
+                    <div class="payment-summary-illustration">
+                        <img src="SVG/Visit.svg" alt="Персонаж висит" style="display: block; width: 100%; height: auto;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ШАГ 4: УСПЕХ -->
+    <div class="step-section" id="step4">
+        <div class="success-page">
+            <div class="breadcrumbs">
+                <a href="index.html">Главная</a> <span>/</span>
+                <a href="affiche.html">Афиша</a> <span>/</span>
+                <a href="#" id="crumbPerformance4">Спектакль</a> <span>/</span>
+                <span class="current">Заказ оформлен</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-step"><div class="step-number">1</div><div class="step-label">Выбор места</div></div>
+                <div class="progress-step"><div class="step-number">2</div><div class="step-label">Данные</div></div>
+                <div class="progress-step"><div class="step-number">3</div><div class="step-label">Оплата</div></div>
+                <div class="progress-step"><div class="step-number active">4</div><div class="step-label active">Готово</div></div>
+            </div>
+            <div class="success-container">
+                <div class="success-icon"><i class="fas fa-check"></i></div>
+                <h1 class="success-title">Заказ подтвержден!</h1>
+                <p class="success-message">Спасибо за покупку. Билеты отправлены на ваш email.</p>
+                <div class="order-details">
+                    <div class="order-header"><span class="order-number">Заказ № <span id="orderNumber">МК-2503-0000</span></span><span class="order-status">Оплачен</span></div>
+                    <div class="order-info-row"><div class="order-info-label">Спектакль</div><div class="order-info-value" id="successTitle">Название</div></div>
+                    <div class="order-info-row"><div class="order-info-label">Дата и время</div><div class="order-info-value" id="successDateTime">Дата</div></div>
+                    <div class="order-info-row"><div class="order-info-label">Зал</div><div class="order-info-value" id="successHall">Зал</div></div>
+                    <div class="order-info-row"><div class="order-info-label">Покупатель</div><div class="order-info-value"><span id="successBuyer">Иван Петров</span>, <span id="successEmail">ivan@example.com</span></div></div>
+                    <div class="ticket-list"><h4>Ваши билеты</h4><div id="successTickets"></div></div>
+                    <div class="total-row"><span class="total-label">Всего оплачено</span><span class="total-value" id="successTotal">0 ₽</span></div>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn-download" id="downloadBtn"><i class="fas fa-download"></i> Скачать билеты</button>
+                    <button class="btn-cabinet" id="cabinetBtn"> К афише</button>
+                </div>
+                <div class="email-hint"><i class="fas fa-envelope"></i><span>Письмо с билетами также отправлено на <span id="successEmailHint">ivan@example.com</span>. Если письмо не пришло, проверьте папку «Спам».</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div id="site-footer"></div>
+</div>
+
+<!-- Скрипты -->
+  <script src="js/loader-animation.js"></script>
+  <script src="js/components-loader.js"></script>
+  <script src="js/header-scripts.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/slider-scripts.js"></script>
+
+<script>
+    // === ДАННЫЕ О СПЕКТАКЛЯХ ===
+    const PERFORMANCE_BASE = {
+        1: { title: 'Лишь бы не было детей', price: 1500, hall: 'Основная сцена', freeSeating: false },
+        2: { title: 'Богатыри', price: 1400, hall: 'Основная сцена', freeSeating: false },
+        3: { title: 'Ожидание', price: 1200, hall: 'Малая сцена', freeSeating: true },
+        4: { title: 'Ушли за ...', price: 1800, hall: 'Основная сцена', freeSeating: false },
+        5: { title: 'Авиаторы', price: 1600, hall: 'Основная сцена', freeSeating: true }
+    };
+
+    const PERFORMANCES = {};
+    for (let id in PERFORMANCE_BASE) {
+        const perfId = parseInt(id);
+        const event = typeof TOUR_SCHEDULE !== 'undefined' ? TOUR_SCHEDULE.find(e => e.performanceId === perfId) : null;
+        PERFORMANCES[perfId] = {
+            ...PERFORMANCE_BASE[perfId],
+            poster: event ? event.image : `images/content/performances/default.jpg`
+        };
+    }
+
+    let performanceData = null;
+    let selectedSeats = [];
+    let freeQuantity = 1;
+    let currentStep = 1;
+    let promoApplied = false;
+    const PROMO_CODE = 'KSUSHA15';
+    const DISCOUNT_PERCENT = 15;
+
+    const rows = [
+        { row: 1, seats: [1,2,3,4,5,6,7,8,9,10], occupied: [1,2,3,4] },
+        { row: 2, seats: [1,2,3,4,5,6,7,8,9,10], occupied: [1,2] },
+        { row: 3, seats: [1,2,3,4,5,6,7,8,9,10], occupied: [] },
+        { row: 4, seats: [1,2,3,4,5,6,7,8,9,10], occupied: [] },
+        { row: 5, seats: [1,2,3,4,5,6,7,8,9,10], occupied: [] }
+    ];
+
+    function getTicketWordForm(count) {
+        const lastDigit = count % 10;
+        const lastTwoDigits = count % 100;
+        if (lastTwoDigits >= 11 && lastTwoDigits <= 19) return 'билетов';
+        if (lastDigit === 1) return 'билет';
+        if (lastDigit >= 2 && lastDigit <= 4) return 'билета';
+        return 'билетов';
+    }
+
+    function getTicketCountPhrase(count) {
+        return count + ' ' + getTicketWordForm(count);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        loadPerformanceData();
+        updateAllDisplays();
+        renderHallBlock();
+        initEventListeners();
+        initPromoListeners();
+        
+        // Блокируем горизонтальный свайп для предотвращения прокрутки к меню
+        document.querySelectorAll('.step-section').forEach(section => {
+            section.addEventListener('touchmove', function(e) {
+                if (e.touches.length === 1) {
+                    const touch = e.touches[0];
+                    const currentX = touch.clientX;
+                    const currentY = touch.clientY;
+                    
+                    if (!this.dataset.startX) {
+                        this.dataset.startX = currentX;
+                        this.dataset.startY = currentY;
+                        return;
+                    }
+                    
+                    const deltaX = currentX - parseFloat(this.dataset.startX);
+                    const deltaY = currentY - parseFloat(this.dataset.startY);
+                    
+                    // Если горизонтальный свайп больше вертикального и есть скролл-контейнеры
+                    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
+                        const scrollable = e.target.closest('.seats-container, .progress-bar');
+                        if (!scrollable) {
+                            e.preventDefault();
+                        }
+                    }
+                    
+                    this.dataset.startX = currentX;
+                    this.dataset.startY = currentY;
+                }
+            }, { passive: false });
+            
+            section.addEventListener('touchstart', function(e) {
+                if (e.touches.length === 1) {
+                    const touch = e.touches[0];
+                    this.dataset.startX = touch.clientX;
+                    this.dataset.startY = touch.clientY;
+                }
+            });
+            
+            section.addEventListener('touchend', function() {
+                delete this.dataset.startX;
+                delete this.dataset.startY;
+            });
+        });
+    });
+
+    function loadPerformanceData() {
+        const stored = localStorage.getItem('selectedPerformance');
+        if (stored) {
+            try {
+                const raw = JSON.parse(stored);
+                const found = Object.values(PERFORMANCES).find(p => p.title === raw.title);
+                if (found) {
+                    performanceData = { 
+                        ...found, 
+                        dateTime: raw.dateTime || 'Сегодня, 19:00', 
+                        hall: raw.hall || found.hall 
+                    };
+                } else {
+                    performanceData = { ...PERFORMANCES[1], dateTime: 'Сегодня, 19:00' };
+                }
+            } catch(e) {
+                performanceData = { ...PERFORMANCES[1], dateTime: 'Сегодня, 19:00' };
+            }
+        } else {
+            performanceData = { ...PERFORMANCES[1], dateTime: 'Сегодня, 19:00' };
+        }
+
+        const crumbs = document.querySelectorAll('[id^="crumbPerformance"]');
+        crumbs.forEach(crumb => { 
+            if (performanceData?.title) { 
+                crumb.textContent = performanceData.title; 
+                crumb.href = '#'; 
+            } 
+        });
+        
+        const titles = ['orderTitle', 'orderTitle2', 'orderTitle3', 'successTitle'];
+        titles.forEach(id => { const el = document.getElementById(id); if (el) el.textContent = performanceData.title; });
+        
+        const dateTimes = ['orderDateTime', 'successDateTime'];
+        dateTimes.forEach(id => { const el = document.getElementById(id); if (el) el.textContent = performanceData.dateTime; });
+        
+        document.getElementById('orderDateTime2').textContent = `${performanceData.dateTime} · ${performanceData.hall}`;
+        document.getElementById('orderDateTime3').textContent = `${performanceData.dateTime} · ${performanceData.hall}`;
+        
+        const halls = ['orderHall', 'successHall'];
+        halls.forEach(id => { const el = document.getElementById(id); if (el) el.textContent = performanceData.hall; });
+        
+        const posters = document.querySelectorAll('[id^="orderPoster"]');
+        posters.forEach(p => { 
+            if (performanceData?.poster) {
+                p.innerHTML = `<img src="${performanceData.poster}" style="width:100%;height:100%;object-fit:cover;" alt="${performanceData.title}">`; 
+            }
+        });
+    }
+
+    function formatPrice(val) { 
+        return val.toLocaleString('ru-RU') + ' ₽'; 
+    }
+    
+    function calculateBaseTotal() {
+        if (!performanceData) return 0;
+        return performanceData.freeSeating ? freeQuantity * performanceData.price : selectedSeats.length * performanceData.price;
+    }
+    
+    function calculateDiscount() {
+        if (!promoApplied) return 0;
+        const baseTotal = calculateBaseTotal();
+        return Math.round(baseTotal * DISCOUNT_PERCENT / 100);
+    }
+    
+    function calculateFinalTotal() {
+        const baseTotal = calculateBaseTotal();
+        const discount = calculateDiscount();
+        return baseTotal - discount;
+    }
+
+    function updateAllDisplays() {
+        if (!performanceData) return;
+        
+        const baseTotal = calculateBaseTotal();
+        const discount = calculateDiscount();
+        const finalTotal = calculateFinalTotal();
+        const finalTotalFormatted = formatPrice(finalTotal);
+        
+        ['totalPrice', 'totalPrice2', 'totalPrice3', 'successTotal'].forEach(id => { 
+            const el = document.getElementById(id);
+            if(el) {
+                if (promoApplied) {
+                    el.innerHTML = `<span class="price-before">${formatPrice(baseTotal)}</span><span class="price-after">${finalTotalFormatted}</span>`;
+                } else {
+                    el.textContent = finalTotalFormatted;
+                }
+            }
+        });
+        
+        const payAmountSpan = document.getElementById('payAmount');
+        if (payAmountSpan) payAmountSpan.textContent = finalTotal.toLocaleString('ru-RU');
+        
+        const qrAmountSpan = document.getElementById('qrAmount');
+        if (qrAmountSpan) qrAmountSpan.textContent = finalTotalFormatted;
+        
+        for (let i = 1; i <= 3; i++) {
+            const discountRow = document.getElementById(`promoDiscountRow${i}`);
+            const discountAmount = document.getElementById(`promoDiscountAmount${i}`);
+            if (discountRow && discountAmount) {
+                if (promoApplied) {
+                    discountRow.style.display = 'flex';
+                    discountAmount.textContent = `-${formatPrice(discount)}`;
+                } else {
+                    discountRow.style.display = 'none';
+                }
+            }
+        }
+        
+        const emailInput = document.getElementById('email');
+        const email = emailInput ? emailInput.value : 'ivan@example.com';
+        ['orderEmail', 'orderEmail3', 'successEmail', 'successEmailHint'].forEach(id => { 
+            const el = document.getElementById(id); 
+            if(el) el.textContent = email; 
+        });
+        
+        renderOrderItems();
+    }
+
+    function renderOrderItems() {
+        const container = document.getElementById('selectedItemsContainer');
+        if (!performanceData) return;
+        
+        let html = '';
+        if (performanceData.freeSeating) {
+            html = `<div class="selected-seat-item">
+                <div class="selected-seat-info">
+                    <span class="seat-name">Билет (свободная рассадка)</span>
+                    <span class="seat-price">${performanceData.price} ₽</span>
+                </div>
+                <div style="font-weight:600;">${freeQuantity} шт.</div>
+            </div>`;
+        } else {
+            if (selectedSeats.length === 0) {
+                html = '<div style="text-align:center; padding:20px; color:#5A5556;">Места не выбраны</div>';
+            } else {
+                html = selectedSeats.map(seat => `
+                    <div class="selected-seat-item">
+                        <div class="selected-seat-info">
+                            <span class="seat-name">Ряд ${seat.row}, место ${seat.seat}</span>
+                            <span class="seat-price">${performanceData.price} ₽</span>
+                        </div>
+                        <div class="remove-seat" data-row="${seat.row}" data-seat="${seat.seat}"><i class="fas fa-times"></i></div>
+                    </div>
+                `).join('');
+            }
+        }
+        container.innerHTML = html;
+        
+        document.getElementById('orderSeatsList').innerHTML = html;
+        document.getElementById('orderSeatsList3').innerHTML = html;
+        
+        if (!performanceData.freeSeating) {
+            document.querySelectorAll('.remove-seat').forEach(btn => {
+                btn.onclick = (e) => {
+                    e.stopPropagation();
+                    const row = parseInt(btn.dataset.row);
+                    const seat = parseInt(btn.dataset.seat);
+                    selectedSeats = selectedSeats.filter(s => !(s.row === row && s.seat === seat));
+                    renderHallBlock(); 
+                    updateAllDisplays();
+                };
+            });
+        }
+    }
+
+    function renderHallBlock() {
+        const container = document.getElementById('dynamicHallBlock');
+        if (!performanceData) return;
+        
+        if (performanceData.freeSeating) {
+            container.innerHTML = `
+                <div class="hall-scheme">
+                    <div class="hall-header">
+                        <h2 class="hall-title">Свободная рассадка</h2>
+                    </div>
+                    <div class="free-seating-block">
+                        <div class="free-seating-icon"><i class="fas fa-couch"></i></div>
+                        <div class="free-seating-badge">
+                            <i class="fas fa-info-circle"></i>
+                            <span>На этот спектакль действует свободная рассадка — места не закрепляются.</span>
+                        </div>
+                        <div class="quantity-selector-wrapper">
+                            <div class="quantity-row">
+                                <span class="quantity-label">Количество билетов</span>
+                                <div class="stepper-inline">
+                                    <div class="stepper-btn" id="freeDecrement">–</div>
+                                    <input type="text" class="quantity-input" id="freeQuantityInput" value="${freeQuantity}" readonly>
+                                    <div class="stepper-btn" id="freeIncrement">+</div>
+                                </div>
+                            </div>
+                            <div class="price-summary-block">
+                                <span class="price-label">Цена за билет:</span>
+                                <span class="price-value">${performanceData.price} ₽</span>
+                            </div>
+                            <div class="arrival-hint">
+                                <i class="fas fa-clock"></i>
+                                <span>Приходите заранее, чтобы удобно расположиться.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('freeDecrement')?.addEventListener('click', () => {
+                if (freeQuantity > 1) {
+                    freeQuantity--;
+                    document.getElementById('freeQuantityInput').value = freeQuantity;
+                    updateAllDisplays();
+                }
+            });
+            
+            document.getElementById('freeIncrement')?.addEventListener('click', () => {
+                freeQuantity++;
+                document.getElementById('freeQuantityInput').value = freeQuantity;
+                updateAllDisplays();
+            });
+            
+        } else {
+            let seatsHtml = '';
+            rows.forEach(r => {
+                let rowSeats = '';
+                r.seats.forEach(seatNum => {
+                    const isOccupied = r.occupied.includes(seatNum);
+                    const isSelected = selectedSeats.some(s => s.row === r.row && s.seat === seatNum);
+                    let seatClass = 'seat';
+                    if (isOccupied) seatClass += ' occupied';
+                    else if (isSelected) seatClass += ' selected';
+                    else seatClass += ' free';
+                    
+                    rowSeats += `<div class="${seatClass}" data-row="${r.row}" data-seat="${seatNum}">${seatNum}</div>`;
+                });
+                seatsHtml += `<div class="seat-row"><div class="row-label">Ряд ${r.row}</div><div class="seats">${rowSeats}</div></div>`;
+            });
+            
+            container.innerHTML = `
+                <div class="hall-scheme">
+                    <div class="hall-header">
+                        <h2 class="hall-title">Выберите места</h2>
+                        <div class="legend">
+                            <div class="legend-item"><div class="legend-color free"></div><span>Свободно</span></div>
+                            <div class="legend-item"><div class="legend-color selected"></div><span>Выбрано</span></div>
+                            <div class="legend-item"><div class="legend-color occupied"></div><span>Занято</span></div>
+                        </div>
+                    </div>
+                    <div class="stage"><span>СЦЕНА</span></div>
+                    <div class="seats-container" id="seatsContainer">${seatsHtml}</div>
+                </div>
+            `;
+            
+            container.querySelectorAll('.seat.free, .seat.selected').forEach(el => {
+                el.addEventListener('click', () => {
+                    const row = parseInt(el.dataset.row);
+                    const seat = parseInt(el.dataset.seat);
+                    const index = selectedSeats.findIndex(s => s.row === row && s.seat === seat);
+                    
+                    if (index !== -1) {
+                        selectedSeats.splice(index, 1);
+                    } else {
+                        selectedSeats.push({ row, seat });
+                    }
+                    renderHallBlock();
+                    updateAllDisplays();
+                });
+            });
+        }
+    }
+
+    function applyPromoCode(stepNum) {
+        const inputEl = document.getElementById(`promoCodeInput${stepNum}`);
+        const messageEl = document.getElementById(`promoMessage${stepNum}`);
+        const code = inputEl ? inputEl.value.trim().toUpperCase() : '';
+        
+        if (!code) {
+            if (messageEl) {
+                messageEl.textContent = 'Введите промокод';
+                messageEl.className = 'promo-message error';
+            }
+            return;
+        }
+        
+        if (code === PROMO_CODE) {
+            promoApplied = true;
+            if (messageEl) {
+                messageEl.textContent = '✅ Промокод активирован! Скидка 15% применена.';
+                messageEl.className = 'promo-message success';
+            }
+            for (let i = 1; i <= 3; i++) {
+                if (i !== stepNum) {
+                    const otherInput = document.getElementById(`promoCodeInput${i}`);
+                    const otherMessage = document.getElementById(`promoMessage${i}`);
+                    if (otherInput) otherInput.value = PROMO_CODE;
+                    if (otherMessage) {
+                        otherMessage.textContent = '✅ Промокод активирован! Скидка 15% применена.';
+                        otherMessage.className = 'promo-message success';
+                    }
+                }
+            }
+        } else {
+            promoApplied = false;
+            if (messageEl) {
+                messageEl.textContent = '❌ Неверный промокод';
+                messageEl.className = 'promo-message error';
+            }
+            for (let i = 1; i <= 3; i++) {
+                if (i !== stepNum) {
+                    const otherInput = document.getElementById(`promoCodeInput${i}`);
+                    const otherMessage = document.getElementById(`promoMessage${i}`);
+                    if (otherInput) otherInput.value = '';
+                    if (otherMessage) {
+                        otherMessage.textContent = '';
+                        otherMessage.className = 'promo-message';
+                    }
+                }
+            }
+        }
+        updateAllDisplays();
+    }
+
+    function initPromoListeners() {
+        for (let i = 1; i <= 3; i++) {
+            const applyBtn = document.getElementById(`applyPromoBtn${i}`);
+            if (applyBtn) {
+                applyBtn.addEventListener('click', () => applyPromoCode(i));
+            }
+            
+            const inputEl = document.getElementById(`promoCodeInput${i}`);
+            if (inputEl) {
+                inputEl.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        applyPromoCode(i);
+                    }
+                });
+            }
+        }
+    }
+
+    function showStep(step) {
+        document.querySelectorAll('.step-section').forEach(section => section.classList.remove('active'));
+        document.getElementById(`step${step}`).classList.add('active');
+        
+        const progressBars = document.querySelectorAll('.progress-bar');
+        progressBars.forEach(bar => {
+            const steps = bar.querySelectorAll('.progress-step');
+            steps.forEach((s, index) => {
+                const num = s.querySelector('.step-number');
+                const label = s.querySelector('.step-label');
+                if (index + 1 <= step) {
+                    num.classList.add('active');
+                    label.classList.add('active');
+                } else {
+                    num.classList.remove('active');
+                    label.classList.remove('active');
+                }
+            });
+        });
+        
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        currentStep = step;
+        
+        if (step === 2 || step === 3) {
+            updateAllDisplays();
+            syncPromoFields(step);
+        }
+    }
+    
+    function syncPromoFields(currentStepNum) {
+        let activePromoValue = '';
+        let activePromoStatus = '';
+        for (let i = 1; i <= 3; i++) {
+            const msgEl = document.getElementById(`promoMessage${i}`);
+            if (msgEl && msgEl.classList.contains('success')) {
+                activePromoValue = PROMO_CODE;
+                activePromoStatus = 'success';
+                break;
+            }
+        }
+        
+        const currentInput = document.getElementById(`promoCodeInput${currentStepNum}`);
+        const currentMsg = document.getElementById(`promoMessage${currentStepNum}`);
+        if (currentInput && activePromoValue) {
+            currentInput.value = activePromoValue;
+        }
+        if (currentMsg && activePromoStatus === 'success') {
+            currentMsg.textContent = '✅ Промокод активирован! Скидка 15% применена.';
+            currentMsg.className = 'promo-message success';
+        }
+    }
+
+    function initEventListeners() {
+        document.getElementById('nextBtn1')?.addEventListener('click', () => {
+            if (!performanceData.freeSeating && selectedSeats.length === 0) {
+                alert('Пожалуйста, выберите места');
+                return;
+            }
+            if (performanceData.freeSeating && freeQuantity < 1) {
+                alert('Пожалуйста, выберите количество билетов');
+                return;
+            }
+            showStep(2);
+        });
+        
+        document.getElementById('backBtn2')?.addEventListener('click', () => showStep(1));
+        
+        document.getElementById('nextBtn2')?.addEventListener('click', () => {
+            const firstName = document.getElementById('firstName')?.value.trim();
+            const lastName = document.getElementById('lastName')?.value.trim();
+            const email = document.getElementById('email')?.value.trim();
+            const phone = document.getElementById('phone')?.value.trim();
+            const isAgreed = document.getElementById('agreeCheckbox')?.checked;
+            
+            if (!firstName || !lastName || !email || !phone) {
+                alert('Пожалуйста, заполните все поля контактной информации');
+                return;
+            }
+            if (!isAgreed) {
+                alert('Пожалуйста, согласитесь с условиями продажи билетов');
+                return;
+            }
+            showStep(3);
+        });
+        
+        document.getElementById('backBtn3')?.addEventListener('click', () => showStep(2));
+        
+        document.getElementById('payBtn')?.addEventListener('click', () => {
+            const orderNum = 'МК-' + new Date().getFullYear() + (new Date().getMonth()+1).toString().padStart(2,'0') + '-' + Math.floor(Math.random()*9000+1000);
+            document.getElementById('orderNumber').textContent = orderNum;
+            
+            document.getElementById('successBuyer').textContent = (document.getElementById('lastName')?.value || '') + ' ' + (document.getElementById('firstName')?.value || '');
+            const email = document.getElementById('email')?.value || 'ivan@example.com';
+            document.getElementById('successEmail').textContent = email;
+            document.getElementById('successEmailHint').textContent = email;
+            
+            const finalTotal = calculateFinalTotal();
+            
+            const ticketsContainer = document.getElementById('successTickets');
+            if (performanceData?.freeSeating) {
+                const ticketWord = getTicketWordForm(freeQuantity);
+                ticketsContainer.innerHTML = `
+                    <div class="ticket-item">
+                        <div class="ticket-icon"><i class="fas fa-ticket-alt"></i></div>
+                        <div class="ticket-info">
+                            <div class="ticket-title">Свободная рассадка (${freeQuantity} ${ticketWord})</div>
+                            <div class="ticket-meta">Электронный билет · вход по QR-коду</div>
+                        </div>
+                        <div class="ticket-price">${formatPrice(finalTotal)}</div>
+                    </div>
+                `;
+            } else {
+                ticketsContainer.innerHTML = (selectedSeats || []).map(seat => `
+                    <div class="ticket-item">
+                        <div class="ticket-icon"><i class="fas fa-ticket-alt"></i></div>
+                        <div class="ticket-info">
+                            <div class="ticket-title">Ряд ${seat.row}, место ${seat.seat}</div>
+                            <div class="ticket-meta">Электронный билет · вход по QR-коду</div>
+                        </div>
+                        <div class="ticket-price">${formatPrice(performanceData.price)}</div>
+                    </div>
+                `).join('');
+            }
+            
+            document.getElementById('successTotal').textContent = formatPrice(finalTotal);
+            showStep(4);
+        });
+        
+        // Обработчики способов оплаты
+        document.querySelectorAll('.payment-method').forEach(method => {
+            method.addEventListener('click', () => {
+                document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
+                method.classList.add('selected');
+                const radio = method.querySelector('input[type="radio"]');
+                if (radio) radio.checked = true;
+                
+                const methodType = method.dataset.method;
+                const cardDetails = document.getElementById('cardDetails');
+                const sbpDetails = document.getElementById('sbpDetails');
+                
+                if (methodType === 'sbp') {
+                    cardDetails?.classList.add('hidden');
+                    sbpDetails?.classList.remove('hidden');
+                } else if (methodType === 'card') {
+                    cardDetails?.classList.remove('hidden');
+                    sbpDetails?.classList.add('hidden');
+                } else {
+                    cardDetails?.classList.add('hidden');
+                    sbpDetails?.classList.add('hidden');
+                }
+            });
+        });
+        
+        document.getElementById('downloadBtn')?.addEventListener('click', () => {
+            alert('Билеты будут скачаны в формате PDF');
+        });
+        
+        document.getElementById('cabinetBtn')?.addEventListener('click', () => {
+            window.location.href = 'affiche.html';
+        });
+        
+        document.getElementById('backBtn1')?.addEventListener('click', () => {
+            window.history.back();
+        });
+    }
+</script>
+</body>
+</html>

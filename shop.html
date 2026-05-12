@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Театр клоунады «Микос» | Магазин мерча</title>
+    <link rel="icon" type="image/svg+xml" href="SVG/logo-2.svg" sizes="any">
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header-footer.css"> 
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="js/emailjs-integration.js"></script>
+    <style>
+        /* ===== СТИЛИ ГАЛЕРЕИ ИЗОБРАЖЕНИЙ ТОВАРА ===== */
+        .product-gallery-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            cursor: pointer;
+        }
+        .product-gallery-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .product-gallery-container {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: default;
+        }
+        .product-gallery-image {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+        .gallery-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            z-index: 10;
+            backdrop-filter: blur(4px);
+        }
+        .gallery-nav-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-50%) scale(1.1);
+        }
+        .gallery-nav-btn.prev {
+            left: 20px;
+        }
+        .gallery-nav-btn.next {
+            right: 20px;
+        }
+        .gallery-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            z-index: 10;
+            backdrop-filter: blur(4px);
+        }
+        .gallery-close-btn:hover {
+            background: #E8454D;
+            border-color: #E8454D;
+            transform: rotate(90deg);
+        }
+        .gallery-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-family: 'Unbounded', sans-serif;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .gallery-thumbnails {
+            position: absolute;
+            bottom: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+        .gallery-thumb {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+            opacity: 0.6;
+        }
+        .gallery-thumb.active {
+            border-color: #E8454D;
+            opacity: 1;
+        }
+        .gallery-thumb:hover {
+            opacity: 0.9;
+        }
+        .gallery-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ===== СТИЛИ КАРТОЧЕК ТОВАРОВ С ГАЛЕРЕЕЙ ===== */
+        .product-card {
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+        .product-img {
+            position: relative;
+            overflow: hidden;
+        }
+        .product-img img {
+            width: 100%;
+            display: block;
+            pointer-events: none;
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+
+        /* Счетчик фото */
+        .merch-photo-count {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            color: white;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            font-family: 'Nunito Sans', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            z-index: 2;
+            pointer-events: none;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            opacity: 0;
+            transform: translateY(-5px);
+        }
+        .product-card:hover .merch-photo-count {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .product-card.force-visible .merch-photo-count {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+
+        /* Кнопка "Купить" не должна быть прозрачной для кликов */
+        .buy-now-btn {
+            position: relative;
+            z-index: 3;
+        }
+
+        /* Адаптивность галереи */
+        @media (max-width: 860px) {
+            .gallery-nav-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            .gallery-nav-btn.prev {
+                left: 10px;
+            }
+            .gallery-nav-btn.next {
+                right: 10px;
+            }
+            .gallery-close-btn {
+                top: 10px;
+                right: 10px;
+                width: 40px;
+                height: 40px;
+            }
+            .gallery-thumbnails {
+                bottom: 60px;
+                gap: 6px;
+            }
+            .gallery-thumb {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        @media (max-width: 480px) {
+            .gallery-nav-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 16px;
+            }
+            .gallery-nav-btn.prev {
+                left: 5px;
+            }
+            .gallery-nav-btn.next {
+                right: 5px;
+            }
+            .gallery-close-btn {
+                top: 5px;
+                right: 5px;
+                width: 36px;
+                height: 36px;
+                font-size: 20px;
+            }
+            .gallery-thumbnails {
+                bottom: 50px;
+                gap: 4px;
+            }
+            .gallery-thumb {
+                width: 28px;
+                height: 28px;
+            }
+            .gallery-counter {
+                bottom: 10px;
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+        }
+
+
+        
+        
+    </style>
+</head>
+<body>
+<div class="shop-container" id="shopContainer">
+    
+    <!-- HEADER (загружается через components-loader.js) -->
+    <div id="site-header"></div>
+    
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Основной контент -->
+    <div id="mainContent">
+        <div class="page-header">
+            <div class="title-accent"><h1 class="page-title">Магазин</h1></div>
+            <p class="page-description">Сувениры, одежда и аксессуары с символикой театра.<br>Доставка по всей России.</p>
+        </div>
+        
+        <!-- Фильтры -->
+        <div class="filters-section">
+            <div class="filter-chips" id="filterChips">
+                <div class="filter-chip active" data-filter="all">Все товары</div>
+                <div class="filter-chip" data-filter="clothes">Одежда</div>
+                <div class="filter-chip" data-filter="accessories">Аксессуары</div>
+                <div class="filter-chip" data-filter="tableware">Посуда</div>
+                <div class="filter-chip" data-filter="printed">Печатная продукция</div>
+                <div class="filter-chip" data-filter="souvenirs">Сувениры</div>
+            </div>
+        </div>
+        
+        <!-- Сетка товаров -->
+        <div class="merch-grid" id="merchGrid"></div>
+        
+        <!-- Кнопка "Показать ещё" -->
+        <div class="show-more-wrapper">
+            <button class="show-more-btn" id="showMoreBtn">Показать еще</button>
+        </div>
+    </div>
+
+    <!-- FOOTER (загружается через components-loader.js) -->
+    <div id="site-footer"></div>
+</div>
+
+<!-- ГАЛЕРЕЯ ИЗОБРАЖЕНИЙ ТОВАРА -->
+<div class="product-gallery-overlay" id="productGallery">
+    <button class="gallery-close-btn" id="galleryCloseBtn">&times;</button>
+    <div class="product-gallery-container" id="galleryContainer">
+        <img class="product-gallery-image" id="galleryMainImage" src="" alt="Товар">
+        <button class="gallery-nav-btn prev" id="galleryPrevBtn"><i class="fas fa-chevron-left"></i></button>
+        <button class="gallery-nav-btn next" id="galleryNextBtn"><i class="fas fa-chevron-right"></i></button>
+        <div class="gallery-thumbnails" id="galleryThumbnails"></div>
+        <div class="gallery-counter" id="galleryCounter"></div>
+    </div>
+</div>
+
+<!-- Модальные окна -->
+<div id="modalProduct" class="modal-overlay">
+    <div class="modal-container">
+        <span class="modal-close" id="closeModal1">&times;</span>
+        <div id="dynamicModalContent"></div>
+        <div class="modal-buttons" id="modalButtonsContainer"></div>
+    </div>
+</div>
+
+<div id="modalContacts" class="modal-overlay">
+    <div class="modal-container">
+        <span class="modal-close" id="closeModal2">&times;</span>
+        <div class="modal-title" style="font-size:24px; font-family:'Unbounded',sans-serif; font-weight:700; margin-bottom:28px;">Оформление заказа</div>
+        <div id="orderSummaryFull" class="cart-summary"></div>
+        <div class="form-group"><label>Имя</label><input type="text" id="contactName" class="form-input" placeholder="Иван Иванов"></div>
+        <div class="form-group"><label>Телефон</label><input type="tel" id="contactPhone" class="form-input" placeholder="+7 (___) ___-__-__"></div>
+        <div class="form-group"><label>Email</label><input type="email" id="contactEmail" class="form-input" placeholder="mail@example.com"></div>
+        <div class="form-group"><label>Способ связи</label><input type="text" id="contactMethod" class="form-input" placeholder="Telegram / WhatsApp / звонок"></div>
+        <div class="modal-buttons">
+            <button id="submitOrderBtn" class="modal-btn btn-primary-modal" style="width:100%;">Оформить заказ</button>
+        </div>
+    </div>
+</div>
+
+<!-- СКРИПТЫ: правильный порядок загрузки -->
+  <script src="js/loader-animation.js"></script>
+  <script src="js/components-loader.js"></script>
+<script src="js/header-scripts.js"></script>
+
+<!-- ✅ Основной скрипт магазина -->
+<script>
+(function() {
+    'use strict';
+    
+    // ===== ДАННЫЕ ТОВАРОВ С МАССИВОМ ИЗОБРАЖЕНИЙ =====
+    const products = [
+               { id: 1, name: 'Носки', desc: 'Принт с логотипом театра', price: 500, isClothing: false, images: ['images/content/shop/2.png'], category: 'clothes' },
+        { id: 2, name: 'Подвес на рюкзак "Микос Team"', desc: 'Современный аксессуар', price: 900, isClothing: false, images: ['images/content/shop/3.png'], category: 'accessories' },
+        { id: 3, name: 'Футболка', desc: 'Хлопковая футболка', price: 2500, isClothing: true, images: ['images/content/shop/5.png', 'images/content/shop/1.png'], category: 'clothes' },
+        { id: 4, name: 'Футболка', desc: 'Хлопковая футболка', price: 2500, isClothing: true, images: ['images/content/shop/7.png', 'images/content/shop/5.png'], category: 'clothes' },
+        { id: 5, name: 'Футболка', desc: 'Хлопковая футболка', price: 2500, isClothing: true, images: ['images/content/shop/8.png', 'images/content/shop/5.png'], category: 'clothes' },
+        { id: 6, name: 'Сумка шоппер', desc: 'Эко-сумка', price: 1800, isClothing: false, images: ['images/content/shop/9.png'], category: 'accessories' },
+        { id: 7, name: 'Футболка', desc: 'Хлопковая футболка с логотипом театра', price: 2500, isClothing: true, images: ['images/content/shop/1.png', 'images/content/shop/5.png'], category: 'clothes' },
+        { id: 8, name: 'Кружка театральная', desc: 'Фарфор', price: 1200, isClothing: false, images: ['https://placehold.co/428x220/2A3D5E/white?text=Кружка'], category: 'tableware' },
+        { id: 9, name: 'Магнит символ', desc: 'Сувенирный магнит', price: 450, isClothing: false, images: ['https://placehold.co/428x220/4A6294/white?text=Магнит'], category: 'souvenirs' },
+        { id: 10, name: 'Программа спектакля', desc: 'Иллюстрированная', price: 350, isClothing: false, images: ['https://placehold.co/428x220/2A3D5E/white?text=Программа'], category: 'printed' }
+    ];
+
+    // ===== СОСТОЯНИЕ =====
+    let cartItems = [], currentProduct = null, editingIndex = -1, returnToContacts = false;
+    let activeFilter = 'all', currentIndex = 8;
+    
+    // Константа для ширины экрана (большой экран = отображаем все сразу)
+    const LARGE_SCREEN_BREAKPOINT = 1600;
+
+    // 🔥 СОСТОЯНИЕ ГАЛЕРЕИ
+    let galleryImages = [];
+    let currentGalleryIndex = 0;
+
+    // ===== ГАЛЕРЕЯ ИЗОБРАЖЕНИЙ =====
+    const productGallery = document.getElementById('productGallery');
+    const galleryMainImage = document.getElementById('galleryMainImage');
+    const galleryPrevBtn = document.getElementById('galleryPrevBtn');
+    const galleryNextBtn = document.getElementById('galleryNextBtn');
+    const galleryCloseBtn = document.getElementById('galleryCloseBtn');
+    const galleryThumbnails = document.getElementById('galleryThumbnails');
+    const galleryCounter = document.getElementById('galleryCounter');
+    const galleryContainer = document.getElementById('galleryContainer');
+
+    function openGallery(images) {
+        if (!images || images.length === 0) return;
+        
+        galleryImages = images;
+        currentGalleryIndex = 0;
+        
+        updateGalleryImage();
+        renderThumbnails();
+        updateCounter();
+        updateNavButtons();
+        
+        productGallery.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeGallery() {
+        productGallery.classList.remove('active');
+        document.body.style.overflow = '';
+        galleryImages = [];
+        currentGalleryIndex = 0;
+    }
+
+    function updateGalleryImage() {
+        if (galleryImages.length > 0) {
+            galleryMainImage.src = galleryImages[currentGalleryIndex];
+            galleryMainImage.alt = `Фото ${currentGalleryIndex + 1}`;
+        }
+    }
+
+    function renderThumbnails() {
+        galleryThumbnails.innerHTML = '';
+        
+        if (galleryImages.length <= 1) {
+            galleryThumbnails.style.display = 'none';
+            return;
+        }
+        
+        galleryThumbnails.style.display = 'flex';
+        
+        galleryImages.forEach((img, index) => {
+            const thumb = document.createElement('div');
+            thumb.className = `gallery-thumb ${index === currentGalleryIndex ? 'active' : ''}`;
+            thumb.innerHTML = `<img src="${img}" alt="Миниатюра ${index + 1}">`;
+            thumb.addEventListener('click', (e) => {
+                e.stopPropagation();
+                goToImage(index);
+            });
+            galleryThumbnails.appendChild(thumb);
+        });
+    }
+
+    function updateCounter() {
+        if (galleryImages.length > 1) {
+            galleryCounter.textContent = `${currentGalleryIndex + 1} / ${galleryImages.length}`;
+            galleryCounter.style.display = 'block';
+        } else {
+            galleryCounter.style.display = 'none';
+        }
+    }
+
+    function updateNavButtons() {
+        if (galleryImages.length <= 1) {
+            galleryPrevBtn.style.display = 'none';
+            galleryNextBtn.style.display = 'none';
+        } else {
+            galleryPrevBtn.style.display = 'flex';
+            galleryNextBtn.style.display = 'flex';
+        }
+    }
+
+    function goToImage(index) {
+        if (index < 0 || index >= galleryImages.length) return;
+        currentGalleryIndex = index;
+        updateGalleryImage();
+        renderThumbnails();
+        updateCounter();
+    }
+
+    function nextImage() {
+        if (galleryImages.length === 0) return;
+        currentGalleryIndex = (currentGalleryIndex + 1) % galleryImages.length;
+        updateGalleryImage();
+        renderThumbnails();
+        updateCounter();
+    }
+
+    function prevImage() {
+        if (galleryImages.length === 0) return;
+        currentGalleryIndex = (currentGalleryIndex - 1 + galleryImages.length) % galleryImages.length;
+        updateGalleryImage();
+        renderThumbnails();
+        updateCounter();
+    }
+
+    // Обработчики галереи
+    if (galleryPrevBtn) {
+        galleryPrevBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            prevImage();
+        });
+    }
+    
+    if (galleryNextBtn) {
+        galleryNextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            nextImage();
+        });
+    }
+    
+    if (galleryCloseBtn) {
+        galleryCloseBtn.addEventListener('click', closeGallery);
+    }
+    
+    if (productGallery) {
+        productGallery.addEventListener('click', (e) => {
+            if (e.target === productGallery) {
+                closeGallery();
+            }
+        });
+    }
+
+    // Клавиатурная навигация
+    document.addEventListener('keydown', (e) => {
+        if (!productGallery || !productGallery.classList.contains('active')) return;
+        
+        switch(e.key) {
+            case 'Escape':
+                closeGallery();
+                break;
+            case 'ArrowLeft':
+                prevImage();
+                break;
+            case 'ArrowRight':
+                nextImage();
+                break;
+        }
+    });
+
+    // Свайпы для мобильных
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    if (galleryContainer) {
+        galleryContainer.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        galleryContainer.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+    }
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                nextImage();
+            } else {
+                prevImage();
+            }
+        }
+    }
+
+    // ===== ОТРИСОВКА ТОВАРОВ С УЧЁТОМ ШИРИНЫ ЭКРАНА =====
+    function renderProducts() {
+        const grid = document.getElementById('merchGrid');
+        const showMoreBtn = document.getElementById('showMoreBtn');
+        
+        if (!grid) {
+            console.warn('merchGrid не найден, повторная попытка через 100мс');
+            setTimeout(renderProducts, 100);
+            return;
+        }
+        
+        const filtered = activeFilter === 'all' ? products : products.filter(p => p.category === activeFilter);
+        
+        const isLargeScreen = window.innerWidth >= LARGE_SCREEN_BREAKPOINT;
+        const displayCount = isLargeScreen ? filtered.length : Math.min(currentIndex, filtered.length);
+        const display = filtered.slice(0, displayCount);
+        
+        grid.innerHTML = '';
+        
+        if (display.length === 0) {
+            grid.innerHTML = '<p style="text-align:center; color:#5A5A5A; grid-column:1/-1; padding:40px;">Товары не найдены</p>';
+            if (showMoreBtn) showMoreBtn.style.display = 'none';
+            return;
+        }
+        
+        display.forEach(p => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            const mainImage = p.images && p.images.length > 0 ? p.images[0] : 'https://placehold.co/428x220/cccccc/white?text=Нет+фото';
+            const hasMultipleImages = p.images && p.images.length > 1;
+            
+            card.innerHTML = `
+                <div class="product-img">
+                    <img src="${mainImage}" alt="${p.name}" loading="lazy">
+                    ${hasMultipleImages ? `<span class="merch-photo-count"><i class="fas fa-images"></i> ${p.images.length}</span>` : ''}
+                </div>
+                <div class="product-info">
+                    <div class="product-name">${p.name}</div>
+                    <div class="product-desc">${p.desc}</div>
+                    <div class="product-price">${p.price.toLocaleString()} ₽</div>
+                    <button class="buy-now-btn" data-id="${p.id}">Купить</button>
+                </div>
+            `;
+            
+            // 🔥 КЛИК ПО КАРТОЧКЕ ОТКРЫВАЕТ ГАЛЕРЕЮ
+            card.addEventListener('click', (e) => {
+                if (e.target.classList.contains('buy-now-btn')) return;
+                
+                if (p.images && p.images.length > 0) {
+                    openGallery(p.images);
+                }
+            });
+            
+            grid.appendChild(card);
+        });
+
+        // Обработчики кнопок "Купить"
+        document.querySelectorAll('.buy-now-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const id = parseInt(btn.dataset.id);
+                const prod = products.find(p => p.id === id);
+                if (prod) openAddModal(prod);
+            });
+        });
+
+        if (showMoreBtn) {
+            if (isLargeScreen) {
+                showMoreBtn.style.display = 'none';
+            } else {
+                showMoreBtn.style.display = displayCount >= filtered.length ? 'none' : 'block';
+            }
+        }
+        
+        // Проверяем видимость тегов с фото
+        requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+        checkMerchCardsVisibility();
+    });
+});
+    }
+
+    // ===== ПРОВЕРКА ВИДИМОСТИ ТЕГОВ С ФОТО =====
+function checkMerchCardsVisibility() {
+    const grid = document.getElementById('merchGrid');
+    if (!grid) return;
+    
+    const cards = grid.querySelectorAll('.product-card');
+    const gridRect = grid.getBoundingClientRect();
+    
+    cards.forEach(card => {
+        const cardRect = card.getBoundingClientRect();
+        const photoCount = card.querySelector('.merch-photo-count');
+        
+        if (!photoCount) return;
+        
+        // Проверяем, находится ли карточка ПОЛНОСТЬЮ внутри видимой области грида
+        const isFullyVisible = 
+            cardRect.left >= gridRect.left - 1 &&
+            cardRect.right <= gridRect.right + 1 &&
+            cardRect.top >= gridRect.top - 1 &&
+            cardRect.bottom <= gridRect.bottom + 1;
+        
+        if (!isFullyVisible) {
+            card.classList.add('force-visible');
+        } else {
+            card.classList.remove('force-visible');
+        }
+    });
+}
+    // ===== МОДАЛКА: контент корзины =====
+    function renderModalContent() {
+        const container = document.getElementById('dynamicModalContent');
+        if (!container) return;
+        
+        let html = '';
+        
+        if (cartItems.length > 0 && editingIndex === -1) {
+            html += `<div class="modal-title" style="font-size:24px; font-family:'Unbounded',sans-serif; font-weight:700; margin-bottom:20px;">История заказа</div>`;
+            let total = 0;
+            cartItems.forEach(item => { total += item.price * item.quantity; });
+            
+            html += `<div class="cart-summary">`;
+            cartItems.forEach((item, idx) => {
+                const itemTotal = item.price * item.quantity;
+                const sizeText = item.size ? ` (${item.size})` : '';
+                html += `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <span class="cart-item-name">${item.name}${sizeText}</span>
+                            <span class="cart-item-details">${item.quantity} шт. × ${item.price.toLocaleString()} ₽</span>
+                        </div>
+                        <div class="cart-item-actions">
+                            <button class="edit-item" data-index="${idx}"><i class="fas fa-pencil-alt"></i></button>
+                            <button class="delete-item" data-index="${idx}"><i class="fas fa-trash-alt"></i></button>
+                        </div>
+                        <div class="cart-item-price">${itemTotal.toLocaleString()} ₽</div>
+                    </div>`;
+            });
+            html += `<div class="total-row"><span>Итого</span><span>${total.toLocaleString()} ₽</span></div></div>`;
+        }
+        
+        html += `<div class="modal-title" style="font-size:24px; font-family:'Unbounded',sans-serif; font-weight:700; margin-top:${cartItems.length > 0 && editingIndex === -1 ? '24px' : '0'}; margin-bottom:20px;">${currentProduct ? currentProduct.name : 'Выбрать параметры'}</div>`;
+        html += `<div class="form-group"><label>Количество</label><input type="number" id="productQuantity" min="1" value="1" class="form-input"></div>`;
+        
+        if (currentProduct && currentProduct.isClothing) {
+            html += `<div class="form-group"><label>Размер</label>
+                <select id="productSize" class="form-select">
+                    <option value="S">S</option>
+                    <option value="M" selected>M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                </select>
+            </div>`;
+        }
+        
+        container.innerHTML = html;
+        
+        if (cartItems.length > 0 && editingIndex === -1) {
+            document.querySelectorAll('.delete-item').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const idx = parseInt(btn.dataset.index);
+                    cartItems.splice(idx, 1);
+                    if (cartItems.length === 0 && returnToContacts) returnToContacts = false;
+                    renderModalContent();
+                    updateFullOrder();
+                    if (editingIndex === idx) editingIndex = -1;
+                    else if (editingIndex > idx) editingIndex--;
+                });
+            });
+            document.querySelectorAll('.edit-item').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const idx = parseInt(btn.dataset.index);
+                    openEditModal(idx);
+                });
+            });
+        }
+    }
+    
+    // ===== ОБНОВЛЕНИЕ ПОЛНОГО ЗАКАЗА =====
+    function updateFullOrder() {
+        const container = document.getElementById('orderSummaryFull');
+        if (!container) return;
+        
+        if (cartItems.length === 0) {
+            container.innerHTML = '<div class="empty-cart" style="text-align:center; padding:16px; color:#2A3D5E;">Корзина пуста</div>';
+            return;
+        }
+        
+        let html = '', total = 0;
+        cartItems.forEach((item, idx) => {
+            const itemTotal = item.price * item.quantity;
+            total += itemTotal;
+            const sizeText = item.size ? ` (${item.size})` : '';
+            html += `
+                <div class="cart-item">
+                    <div class="cart-item-info">
+                        <span class="cart-item-name">${item.name}${sizeText}</span>
+                        <span class="cart-item-details">${item.quantity} шт. × ${item.price.toLocaleString()} ₽</span>
+                    </div>
+                    <div class="cart-item-actions">
+                        <button class="edit-item-full" data-index="${idx}"><i class="fas fa-pencil-alt"></i></button>
+                        <button class="delete-item-full" data-index="${idx}"><i class="fas fa-trash-alt"></i></button>
+                    </div>
+                    <div class="cart-item-price">${itemTotal.toLocaleString()} ₽</div>
+                </div>`;
+        });
+        html += `<div class="total-row"><span>Итого</span><span>${total.toLocaleString()} ₽</span></div>`;
+        container.innerHTML = html;
+        
+        document.querySelectorAll('.delete-item-full').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const idx = parseInt(btn.dataset.index);
+                cartItems.splice(idx, 1);
+                updateFullOrder();
+                if (cartItems.length === 0 && returnToContacts) returnToContacts = false;
+                renderModalContent();
+            });
+        });
+        document.querySelectorAll('.edit-item-full').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const idx = parseInt(btn.dataset.index);
+                returnToContacts = true;
+                document.getElementById('modalContacts').classList.remove('active');
+                openEditModal(idx);
+            });
+        });
+    }
+    
+    // ===== ОТКРЫТЬ МОДАЛКУ ДОБАВЛЕНИЯ =====
+    function openAddModal(product) {
+        currentProduct = product;
+        editingIndex = -1;
+        renderModalContent();
+        
+        const btnsContainer = document.getElementById('modalButtonsContainer');
+        btnsContainer.innerHTML = `
+            <button id="moreItemsBtn" class="modal-btn btn-outline-modal">Выбрать ещё</button>
+            <button id="buyNowBtn" class="modal-btn btn-primary-modal">Купить</button>
+        `;
+        returnToContacts = false;
+        
+        document.getElementById('modalProduct').classList.add('active');
+        
+        document.getElementById('moreItemsBtn').addEventListener('click', () => {
+            if (addCurrentToCart()) closeModals();
+        });
+        document.getElementById('buyNowBtn').addEventListener('click', () => {
+            if (addCurrentToCart()) {
+                closeModals();
+                openContacts();
+            }
+        });
+    }
+    
+    // ===== ОТКРЫТЬ МОДАЛКУ РЕДАКТИРОВАНИЯ =====
+    function openEditModal(index) {
+        const item = cartItems[index];
+        if (!item) return;
+        
+        currentProduct = { 
+            id: item.id, 
+            name: item.name, 
+            price: item.price, 
+            isClothing: item.isClothing 
+        };
+        editingIndex = index;
+        renderModalContent();
+        
+        document.getElementById('productQuantity').value = item.quantity;
+        if (item.isClothing && document.getElementById('productSize')) {
+            document.getElementById('productSize').value = item.size || 'M';
+        }
+        
+        const btnsContainer = document.getElementById('modalButtonsContainer');
+        btnsContainer.innerHTML = `
+            <button id="cancelEditBtn" class="modal-btn btn-outline-modal">Отмена</button>
+            <button id="saveEditBtn" class="modal-btn btn-primary-modal">Сохранить изменения</button>
+        `;
+        
+        document.getElementById('modalProduct').classList.add('active');
+        
+        document.getElementById('cancelEditBtn').addEventListener('click', () => closeModals());
+        document.getElementById('saveEditBtn').addEventListener('click', () => {
+            if (saveEditItem()) closeModals();
+        });
+    }
+    
+    // ===== ДОБАВИТЬ ТЕКУЩИЙ ТОВАР В КОРЗИНУ =====
+    function addCurrentToCart() {
+        const qtyInput = document.getElementById('productQuantity');
+        if (!qtyInput) return false;
+        
+        const qty = parseInt(qtyInput.value);
+        if (qty < 1) {
+            alert('Введите количество от 1');
+            return false;
+        }
+        
+        let size = null;
+        if (currentProduct.isClothing) {
+            const sizeSelect = document.getElementById('productSize');
+            if (sizeSelect) size = sizeSelect.value;
+        }
+        
+        cartItems.push({
+            id: currentProduct.id,
+            name: currentProduct.name,
+            price: currentProduct.price,
+            quantity: qty,
+            size: size,
+            isClothing: currentProduct.isClothing
+        });
+        
+        renderModalContent();
+        updateFullOrder();
+        return true;
+    }
+    
+    // ===== СОХРАНИТЬ ИЗМЕНЕНИЯ ТОВАРА =====
+    function saveEditItem() {
+        if (editingIndex === -1) return false;
+        
+        const qtyInput = document.getElementById('productQuantity');
+        if (!qtyInput) return false;
+        
+        const qty = parseInt(qtyInput.value);
+        if (qty < 1) {
+            alert('Введите количество от 1');
+            return false;
+        }
+        
+        let size = null;
+        if (currentProduct.isClothing) {
+            const sizeSelect = document.getElementById('productSize');
+            if (sizeSelect) size = sizeSelect.value;
+        }
+        
+        cartItems[editingIndex] = {
+            ...cartItems[editingIndex],
+            quantity: qty,
+            size: size
+        };
+        
+        renderModalContent();
+        updateFullOrder();
+        return true;
+    }
+    
+    // ===== ЗАКРЫТЬ ВСЕ МОДАЛКИ =====
+    function closeModals() {
+        document.getElementById('modalProduct')?.classList.remove('active');
+        document.getElementById('modalContacts')?.classList.remove('active');
+        editingIndex = -1;
+        
+        if (returnToContacts && cartItems.length > 0) {
+            document.getElementById('modalContacts')?.classList.add('active');
+            returnToContacts = false;
+        }
+    }
+    
+    // ===== ОТКРЫТЬ МОДАЛКУ КОНТАКТОВ =====
+    function openContacts() {
+        if (cartItems.length === 0) {
+            alert("Корзина пуста");
+            return;
+        }
+        updateFullOrder();
+        
+        document.getElementById('contactName').value = '';
+        document.getElementById('contactPhone').value = '';
+        document.getElementById('contactEmail').value = '';
+        document.getElementById('contactMethod').value = '';
+        
+        document.getElementById('modalContacts').classList.add('active');
+    }
+    
+    // ===== ПОКАЗАТЬ УСПЕШНЫЙ ЗАКАЗ =====
+    function showSuccess(name) {
+        const mainContent = document.getElementById('mainContent');
+        const footer = document.querySelector('.main-footer') || document.getElementById('site-footer');
+        
+        if (mainContent) mainContent.style.display = 'none';
+        
+        // Сохраняем данные заказа для возможного использования
+        const orderData = {
+            customerName: name,
+            items: [...cartItems],
+            total: cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0),
+            timestamp: new Date().toISOString(),
+            source: 'shop-page'
+        };
+        localStorage.setItem('mikos_order_success', JSON.stringify(orderData));
+        
+        const successDiv = document.createElement('div');
+        successDiv.className = 'success-content';
+        successDiv.innerHTML = `
+            <i class="fas fa-check-circle" style="font-size:48px; color:#4CAF50; margin-bottom:16px;"></i>
+            <h2 style="font-family:'Unbounded',sans-serif; font-weight:700; margin-bottom:12px;">Заказ оформлен!</h2>
+            <p>Спасибо, <strong>${name}</strong>! Ваш заказ принят.</p>
+            <p style="margin-top:20px;">
+                <strong>Самовывоз:</strong> Москва, ул. Театральная, 1 (касса театра).<br>
+                Для доставки свяжитесь с нами: +7 (495) 123-45-67
+            </p>
+            <button class="btn-return" id="resetBtn" style="margin-top:24px; padding:12px 24px; background:#2A3D5E; color:#fff; border:none; border-radius:8px; cursor:pointer; font-family:'Unbounded',sans-serif;">
+                Вернуться в магазин
+            </button>
+        `;
+        
+        if (footer) {
+            footer.parentNode.insertBefore(successDiv, footer);
+        } else {
+            document.getElementById('shopContainer').appendChild(successDiv);
+        }
+        
+        document.getElementById('resetBtn').addEventListener('click', () => location.reload());
+        
+        // Очищаем корзину
+        cartItems = [];
+    }
+
+    // ===== ИНИЦИАЛИЗАЦИЯ ПОСЛЕ ЗАГРУЗКИ DOM =====
+    function initShop() {
+        const grid = document.getElementById('merchGrid');
+        const filterChips = document.querySelectorAll('.filter-chip');
+        const showMoreBtn = document.getElementById('showMoreBtn');
+        
+        if (!grid) {
+            console.error('merchGrid не найден!');
+            return;
+        }
+        
+        filterChips.forEach(chip => {
+            if (chip.dataset.filter === 'all') {
+                chip.classList.add('active');
+            }
+        });
+        
+        filterChips.forEach(chip => {
+            chip.addEventListener('click', function() {
+                filterChips.forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+                activeFilter = this.dataset.filter;
+                
+                currentIndex = 8;
+                renderProducts();
+            });
+        });
+        
+        if (showMoreBtn) {
+            showMoreBtn.addEventListener('click', () => {
+                const filtered = activeFilter === 'all' ? products : products.filter(p => p.category === activeFilter);
+                if (currentIndex < filtered.length) {
+                    currentIndex = Math.min(currentIndex + 4, filtered.length);
+                    renderProducts();
+                }
+            });
+        }
+        
+        window.addEventListener('resize', () => {
+            renderProducts();
+        });
+        
+        // Добавляем отслеживание скролла для проверки видимости тегов
+        window.addEventListener('scroll', () => {
+    requestAnimationFrame(checkMerchCardsVisibility);
+});
+
+// Также добавьте:
+window.addEventListener('resize', () => {
+    renderProducts();
+    requestAnimationFrame(() => {
+        requestAnimationFrame(checkMerchCardsVisibility);
+    });
+});
+        
+        const closeModal1 = document.getElementById('closeModal1');
+        const closeModal2 = document.getElementById('closeModal2');
+        const modalProduct = document.getElementById('modalProduct');
+        const modalContacts = document.getElementById('modalContacts');
+        
+        if (closeModal1) closeModal1.addEventListener('click', closeModals);
+        if (closeModal2) closeModal2.addEventListener('click', closeModals);
+        
+        window.addEventListener('click', (e) => {
+            if (e.target === modalProduct) closeModals();
+            if (e.target === modalContacts) closeModals();
+        });
+        
+        // Глобальный обработчик Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (productGallery && productGallery.classList.contains('active')) {
+                    closeGallery();
+                } else if (document.getElementById('modalProduct')?.classList.contains('active')) {
+                    closeModals();
+                } else if (document.getElementById('modalContacts')?.classList.contains('active')) {
+                    closeModals();
+                }
+            }
+        });
+        
+        const submitOrderBtn = document.getElementById('submitOrderBtn');
+        if (submitOrderBtn) {
+            submitOrderBtn.addEventListener('click', async () => {
+    const name = document.getElementById('contactName')?.value.trim();
+    const phone = document.getElementById('contactPhone')?.value.trim();
+    const email = document.getElementById('contactEmail')?.value.trim();
+    const method = document.getElementById('contactMethod')?.value.trim();
+    const orderSummary = document.getElementById('orderSummaryFull')?.innerHTML || '';
+
+    if (!name || !phone || !email || !method) {
+        alert("Заполните все поля");
+        return;
+    }
+
+    try {
+        await window.sendOrderMerch({
+            name, phone, email,
+            contact_method: method,
+            order_summary: orderSummary
+        });
+        document.getElementById('modalContacts')?.classList.remove('active');
+        showSuccess(name);
+    } catch(e) {
+        console.error(e);
+        alert('Ошибка отправки письма. Попробуйте позже.');
+    }
+});
+        }
+        
+        const subscribeBtn = document.getElementById('subscribeBtn');
+        if (subscribeBtn) {
+            subscribeBtn.addEventListener('click', () => {
+                const chk = document.getElementById('consentCheckbox');
+                const err = document.getElementById('consentError');
+                if (chk && !chk.checked) {
+                    if (err) {
+                        err.style.display = 'block';
+                        setTimeout(() => err.style.display = 'none', 2500);
+                    }
+                } else {
+                    alert('Спасибо за подписку!');
+                    const emailInput = document.getElementById('subscribeEmail');
+                    if (emailInput) emailInput.value = '';
+                    if (chk) chk.checked = false;
+                }
+            });
+        }
+        
+        document.querySelectorAll('.footer-btn-primary, .buy-ticket-btn').forEach(btn => {
+            btn.addEventListener('click', () => alert('Билеты скоро в продаже'));
+        });
+        document.querySelector('.footer-btn-secondary')?.addEventListener('click', () => {
+            alert('Заказ шоу: свяжитесь с нами по телефону');
+        });
+        
+        // ✅ ПЕРВЫЙ ВЫЗОВ ОТРИСОВКИ
+        renderProducts();
+    }
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initShop);
+    } else {
+        initShop();
+    }
+    
+})();
+</script>
+
+<!-- ✅ common.js подключаем ТОЛЬКО ОДИН РАЗ и ПОСЛЕ нашего скрипта -->
+<script src="js/common.js"></script>
+
+</body>
+</html>

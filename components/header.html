@@ -1,0 +1,55 @@
+<!-- HEADER -->
+<header class="main-header">
+    <div class="header-inner">
+        <div class="header-left">
+            <a href="index.html" class="logo-link" aria-label="На главную">
+					<div class="logo-group">
+						<img class="logo-img" src="SVG/logo-2.svg" alt="Знак" loading="lazy">
+						<img class="logo-img" src="SVG/logo.svg" alt="Логотип" loading="lazy">
+					</div>
+				</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link" data-page="index">Главная</a></li>
+                <li><a href="affiche.html" class="nav-link" data-page="affiche">Афиша</a></li>
+                <li><a href="for-customers.html" class="nav-link" data-page="for-customers">Заказчикам</a></li>
+                <li><a href="brandbook.html" class="nav-link" data-page="brandbook">Брендбук</a></li>
+                <li><span class="dots-icon" id="dotsIcon">⋯</span><span class="close-icon" id="closeIcon">✕</span></li>
+            </ul>
+            <div class="burger-icon" id="burgerIcon"><i class="fas fa-bars"></i></div>
+        </div>
+        <button class="buy-ticket-btn" onclick="window.location.href='affiche.html'">Купить билет</button>
+    </div>
+    <div class="extra-menu-row" id="extraMenuRow">
+        <ul class="extra-nav-list">
+            <li><a href="performances.html" class="nav-link" data-page="performances">Спектакли</a></li>
+            <li><a href="team.html" class="nav-link" data-page="team">Команда</a></li>
+            <li><a href="history.html" class="nav-link" data-page="history">О театре</a></li>
+            <li><a href="shop.html" class="nav-link" data-page="shop">Магазин</a></li>
+            <li><a href="contacts.html" class="nav-link" data-page="contacts">Контакты</a></li>
+        </ul>
+    </div>
+</header>
+
+<!-- Мобильное меню -->
+<div class="mobile-nav" id="mobileNav">
+    <div class="close-mobile-menu" id="closeMobileMenu">✕</div>
+	<a href="index.html" class="logo-link" aria-label="На главную">
+			<div class="mobile-logo-group">
+				<img src="SVG/logo-black.svg" alt="Логотип">
+				<img src="SVG/logo-black-2.svg" alt="Логотип текст">
+			</div>
+		</a>	
+    <button class="buy-ticket-btn" onclick="window.location.href='affiche.html'">Купить билет</button>
+    <ul>
+        <li><a href="index.html" class="nav-link" data-page="index">Главная</a></li>
+        <li><a href="affiche.html" class="nav-link" data-page="affiche">Афиша</a></li>
+        <li><a href="for-customers.html" class="nav-link" data-page="for-customers">Заказчикам</a></li>
+        <li><a href="brandbook.html" class="nav-link" data-page="brandbook">Брендбук</a></li>
+        <li><a href="performances.html" class="nav-link" data-page="performances">Спектакли</a></li>
+        <li><a href="team.html" class="nav-link" data-page="team">Команда</a></li>
+        <li><a href="history.html" class="nav-link" data-page="history">О театре</a></li>
+        <li><a href="shop.html" class="nav-link" data-page="shop">Магазин</a></li>
+        <li><a href="contacts.html" class="nav-link" data-page="contacts">Контакты</a></li>
+    </ul>
+</div>
+<div class="overlay" id="overlay"></div>

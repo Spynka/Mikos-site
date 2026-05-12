@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Театр клоунады «Микос» | Брендбук</title>
+    <meta name="description" content="Кодекс визуальной и смысловой идентичности театра клоунады «Микос»">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Nunito+Sans:opsz,wght@6..12,300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/header-footer.css"> 
+    <link rel="icon" type="image/svg+xml" href="SVG/logo-2.svg">
+    
+    <style>
+        /* ===== DESIGN TOKENS ===== */
+        :root {
+            --color-bg-light: #F2F1F0; --color-bg-dark: #231F20;
+            --color-accent-red: #F43139; --color-deep-blue: #2C4068; --color-gold: #D4BF95;
+            --color-text-primary: var(--color-bg-dark); --color-text-secondary: #5A5A5A;
+            --color-text-inverse: var(--color-bg-light);
+            --color-border: rgba(35, 31, 32, 0.12); --color-shadow: rgba(35, 31, 32, 0.08);
+            --font-display: 'Unbounded', system-ui, sans-serif;
+            --font-body: 'Nunito Sans', system-ui, sans-serif;
+            --text-xs: 0.75rem; --text-sm: 0.875rem; --text-base: 1rem;
+            --text-lg: 1.125rem; --text-xl: 1.25rem; --text-2xl: 1.5rem;
+            --text-3xl: 1.875rem; --text-4xl: 2.25rem; --text-5xl: 3rem; --text-6xl: 3.75rem;
+            --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem;
+            --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem;
+            --space-12: 3rem; --space-16: 4rem;
+            --container-max: 1440px; --container-padding: var(--space-6);
+            --border-radius: 12px; --border-radius-lg: 20px;
+            --transition: 0.2s ease; --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ===== БАЗОВЫЕ СТИЛИ ===== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: var(--font-body); font-size: var(--text-base); line-height: 1.6;
+            color: var(--color-text-primary); background: var(--color-bg-light);
+            -webkit-font-smoothing: antialiased; overflow-x: hidden;
+        }
+        img { max-width: 100%; height: auto; display: block; }
+        a { color: inherit; text-decoration: none; }
+        button { font: inherit; cursor: pointer; border: none; background: none; }
+
+        .brandbook-container { min-height: 100vh; display: flex; flex-direction: column; }
+        .content-wrapper {
+            max-width: var(--container-max); margin: 0 auto;
+            padding: var(--space-12) var(--container-padding); width: 100%;
+        }
+
+        /* ===== HEADER ===== */
+        .main-header {
+            position: sticky; top: 0; z-index: 200;
+            background: rgba(242, 241, 240, 0.98); backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-border); transition: var(--transition);
+        }
+        .main-header.scrolled { box-shadow: 0 4px 20px var(--color-shadow); }
+        .header-inner {
+            max-width: var(--container-max); margin: 0 auto;
+            padding: var(--space-4) var(--container-padding);
+            display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);
+        }
+        .header-left { display: flex; align-items: center; gap: var(--space-6); flex: 1; }
+        .logo-group { display: flex; align-items: center; gap: var(--space-3); }
+        .logo-img { height: 32px; width: auto; object-fit: contain; }
+        .brandbook-label {
+            font-family: var(--font-display); font-weight: 700; font-size: var(--text-xl);
+            color: var(--color-accent-red); letter-spacing: -0.02em;
+            padding-left: var(--space-4); border-left: 2px solid var(--color-border);
+        }
+        .nav-menu {
+            display: flex; align-items: center; gap: var(--space-2);
+            list-style: none; margin-left: auto; flex-wrap: wrap;
+        }
+        .nav-btn {
+            padding: var(--space-2) var(--space-4); font-family: var(--font-display);
+            font-weight: 600; font-size: var(--text-sm); color: var(--color-text-secondary);
+            border-radius: 8px; transition: var(--transition); position: relative;
+            white-space: nowrap;
+        }
+        .nav-btn:hover, .nav-btn.active {
+            color: var(--color-bg-dark); background: rgba(244, 49, 57, 0.08);
+        }
+        .nav-btn.active::after {
+            content: ''; position: absolute; bottom: -2px; left: 50%;
+            transform: translateX(-50%); width: 20px; height: 3px;
+            background: var(--color-accent-red); border-radius: 2px;
+        }
+        .burger-icon {
+            display: none; font-size: var(--text-2xl); color: var(--color-bg-dark);
+            padding: var(--space-2); border-radius: 8px; transition: var(--transition);
+            order: 99; margin-left: auto;
+        }
+        .burger-icon:hover { background: rgba(35, 31, 32, 0.08); }
+
+        /* ===== МОБИЛЬНОЕ МЕНЮ ===== */
+        .mobile-nav {
+            position: fixed; top: 0; right: -100%; width: 75%; max-width: 320px;
+            min-width: 240px; height: 100vh; height: -webkit-fill-available;
+            background: #1A1A1A; z-index: 10000;
+            transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 70px 20px 30px 20px; overflow-y: auto; overflow-x: hidden;
+            display: flex; flex-direction: column; box-sizing: border-box;
+            border-radius: 0; box-shadow: -4px 0 16px rgba(0, 0, 0, 0.25);
+        }
+        .mobile-nav.open { right: 0; }
+        .mobile-logo-group {
+            display: flex; flex-direction: column; align-items: center;
+            gap: 12px; margin-bottom: 16px; padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .mobile-logo-group .logo-img { height: 40px; }
+        .close-mobile-menu {
+            position: absolute; top: 16px; right: 16px;
+            width: 38px; height: 38px; display: flex; align-items: center;
+            justify-content: center; background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%; color: #fff; font-size: 20px; cursor: pointer;
+            z-index: 10001; border: none; transition: background 0.2s;
+        }
+        .close-mobile-menu:hover { background: rgba(255, 255, 255, 0.2); }
+        .mobile-nav ul { list-style: none; display: flex; flex-direction: column; gap: 12px; margin: 0; padding: 0; }
+        .mobile-nav ul li a {
+            color: var(--color-bg-light); font-family: var(--font-display);
+            font-size: 15px; text-decoration: none; display: block;
+            padding: 6px 0; line-height: 1.2; transition: color 0.2s;
+        }
+        .mobile-nav ul li a:hover, .mobile-nav ul li a.active { color: var(--color-accent-red); }
+        .overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); z-index: 9999;
+            display: none; opacity: 0; transition: opacity 0.3s ease;
+        }
+        .overlay.active { display: block; opacity: 1; }
+
+        /* ===== HERO ===== */
+        .hero-brand {
+            padding: var(--space-16) var(--container-padding);
+            text-align: center; color: var(--color-text-inverse);
+            position: relative; overflow: hidden;
+        }
+        .hero-brand::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.4) 100%); z-index: 1;
+        }
+        .hero-brand-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
+        .hero-brand h1 {
+            font-family: var(--font-display); font-weight: 800;
+            font-size: clamp(var(--text-4xl), 8vw, var(--text-6xl));
+            line-height: 1.1; letter-spacing: -0.03em;
+            margin-bottom: var(--space-4); text-transform: uppercase;
+        }
+        .hero-brand p {
+            font-size: var(--text-xl); font-weight: 400; opacity: 0.95;
+            max-width: 600px; margin: 0 auto;
+        }
+        .hero-brand[data-color="dark"] { background: var(--color-bg-dark); }
+        .hero-brand[data-color="blue"] { background: var(--color-deep-blue); }
+        .hero-brand[data-color="red"] { background: var(--color-accent-red); }
+        .hero-brand[data-color="gold"] { background: var(--color-gold); color: var(--color-bg-dark); }
+
+        /* ===== СЕТКИ И КАРТОЧКИ ===== */
+        .grid-2col { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-6); margin-bottom: var(--space-10); }
+        .grid-3col { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-5); margin-bottom: var(--space-10); }
+        .brand-card {
+            background: #fff; border-radius: var(--border-radius-lg);
+            padding: var(--space-6); box-shadow: 0 4px 20px var(--color-shadow);
+            transition: var(--transition-smooth); border: 1px solid var(--color-border);
+        }
+        .brand-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px var(--color-shadow); }
+        .brand-card h3 { font-family: var(--font-display); font-weight: 700; font-size: var(--text-xl); color: var(--color-bg-dark); margin-bottom: var(--space-3); line-height: 1.3; }
+        .brand-card p { color: var(--color-text-secondary); font-size: var(--text-base); line-height: 1.7; }
+
+        /* ===== ЛОГОТИПЫ ===== */
+        .section-title {
+            font-family: var(--font-display); font-weight: 700; font-size: var(--text-2xl);
+            color: var(--color-bg-dark); margin-bottom: var(--space-4);
+        }
+        .logo-variants-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); margin-bottom: var(--space-10);
+        }
+        .logo-variant-item {
+            border-radius: var(--border-radius); overflow: hidden;
+            border: 1px solid var(--color-border); background: #fff;
+            padding: var(--space-5); text-align: center; transition: var(--transition-smooth);
+        }
+        .logo-variant-item:hover { transform: translateY(-4px); box-shadow: 0 12px 24px var(--color-shadow); }
+        .logo-variant-item.light-bg { background: #F2F1F0; }
+        .logo-variant-item.dark-bg { background: #221E1F; color: var(--color-text-inverse); }
+        .logo-variant-item p { margin-top: var(--space-3); font-family: var(--font-display); font-weight: 600; font-size: var(--text-sm); color: inherit; opacity: 0.85; }
+        .variant-placeholder { width: 100%; height: 100px; display: flex; align-items: center; justify-content: center; }
+        .variant-placeholder img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .logo-detail-img { cursor: pointer; transition: transform 0.2s; }
+        .logo-detail-img:hover { transform: scale(1.02); }
+
+        /* ===== ОХРАННЫЕ ПОЛЯ, МИН.РАЗМЕРЫ ===== */
+        .clearspace-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6); margin-bottom: var(--space-10); }
+        .clearspace-demo {
+            background: #fff; border-radius: var(--border-radius-lg); padding: var(--space-6);
+            border: 1px solid var(--color-border); box-shadow: 0 4px 20px var(--color-shadow); text-align: center;
+        }
+        .clearspace-demo p { margin-top: var(--space-4); font-family: var(--font-display); font-weight: 600; font-size: var(--text-sm); color: var(--color-text-secondary); }
+        .clearspace-box {
+            width: 100%; height: 200px; display: flex; align-items: center; justify-content: center;
+            border: 2px dashed rgba(0,0,0,0.15); border-radius: var(--border-radius); position: relative;
+        }
+        .clearspace-box.light-bg { background: #F2F1F0; }
+        .clearspace-box.dark-bg { background: #221E1F; border-color: rgba(255,255,255,0.25); }
+        .clearspace-box.vertical { height: 250px; }
+        .clearspace-inner { padding: 30px; background: transparent; display: flex; align-items: center; justify-content: center; }
+        .clearspace-inner img { max-width: 100%; max-height: 100%; }
+
+        .min-size-demo {
+            background: #fff; border-radius: var(--border-radius-lg); padding: var(--space-8);
+            border: 1px solid var(--color-border); box-shadow: 0 4px 20px var(--color-shadow); text-align: center;
+            max-width: 400px; margin: 0 auto var(--space-10);
+        }
+        .size-indicator {
+            position: absolute; bottom: -24px; left: 50%; transform: translateX(-50%);
+            background: var(--color-accent-red); color: #fff; font-family: var(--font-display);
+            font-size: var(--text-xs); font-weight: 700; padding: 2px 12px; border-radius: 20px;
+            white-space: nowrap; letter-spacing: 0.03em;
+        }
+
+        /* ===== ГОРИЗОНТАЛЬНЫЙ СКРОЛЛ ===== */
+        .h-scroll-wrapper { position: relative; margin: var(--space-6) 0; }
+        .h-scroll-container {
+            display: flex; gap: var(--space-4); overflow-x: auto;
+            scroll-behavior: smooth; padding-bottom: var(--space-2);
+            -webkit-overflow-scrolling: touch; scrollbar-width: none;
+        }
+        .h-scroll-container::-webkit-scrollbar { display: none; }
+        .h-scroll-item {
+            flex: 0 0 280px; background: #fff; border-radius: var(--border-radius);
+            overflow: hidden; box-shadow: 0 4px 12px var(--color-shadow);
+            border: 1px solid var(--color-border); text-align: center; padding: var(--space-4);
+        }
+        .h-scroll-item img { width: 100%; height: 180px; object-fit: cover; border-radius: 4px; cursor: pointer; }
+        .h-scroll-item p { font-size: var(--text-sm); margin-top: var(--space-2); color: var(--color-text-secondary); font-family: var(--font-display); }
+        .scroll-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            width: 40px; height: 40px; border-radius: 50%; background: #fff;
+            border: 1px solid var(--color-border); color: var(--color-bg-dark);
+            font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; z-index: 5; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.2s;
+        }
+        .scroll-btn:hover { background: var(--color-accent-red); color: #fff; border-color: var(--color-accent-red); }
+        .scroll-btn.prev { left: -10px; }
+        .scroll-btn.next { right: -10px; }
+
+        /* ===== ПОЛНОЭКРАННЫЙ ПРОСМОТР ===== */
+        .fullscreen-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.95); z-index: 99999;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .fullscreen-overlay.active { opacity: 1; visibility: visible; }
+        .fullscreen-overlay img {
+            max-width: 90vw; max-height: 90vh; object-fit: contain;
+            border-radius: 8px; box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        .fullscreen-close {
+            position: absolute; top: 20px; right: 30px; font-size: 2.5rem; color: #fff;
+            cursor: pointer; z-index: 100000; width: 50px; height: 50px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; background: rgba(255,255,255,0.1); border: none;
+        }
+
+        /* ===== НОСИТЕЛИ ===== */
+        .filters-section { margin: var(--space-8) 0 var(--space-6); padding: 0 var(--container-padding); }
+        .filter-chips { display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center; }
+        .filter-chip {
+            padding: var(--space-2) var(--space-5); font-family: var(--font-display);
+            font-weight: 600; font-size: var(--text-sm); border-radius: 30px;
+            border: 2px solid var(--color-border); background: #fff;
+            color: var(--color-text-secondary); cursor: pointer; transition: var(--transition);
+            white-space: nowrap;
+        }
+        .filter-chip:hover { border-color: var(--color-accent-red); color: var(--color-accent-red); }
+        .filter-chip.active { background: var(--color-accent-red); border-color: var(--color-accent-red); color: #fff; }
+
+        .media-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--space-5); padding: 0 var(--container-padding); margin-bottom: var(--space-10);
+        }
+        .media-card-new {
+            background: #fff; border-radius: var(--border-radius-lg); overflow: hidden;
+            box-shadow: 0 4px 20px var(--color-shadow); border: 1px solid var(--color-border);
+            display: flex; flex-direction: column; transition: var(--transition-smooth);
+        }
+        .media-card-new:hover { transform: translateY(-4px); box-shadow: 0 12px 40px var(--color-shadow); }
+        .media-card-image { height: 200px; overflow: hidden; position: relative; }
+        .media-card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+        .media-card-new:hover .media-card-image img { transform: scale(1.05); }
+        .media-card-tag {
+            position: absolute; top: var(--space-3); left: var(--space-3);
+            background: var(--color-accent-red); color: #fff; font-size: var(--text-xs);
+            font-weight: 600; padding: 4px 10px; border-radius: 20px;
+            text-transform: uppercase; letter-spacing: 0.03em;
+        }
+        .media-card-content { padding: var(--space-5); flex: 1; display: flex; flex-direction: column; }
+        .media-card-content h3 { font-family: var(--font-display); font-weight: 700; font-size: var(--text-xl); margin-bottom: var(--space-2); color: var(--color-bg-dark); }
+        .media-card-content p { color: var(--color-text-secondary); font-size: var(--text-sm); line-height: 1.5; margin-bottom: var(--space-4); flex: 1; }
+        .media-card-btn { align-self: flex-start; }
+        .show-more-wrapper { text-align: center; margin: var(--space-8) 0; }
+        .show-more-btn {
+            padding: var(--space-3) var(--space-8); font-family: var(--font-display);
+            font-weight: 600; font-size: var(--text-base); border: 2px solid var(--color-border);
+            border-radius: 30px; background: #fff; color: var(--color-text-primary);
+            cursor: pointer; transition: var(--transition);
+        }
+        .show-more-btn:hover { border-color: var(--color-accent-red); color: var(--color-accent-red); }
+
+        .media-detail-page { display: none; animation: slideIn 0.3s ease; }
+        .media-detail-page.active { display: block; }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+        .media-detail-header {
+            background: var(--color-bg-dark); color: var(--color-text-inverse);
+            padding: var(--space-8) var(--container-padding); text-align: center; position: relative;
+        }
+        .media-detail-header .btn-secondary {
+            position: absolute; left: var(--container-padding); top: var(--space-4);
+            background: rgba(255,255,255,0.15); color: #fff; border-color: rgba(255,255,255,0.3);
+        }
+        .media-detail-header .btn-secondary:hover { background: rgba(255,255,255,0.25); }
+        .media-detail-tag {
+            display: inline-block; background: var(--color-accent-red); color: #fff;
+            font-size: var(--text-xs); font-weight: 600; padding: 4px 12px;
+            border-radius: 20px; margin-bottom: var(--space-3);
+            text-transform: uppercase; letter-spacing: 0.05em;
+        }
+        .media-detail-title h1 {
+            font-family: var(--font-display); font-weight: 800;
+            font-size: clamp(var(--text-3xl), 6vw, var(--text-5xl));
+            margin-bottom: var(--space-2); line-height: 1.1;
+        }
+        .media-detail-title p { font-size: var(--text-lg); opacity: 0.9; max-width: 600px; margin: 0 auto; }
+        .media-detail-content { max-width: var(--container-max); margin: 0 auto; padding: var(--space-10) var(--container-padding); }
+        .media-gallery { margin-bottom: var(--space-8); }
+        .gallery-main { position: relative; border-radius: var(--border-radius-lg); overflow: hidden; box-shadow: 0 12px 40px var(--color-shadow); margin-bottom: var(--space-4); }
+        .gallery-main img { width: 100%; height: auto; aspect-ratio: 16/10; object-fit: cover; display: block; }
+        .gallery-nav {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            width: 48px; height: 48px; border-radius: 50%;
+            background: rgba(35, 31, 32, 0.7); color: #fff; border: none;
+            font-size: var(--text-xl); display: flex; align-items: center;
+            justify-content: center; cursor: pointer; transition: var(--transition); z-index: 5;
+        }
+        .gallery-nav:hover { background: var(--color-accent-red); }
+        .gallery-nav.prev { left: var(--space-4); } .gallery-nav.next { right: var(--space-4); }
+        .gallery-thumbs { display: flex; gap: var(--space-3); overflow-x: auto; padding: var(--space-2) 0; scrollbar-width: thin; }
+        .gallery-thumbs::-webkit-scrollbar { height: 6px; }
+        .gallery-thumbs::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+        .thumb {
+            flex: 0 0 100px; height: 66px; border-radius: 8px;
+            object-fit: cover; cursor: pointer; opacity: 0.7;
+            transition: var(--transition); border: 2px solid transparent;
+        }
+        .thumb:hover, .thumb.active { opacity: 1; border-color: var(--color-accent-red); transform: scale(1.03); }
+        .media-specs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-6); margin-bottom: var(--space-8); }
+        .specs-table { width: 100%; border-collapse: collapse; font-size: var(--text-sm); }
+        .specs-table th, .specs-table td { padding: var(--space-3) var(--space-4); text-align: left; border-bottom: 1px solid var(--color-border); }
+        .specs-table th { font-weight: 600; color: var(--color-text-primary); width: 45%; }
+        .specs-table td { color: var(--color-text-secondary); }
+        .downloads-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-4); }
+        .download-item {
+            display: flex; align-items: center; gap: var(--space-3);
+            padding: var(--space-4); background: rgba(244, 49, 57, 0.06);
+            border-radius: var(--border-radius); border: 1px solid var(--color-border);
+            transition: var(--transition); text-decoration: none; color: inherit;
+        }
+        .download-item:hover { background: rgba(244, 49, 57, 0.12); transform: translateY(-2px); }
+        .download-item i { font-size: var(--text-2xl); color: var(--color-accent-red); }
+        .download-item strong { display: block; font-size: var(--text-base); margin-bottom: 2px; }
+        .download-item small { color: var(--color-text-secondary); font-size: var(--text-xs); }
+
+        /* ===== МЕДИА-ЗАПРОСЫ ===== */
+        @media (max-width: 1024px) {
+            .nav-menu { display: none; }
+            .burger-icon { display: flex; align-items: center; }
+        }
+        @media (max-width: 768px) {
+            .grid-2col, .grid-3col { grid-template-columns: 1fr; }
+            .media-detail-header .btn-secondary { position: static; margin-bottom: var(--space-4); }
+            .logo-variants-grid { grid-template-columns: 1fr; }
+            .clearspace-grid { grid-template-columns: 1fr; }
+            .scroll-btn { display: none; }
+            .h-scroll-item { flex: 0 0 240px; }
+        }
+        @media (max-width: 640px) {
+            :root { --container-padding: var(--space-4); }
+            .hero-brand { padding: var(--space-10) var(--container-padding); }
+            .hero-brand h1 { font-size: clamp(var(--text-3xl), 10vw, var(--text-5xl)); }
+            .content-wrapper { padding: var(--space-8) var(--container-padding); }
+            .brand-card { padding: var(--space-5); }
+        }
+    </style>
+</head>
+<body>
+<div class="brandbook-container">
+    
+    <!-- HEADER -->
+    <header class="main-header" id="mainHeader">
+        <div class="header-inner">
+            <div class="header-left">
+                <a href="index.html" class="logo-link" aria-label="На главную">
+                    <div class="logo-group">
+                        <img class="logo-img" src="SVG/logo-2.svg" alt="Знак" loading="lazy">
+                        <img class="logo-img" src="SVG/logo.svg" alt="Логотип" loading="lazy">
+                    </div>
+                </a>
+                <span class="brandbook-label">Брендбук</span>
+            </div>
+            <nav class="nav-menu" id="brandNav">
+                <li><button class="nav-btn" onclick="window.location.href='index.html'" data-page="about">Сайт театра</button></li>
+                <li><button class="nav-btn active" data-page="about">О бренде</button></li>
+                <li><button class="nav-btn" data-page="logo">Логотип</button></li>
+                <li><button class="nav-btn" data-page="colors">Цвета</button></li>
+                <li><button class="nav-btn" data-page="typo">Типографика</button></li>
+                <li><button class="nav-btn" data-page="graphics">Графика</button></li>
+                <li><button class="nav-btn" data-page="photo">Фотостиль</button></li>
+                <li><button class="nav-btn" data-page="media">Носители</button></li>
+            </nav>
+            <button class="burger-icon" id="burgerIcon" aria-label="Открыть меню"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <!-- МОБИЛЬНОЕ МЕНЮ -->
+    <aside class="mobile-nav" id="mobileNav" aria-hidden="true">
+        <button class="close-mobile-menu" id="closeMobileMenu"><i class="fas fa-times"></i></button>
+        <a href="index.html" class="mobile-logo-link"><div class="mobile-logo-group"><img class="logo-img" src="SVG/logo-black.svg" alt="Знак"><img class="logo-img" src="SVG/logo-black-2.svg" alt="Логотип"></div></a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Сайт театра</a></li>
+                <li><a href="#" data-mobile-page="about">О бренде</a></li>
+                <li><a href="#" data-mobile-page="logo">Логотип</a></li>
+                <li><a href="#" data-mobile-page="colors">Цвета</a></li>
+                <li><a href="#" data-mobile-page="typo">Типографика</a></li>
+                <li><a href="#" data-mobile-page="graphics">Графика</a></li>
+                <li><a href="#" data-mobile-page="photo">Фотостиль</a></li>
+                <li><a href="#" data-mobile-page="media">Носители</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+    <!-- СТРАНИЦА: О БРЕНДЕ (без изменений) -->
+    <section class="page-section active" id="page-about">
+        <div class="hero-brand" data-color="blue"><div class="hero-brand-content"><h1>О бренде</h1><p>Кодекс визуальной и смысловой идентичности</p></div></div>
+        <div class="content-wrapper"> ... (сокращено для читаемости) </div>
+    </section>
+
+    <!-- СТРАНИЦА: ЛОГОТИП (НОВАЯ) -->
+    <section class="page-section" id="page-logo">
+        <div class="hero-brand" data-color="dark">
+            <div class="hero-brand-content"><h1>Логотип</h1><p>Структура, модификации, охранное поле, минимальные размеры</p></div>
+        </div>
+        <div class="content-wrapper">
+            <!-- Кнопка скачивания AI -->
+            <div class="text-center mb-8">
+                <a href="#" class="btn btn-primary" download style="display:inline-flex;"><i class="fas fa-file-vector"></i> Скачать все логотипы (AI)</a>
+            </div>
+
+            <!-- 1. Вариации логотипа -->
+            <h2 class="section-title">Вариации логотипа</h2>
+            <div class="logo-variants-grid">
+                <div class="logo-variant-item light-bg"><img src="SVG/znak-sv.svg" alt="Знак" class="logo-detail-img" data-full="SVG/znak-sv.svg"><p>Знак</p></div>
+                <div class="logo-variant-item light-bg"><img src="SVG/all-sv.svg" alt="Знак+текст" class="logo-detail-img" data-full="SVG/all-sv.svg"><p>Знак + текст</p></div>
+                <div class="logo-variant-item light-bg"><img src="SVG/text+sv.svg" alt="Текст+знак" class="logo-detail-img" data-full="SVG/text+sv.svg"><p>Текст + знак</p></div>
+                <div class="logo-variant-item light-bg"><img src="SVG/text-sv.svg" alt="Текст" class="logo-detail-img" data-full="SVG/text-sv.svg"><p>Текст</p></div>
+            </div>
+
+            <!-- 2. Структура логотипа -->
+            <h2 class="section-title mt-8">Структура логотипа</h2>
+            <figure class="photo-large"><img src="https://placehold.co/1400x600/2C4068/F2F1F0?text=Структура" alt="Структура" class="logo-detail-img" data-full="https://placehold.co/1400x600/2C4068/F2F1F0?text=Структура"></figure>
+
+            <!-- 3. Охранное поле -->
+            <h2 class="section-title mt-8">Охранное поле</h2>
+            <div class="clearspace-grid">
+                <div class="clearspace-demo"><img src="https://placehold.co/600x400/F2F1F0/231F20?text=Горизонтальное+светлое" class="logo-detail-img"><p>Светлый, горизонтально</p></div>
+                <div class="clearspace-demo"><img src="https://placehold.co/600x400/221E1F/F2F1F0?text=Горизонтальное+тёмное" class="logo-detail-img"><p>Тёмный, горизонтально</p></div>
+                <div class="clearspace-demo"><img src="https://placehold.co/400x600/F2F1F0/231F20?text=Вертикальное+светлое" class="logo-detail-img"><p>Светлый, вертикально</p></div>
+                <div class="clearspace-demo"><img src="https://placehold.co/400x600/221E1F/F2F1F0?text=Вертикальное+тёмное" class="logo-detail-img"><p>Тёмный, вертикально</p></div>
+            </div>
+
+            <!-- 4. Минимальные размеры -->
+            <h2 class="section-title mt-8">Минимальные размеры</h2>
+            <div class="clearspace-grid">
+                <div class="clearspace-demo"><img src="https://placehold.co/600x400/231F20/F2F1F0?text=Знак+печать+25мм" class="logo-detail-img"><p>Знак, печать (25 мм)</p></div>
+                <div class="clearspace-demo"><img src="https://placehold.co/600x400/231F20/F2F1F0?text=Знак+экран+72px" class="logo-detail-img"><p>Знак, экран (72 px)</p></div>
+                <div class="clearspace-demo"><img src="https://placehold.co/600x400/231F20/F2F1F0?text=Текст+печать" class="logo-detail-img"><p>Текст, печать</p></div>
+                <div class="clearspace-demo"><img src="https://placehold.co/600x400/231F20/F2F1F0?text=Текст+экран" class="logo-detail-img"><p>Текст, экран</p></div>
+            </div>
+
+            <!-- 5. Разрешенные модификации (горизонтальный скролл) -->
+            <h2 class="section-title mt-8">Разрешенные модификации</h2>
+            <div class="h-scroll-wrapper" data-scroll="allowed">
+                <button class="scroll-btn prev"><i class="fas fa-chevron-left"></i></button>
+                <div class="h-scroll-container">
+                    <div class="h-scroll-item"><img src="https://placehold.co/400x300/2C4068/white?text=Мод1" class="logo-detail-img"><p>Основной</p></div>
+                    <div class="h-scroll-item"><img src="https://placehold.co/400x300/F43139/white?text=Мод2" class="logo-detail-img"><p>Красный</p></div>
+                    <div class="h-scroll-item"><img src="https://placehold.co/400x300/D4BF95/231F20?text=Мод3" class="logo-detail-img"><p>Золотой</p></div>
+                    <div class="h-scroll-item"><img src="https://placehold.co/400x300/F2F1F0/231F20?text=Мод4" class="logo-detail-img"><p>Монохром</p></div>
+                    <div class="h-scroll-item"><img src="https://placehold.co/400x300/231F20/F2F1F0?text=Мод5" class="logo-detail-img"><p>Без подписи</p></div>
+                    <div class="h-scroll-item"><img src="https://placehold.co/400x300/2C4068/white?text=Мод6" class="logo-detail-img"><p>Горизонтальный</p></div>
+                </div>
+                <button class="scroll-btn next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+
+            <!-- 6. Запрещенные модификации (горизонтальный скролл) -->
+            <h2 class="section-title mt-8">Запрещенные модификации</h2>
+            <div class="h-scroll-wrapper" data-scroll="forbidden">
+                <button class="scroll-btn prev"><i class="fas fa-chevron-left"></i></button>
+                <div class="h-scroll-container">
+                    <div class="h-scroll-item"><img src="https://placehold.co/400x300/FF0000/white?text=Запр1" class="logo-detail-img"><p>Искажение</p></div>
+                    <div class="h-scroll-item"><img src="https://placehold.co/400x300/00FF00/white?text=Запр2" class="logo-detail-img"><p>Замена цветов</p></div>
+                    <div class="h-scroll-item"><img src="https://placehold.co/400x300/0000FF/white?text=Запр3" class="logo-detail-img"><p>Тени</p></div>
+                    <div class="h-scroll-item"><img src="https://placehold.co/400x300/FF00FF/white?text=Запр4" class="logo-detail-img"><p>Поворот</p></div>
+                    <div class="h-scroll-item"><img src="https://placehold.co/400x300/FFFF00/white?text=Запр5" class="logo-detail-img"><p>Наложение</p></div>
+                    <div class="h-scroll-item"><img src="https://placehold.co/400x300/00FFFF/white?text=Запр6" class="logo-detail-img"><p>Градиент</p></div>
+                </div>
+                <button class="scroll-btn next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- СТРАНИЦА: ЦВЕТА (без изменений) -->
+    <section class="page-section" id="page-colors"> ... </section>
+
+    <!-- СТРАНИЦА: ТИПОГРАФИКА (без изменений) -->
+    <section class="page-section" id="page-typo"> ... </section>
+
+    <!-- СТРАНИЦА: ГРАФИКА (без изменений) -->
+    <section class="page-section" id="page-graphics"> ... </section>
+
+    <!-- СТРАНИЦА: ФОТОСТИЛЬ (без изменений) -->
+    <section class="page-section" id="page-photo"> ... </section>
+
+    <!-- СТРАНИЦА: НОСИТЕЛИ -->
+    <section class="page-section" id="page-media" style="display:none;">
+        <div class="hero-brand" data-color="blue"><div class="hero-brand-content"><h1>Носители</h1><p>Применение бренда в разных контекстах</p></div></div>
+        <div class="content-wrapper">
+            <article class="brand-card mb-6"><h3>Общие правила</h3><ul style="list-style:none; padding-left:0; display:grid; gap:var(--space-2);"><li>• <strong>Охранное поле:</strong> не менее высоты буквы «М» вокруг логотипа</li><li>• <strong>Цвета:</strong> только палитра брендбука</li><li>• <strong>Шрифты:</strong> Unbounded / Nunito Sans</li></ul></article>
+            <div class="filters-section"><div class="filter-chips" id="filterChips"> ... </div></div>
+            <div class="media-grid" id="mediaGrid"></div>
+            <div class="show-more-wrapper"><button class="show-more-btn" id="showMoreMediaBtn">Показать ещё</button></div>
+        </div>
+    </section>
+
+    <!-- ДЕТАЛЬНЫЙ ПРОСМОТР НОСИТЕЛЯ -->
+    <div class="media-detail-page" id="mediaDetailContainer" style="display:none;">
+        <div class="media-detail-header">
+            <button class="btn btn-secondary media-back-btn" id="mediaBackBtn"><i class="fas fa-arrow-left"></i> Назад</button>
+            <div class="media-detail-title"><span class="media-detail-tag" id="detailTag"></span><h1 id="detailTitle"></h1><p id="detailSubtitle"></p></div>
+        </div>
+        <div class="media-detail-content">
+            <div class="media-gallery" id="detailGallery" style="display:none;">
+                <div class="gallery-main"><img id="detailMainImg" src="" alt=""><button class="gallery-nav prev" id="detailPrev"><i class="fas fa-chevron-left"></i></button><button class="gallery-nav next" id="detailNext"><i class="fas fa-chevron-right"></i></button></div>
+                <div class="gallery-thumbs" id="detailThumbs"></div>
+            </div>
+            <div class="media-specs-grid" id="detailSpecsGrid"></div>
+            <div class="downloads-grid" id="detailDownloads"></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div id="site-footer"><p style="font-size: var(--text-sm);">© 2026 Театр клоунады «Микос». Все права защищены.</p></div>
+</div>
+
+<!-- Полноэкранный просмотр -->
+<div class="fullscreen-overlay" id="fullscreenOverlay">
+    <button class="fullscreen-close" id="fullscreenClose">&times;</button>
+    <img src="" alt="" id="fullscreenImage">
+</div>
+
+<script src="js/loader-animation.js"></script>
+<script src="js/components-loader.js"></script>
+<script>
+    // Все старые скрипты типографики, переключения страниц, мобильного меню, носителей.
+    // Важно: в конце добавлен код для скроллов и полноэкранного просмотра.
+    (function() {
+        // ... (весь предыдущий JavaScript без изменений, плюс новый код ниже)
+    })();
+
+    // Инициализация горизонтальных прокруток и полноэкранного режима
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.h-scroll-wrapper').forEach(wrapper => {
+            const container = wrapper.querySelector('.h-scroll-container');
+            const prevBtn = wrapper.querySelector('.scroll-btn.prev');
+            const nextBtn = wrapper.querySelector('.scroll-btn.next');
+            if (!container) return;
+            if (prevBtn) prevBtn.addEventListener('click', () => container.scrollBy({ left: -300, behavior: 'smooth' }));
+            if (nextBtn) nextBtn.addEventListener('click', () => container.scrollBy({ left: 300, behavior: 'smooth' }));
+        });
+
+        const overlay = document.getElementById('fullscreenOverlay');
+        const overlayImg = document.getElementById('fullscreenImage');
+        const closeBtn = document.getElementById('fullscreenClose');
+
+        if (overlay && overlayImg) {
+            document.body.addEventListener('click', function(e) {
+                const img = e.target.closest('.logo-detail-img');
+                if (!img) return;
+                const src = img.getAttribute('data-full') || img.src;
+                overlayImg.src = src;
+                overlay.classList.add('active');
+            });
+            closeBtn.addEventListener('click', () => { overlay.classList.remove('active'); overlayImg.src = ''; });
+            overlay.addEventListener('click', function(e) { if (e.target === overlay) { overlay.classList.remove('active'); overlayImg.src = ''; } });
+            document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && overlay.classList.contains('active')) { overlay.classList.remove('active'); overlayImg.src = ''; } });
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!-- МОДАЛЬНЫЕ ОКНА (Единый компонент) -->
+<!-- 1. Выбор сеанса -->
+<div id="modal-session" class="modal-overlay" data-modal="session">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h3 id="session-modal-title">Выбор сеанса</h3>
+      <button class="modal-close" data-modal-close><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-performance-title"><i class="fas fa-ticket-alt"></i> <span id="session-play-title"></span></div>
+      <div class="date-filter" id="session-date-filter"></div>
+      <div class="sessions-list" id="session-list"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-confirm-btn" id="session-confirm-btn" disabled><i class="fas fa-shopping-cart"></i> Перейти к покупке</button>
+    </div>
+  </div>
+</div>
+
+<!-- 2. Товар / Корзина -->
+<div id="modal-product" class="modal-overlay" data-modal="product">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h3 id="product-modal-title">Товар</h3>
+      <button class="modal-close" data-modal-close><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body" id="product-modal-body"></div>
+    <div class="modal-footer" id="product-modal-footer"></div>
+  </div>
+</div>
+
+<!-- 3. Контакты / Оформление -->
+<div id="modal-contacts" class="modal-overlay" data-modal="contacts">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h3>Оформление заказа</h3>
+      <button class="modal-close" data-modal-close><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <div id="contacts-order-summary" class="cart-summary"></div>
+      <!-- Поля формы добавляются динамически или статически -->
+      <div id="contacts-form-fields"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-confirm-btn" id="contacts-submit-btn"><i class="fas fa-check"></i> Оформить заказ</button>
+    </div>
+  </div>
+</div>
+
+<!-- 4. Успешное действие -->
+<div id="modal-success" class="modal-overlay modal--success" data-modal="success">
+  <div class="modal-container">
+    <button class="modal-close" data-modal-close><i class="fas fa-times"></i></button>
+    <div class="success-icon"><i class="fas fa-check"></i></div>
+    <h3 class="success-modal-title" id="success-title">Готово!</h3>
+    <p class="success-modal-text" id="success-text"></p>
+    <button class="success-modal-btn" id="success-btn">OK</button>
+  </div>
+</div>
+
+<!-- 5. Команда -->
+<div id="modal-team" class="modal-overlay modal--team" data-modal="team">
+  <div class="modal-container">
+    <button class="modal-close" data-modal-close><i class="fas fa-times"></i></button>
+    <div class="modal-body team-modal-body" id="team-modal-body"></div>
+  </div>
+</div>
+
+<!-- 6. Галерея изображений -->
+<div id="modal-gallery" class="modal-overlay modal--gallery" data-modal="gallery">
+  <button class="gallery-close-btn" data-modal-close><i class="fas fa-times"></i></button>
+  <div class="gallery-container">
+    <button class="gallery-nav-btn prev" id="gallery-prev"><i class="fas fa-chevron-left"></i></button>
+    <img class="gallery-main-img" id="gallery-img" src="" alt="">
+    <button class="gallery-nav-btn next" id="gallery-next"><i class="fas fa-chevron-right"></i></button>
+    <div class="gallery-counter" id="gallery-counter"></div>
+    <div class="gallery-thumbs" id="gallery-thumbs"></div>
+  </div>
+</div>
+
+<!-- 7. Промо / Скоро / Раскуплено -->
+<div id="modal-promo" class="modal-overlay" data-modal="promo">
+  <div class="modal-container modal--promo">
+    <button class="modal-close" data-modal-close><i class="fas fa-times"></i></button>
+    <div id="promo-modal-content"></div>
+  </div>
+</div>
+
+<!-- 8. Все гастроли -->
+<div id="modal-tour" class="modal-overlay" data-modal="tour">
+  <div class="modal-container modal--tour">
+    <button class="modal-close" data-modal-close><i class="fas fa-times"></i></button>
+    <div class="modal-header">
+      <h3>Все гастроли театра</h3>
+    </div>
+    <div class="modal-body">
+      <div id="tour-modal-list"></div>
+    </div>
+    <div class="modal-footer"><i class="fas fa-ticket-alt"></i> Билеты поступают в продажу за 30 дней</div>
+  </div>
+</div>
+
+<!-- 9. Фильтр по месяцам -->
+<div id="modal-month" class="modal-overlay" data-modal="month">
+  <div class="modal-container modal--month">
+    <button class="modal-close" data-modal-close><i class="fas fa-times"></i></button>
+    <h3 class="modal-month-title">Выберите месяц</h3>
+    <div class="month-options-list" id="month-options"></div>
+  </div>
+</div>

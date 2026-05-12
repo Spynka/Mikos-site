@@ -1,0 +1,2078 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Театр клоунады «Микос» | Главная</title>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/modals.css">
+    <link rel="stylesheet" href="css/header-footer.css"> 
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/svg+xml" href="SVG/logo-2.svg" sizes="any">
+    <script src="js/tour-data.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="js/emailjs-integration.js"></script>
+    <!-- Подключаем IMask для масок ввода -->
+    <script src="https://cdn.jsdelivr.net/npm/imask@7.3.0/dist/imask.min.js"></script>
+    <style>
+        /* ===== СТИЛИ МОДАЛЬНОГО ОКНА КОМАНДЫ (как в team.html) ===== */
+        .team-modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(6px);
+            z-index: 10000;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            padding: 20px; box-sizing: border-box;
+        }
+        .team-modal-overlay.active { opacity: 1; visibility: visible; }
+        
+        .team-modal-content {
+            background: #1A1A1A;
+            border-radius: 24px;
+            max-width: 900px; width: 100%;
+            max-height: 85vh; overflow-y: auto;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transform: scale(0.95);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .team-modal-overlay.active .team-modal-content { transform: scale(1); }
+        
+        .team-modal-close {
+            position: absolute; top: 20px; right: 20px;
+            width: 44px; height: 44px; border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 24px; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; z-index: 10;
+            transition: all 0.2s ease;
+        }
+        .team-modal-close:hover {
+            background: #E8454D;
+            color: white;
+            border-color: #E8454D;
+            transform: rotate(90deg);
+        }
+        
+        .team-modal-body { display: flex; flex-direction: column; }
+        
+        .team-modal-photo {
+            width: 100%; height: 350px; overflow: hidden;
+            border-radius: 24px 24px 0 0; flex-shrink: 0;
+        }
+        .team-modal-photo img {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+        }
+        
+        .team-modal-info { padding: 30px; }
+        
+        .team-modal-name {
+            font-family: 'Unbounded', sans-serif; font-size: 32px;
+            font-weight: 700; color: #FFFFFF; margin-bottom: 6px;
+            line-height: 1.2;
+        }
+        .team-modal-nickname {
+            color: #E8454D; font-weight: 700; font-size: 18px;
+            margin-bottom: 12px; font-family: 'Nunito Sans', sans-serif;
+        }
+        .team-modal-position {
+            font-size: 13px; font-weight: 700; color: #4A6294;
+            text-transform: uppercase; letter-spacing: 1.5px;
+            margin-bottom: 20px; padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .team-modal-section-title {
+            font-family: 'Unbounded', sans-serif; font-size: 18px;
+            font-weight: 700; color: #F8F7F6;
+            margin-top: 24px; margin-bottom: 14px;
+            border-left: 4px solid #E8454D; padding-left: 16px;
+        }
+        .team-modal-bio {
+            color: rgba(255, 255, 255, 0.85);
+            font-family: 'Nunito Sans', sans-serif;
+            line-height: 1.6; font-size: 15px;
+            margin-bottom: 8px;
+        }
+        
+        .team-performances-list {
+            display: flex; flex-direction: column;
+            margin-top: 8px; margin-bottom: 8px;
+        }
+        .team-performance-item {
+            display: flex; align-items: baseline;
+            padding: 12px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            color: rgba(255, 255, 255, 0.9);
+            font-family: 'Nunito Sans', sans-serif; font-size: 15px;
+        }
+        .team-performance-item:last-child { border-bottom: none; }
+        .team-performance-bullet {
+            color: #4A6294; font-weight: 700; font-size: 20px;
+            margin-right: 16px; min-width: 16px;
+        }
+        .team-performance-text { line-height: 1.5; flex: 1; }
+
+        /* Адаптив модалки команды */
+        @media (min-width: 768px) {
+            .team-modal-body { flex-direction: row; }
+            .team-modal-photo {
+                width: 40%; height: auto;
+                border-radius: 24px 0 0 24px;
+            }
+            .team-modal-info { width: 60%; padding: 36px; }
+        }
+        @media (max-width: 480px) {
+            .team-modal-info { padding: 24px 20px; }
+            .team-modal-name { font-size: 28px; }
+            .team-modal-close { top: 16px; right: 16px; width: 40px; height: 40px; }
+        }
+
+        /* Кликабельность карточек команды */
+        .team-card {
+            cursor: pointer;
+            transition: transform 0.25s ease, filter 0.25s ease;
+        }
+        .team-card:hover {
+            transform: scale(1.02);
+            filter: brightness(1.1);
+        }
+
+        /* ===== ОСТАЛЬНЫЕ СТИЛИ МОДАЛОК (сессии, товары, контакты) ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            z-index: 10000;
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.3s ease;
+            padding: 20px;
+            padding-top: 100px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+        .modal-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        .modal-container {
+            background: #FFFFFF;
+            max-width: 520px;
+            width: 100%;
+            max-height: calc(90vh - 100px);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+            border: 1px solid #E5E3E1;
+            margin: 0 auto;
+        }
+        .active .modal-container {
+            transform: scale(1);
+        }
+        .modal-header {
+            padding: 24px 24px 16px;
+            border-bottom: 1px solid #E5E3E1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .modal-header h3 {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #1A1718;
+            margin: 0;
+            padding-left: 12px;
+            position: relative;
+        }
+        .modal-header h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: #E8454D;
+            border-radius: 1.5px;
+        }
+        .modal-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #F8F7F6;
+            border: 1px solid #E5E3E1;
+            color: #5A5556;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .modal-close:hover {
+            background: #E8454D;
+            color: #FFFFFF;
+            border-color: #E8454D;
+        }
+        .modal-body {
+            padding: 24px;
+            overflow-y: auto;
+            flex: 1;
+        }
+        .modal-performance-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #3D393A;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed #E5E3E1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .modal-performance-title i {
+            color: #E8454D;
+            font-size: 16px;
+        }
+        .modal-performance-title span {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 600;
+            color: #1A1718;
+        }
+
+        /* Фильтр по месяцам */
+        .date-filter {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+        .filter-btn {
+            background: #F8F7F6;
+            border: 1px solid #E5E3E1;
+            color: #404040;
+            padding: 8px 16px;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Unbounded', sans-serif;
+        }
+        .filter-btn:hover {
+            background: #E9E7E5;
+            border-color: #D5D3D1;
+        }
+        .filter-btn.active {
+            background: #2A3D5E;
+            border-color: #2A3D5E;
+            color: #FFFFFF;
+        }
+
+        /* Список сеансов */
+        .sessions-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .session-item {
+            background: #F8F7F6;
+            border-radius: 12px;
+            padding: 16px 18px;
+            border: 1px solid #E5E3E1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .session-item:hover {
+            border-color: #4A6294;
+            background: #FFFFFF;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transform: translateX(4px);
+        }
+        .session-item.selected {
+            border-color: #4A6294;
+            background: #E8EEF7;
+            box-shadow: 0 0 0 2px rgba(74, 98, 148, 0.15);
+        }
+        .session-info {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .session-date {
+            font-weight: 700;
+            font-size: 16px;
+            color: #1A1718;
+            font-family: 'Unbounded', sans-serif;
+        }
+        .session-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 14px;
+            color: #5A5556;
+        }
+        .session-meta i {
+            width: 16px;
+            margin-right: 4px;
+            color: #4A6294;
+        }
+        .session-select-indicator {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid #D5D3D1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            background: transparent;
+            flex-shrink: 0;
+        }
+        .session-item.selected .session-select-indicator {
+            background: #4A6294;
+            border-color: #4A6294;
+        }
+        .no-sessions {
+            text-align: center;
+            padding: 40px 20px;
+            color: #5A5556;
+            font-style: italic;
+            background: #F8F7F6;
+            border-radius: 12px;
+            border: 1px dashed #E5E3E1;
+        }
+
+        .modal-footer {
+            padding: 20px 24px;
+            border-top: 1px solid #E5E3E1;
+            background: #FFFFFF;
+        }
+        .modal-confirm-btn {
+            width: 100%;
+            background: #E8454D;
+            color: #FFFFFF;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            font-family: 'Unbounded', sans-serif;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .modal-confirm-btn:disabled {
+            background: #E5E3E1;
+            color: #9A9896;
+            cursor: not-allowed;
+            border: 1px solid #D5D3D1;
+        }
+        .modal-confirm-btn:not(:disabled):hover {
+            background: #D62830;
+        }
+
+        /* ===== СТИЛИ ФОРМ И ВАЛИДАЦИИ ===== */
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .form-group label {
+            display: block;
+            font-family: 'Unbounded', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #2A2627;
+            margin-bottom: 8px;
+        }
+        .form-group label .required {
+            color: #E8454D;
+            margin-left: 2px;
+        }
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #E5E3E1;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: 'Nunito Sans', sans-serif;
+            background: #FFFFFF;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            box-sizing: border-box;
+        }
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #4A6294;
+            box-shadow: 0 0 0 3px rgba(74, 98, 148, 0.15);
+        }
+        
+        /* Стили ошибок валидации */
+        .form-input.error, .form-select.error, .form-textarea.error {
+            border-color: #E8454D;
+            background-color: #FFF5F5;
+        }
+        .form-input.error:focus, .form-select.error:focus, .form-textarea.error:focus {
+            box-shadow: 0 0 0 3px rgba(232, 69, 77, 0.15);
+        }
+        .error-message {
+            display: none;
+            color: #E8454D;
+            font-size: 12px;
+            font-family: 'Nunito Sans', sans-serif;
+            margin-top: 6px;
+            padding-left: 4px;
+        }
+        .error-message.visible {
+            display: block;
+            animation: slideDown 0.2s ease;
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Индикатор обязательности */
+        .form-input[required]:not(:placeholder-shown):valid,
+        .form-textarea[required]:not(:placeholder-shown):valid {
+            border-color: #4CAF50;
+        }
+
+        /* Стили для модалки товара */
+        .modal-buttons {
+            display: flex;
+            gap: 16px;
+            margin-top: 24px;
+        }
+        .modal-btn {
+            flex: 1;
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+        }
+        .btn-outline-modal {
+            background: #F8F7F6;
+            color: #1A1718;
+            border: 1px solid #E5E3E1;
+        }
+        .btn-outline-modal:hover {
+            background: #E9E7E5;
+        }
+        .btn-primary-modal {
+            background: #E8454D;
+            color: #FFFFFF;
+        }
+        .btn-primary-modal:hover {
+            background: #D62830;
+        }
+        .cart-summary {
+            background: #F8F7F6;
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #E5E3E1;
+        }
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        .cart-item-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .cart-item-name {
+            font-weight: 600;
+            color: #1A1718;
+        }
+        .cart-item-details {
+            font-size: 13px;
+            color: #5A5556;
+        }
+        .cart-item-price {
+            font-weight: 700;
+            color: #4A6294;
+        }
+        .cart-item-actions {
+            display: flex;
+            gap: 12px;
+        }
+        .cart-item-actions button {
+            background: none;
+            border: none;
+            color: #5A5556;
+            cursor: pointer;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+        .cart-item-actions button:hover {
+            color: #E8454D;
+        }
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 12px;
+            margin-top: 12px;
+            border-top: 1px solid #D5D3D1;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        /* ===== СТИЛИ ГАЛЕРЕИ ИЗОБРАЖЕНИЙ ТОВАРА ===== */
+        .product-gallery-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            cursor: pointer;
+        }
+        .product-gallery-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .product-gallery-container {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: default;
+        }
+        .product-gallery-image {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+        .gallery-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            z-index: 10;
+            backdrop-filter: blur(4px);
+        }
+        .gallery-nav-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-50%) scale(1.1);
+        }
+        .gallery-nav-btn.prev {
+            left: 20px;
+        }
+        .gallery-nav-btn.next {
+            right: 20px;
+        }
+        .gallery-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            z-index: 10;
+            backdrop-filter: blur(4px);
+        }
+        .gallery-close-btn:hover {
+            background: #E8454D;
+            border-color: #E8454D;
+            transform: rotate(90deg);
+        }
+        .gallery-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-family: 'Unbounded', sans-serif;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .gallery-thumbnails {
+            position: absolute;
+            bottom: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+        .gallery-thumb {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+            opacity: 0.6;
+        }
+        .gallery-thumb.active {
+            border-color: #E8454D;
+            opacity: 1;
+        }
+        .gallery-thumb:hover {
+            opacity: 0.9;
+        }
+        .gallery-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Кликабельность карточек мерча */
+        .merch-card {
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .merch-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+        .merch-img {
+            pointer-events: none;
+        }
+
+        /* ===== СТИЛИ МОДАЛЬНОГО ОКНА УСПЕХА ===== */
+        .success-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 10001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .success-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .success-modal-content {
+            background: #FFFFFF;
+            border-radius: 24px;
+            max-width: 480px;
+            width: 100%;
+            padding: 40px 32px;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(232, 69, 77, 0.2);
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+        }
+        .success-modal-overlay.active .success-modal-content {
+            transform: scale(1);
+        }
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #E8454D, #D62830);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            animation: pulse 0.6s ease-out;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.8); opacity: 0.7; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .success-icon i {
+            font-size: 36px;
+            color: white;
+        }
+        .success-modal-title {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #1A1718;
+            margin-bottom: 12px;
+        }
+        .success-modal-text {
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 16px;
+            color: #5A5556;
+            line-height: 1.5;
+            margin-bottom: 28px;
+        }
+        .success-modal-btn {
+            background: #E8454D;
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 10px;
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .success-modal-btn:hover {
+            background: #D62830;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(232, 69, 77, 0.3);
+        }
+        .success-modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #F8F7F6;
+            border: 1px solid #E5E3E1;
+            color: #5A5556;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .success-modal-close:hover {
+            background: #E8454D;
+            color: white;
+            border-color: #E8454D;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 860px) {
+            .modal-overlay {
+                padding-top: 80px;
+            }
+            .modal-container {
+                max-height: calc(90vh - 80px);
+            }
+            .gallery-nav-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            .gallery-nav-btn.prev {
+                left: 10px;
+            }
+            .gallery-nav-btn.next {
+                right: 10px;
+            }
+            .gallery-close-btn {
+                top: 10px;
+                right: 10px;
+                width: 40px;
+                height: 40px;
+            }
+            .gallery-thumbnails {
+                bottom: 60px;
+                gap: 6px;
+            }
+            .gallery-thumb {
+                width: 32px;
+                height: 32px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .modal-overlay {
+                align-items: flex-end;
+                padding: 0;
+                padding-top: 60px;
+            }
+            .modal-container {
+                max-width: 100%;
+                border-radius: 16px 16px 0 0;
+                max-height: calc(90vh - 60px);
+            }
+            .active .modal-container {
+                transform: scale(1);
+            }
+            .modal-header {
+                padding: 20px 20px 12px;
+            }
+            .modal-body {
+                padding: 20px;
+            }
+            .modal-footer {
+                padding: 16px 20px;
+            }
+            .session-item {
+                padding: 14px 16px;
+            }
+            .filter-btn {
+                padding: 8px 14px;
+                font-size: 13px;
+            }
+            .modal-buttons {
+                flex-direction: column;
+            }
+            .gallery-nav-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 16px;
+            }
+            .gallery-nav-btn.prev {
+                left: 5px;
+            }
+            .gallery-nav-btn.next {
+                right: 5px;
+            }
+            .gallery-close-btn {
+                top: 5px;
+                right: 5px;
+                width: 36px;
+                height: 36px;
+                font-size: 20px;
+            }
+            .gallery-thumbnails {
+                bottom: 50px;
+                gap: 4px;
+            }
+            .gallery-thumb {
+                width: 28px;
+                height: 28px;
+            }
+            .gallery-counter {
+                bottom: 10px;
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+            
+            /* Адаптив модального окна успеха */
+            .success-modal-content {
+                padding: 32px 24px;
+            }
+            .success-icon {
+                width: 70px;
+                height: 70px;
+            }
+            .success-icon i {
+                font-size: 30px;
+            }
+            .success-modal-title {
+                font-size: 20px;
+            }
+            .success-modal-text {
+                font-size: 15px;
+            }
+        }
+        
+        /* Обновленные стили карточек мерча */
+        .merch-card {
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            position: relative;
+            overflow: hidden;
+            background: #fff;
+            border-radius: 12px;
+        }
+        .merch-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Обертка для изображения */
+        .merch-img-wrapper {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .merch-img {
+            width: 100%;
+            display: block;
+            pointer-events: none;
+            transition: transform 0.3s ease;
+        }
+        .merch-card:hover .merch-img {
+            transform: scale(1.05);
+        }
+
+        /* Счетчик фото */
+        .merch-photo-count {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            color: white;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            font-family: 'Nunito Sans', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            z-index: 2;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            pointer-events: none;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .merch-photo-count {
+            opacity: 0;
+            transform: translateY(-5px);
+        }
+
+        .merch-card:hover .merch-photo-count {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .merch-card.force-visible .merch-photo-count {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+        /* ===== ИЛЛЮСТРАЦИЯ ПЕРСОНАЖА НА ФОРМЕ ЗАЯВКИ ===== */
+.clients-form.illustrated {
+    position: relative;
+    overflow: visible;
+}
+.clients-form-illustration {
+    position: absolute;
+    width: auto;
+    height: 280px;
+    z-index: 2;
+    pointer-events: none;
+    top: -27%;
+    right: 85%;
+    transform: translateX(0);
+    /* filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15)); */
+    transition: transform 0.3s ease;
+}
+.clients-form.illustrated:hover .clients-form-illustration {
+    transform: translateY(-4px);
+}
+
+/* Адаптив для иллюстрации */
+@media (max-width: 1024px) {
+    .clients-form-illustration {
+        height: 190px;
+        right: -10%;
+        top: -40%;
+    }
+}
+@media (max-width: 768px) {
+    .clients-form-illustration {
+        height: 160px;
+        right: -5%;
+        top: -35%;
+    }
+}
+@media (max-width: 480px) {
+    .clients-form-illustration {
+        height: 120px;
+        right: 0;
+        top: -30%;
+    }
+}
+.team-modal-bio {  /* ✅ Теперь совпадает с классом в HTML */
+    white-space: pre-line;
+    color: rgba(255, 255, 255, 0.85);
+    font-family: 'Nunito Sans', sans-serif;
+    line-height: 1.6;
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+
+
+@media (min-width: 861px) {
+    .main-header {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+        z-index: 9999 !important;
+        backdrop-filter: blur(10px) !important;
+        box-shadow: rgba(0, 0, 0, 0.04) 0px 4px 12px !important;
+        transform: translateY(0) !important; /* Явно фиксируем */
+        opacity: 1 !important; /* Явно фиксируем */
+        visibility: visible !important; /* Добавляем */
+        background: rgba(255, 255, 255, 0.98) !important;
+        border-bottom: 1px solid rgba(229, 227, 225, 0.5) !important;
+        margin: 0 !important;
+        transition: none !important; /* Отключаем анимации */
+        will-change: transform; /* Оптимизация */
+    }
+}
+
+
+@media (max-width: 724px) {
+    .clients-form-illustration {
+        height: 190px;
+        right: -10%;
+        top: -40%;
+    }
+}
+    </style>
+</head>
+<body>
+
+        <!-- Заглушка для подгрузки хедера -->
+    <div id="site-header"></div>
+<div class="shop-container">
+    
+
+
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Бегущая строка -->
+    <div class="ticker">
+        <div class="ticker-content">
+            <span class="red-dot">•</span><span>Премьера 25 июля: «Лишь бы не было детей» • Билеты уже в продаже</span>
+            <span class="red-dot">•</span><span>Специальные условия для корпоративных клиентов</span>
+            <span class="red-dot">•</span><span>Новая коллекция мерча уже в магазине</span>
+            <span class="red-dot">•</span><span>Премьера 25 июля: «Лишь бы не было детей» • Билеты уже в продаже</span>
+            <span class="red-dot">•</span><span>Премьера 25 июля: «Лишь бы не было детей» • Билеты уже в продаже</span>
+            <span class="red-dot">•</span><span>Специальные условия для корпоративных клиентов</span>
+            <span class="red-dot">•</span><span>Новая коллекция мерча уже в магазине</span>
+            <span class="red-dot">•</span><span>Премьера 25 июля: «Лишь бы не было детей» • Билеты уже в продаже</span>
+        </div>
+    </div>
+
+    <!-- Hero слайдер -->
+    <div id="site-hero-slider"></div>
+
+    <!-- Ближайшие спектакли -->
+    <div class="plays-section" style="margin-top: 60px;">
+        <div class="container-main">
+            <div class="section-header">
+                <h2 class="section-title">Ближайшие спектакли</h2>
+                <a href="affiche.html" class="section-link">Вся афиша <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="scroll-container">
+                <div class="scroll-wrapper" id="upcomingScroll"></div>
+                <div class="scroll-btn left" onclick="scrollHorizontally('upcomingScroll', -400)"><i class="fas fa-chevron-left"></i></div>
+                <div class="scroll-btn right" onclick="scrollHorizontally('upcomingScroll', 400)"><i class="fas fa-chevron-right"></i></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- О театре -->
+    <div class="about-section">
+        <div class="container-main">
+            <div class="section-header">
+                <h2 class="section-title">О театре</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>История создания</h3>
+                    <p>Московский театр клоунады «Микос» основан в <strong>1991 году</strong> Сергеем «Паганелем» Давыдовым и Николаем Берёзой. Их первое выступление состоялось 2 апреля 1991 года в Киеве на студенческом вечере – этот день стал точкой отсчёта для коллектива, который сегодня называют «самым эксцентричным театром клоунады России».</p>
+                    <p>Уже осенью 1991‑го «Микос» занял второе место на московском фестивале клоунов Терезы Дуровой, а затем получил <strong>серебряную медаль на 1‑м Международном фестивале клоунов из рук Юрия Никулина</strong>. В 1995 году театр завоевал серебряную медаль и специальный приз на Международном фестивале в Париже, после чего последовали победы на престижных смотрах в Авиньоне (первое место и приз прессы), Монте‑Карло, Дрездене, Мюнхене и Бельгии.</p>
+                    <p>Сегодня «Микос» – это труппа из 10 артистов (клоунов, акробатов, жонглёров, ходулистов и гимнастов) под руководством бессменного худрука Сергея «Паганеля» Давыдова. Постановки видели в Германии, Франции, Швейцарии, США и Китае. Западная пресса называет артистов «безумцами, гениально усложняющими простые вещи», а их спектакли – «абсолютным волшебством», не похожим ни на цирк, ни на классический театр.</p>
+                </div>
+                <div class="about-img">
+                    <img src="SVG/main.svg" alt="История театра">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Заказчикам -->
+    <div class="clients-section">
+        <div class="container-main">
+            <div class="section-header">
+                <h2 class="section-title">Заказчикам</h2>
+                <a href="for-customers.html" class="section-link">Все условия сотрудничества <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="clients-grid">
+                <div class="clients-info">
+                    <h3>Условия сотрудничества</h3>
+                    <p>Мы предлагаем полный цикл организации мероприятий: от разработки концепции до реализации на вашей или нашей площадке.</p>
+                    <div class="features-list">
+                        <div class="feature-item"><i class="fas fa-check-circle"></i><strong>Корпоративные мероприятия</strong><span>Специальные показы, тимбилдинги, праздники компании</span></div>
+                        <div class="feature-item"><i class="fas fa-check-circle"></i><strong>Частные события</strong><span>Эксклюзивные постановки для дней рождений, свадеб, юбилеев</span></div>
+                        <div class="feature-item"><i class="fas fa-check-circle"></i><strong>Образовательные программы</strong><span>Мастер-классы, лекции, интенсивы для школ и вузов</span></div>
+                    </div>
+                    <div class="download-tech">
+    <a href="images/content/Tex_райдер_Микос.pdf" download class="download-btn-tech" style="display: inline-block; text-decoration: none; color: #000000;">
+        <i class="fas fa-download"></i> Скачать тех. райдер
+    </a>
+</div>
+                </div>
+<div class="clients-form illustrated">
+    <!-- Иллюстрация персонажа -->
+    <img src="SVG/Гамаюнов-сидит.svg" alt="Персонаж Гамаюнов" class="clients-form-illustration" loading="lazy">
+    
+    <h3>Отправить заявку</h3>
+    <form id="clientFormMain" novalidate>
+        <div class="form-group">
+            <label>Имя <span class="required">*</span></label>
+            <input type="text" id="clientName" class="form-input" placeholder="Ваше имя" required minlength="2" maxlength="50">
+            <span class="error-message" id="clientNameError">Введите корректное имя (мин. 2 символа)</span>
+        </div>
+        <div class="form-group">
+            <label>Компания <span class="required">*</span></label>
+            <input type="text" id="clientCompany" class="form-input" placeholder="Название компании" required minlength="2" maxlength="100">
+            <span class="error-message" id="clientCompanyError">Укажите название компании</span>
+        </div>
+        <div class="form-group">
+            <label>Email <span class="required">*</span></label>
+            <input type="email" id="clientEmail" class="form-input" placeholder="email@example.com" required>
+            <span class="error-message" id="clientEmailError">Введите корректный email</span>
+        </div>
+        <div class="form-group">
+            <label>Сообщение <span class="required">*</span></label>
+            <textarea id="clientMessage" class="form-textarea form-input" placeholder="Опишите вашу задачу" required minlength="10" maxlength="1000"></textarea>
+            <span class="error-message" id="clientMessageError">Сообщение должно содержать минимум 10 символов</span>
+        </div>
+        <button type="submit" class="submit-client-btn modal-confirm-btn" style="width:100%;margin-top:8px;">
+             Отправить заявку
+        </button>
+    </form>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Спектакли (все, горизонтальный скролл) -->
+    <div class="plays-section">
+        <div class="container-main">
+            <div class="section-header">
+                <h2 class="section-title">Спектакли</h2>
+                <a href="performances.html" class="section-link">Все спектакли <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="scroll-container">
+                <div class="scroll-wrapper" id="allPlaysScroll"></div>
+                <div class="scroll-btn left" onclick="scrollHorizontally('allPlaysScroll', -400)"><i class="fas fa-chevron-left"></i></div>
+                <div class="scroll-btn right" onclick="scrollHorizontally('allPlaysScroll', 400)"><i class="fas fa-chevron-right"></i></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Команда -->
+    <div class="team-section">
+        <div class="container-main">
+            <div class="section-header">
+                <h2 class="section-title">Команда</h2>
+                <a href="team.html" class="section-link">Вся команда <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="team-scroll-wrapper">
+                <div class="team-card" data-member="Сергей Давыдов">
+                    <img class="team-img" src="images/content/actors/Давыдов-2.jpg" alt="Сергей Давыдов">
+                    <h3 class="team-name">Сергей Давыдов</h3>
+                    <p class="team-position">Художественный руководитель</p>
+                </div>
+                <div class="team-card" data-member="Ксения Иванова">
+                    <img class="team-img" src="images/content/actors/Иванова-2.jpg" alt="Ксения Иванова">
+                    <h3 class="team-name">Ксения Иванова</h3>
+                    <p class="team-position">Актриса, директор, продюсер</p>
+                </div>
+                <div class="team-card" data-member="Максим Гамаюнов">
+                    <img class="team-img" src="images/content/actors/Гамаюнов-2.jpg" alt="Максим Гамаюнов">
+                    <h3 class="team-name">Максим Гамаюнов</h3>
+                    <p class="team-position">Актёр</p>
+                </div>
+                <div class="team-card" data-member="Тотраз Циукаев">
+                    <img class="team-img" src="images/content/actors/Циукаев-2.jpg" alt="Тотраз Циукаев">
+                    <h3 class="team-name">Тотраз Циукаев</h3>
+                    <p class="team-position">Актёр</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Магазин -->
+    <div class="shop-section">
+        <div class="container-main">
+            <div class="section-header">
+                <h2 class="section-title">Магазин</h2>
+                <a href="shop.html" class="section-link">Весь магазин <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="scroll-container">
+                <div class="scroll-wrapper" id="merchScroll"></div>
+                <div class="scroll-btn left" onclick="scrollHorizontally('merchScroll', -320)"><i class="fas fa-chevron-left"></i></div>
+                <div class="scroll-btn right" onclick="scrollHorizontally('merchScroll', 320)"><i class="fas fa-chevron-right"></i></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Заглушка для подгрузки футера -->
+    <div id="site-footer"></div>
+    
+</div>
+
+<!-- ГАЛЕРЕЯ ИЗОБРАЖЕНИЙ ТОВАРА -->
+<div class="product-gallery-overlay" id="productGallery">
+    <button class="gallery-close-btn" id="galleryCloseBtn">&times;</button>
+    <div class="product-gallery-container" id="galleryContainer">
+        <img class="product-gallery-image" id="galleryMainImage" src="" alt="Товар">
+        <button class="gallery-nav-btn prev" id="galleryPrevBtn"><i class="fas fa-chevron-left"></i></button>
+        <button class="gallery-nav-btn next" id="galleryNextBtn"><i class="fas fa-chevron-right"></i></button>
+        <div class="gallery-thumbnails" id="galleryThumbnails"></div>
+        <div class="gallery-counter" id="galleryCounter"></div>
+    </div>
+</div>
+
+<!-- МОДАЛЬНОЕ ОКНО КОМАНДЫ (в стиле team.html) -->
+<div class="team-modal-overlay" id="teamModal">
+    <div class="team-modal-content">
+        <button class="team-modal-close" id="teamModalClose">&times;</button>
+        <div class="team-modal-body" id="teamModalBody"></div>
+    </div>
+</div>
+
+<!-- МОДАЛЬНОЕ ОКНО ВЫБОРА ДАТЫ И ВРЕМЕНИ -->
+<div class="modal-overlay" id="sessionModal">
+    <div class="modal-container">
+        <div class="modal-header">
+            <h3 id="modalPerformanceName">Выбор сеанса</h3>
+            <button class="modal-close" onclick="closeSessionModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-performance-title">
+                <i class="fas fa-ticket-alt"></i> 
+                <span id="selectedPlayTitle"></span>
+            </div>
+            
+            <!-- Фильтр по месяцам -->
+            <div class="date-filter" id="dateFilterContainer"></div>
+            
+            <!-- Список сеансов -->
+            <div class="sessions-list" id="sessionsListContainer"></div>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-confirm-btn" id="confirmSessionBtn" disabled>
+                <i class="fas fa-shopping-cart"></i> Перейти к покупке
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- МОДАЛЬНОЕ ОКНО ТОВАРА -->
+<div class="modal-overlay" id="productModal">
+    <div class="modal-container">
+        <div class="modal-header">
+            <h3 id="modalProductName">Товар</h3>
+            <button class="modal-close" onclick="closeProductModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+            <div id="productModalContent"></div>
+        </div>
+        <div class="modal-footer" id="productModalFooter"></div>
+    </div>
+</div>
+
+<!-- МОДАЛЬНОЕ ОКНО КОНТАКТОВ -->
+<div class="modal-overlay" id="contactsModal">
+    <div class="modal-container">
+        <div class="modal-header">
+            <h3>Оформление заказа</h3>
+            <button class="modal-close" onclick="closeContactsModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+            <div id="orderSummaryFull" class="cart-summary"></div>
+            <div class="form-group">
+                <label>Имя <span class="required">*</span></label>
+                <input type="text" id="contactName" class="form-input" placeholder="Иван Иванов" required minlength="2">
+                <span class="error-message" id="contactNameError">Введите корректное имя</span>
+            </div>
+            <div class="form-group">
+                <label>Телефон <span class="required">*</span></label>
+                <input type="tel" id="contactPhone" class="form-input" placeholder="+7 (___) ___-__-__" required>
+                <span class="error-message" id="contactPhoneError">Введите корректный номер телефона</span>
+            </div>
+            <div class="form-group">
+                <label>Email <span class="required">*</span></label>
+                <input type="email" id="contactEmail" class="form-input" placeholder="mail@example.com" required>
+                <span class="error-message" id="contactEmailError">Введите корректный email</span>
+            </div>
+            <div class="form-group">
+                <label>Способ связи <span class="required">*</span></label>
+                <input type="text" id="contactMethod" class="form-input" placeholder="Telegram / WhatsApp / звонок" required minlength="3">
+                <span class="error-message" id="contactMethodError">Укажите предпочтительный способ связи</span>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-confirm-btn" id="submitOrderBtn">
+                <i class="fas fa-check"></i> Оформить заказ
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- МОДАЛЬНОЕ ОКНО УСПЕХА -->
+<div class="success-modal-overlay" id="successModal">
+    <div class="success-modal-content">
+        <button class="success-modal-close" id="successModalClose">&times;</button>
+        <div class="success-icon">
+            <i class="fas fa-check"></i>
+        </div>
+        <h3 class="success-modal-title" id="successModalTitle">Заявка отправлена!</h3>
+        <p class="success-modal-text" id="successModalText">Спасибо за обращение! Наш менеджер свяжется с вами в ближайшее время.</p>
+        <button class="success-modal-btn" id="successModalBtn">
+            <i class="fas fa-home"></i> На главную
+        </button>
+    </div>
+</div>
+<div id="site-modals"></div>
+
+  <script src="js/loader-animation.js"></script>
+  <script src="js/components-loader.js"></script>
+<script src="js/header-scripts.js"></script>
+<script src="js/common.js"></script>
+<script src="js/slider-scripts.js"></script>
+
+
+
+<script>
+(function() {
+    'use strict';
+    
+    // ===== ДАННЫЕ ТОВАРОВ =====
+    const products = [
+
+        { id: 1, name: 'Носки', desc: 'Принт с логотипом театра', price: 500, isClothing: false, images: ['images/content/shop/2.png'], category: 'clothes' },
+        { id: 2, name: 'Подвес на рюкзак "Микос Team"', desc: 'Современный аксессуар', price: 900, isClothing: false, images: ['images/content/shop/1.png'], category: 'accessories' },
+        { id: 3, name: 'Футболка', desc: 'Хлопковая футболка', price: 2500, isClothing: true, images: ['images/content/shop/5.png', 'images/content/shop/1.png'], category: 'clothes' },
+        { id: 4, name: 'Футболка', desc: 'Хлопковая футболка', price: 2500, isClothing: true, images: ['images/content/shop/8.png', 'images/content/shop/5.png'], category: 'clothes' },
+        { id: 5, name: 'Футболка', desc: 'Хлопковая футболка', price: 2500, isClothing: true, images: ['images/content/shop/6.png', 'images/content/shop/5.png'], category: 'clothes' },
+
+    ];
+
+    // ===== ДАННЫЕ КОМАНДЫ ДЛЯ МОДАЛКИ =====
+    const teamMembersData = {
+    'Сергей Давыдов': { 
+        name: 'Давыдов Сергей Валерьевич', 
+        nickname: 'Паганель', 
+        photo: 'images/content/actors/Давыдов-3.jpg', 
+        position: 'Художественный руководитель, режиссёр', 
+        bio: `  
+С 1991г.  основатель и художественный руководитель театра клоунады «Микос»
+В 1991 году из рук Юрия Никулина получил  «серебро» на 1-м Международном фестивале клоунов в Москве.
+В 1994 году в Швейцарии на Международном конгрессе деятелей культуры театр был представлены как «Новые направления в искусстве».
+В 1995 году на мировом фестивале во Франции «Цирк завтрашнего дня» было взято второе место.
+В 1996 году  на фестивале «Авиньон» также во Франции,  в открытом конкурсе заняли первое место.
+В 2003 году театр «Микос» вернулся в Москву и до 2013 года проработал в Цирке на Цветном Бульваре в компании "Росгорцирк".  Полгода труппа выступала там, оставшееся время — за границей.`,
+        performances: [
+            '«Лишь бы не было детей»',
+            '«Богатыри»',
+            '«Ушли за ...»',
+            '«Ожидание»',
+            '«Авиаторы»'
+        ] 
+    },
+    'Ксения Иванова': { 
+        name: 'Иванова Ксения Степановна', 
+        nickname: '', 
+        photo: 'images/content/actors/Иванова-3.jpg', 
+        position: 'Ведущая актриса, продюсер, директор', 
+        bio: ` В 2004 окончила ГОУ СПО Удмуртское республиканское училище культуры (курс Желтышевой О.Е.)
+С 2018 года клоун театра клоунады «Микос»  
+С 2024 года ещё и директор театра клоунады «Микос»`,
+        performances: [
+            '«Лишь бы не было детей»',
+            '«Богатыри»',
+            '«Ушли за ...»',
+            '«Ожидание»',
+            '«Авиаторы»'
+        ] 
+    },
+    'Максим Гамаюнов': { 
+        name: 'Гамаюнов Максим Валентинович', 
+        nickname: '', 
+        photo: 'images/content/actors/Гамаюнов-3.jpg', 
+        position: 'Актёр, музыкант', 
+        bio: `
+В 2005 году закончил училище циркового и эстрадного искусства имени М.Н. Румянцева
+С 2005 года работал в компании "Росгорцирк" руководителем номера
+с 2014 года клоун в театре клоунады "Высокие Братья"
+с 2018 года клоун в театре клоунады "Микос"`, 
+        performances: [
+            '«Лишь бы не было детей»',
+            '«Богатыри»',
+            '«Ушли за ...»',
+            '«Ожидание»',
+            '«Авиаторы»'
+        ] 
+    },
+    'Тотраз Циукаев': { 
+        name: 'Циукаев Тотраз Вячеславович', 
+        nickname: '', 
+        photo: 'images/content/actors/Циукаев-3.jpg', 
+        position: 'Актёр, музыкант', 
+        bio: `
+ Актер театра и кино, оперный певец,клоун, педагог, лауреат международных конкурсов, артист театра клоунады «Micos», преподаватель ВГИК имени Герасимова. </n>
+В 2018 году окончил Высшее театральное училище (институт) имени М. С. Щепкина при ГАМТ России (курс народного артиста России Б. В. Клюева)
+В 2023 году окончил РАМ имени Гнесиных (класс З. Т. Березовой). 
+Основатель ряда творческих проектов таких как: фестиваль «Алмазы Осетии», циклы концертов «Музыка и слово», «Магия русского слова», «Всероссийского конкурса ораторского мастерства». 
+За годы творческой деятельности сотрудничал со следующими государственными учреждениями культуры: Большой театр, театр «Мастерская Петра Фоменко», ВТУ (институт) имени М. С. Щепкина, ТИ им. Б. Щукина, Арт кластер «Таврида-АРТ».`,
+        performances: [
+            '«Богатыри»',
+            '«Ожидание»'
+        ] 
+    }
+};
+
+    // ===== СОСТОЯНИЕ =====
+    let currentEvent = null, selectedSession = null, currentMonthFilter = 'all';
+    let cartItems = [], currentProduct = null, editingIndex = -1;
+    let galleryImages = [], currentGalleryIndex = 0;
+    
+    // ===== МАСКИ ВВОДА =====
+    let phoneMask = null;
+
+    // ===== ВАЛИДАЦИЯ ФОРМ =====
+    const validators = {
+        name: (value) => value.trim().length >= 2 && value.trim().length <= 50 && /^[а-яА-ЯёЁa-zA-Z\s\-']+$/.test(value.trim()),
+        company: (value) => value.trim().length >= 2 && value.trim().length <= 100,
+        email: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim()),
+        phone: (value) => {
+            const cleaned = value.replace(/\D/g, '');
+            return cleaned.length === 11 && cleaned.startsWith('7');
+        },
+        message: (value) => value.trim().length >= 10 && value.trim().length <= 1000,
+        method: (value) => value.trim().length >= 3
+    };
+
+    // ===== ИНИЦИАЛИЗАЦИЯ МАСОК =====
+    function initMasks() {
+        // Маска для телефона в модалке контактов
+        const phoneInput = document.getElementById('contactPhone');
+        if (phoneInput && window.IMask) {
+            phoneMask = IMask(phoneInput, {
+                mask: '+{7} (000) 000-00-00',
+                lazy: false,
+                placeholderChar: '_'
+            });
+        }
+    }
+
+    // ===== ФУНКЦИИ ВАЛИДАЦИИ =====
+    function showError(input, errorId) {
+        input.classList.add('error');
+        const errorEl = document.getElementById(errorId);
+        if (errorEl) errorEl.classList.add('visible');
+    }
+
+    function hideError(input, errorId) {
+        input.classList.remove('error');
+        const errorEl = document.getElementById(errorId);
+        if (errorEl) errorEl.classList.remove('visible');
+    }
+
+    function validateField(input, validator, errorId) {
+        const value = input.value;
+        if (!value.trim() && input.hasAttribute('required')) {
+            showError(input, errorId);
+            return false;
+        }
+        if (value.trim() && !validator(value)) {
+            showError(input, errorId);
+            return false;
+        }
+        hideError(input, errorId);
+        return true;
+    }
+
+    function validateForm(formId, fields) {
+        let isValid = true;
+        fields.forEach(field => {
+            const input = document.getElementById(field.id);
+            if (input) {
+                if (!validateField(input, validators[field.validator], field.errorId)) {
+                    isValid = false;
+                }
+            }
+        });
+        return isValid;
+    }
+
+    // ===== МОДАЛЬНОЕ ОКНО УСПЕХА =====
+    const successModal = document.getElementById('successModal');
+    const successModalClose = document.getElementById('successModalClose');
+    const successModalBtn = document.getElementById('successModalBtn');
+    const successModalTitle = document.getElementById('successModalTitle');
+    const successModalText = document.getElementById('successModalText');
+
+    function openSuccessModal(title, text, redirectTo = null) {
+        successModalTitle.textContent = title;
+        successModalText.textContent = text;
+        successModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        if (redirectTo) {
+            successModalBtn.onclick = () => {
+                closeSuccessModal();
+                window.location.href = redirectTo;
+            };
+        } else {
+            successModalBtn.onclick = closeSuccessModal;
+        }
+    }
+
+    function closeSuccessModal() {
+        successModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    if (successModalClose) {
+        successModalClose.addEventListener('click', closeSuccessModal);
+    }
+    if (successModal) {
+        successModal.addEventListener('click', (e) => {
+            if (e.target === successModal) closeSuccessModal();
+        });
+    }
+
+    // ===== ГАЛЕРЕЯ ИЗОБРАЖЕНИЙ =====
+    const productGallery = document.getElementById('productGallery');
+    const galleryMainImage = document.getElementById('galleryMainImage');
+    const galleryPrevBtn = document.getElementById('galleryPrevBtn');
+    const galleryNextBtn = document.getElementById('galleryNextBtn');
+    const galleryCloseBtn = document.getElementById('galleryCloseBtn');
+    const galleryThumbnails = document.getElementById('galleryThumbnails');
+    const galleryCounter = document.getElementById('galleryCounter');
+    const galleryContainer = document.getElementById('galleryContainer');
+
+    function openGallery(images) {
+        if (!images?.length) return;
+        galleryImages = images; currentGalleryIndex = 0;
+        updateGalleryImage(); renderThumbnails(); updateCounter(); updateNavButtons();
+        productGallery.classList.add('active'); document.body.style.overflow = 'hidden';
+    }
+    function closeGallery() { productGallery.classList.remove('active'); document.body.style.overflow = ''; galleryImages = []; currentGalleryIndex = 0; }
+    function updateGalleryImage() { if (galleryImages.length) { galleryMainImage.src = galleryImages[currentGalleryIndex]; galleryMainImage.alt = `Фото ${currentGalleryIndex + 1}`; } }
+    function renderThumbnails() {
+        galleryThumbnails.innerHTML = '';
+        if (galleryImages.length <= 1) { galleryThumbnails.style.display = 'none'; return; }
+        galleryThumbnails.style.display = 'flex';
+        galleryImages.forEach((img, i) => {
+            const thumb = document.createElement('div');
+            thumb.className = `gallery-thumb ${i === currentGalleryIndex ? 'active' : ''}`;
+            thumb.innerHTML = `<img src="${img}" alt="Миниатюра ${i+1}">`;
+            thumb.addEventListener('click', (e) => { e.stopPropagation(); goToImage(i); });
+            galleryThumbnails.appendChild(thumb);
+        });
+    }
+    function updateCounter() { if (galleryImages.length > 1) { galleryCounter.textContent = `${currentGalleryIndex+1} / ${galleryImages.length}`; galleryCounter.style.display = 'block'; } else galleryCounter.style.display = 'none'; }
+    function updateNavButtons() { if (galleryImages.length <= 1) { galleryPrevBtn.style.display = 'none'; galleryNextBtn.style.display = 'none'; } else { galleryPrevBtn.style.display = 'flex'; galleryNextBtn.style.display = 'flex'; } }
+    function goToImage(i) { if (i < 0 || i >= galleryImages.length) return; currentGalleryIndex = i; updateGalleryImage(); renderThumbnails(); updateCounter(); }
+    function nextImage() { if (!galleryImages.length) return; currentGalleryIndex = (currentGalleryIndex + 1) % galleryImages.length; updateGalleryImage(); renderThumbnails(); updateCounter(); }
+    function prevImage() { if (!galleryImages.length) return; currentGalleryIndex = (currentGalleryIndex - 1 + galleryImages.length) % galleryImages.length; updateGalleryImage(); renderThumbnails(); updateCounter(); }
+
+    if (galleryPrevBtn) galleryPrevBtn.addEventListener('click', (e) => { e.stopPropagation(); prevImage(); });
+    if (galleryNextBtn) galleryNextBtn.addEventListener('click', (e) => { e.stopPropagation(); nextImage(); });
+    if (galleryCloseBtn) galleryCloseBtn.addEventListener('click', closeGallery);
+    if (productGallery) productGallery.addEventListener('click', (e) => { if (e.target === productGallery) closeGallery(); });
+
+    document.addEventListener('keydown', (e) => {
+        if (!productGallery?.classList.contains('active')) return;
+        if (e.key === 'Escape') closeGallery(); else if (e.key === 'ArrowLeft') prevImage(); else if (e.key === 'ArrowRight') nextImage();
+    });
+
+    let touchStartX = 0, touchEndX = 0;
+    if (galleryContainer) {
+        galleryContainer.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+        galleryContainer.addEventListener('touchend', (e) => { touchEndX = e.changedTouches[0].screenX; handleSwipe(); }, { passive: true });
+    }
+    function handleSwipe() { const diff = touchStartX - touchEndX; if (Math.abs(diff) > 50) { if (diff > 0) nextImage(); else prevImage(); } }
+
+    // ===== МОДАЛКА КОМАНДЫ =====
+    const teamModal = document.getElementById('teamModal'), teamModalBody = document.getElementById('teamModalBody'), teamModalClose = document.getElementById('teamModalClose');
+    function closeTeamModal() { if (teamModal) { teamModal.classList.remove('active'); document.body.style.overflow = ''; } }
+    function openTeamModal(memberName) {
+        const data = teamMembersData[memberName]; if (!data || !teamModal || !teamModalBody) return;
+        const nicknameHtml = data.nickname ? `<div class="team-modal-nickname">«${data.nickname}»</div>` : '';
+        const perfHtml = data.performances?.map(p => `<div class="team-performance-item"><span class="team-performance-bullet">•</span><span class="team-performance-text">${p}</span></div>`).join('') || '';
+        teamModalBody.innerHTML = `<div class="team-modal-photo"><img src="${data.photo}" alt="${data.name}" loading="lazy"></div><div class="team-modal-info"><div class="team-modal-name">${data.name}</div>${nicknameHtml}<div class="team-modal-position">${data.position}</div>${data.bio ? `<div class="team-modal-section-title">Творческий путь</div><div class="team-modal-bio">${data.bio}</div>` : ''}${data.performances?.length ? `<div class="team-modal-section-title">Спектакли в репертуаре</div><div class="team-performances-list">${perfHtml}</div>` : ''}</div>`;
+        teamModal.classList.add('active'); document.body.style.overflow = 'hidden';
+    }
+    if (teamModalClose) teamModalClose.addEventListener('click', closeTeamModal);
+    if (teamModal) teamModal.addEventListener('click', (e) => { if (e.target === teamModal) closeTeamModal(); });
+
+    // =============================================
+    // 🔥 ЕДИНАЯ ФУНКЦИЯ ОБРАБОТКИ КНОПОК "КУПИТЬ"
+    // =============================================
+    window.handleBuyClick = function(btn) {
+        const eventId = btn.dataset.eventId;
+        const perfId = btn.dataset.performanceId;
+        if (eventId) {
+            goToCheckout(eventId);
+        } else if (perfId) {
+            openSessionModalByPerfId(parseInt(perfId));
+        }
+    };
+
+    // =============================================
+    // ЕДИНАЯ ФУНКЦИЯ ПЕРЕХОДА К ОФОРМЛЕНИЮ
+    // =============================================
+    window.goToCheckout = function(eventId) {
+        const event = TOUR_SCHEDULE.find(ev => ev.id === eventId);
+        if (!event) { console.error('Событие не найдено:', eventId); return; }
+        const orderInfo = {
+            title: event.title, dateTime: formatEventDate(event.date, event.time), hall: event.venue,
+            address: event.address, price: event.price ? `от ${event.price.min.toLocaleString('ru-RU')} ₽` : 'Уточняйте',
+            poster: event.image, eventId: event.id, performanceId: event.performanceId
+        };
+        localStorage.setItem('selectedPerformance', JSON.stringify(orderInfo));
+        window.location.href = 'checkout.html';
+    };
+
+    // =============================================
+    // ОТКРЫТИЕ МОДАЛКИ ВЫБОРА ДАТЫ ПО ID СПЕКТАКЛЯ
+    // =============================================
+    function openSessionModalByPerfId(performanceId) {
+        const events = filterEventsByPerformance(performanceId, getUpcomingEvents(TOUR_SCHEDULE));
+        if (!events.length) { alert('На этот спектакль пока нет запланированных показов. Следите за обновлениями!'); return; }
+        openSessionModal(events[0]);
+    }
+
+    function openSessionModal(event) {
+        currentEvent = event; selectedSession = null; currentMonthFilter = 'all';
+        document.getElementById('selectedPlayTitle').textContent = event.title;
+        document.getElementById('modalPerformanceName').textContent = `Выбор сеанса: ${event.title}`;
+        renderMonthFilter(event.performanceId); renderSessionsList(event.performanceId);
+        document.getElementById('confirmSessionBtn').disabled = true;
+        document.getElementById('sessionModal').classList.add('active'); document.body.style.overflow = 'hidden';
+    }
+    window.closeSessionModal = function() { document.getElementById('sessionModal').classList.remove('active'); document.body.style.overflow = ''; currentEvent = null; selectedSession = null; };
+
+    function renderMonthFilter(performanceId) {
+        const container = document.getElementById('dateFilterContainer');
+        const events = filterEventsByPerformance(performanceId, getUpcomingEvents(TOUR_SCHEDULE));
+        const months = getEventMonths(events);
+        let html = `<button class="filter-btn ${currentMonthFilter==='all'?'active':''}" data-month="all">Все даты</button>`;
+        months.forEach(m => { html += `<button class="filter-btn ${currentMonthFilter===`${m.name}-${m.year}`?'active':''}" data-month="${m.name}-${m.year}">${m.name} ${m.year}</button>`; });
+        container.innerHTML = html;
+        container.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => { currentMonthFilter = btn.dataset.month; renderMonthFilter(performanceId); renderSessionsList(performanceId); });
+        });
+    }
+
+    function renderSessionsList(performanceId) {
+        const container = document.getElementById('sessionsListContainer');
+        let events = filterEventsByPerformance(performanceId, getUpcomingEvents(TOUR_SCHEDULE));
+        if (currentMonthFilter !== 'all') events = filterEventsByMonth(events, currentMonthFilter);
+        events = sortEventsByDate(events);
+        if (!events.length) { container.innerHTML = '<div class="no-sessions"><i class="far fa-calendar-times"></i> Нет сеансов в выбранном периоде</div>'; return; }
+        container.innerHTML = events.map(ev => {
+            const isSelected = selectedSession?.id === ev.id;
+            return `<div class="session-item ${isSelected?'selected':''}" data-event-id="${ev.id}"><div class="session-info"><div class="session-date">${formatEventDate(ev.date, ev.time)}</div><div class="session-meta"><span><i class="fas fa-map-marker-alt"></i> ${ev.venue}${ev.address?', '+ev.address.split(',')[0]:''}</span><span><i class="far fa-clock"></i> ${ev.duration}</span></div>${ev.price?`<div class="session-price">от ${ev.price.min.toLocaleString('ru-RU')} ₽</div>`:''}</div><div class="session-select-indicator">${isSelected?'<i class="fas fa-check"></i>':''}</div></div>`;
+        }).join('');
+        container.querySelectorAll('.session-item').forEach(item => {
+            item.addEventListener('click', () => { selectedSession = TOUR_SCHEDULE.find(ev => ev.id === item.dataset.eventId); renderSessionsList(performanceId); document.getElementById('confirmSessionBtn').disabled = false; });
+        });
+    }
+
+    document.getElementById('confirmSessionBtn').addEventListener('click', () => { if (selectedSession) goToCheckout(selectedSession.id); });
+    document.getElementById('sessionModal').addEventListener('click', (e) => { if (e.target.classList.contains('modal-overlay')) closeSessionModal(); });
+
+    // ===== РЕНДЕР СПЕКТАКЛЕЙ =====
+    
+    function renderUpcomingScroll() {
+        const wrapper = document.getElementById('upcomingScroll'); if (!wrapper) return; wrapper.innerHTML = '';
+        const upcoming = getNearestEvents(6, TOUR_SCHEDULE);
+        if (!upcoming.length) { wrapper.innerHTML = '<div style="color:#5A5556;padding:20px;">🎭 Скоро новые показы. Следите за афишей!</div>'; return; }
+        upcoming.forEach(event => {
+            const card = document.createElement('div'); card.className = 'performance-card';
+            card.innerHTML = `<img class="performance-img" src="${event.image}" alt="${event.title}"><div class="performance-content"><div class="performance-tags"><span class="tag tag-age">${event.age}</span><span class="tag tag-time">${event.duration}</span>${event.isPremiere?'<span class="tag tag-premiere">🎉</span>':''}<span class="tag tag-tickets">${event.ticketUrl?'Есть билеты':'Скоро'}</span></div><h3 class="performance-name">${event.title}</h3><div class="performance-date">${formatEventDate(event.date, event.time)}</div><p class="performance-desc">${event.description}</p><div class="event-venue"><i class="fas fa-map-marker-alt"></i><span>${event.venue}${event.address?', '+event.address.split(',')[0]:''}</span></div><div class="performance-btns"><button class="btn-details" data-performance-id="${event.performanceId}">Подробнее</button>${event.ticketUrl?`<button class="btn-buy" data-event-id="${event.id}">Купить билет</button>`:`<button class="btn-buy disabled" disabled>Скоро</button>`}</div></div>`;
+            wrapper.appendChild(card);
+        });
+        attachPerformanceEvents();
+    }
+
+    function renderAllPlaysScroll() {
+        const wrapper = document.getElementById('allPlaysScroll'); if (!wrapper) return; wrapper.innerHTML = '';
+        const unique = {};
+        TOUR_SCHEDULE.forEach(ev => { if (!unique[ev.performanceId]) unique[ev.performanceId] = ev; });
+        Object.values(unique).forEach(event => {
+            const card = document.createElement('div'); card.className = 'performance-card';
+            card.innerHTML = `<img class="performance-img" src="${event.image}" alt="${event.title}"><div class="performance-content"><div class="performance-tags"><span class="tag tag-age">${event.age}</span><span class="tag tag-time">${event.duration}</span></div><h3 class="performance-name">${event.title}</h3><p class="performance-desc">${event.description}</p><div class="performance-btns"><button class="btn-details" data-performance-id="${event.performanceId}">Подробнее</button><button class="btn-buy" data-performance-id="${event.performanceId}">Купить билет</button></div></div>`;
+            wrapper.appendChild(card);
+        });
+        attachPerformanceEvents();
+    }
+
+    function attachPerformanceEvents() {
+        document.querySelectorAll('.btn-details').forEach(btn => {
+            btn.addEventListener('click', (e) => { window.location.href = `performance.html?id=${parseInt(e.currentTarget.dataset.performanceId)}`; });
+        });
+        document.querySelectorAll('.btn-buy').forEach(btn => {
+            btn.addEventListener('click', (e) => { e.preventDefault(); handleBuyClick(e.currentTarget); });
+        });
+    }
+
+    // ===== РЕНДЕР МАГАЗИНА =====
+    function renderMerchScroll() {
+        const wrapper = document.getElementById('merchScroll'); if (!wrapper) return; wrapper.innerHTML = '';
+        products.forEach(item => {
+            const card = document.createElement('div'); card.className = 'merch-card';
+            const mainImg = item.images?.[0] || 'https://placehold.co/428x220/cccccc/white?text=Нет+фото';
+            const hasMulti = item.images?.length > 1;
+            card.innerHTML = `<div class="merch-img-wrapper"><img class="merch-img" src="${mainImg}" alt="${item.name}">${hasMulti?`<span class="merch-photo-count"><i class="fas fa-images"></i> ${item.images.length}</span>`:''}</div><div class="merch-content"><h3 class="merch-name">${item.name}</h3><div class="merch-price">${item.price.toLocaleString('ru-RU')} ₽</div><button class="merch-btn" data-id="${item.id}">Купить</button></div>`;
+            card.addEventListener('click', (e) => { if (!e.target.classList.contains('merch-btn') && item.images?.length) openGallery(item.images); });
+            wrapper.appendChild(card);
+        });
+        document.querySelectorAll('.merch-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => { e.stopPropagation(); const p = products.find(x => x.id === parseInt(btn.dataset.id)); if (p) openProductModal(p); });
+        });
+    }
+
+    // ===== МОДАЛКА ТОВАРА =====
+    function openProductModal(product) {
+        currentProduct = product; editingIndex = -1; renderProductModalContent();
+        document.getElementById('productModalFooter').innerHTML = `<div class="modal-buttons"><button class="modal-btn btn-outline-modal" id="moreItemsBtn">Выбрать еще</button><button class="modal-btn btn-primary-modal" id="buyNowBtn">Купить</button></div>`;
+        document.getElementById('modalProductName').textContent = product.name;
+        document.getElementById('productModal').classList.add('active'); document.body.style.overflow = 'hidden';
+        document.getElementById('moreItemsBtn').addEventListener('click', () => { if (addCurrentToCart()) closeAllModals(); });
+        document.getElementById('buyNowBtn').addEventListener('click', () => { if (addCurrentToCart()) { closeAllModals(); openContactsModal(); } });
+    }
+    window.closeProductModal = function() { document.getElementById('productModal').classList.remove('active'); document.body.style.overflow = ''; };
+
+    function renderProductModalContent() {
+        const container = document.getElementById('productModalContent'); let html = '';
+        if (cartItems.length && editingIndex === -1) {
+            html += `<div style="font-size:18px;font-weight:700;margin-bottom:16px;">Корзина</div><div class="cart-summary">`;
+            let total = 0;
+            cartItems.forEach((it, idx) => { total += it.price * it.quantity; const sz = it.size?` (${it.size})`:'';
+                html += `<div class="cart-item"><div class="cart-item-info"><span class="cart-item-name">${it.name}${sz}</span><span class="cart-item-details">${it.quantity} шт. × ${it.price.toLocaleString()} ₽</span></div><div class="cart-item-actions"><button class="edit-item" data-index="${idx}"><i class="fas fa-pencil-alt"></i></button><button class="delete-item" data-index="${idx}"><i class="fas fa-trash-alt"></i></button></div><div class="cart-item-price">${(it.price*it.quantity).toLocaleString()} ₽</div></div>`;
+            });
+            html += `<div class="total-row"><span>Итого</span><span>${total.toLocaleString()} ₽</span></div></div>`;
+        }
+        html += `<div class="form-group"><label>Количество</label><input type="number" id="productQuantity" min="1" value="1" class="form-input"></div>`;
+        if (currentProduct?.isClothing) html += `<div class="form-group"><label>Размер</label><select id="productSize" class="form-select"><option value="S">S</option><option value="M" selected>M</option><option value="L">L</option><option value="XL">XL</option></select></div>`;
+        container.innerHTML = html;
+        if (cartItems.length && editingIndex === -1) {
+            document.querySelectorAll('.delete-item').forEach(b => b.addEventListener('click', (e) => { cartItems.splice(parseInt(b.dataset.index),1); renderProductModalContent(); }));
+            document.querySelectorAll('.edit-item').forEach(b => b.addEventListener('click', (e) => openEditModal(parseInt(b.dataset.index))));
+        }
+    }
+
+    function openEditModal(idx) {
+        const it = cartItems[idx]; if (!it) return;
+        currentProduct = { id: it.id, name: it.name, price: it.price, isClothing: it.isClothing }; editingIndex = idx;
+        renderProductModalContent();
+        document.getElementById('productQuantity').value = it.quantity;
+        if (it.isClothing && document.getElementById('productSize')) document.getElementById('productSize').value = it.size || 'M';
+        document.getElementById('productModalFooter').innerHTML = `<div class="modal-buttons"><button class="modal-btn btn-outline-modal" id="cancelEditBtn">Отмена</button><button class="modal-btn btn-primary-modal" id="saveEditBtn">Сохранить</button></div>`;
+        document.getElementById('modalProductName').textContent = it.name;
+        document.getElementById('cancelEditBtn').addEventListener('click', () => closeAllModals());
+        document.getElementById('saveEditBtn').addEventListener('click', () => { if (saveEditItem()) closeAllModals(); });
+    }
+
+    function addCurrentToCart() {
+        const qty = parseInt(document.getElementById('productQuantity')?.value || '1');
+        if (qty < 1) { alert('Введите количество от 1'); return false; }
+        let size = null; if (currentProduct.isClothing) { const sel = document.getElementById('productSize'); if (sel) size = sel.value; }
+        cartItems.push({ id: currentProduct.id, name: currentProduct.name, price: currentProduct.price, quantity: qty, size, isClothing: currentProduct.isClothing });
+        return true;
+    }
+    function saveEditItem() {
+        if (editingIndex === -1) return false;
+        const qty = parseInt(document.getElementById('productQuantity')?.value || '1');
+        if (qty < 1) { alert('Введите количество от 1'); return false; }
+        let size = null; if (currentProduct.isClothing) { const sel = document.getElementById('productSize'); if (sel) size = sel.value; }
+        cartItems[editingIndex] = { ...cartItems[editingIndex], quantity: qty, size };
+        return true;
+    }
+
+    // ===== МОДАЛКА КОНТАКТОВ С ВАЛИДАЦИЕЙ =====
+    function openContactsModal() {
+        if (!cartItems.length) { alert("Корзина пуста"); return; }
+        updateOrderSummary();
+        ['contactName','contactPhone','contactEmail','contactMethod'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) { el.value = ''; hideError(el, id + 'Error'); }
+        });
+        document.getElementById('contactsModal').classList.add('active'); 
+        document.body.style.overflow = 'hidden';
+        
+        // Переинициализация маски при открытии
+        if (phoneMask) {
+            const phoneInput = document.getElementById('contactPhone');
+            if (phoneInput && phoneInput !== phoneMask.el) {
+                phoneMask.updateOptions({});
+            }
+        }
+    }
+    window.closeContactsModal = function() { 
+        document.getElementById('contactsModal').classList.remove('active'); 
+        document.body.style.overflow = ''; 
+    };
+    
+    function updateOrderSummary() {
+        const container = document.getElementById('orderSummaryFull'); if (!container) return;
+        if (!cartItems.length) { container.innerHTML = '<div style="text-align:center;padding:16px;color:#5A5556;">Корзина пуста</div>'; return; }
+        let html = '', total = 0;
+        cartItems.forEach(it => { const t = it.price * it.quantity; total += t; const sz = it.size?` (${it.size})`:'';
+            html += `<div class="cart-item"><div class="cart-item-info"><span class="cart-item-name">${it.name}${sz}</span><span class="cart-item-details">${it.quantity} шт. × ${it.price.toLocaleString()} ₽</span></div><div class="cart-item-price">${t.toLocaleString()} ₽</div></div>`;
+        });
+        html += `<div class="total-row"><span>Итого</span><span>${total.toLocaleString()} ₽</span></div>`;
+        container.innerHTML = html;
+    }
+    
+    document.getElementById('submitOrderBtn').addEventListener('click', () => {
+        const fields = [
+            { id: 'contactName', validator: 'name', errorId: 'contactNameError' },
+            { id: 'contactPhone', validator: 'phone', errorId: 'contactPhoneError' },
+            { id: 'contactEmail', validator: 'email', errorId: 'contactEmailError' },
+            { id: 'contactMethod', validator: 'method', errorId: 'contactMethodError' }
+        ];
+        
+        if (!validateForm('contactsModal', fields)) {
+            // Прокрутка к первому полю с ошибкой
+            const firstError = document.querySelector('.form-input.error, .form-textarea.error');
+            if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return;
+        }
+        
+        const name = document.getElementById('contactName').value.trim();
+        const phone = document.getElementById('contactPhone').value.trim();
+        const email = document.getElementById('contactEmail').value.trim();
+        const method = document.getElementById('contactMethod').value.trim();
+        
+        localStorage.setItem('mikos_order_success', JSON.stringify({ 
+            customerName: name, 
+            customerPhone: phone, 
+            customerEmail: email, 
+            contactMethod: method, 
+            items: [...cartItems], 
+            total: cartItems.reduce((s,it) => s + it.price * it.quantity, 0), 
+            timestamp: new Date().toISOString(), 
+            source: 'index-home' 
+        }));
+        
+        cartItems = [];
+        closeContactsModal();
+        openSuccessModal(
+            'Заказ оформлен! 🎉', 
+            'Спасибо за покупку! Наш менеджер свяжется с вами в ближайшее время для подтверждения заказа.',
+            'shop.html?order=success'
+        );
+    });
+    
+    // Валидация полей в реальном времени для модалки контактов
+    ['contactName', 'contactPhone', 'contactEmail', 'contactMethod'].forEach(id => {
+        const input = document.getElementById(id);
+        if (input) {
+            input.addEventListener('blur', () => {
+                const fieldMap = {
+                    'contactName': { validator: 'name', errorId: 'contactNameError' },
+                    'contactPhone': { validator: 'phone', errorId: 'contactPhoneError' },
+                    'contactEmail': { validator: 'email', errorId: 'contactEmailError' },
+                    'contactMethod': { validator: 'method', errorId: 'contactMethodError' }
+                };
+                const field = fieldMap[id];
+                if (field) validateField(input, validators[field.validator], field.errorId);
+            });
+            input.addEventListener('input', () => {
+                if (input.classList.contains('error')) {
+                    const fieldMap = {
+                        'contactName': { validator: 'name', errorId: 'contactNameError' },
+                        'contactPhone': { validator: 'phone', errorId: 'contactPhoneError' },
+                        'contactEmail': { validator: 'email', errorId: 'contactEmailError' },
+                        'contactMethod': { validator: 'method', errorId: 'contactMethodError' }
+                    };
+                    const field = fieldMap[id];
+                    if (field) validateField(input, validators[field.validator], field.errorId);
+                }
+            });
+        }
+    });
+    
+    document.getElementById('contactsModal').addEventListener('click', (e) => { 
+        if (e.target.classList.contains('modal-overlay')) closeContactsModal(); 
+    });
+
+    // ===== ФОРМА ЗАКАЗЧИКАМ С ВАЛИДАЦИЕЙ =====
+    const clientForm = document.getElementById('clientFormMain');
+    if (clientForm) {
+        clientForm.addEventListener('submit',  async (e) => {
+            e.preventDefault();
+            
+            const fields = [
+                { id: 'clientName', validator: 'name', errorId: 'clientNameError' },
+                { id: 'clientCompany', validator: 'company', errorId: 'clientCompanyError' },
+                { id: 'clientEmail', validator: 'email', errorId: 'clientEmailError' },
+                { id: 'clientMessage', validator: 'message', errorId: 'clientMessageError' }
+            ];
+            
+            if (!validateForm('clientFormMain', fields)) {
+                const firstError = document.querySelector('#clientFormMain .form-input.error, #clientFormMain .form-textarea.error');
+                if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+            
+            // Сбор данных формы
+            const formData = {
+                name: document.getElementById('clientName').value.trim(),
+                company: document.getElementById('clientCompany').value.trim(),
+                email: document.getElementById('clientEmail').value.trim(),
+                message: document.getElementById('clientMessage').value.trim(),
+                timestamp: new Date().toISOString(),
+                source: 'index-clients-form'
+            };
+
+      try { await window.sendClientRequest(formData); } catch(err) { console.error(err); }
+            
+            // Сохранение в localStorage (для демонстрации)
+            localStorage.setItem('mikos_client_request', JSON.stringify(formData));
+            
+            // Очистка формы
+            clientForm.reset();
+            ['clientName', 'clientCompany', 'clientEmail', 'clientMessage'].forEach(id => {
+                const input = document.getElementById(id);
+                if (input) hideError(input, id + 'Error');
+            });
+            
+            // Показ модального окна успеха
+            openSuccessModal(
+                'Заявка отправлена! ✨', 
+                'Спасибо за интерес к нашему театру! Менеджер свяжется с вами в течение рабочего дня для обсуждения деталей сотрудничества.',
+                null
+            );
+        });
+        
+        // Валидация полей в реальном времени
+        ['clientName', 'clientCompany', 'clientEmail', 'clientMessage'].forEach(id => {
+            const input = document.getElementById(id);
+            if (input) {
+                input.addEventListener('blur', () => {
+                    const fieldMap = {
+                        'clientName': { validator: 'name', errorId: 'clientNameError' },
+                        'clientCompany': { validator: 'company', errorId: 'clientCompanyError' },
+                        'clientEmail': { validator: 'email', errorId: 'clientEmailError' },
+                        'clientMessage': { validator: 'message', errorId: 'clientMessageError' }
+                    };
+                    const field = fieldMap[id];
+                    if (field) validateField(input, validators[field.validator], field.errorId);
+                });
+                input.addEventListener('input', () => {
+                    if (input.classList.contains('error')) {
+                        const fieldMap = {
+                            'clientName': { validator: 'name', errorId: 'clientNameError' },
+                            'clientCompany': { validator: 'company', errorId: 'clientCompanyError' },
+                            'clientEmail': { validator: 'email', errorId: 'clientEmailError' },
+                            'clientMessage': { validator: 'message', errorId: 'clientMessageError' }
+                        };
+                        const field = fieldMap[id];
+                        if (field) validateField(input, validators[field.validator], field.errorId);
+                    }
+                });
+            }
+        });
+    }
+
+    // ===== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ =====
+    function closeAllModals() {
+        ['sessionModal','productModal','contactsModal'].forEach(id => document.getElementById(id)?.classList.remove('active'));
+        closeTeamModal(); closeGallery(); document.body.style.overflow = '';
+    }
+    window.scrollHorizontally = function(id, amount) { const el = document.getElementById(id); if (el) el.scrollBy({ left: amount, behavior: 'smooth' }); };
+    function initTeamCards() {
+        document.querySelectorAll('.team-card').forEach(card => {
+            const name = card.dataset.member; if (!name) return;
+            card.addEventListener('click', (e) => { if (!e.target.closest('a')) openTeamModal(name); });
+        });
+    }
+    document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Escape') return;
+        if (productGallery?.classList.contains('active')) closeGallery();
+        else if (teamModal?.classList.contains('active')) closeTeamModal();
+        else if (document.getElementById('sessionModal')?.classList.contains('active')) closeSessionModal();
+        else if (document.getElementById('productModal')?.classList.contains('active')) closeProductModal();
+        else if (document.getElementById('contactsModal')?.classList.contains('active')) closeContactsModal();
+        else if (successModal?.classList.contains('active')) closeSuccessModal();
+    });
+
+    // ===== ИНИЦИАЛИЗАЦИЯ =====
+    document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+            renderUpcomingScroll();
+            renderAllPlaysScroll();
+            renderMerchScroll();
+            initTeamCards();
+            initMasks();
+        }, 100);
+    });
+})();
+</script>
+</body>
+</html>

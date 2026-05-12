@@ -1,0 +1,8435 @@
+/* ============================================
+   RESET & BASE STYLES
+============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #ffffff;
+    font-family: 'Nunito Sans', sans-serif;
+    overflow-x: auto;
+    min-width: 320px;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #E5E3E1;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background: #4A6294;
+    border-radius: 10px;
+}
+
+/* ============================================
+   CSS VARIABLES
+============================================ */
+:root {
+    --white: #FFFFFF;
+    --white-95: rgba(255, 255, 255, 0.95);
+    --grey-90: #E5E5E5;
+    --grey-89: #E5E3E1;
+    --grey-93: #E9ECEF;
+    --grey-96: #F5F5F5;
+    --grey-97: #F8F7F6;
+    --grey-10: #1A1718;
+    --grey-23: #3D393A;
+    --azure-27: #2A3D5E;
+    --azure-35: #3A5078;
+    --azure-44: #4A6294;
+    --red-59: #E8454D;
+    --red-60: #D62830;
+    --blue-900: #1A2840;
+    --blue-800: #2A3D5E;
+    --blue-700: #3A4F79;
+    --blue-200: #DCE4F0;
+    --primary-red: #F43139;
+    --deep-blue: #2C4068;
+    --accent-gold: #D4BF95;
+}
+
+/* ============================================
+   GLOBAL CONTAINERS
+============================================ */
+.shop-container,
+.brandbook-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    background: var(--white);
+    position: relative;
+}
+
+.container-main {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ============================================
+   HEADER & NAVIGATION (DESKTOP)
+============================================ */
+.main-header {
+    width: 100%;
+    background: var(--white-95);
+    backdrop-filter: blur(5px);
+    border-bottom: 1px solid var(--grey-90);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-inner {
+    height: 90px;
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex: 1;
+}
+
+.logo-group {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.logo-img {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+}
+
+.nav-menu li a {
+    text-decoration: none;
+    color: #231F20;
+    font-size: 14px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 400;
+    line-height: 24px;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+}
+
+.nav-menu li a:hover {
+    color: var(--primary-red);
+}
+
+.nav-menu li a.active {
+    color: #000000;
+    font-weight: 700;
+}
+
+.dots-icon,
+.close-icon {
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: 700;
+    color: #231F20;
+    display: inline-flex;
+    width: 32px;
+    transition: color 0.2s ease;
+}
+
+.dots-icon:hover,
+.close-icon:hover {
+    color: var(--primary-red);
+}
+
+.close-icon {
+    display: none;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.extra-menu-row {
+    background: #1A1A1A;
+    height: 90px;
+    width: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.extra-menu-row.open {
+    display: flex;
+}
+
+.extra-nav-list {
+    display: flex;
+    gap: 48px;
+    list-style: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 20px;
+}
+
+.extra-nav-list li a {
+    color: #F2F1F0;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+    transition: opacity 0.2s, color 0.2s;
+}
+
+.extra-nav-list li a:hover {
+    opacity: 0.7;
+    color: var(--red-59);
+}
+
+.burger-icon {
+    display: none;
+    width: 52px;
+    height: 52px;
+    background: white;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    cursor: pointer;
+    color: #231F20;
+    transition: all 0.2s;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.burger-icon:hover {
+    color: var(--primary-red);
+    transform: scale(1.02);
+}
+
+.buy-ticket-btn {
+    background: #E8454D;
+    border-radius: 8px;
+    padding: 12px 28px;
+    border: none;
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.buy-ticket-btn:hover {
+    background: #D62830;
+}
+
+
+
+
+
+
+
+/* ============================================
+   SECTION HEADERS
+============================================ */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 48px;
+    padding-bottom: 16px;
+}
+
+.section-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #1A1718;
+    position: relative;
+    padding-left: 20px;
+}
+
+.section-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: #E8454D;
+}
+
+.section-link {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #4A6294;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: opacity 0.2s;
+}
+
+.section-link:hover {
+    opacity: 0.7;
+}
+
+/* ============================================
+   PERFORMANCE CARDS
+============================================ */
+.performance-card {
+    background: white;
+    border-radius: 12px;
+    outline: 1px solid #E5E3E1;
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.performance-card:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+.performance-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: #F5F5F5;
+}
+
+.performance-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.performance-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag {
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.tag-age {
+    background: #E8EEF7;
+    border: 1px solid #DCE4F0;
+    color: #3A5078;
+}
+
+.tag-time {
+    background: #F8F7F6;
+    border: 1px solid #DCE4F0;
+    color: #2A2627;
+}
+
+.performance-name {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 36px;
+    color: #1A1718;
+}
+
+.performance-date {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: black;
+    margin-top: 4px;
+}
+
+.performance-desc {
+    font-size: 16px;
+    line-height: 24px;
+    color: #3D393A;
+}
+
+.event-venue {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #404040;
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+.performance-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.btn-details {
+    background: #F8F7F6;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #1A1718;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.2s;
+}
+
+.btn-details:hover {
+    background: #E9E7E5;
+}
+
+.btn-buy {
+    background: #E8454D;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.2s;
+}
+
+.btn-buy:hover {
+    background: #D62830;
+}
+
+/* ============================================
+   ABOUT SECTION
+============================================ */
+.about-section {
+    background: #F8F7F6;
+    padding: 80px 0;
+}
+
+.about-content {
+    display: flex;
+    gap: 60px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.about-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.about-text h3 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: #1A1718;
+    margin-bottom: 24px;
+}
+
+.about-text p {
+    font-size: 16px;
+    line-height: 27px;
+    color: #2A2627;
+    margin-bottom: 20px;
+}
+
+.about-img {
+    flex: 1;
+    min-width: 300px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.about-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ============================================
+   CLIENTS SECTION
+============================================ */
+.clients-section {
+    padding: 80px 0;
+}
+
+.clients-grid {
+    display: flex;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.clients-info {
+    flex: 1;
+    min-width: 300px;
+}
+
+.clients-info h3 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: #1A1718;
+    margin-bottom: 20px;
+}
+
+.clients-info p {
+    font-size: 16px;
+    line-height: 25px;
+    color: #2A2627;
+    margin-bottom: 20px;
+}
+
+.features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.feature-item {
+    background: #F8F7F6;
+    border-left: 3px solid #4A6294;
+    border-radius: 8px;
+    padding: 16px 20px 16px 55px;
+    position: relative;
+}
+
+.feature-item i {
+    position: absolute;
+    left: 20px;
+    top: 18px;
+    color: #4A6294;
+    font-size: 18px;
+}
+
+.feature-item strong {
+    display: block;
+    font-weight: 600;
+    color: #1A1718;
+    margin-bottom: 4px;
+}
+
+.feature-item span {
+    font-size: 14px;
+    color: #3D393A;
+}
+
+.download-tech {
+    margin-top: 20px;
+}
+
+.download-btn-tech {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 24px;
+    background: #F8F7F6;
+    border: 1px solid #E5E3E1;
+    border-radius: 8px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.download-btn-tech:hover {
+    background: #E9E7E5;
+}
+
+.clients-form {
+    flex: 1;
+    min-width: 350px;
+    background: white;
+    padding: 32px;
+    border-radius: 8px;
+    outline: 1px solid #E5E3E1;
+}
+
+.clients-form h3 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: #1A1718;
+    margin-bottom: 24px;
+}
+
+.clients-form .form-group {
+    margin-bottom: 20px;
+}
+
+.clients-form .form-group label {
+    display: block;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #2A2627;
+    margin-bottom: 8px;
+}
+
+.clients-form .form-group input,
+.clients-form .form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #E5E3E1;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: 'Nunito Sans', sans-serif;
+    background: white;
+}
+
+.submit-client-btn {
+    width: 100%;
+    background: #E8454D;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.submit-client-btn:hover {
+    background: #D62830;
+}
+
+/* ============================================
+   PLAYS SECTION (горизонтальный скролл)
+============================================ */
+.plays-section {
+    background: #F8F7F6;
+    padding: 80px 0;
+    position: relative;
+}
+
+.scroll-container {
+    position: relative;
+    overflow: visible;
+}
+
+.scroll-wrapper {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+
+    width: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.scroll-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.play-card {
+    flex: 0 0 380px;
+    background: white;
+    border-radius: 8px;
+    outline: 1px solid #E5E3E1;
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.play-card:hover {
+    transform: translateY(-2px);
+}
+
+.play-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: #E8EEF7;
+}
+
+.play-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.play-name {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: #1A1718;
+}
+
+.play-desc {
+    font-size: 14px;
+    line-height: 21px;
+    color: #3D393A;
+}
+
+/* Стрелки: на десктопе появляются при наведении, на мобильных всегда видны */
+.scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 52px;
+    height: 52px;
+    background: white;
+    border-radius: 50%;
+    border: 1px solid #E5E3E1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 30;
+    transition: all 0.2s ease;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    color: #1A1718;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.scroll-container:hover .scroll-btn {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-btn i {
+    font-size: 20px;
+}
+
+.scroll-btn:hover {
+    background: #4A6294;
+    color: white;
+    border-color: #4A6294;
+    transform: translateY(-50%) scale(1.08);
+}
+
+.scroll-btn.left {
+    left: 5px;
+}
+
+.scroll-btn.right {
+    right: 5px;
+}
+
+/* ============================================
+   TEAM SECTION
+============================================ */
+.team-section {
+    padding: 80px 0;
+}
+
+.team-scroll-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    overflow: visible;
+    padding: 10px 0 20px 0;
+    margin: 0;
+}
+
+.team-card {
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.team-card:hover {
+    transform: translateY(-2px);
+}
+
+.team-img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #DCE4F0;
+    background: #E8EEF7;
+}
+
+.team-name {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: #1A1718;
+    margin-top: 16px;
+}
+
+.team-position {
+    font-size: 14px;
+    font-weight: 600;
+    color: #5A5556;
+    margin-top: 4px;
+}
+
+/* ============================================
+   SHOP SECTION (магазин на главной)
+   Убрано описание (merch-desc)
+============================================ */
+.shop-section {
+    background: #F8F7F6;
+    padding: 80px 0;
+}
+
+.merch-card {
+    flex: 0 0 280px;
+    background: white;
+    border-radius: 8px;
+    outline: 1px solid #E5E3E1;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.merch-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+.merch-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    background: #F5F5F5;
+}
+
+.merch-content {
+    padding: 20px;
+}
+
+.merch-name {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: #1A1718;
+    margin-bottom: 8px;
+}
+
+/* Описание убрано — больше не выводится */
+.merch-price {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: #4A6294;
+    margin: 8px 0 16px;
+}
+
+.merch-btn {
+    width: 100%;
+    background: #E8454D;
+    border: none;
+    border-radius: 6px;
+    padding: 10px;
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.merch-btn:hover {
+    background: #D62830;
+}
+
+/* ============================================
+   FOOTER
+============================================ */
+.main-footer {
+    background: var(--blue-900);
+    width: 100%;
+    padding: 70px 60px 50px;
+    margin-top: 40px;
+}
+
+.footer-container {
+    max-width: 1320px;
+    margin: 0 auto;
+}
+
+.footer-top {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 80px;
+    margin-bottom: 70px;
+}
+
+.footer-brand {
+    flex: 2;
+    max-width: 580px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.footer-logo-img {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.footer-theater-title {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: white;
+    line-height: 1.3;
+    white-space: nowrap;
+}
+
+.footer-description {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--blue-200);
+    margin: 16px 0 24px;
+}
+
+.newsletter-title {
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    margin: 32px 0 12px;
+}
+
+.subscribe-form {
+    display: flex;
+    width: 100%;
+    max-width: 650px;
+    height: 48px;
+}
+
+.subscribe-input {
+    flex: 1;
+    background: #2A3D5E;
+    border: 1px solid #3A5078;
+    padding: 0 18px;
+    border-radius: 6px 0 0 6px;
+    color: white;
+    font-size: 15px;
+    outline: none;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.subscribe-input::placeholder {
+    color: #DCE4F0;
+    opacity: 0.8;
+}
+
+.subscribe-btn {
+    background: #4A6294;
+    padding: 0 24px;
+    border: none;
+    border-radius: 0 6px 6px 0;
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    height: 100%;
+    transition: background 0.2s;
+}
+
+.subscribe-btn:hover {
+    background: #3A4F79;
+}
+
+.checkbox-custom {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 16px;
+    cursor: pointer;
+}
+
+.checkbox-custom input {
+    display: none;
+}
+
+.checkmark {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #4A6294;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    background: transparent;
+    flex-shrink: 0;
+}
+
+.checkbox-custom input:checked + .checkmark {
+    background: #4A6294;
+    border-color: #4A6294;
+}
+
+.checkbox-custom input:checked + .checkmark::after {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 12px;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.checkbox-custom span:last-child {
+    color: var(--blue-200);
+    font-size: 13px;
+    font-family: 'Nunito Sans', sans-serif;
+    line-height: 1.4;
+}
+
+.error-tooltip {
+    color: #ff6b6b;
+    font-size: 12px;
+    margin-top: 6px;
+    display: none;
+}
+
+.social-icons {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.social-circle {
+    width: 40px;
+    height: 40px;
+    background: #2A3D5E;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #3A5078;
+    color: #DCE4F0;
+    font-size: 18px;
+    transition: 0.2s;
+    text-decoration: none;
+}
+
+.social-circle:hover {
+    background: #4A6294;
+    color: white;
+}
+
+.footer-nav {
+    min-width: 180px;
+}
+
+.footer-nav h4 {
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    margin-bottom: 24px;
+    font-size: 16px;
+}
+
+.footer-nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-nav ul li a {
+    color: #DCE4F0;
+    text-decoration: none;
+    font-size: 15px;
+    transition: opacity 0.2s;
+}
+
+.footer-nav ul li a:hover {
+    opacity: 0.7;
+    color: var(--red-59);
+}
+
+.footer-bottom {
+    border-top: 1px solid #3A5078;
+    padding-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.copyright {
+    color: #DCE4F0;
+    font-size: 14px;
+}
+
+.footer-buttons {
+    display: flex;
+    gap: 16px;
+}
+
+.footer-btn-primary {
+    background: #E8454D;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 8px;
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.footer-btn-primary:hover {
+    background: #D62830;
+}
+
+.footer-btn-secondary {
+    background: transparent;
+    border: 1px solid #4A6294;
+    padding: 11px 28px;
+    border-radius: 8px;
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.footer-btn-secondary:hover {
+    background: #3A4F79;
+    border-color: #3A4F79;
+}
+
+/* ============================================
+   СТРАНИЦА КОНТАКТЫ
+============================================ */
+.contacts-page {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.page-header-contacts {
+    margin: 60px 0 40px;
+}
+
+.page-title-contacts {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 67px;
+    color: #1A1718;
+    position: relative;
+    padding-left: 20px;
+}
+
+.page-title-contacts::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--red-59);
+}
+
+.page-subtitle {
+    max-width: 800px;
+    margin-top: 16px;
+    font-size: 20px;
+    line-height: 30px;
+    color: #3D393A;
+}
+
+.map-container {
+    height: 450px;
+    background: linear-gradient(161deg, #E8EEF7 0%, #F8F7F6 100%);
+    border-radius: 16px;
+    outline: 1px solid #E5E3E1;
+    position: relative;
+    margin-bottom: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.map-placeholder {
+    text-align: center;
+}
+
+.map-placeholder i {
+    font-size: 64px;
+    color: #4A6294;
+    margin-bottom: 20px;
+}
+
+.map-placeholder p {
+    color: #5A5556;
+    font-size: 16px;
+}
+
+.map-address-card {
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+    width: 320px;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.1);
+    outline: 1px solid #E5E3E1;
+}
+
+.map-address-card h4 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1A1718;
+    margin-bottom: 8px;
+}
+
+.map-address-card p {
+    color: #3D393A;
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.form-section {
+    background: #F8F7F6;
+    padding: 80px 0;
+    margin-bottom: 0;
+}
+
+.form-grid {
+    display: flex;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.form-info {
+    flex: 1;
+    min-width: 300px;
+}
+
+.form-info h3 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #1A1718;
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 16px;
+}
+
+.form-info h3::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    background: #E8454D;
+    border-radius: 1.5px;
+}
+
+.form-info p {
+    color: #3D393A;
+    font-size: 16px;
+    line-height: 27px;
+    margin-bottom: 20px;
+}
+
+.form-features {
+    margin-top: 20px;
+}
+
+.form-container {
+    flex: 1;
+    min-width: 350px;
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    outline: 1px solid #E5E3E1;
+}
+
+.form-container h3 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1A1718;
+    margin-bottom: 24px;
+    position: relative;
+    padding-left: 12px;
+}
+
+.form-container h3::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    background: #E8454D;
+    border-radius: 1.5px;
+}
+
+.submit-btn {
+    width: 100%;
+    background: #E8454D;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 14px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.submit-btn:hover {
+    background: #D62830;
+}
+
+/* FAQ */
+.faq-section {
+    padding: 120px 0 80px;
+    text-align: left;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.faq-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 40px;
+    font-weight: 600;
+    color: #2A3D5E;
+    text-align: left;
+    margin-bottom: 60px;
+}
+
+.faq-item {
+    border-bottom: 1px solid #E5E3E1;
+    padding: 24px 0;
+    cursor: pointer;
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1A1718;
+}
+
+.faq-question i {
+    color: #4A6294;
+    font-size: 24px;
+    transition: transform 0.3s;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding-top: 0;
+    font-size: 16px;
+    line-height: 27px;
+    color: #3D393A;
+    text-align: left;
+}
+
+.faq-item.open .faq-answer {
+    max-height: 200px;
+    padding-top: 16px;
+}
+
+.faq-item.open .faq-question i {
+    transform: rotate(45deg);
+}
+
+/* Юридическая информация */
+.contacts-grid {
+    display: flex;
+    gap: 60px;
+    flex-wrap: wrap;
+    margin: 80px 0;
+}
+
+.legal-info {
+    flex: 1.2;
+    background: #F8F7F6;
+    padding: 32px;
+    border-radius: 12px;
+    outline: 1px solid #E5E3E1;
+}
+
+.legal-info h2 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #1A1718;
+    margin-bottom: 32px;
+    position: relative;
+    padding-left: 16px;
+}
+
+.legal-info h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    background: #E8454D;
+    border-radius: 1.5px;
+}
+
+.legal-item {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #E5E3E1;
+}
+
+.legal-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.legal-label {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: #2A3D5E;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-bottom: 6px;
+}
+
+.legal-value {
+    font-weight: 500;
+    font-size: 16px;
+    color: #1A1718;
+}
+
+.download-btn {
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 14px;
+    border: 1px solid #E5E3E1;
+    border-radius: 8px;
+    background: #F8F7F6;
+    cursor: pointer;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.download-btn:hover {
+    background: #E9E7E5;
+}
+
+.contact-info-block {
+    flex: 0.8;
+}
+
+.contact-block {
+    margin-bottom: 48px;
+}
+
+.contact-block h3 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #1A1718;
+    margin-bottom: 24px;
+    position: relative;
+    padding-left: 12px;
+}
+
+.contact-block h3::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    background: #E8454D;
+    border-radius: 1.5px;
+}
+
+.contact-item {
+    display: flex;
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid #E5E3E1;
+}
+
+.contact-item:last-child {
+    border-bottom: none;
+}
+
+.contact-icon {
+    width: 44px;
+    height: 44px;
+    background: #E8EEF7;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4A6294;
+    font-size: 18px;
+}
+
+.contact-text h4 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1A1718;
+    margin-bottom: 6px;
+}
+
+.contact-text p {
+    color: #3D393A;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.contact-link {
+    color: #4A6294;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.social-links-page {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.social-icon-page {
+    width: 48px;
+    height: 48px;
+    background: #F8F7F6;
+    border-radius: 12px;
+    border: 1px solid #E5E3E1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #3D393A;
+    font-size: 20px;
+    transition: all 0.2s;
+    text-decoration: none;
+}
+
+.social-icon-page:hover {
+    background: #4A6294;
+    color: white;
+    border-color: #4A6294;
+}
+
+/* Кастомный select */
+.custom-select-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.custom-select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #E5E3E1;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: 'Nunito Sans', sans-serif;
+    background: white;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: border-color 0.2s;
+}
+
+.custom-select:hover,
+.custom-select.active {
+    border-color: #4A6294;
+}
+
+.custom-select span {
+    color: #1A1718;
+}
+
+.custom-select i {
+    color: #4A6294;
+    font-size: 14px;
+    transition: transform 0.3s;
+}
+
+.custom-select.active i {
+    transform: rotate(180deg);
+}
+
+.custom-options {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #E5E3E1;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    display: none;
+    overflow: hidden;
+}
+
+.custom-options.show {
+    display: block;
+}
+
+.custom-option {
+    padding: 12px 16px;
+    font-size: 15px;
+    font-family: 'Nunito Sans', sans-serif;
+    color: #1A1718;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.custom-option:hover {
+    background: #F8F7F6;
+}
+
+.custom-option.selected {
+    background: #E8EEF7;
+    color: #2A3D5E;
+    font-weight: 500;
+}
+
+/* ============================================
+   СТРАНИЦА КОМАНДА
+============================================ */
+.team-page {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.page-header-team {
+    margin: 60px 0 40px;
+}
+
+.page-title-team {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 62px;
+    color: black;
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 16px;
+}
+
+.page-title-team::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: #E53E3E;
+}
+
+.page-subtitle-team {
+    max-width: 800px;
+    font-size: 20px;
+    line-height: 30px;
+    color: #231F20;
+}
+
+.director-highlight {
+    background: #1A2840;
+    outline: 1px solid #2C4068;
+    padding: 48px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 48px;
+    align-items: center;
+    margin-bottom: 60px;
+    border-radius: 0;
+}
+
+.director-photo {
+    flex: 1;
+    min-width: 280px;
+}
+
+.director-photo img {
+    width: 100%;
+    border-radius: 12px;
+    background: #E9ECEF;
+}
+
+.director-info {
+    flex: 2;
+    min-width: 300px;
+}
+
+.director-tag {
+    background: #F43139;
+    display: inline-block;
+    padding: 6px 17px;
+    border-radius: 4px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: white;
+    margin-bottom: 24px;
+}
+
+.director-name {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 8px;
+}
+
+.director-name span {
+    color: #F2F1F0;
+}
+
+.director-position {
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 24px;
+}
+
+.director-bio {
+    font-size: 16px;
+    line-height: 24px;
+    color: white;
+    margin-bottom: 32px;
+}
+
+.director-btn {
+    background: white;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 56px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #1A1A1A;
+    cursor: pointer;
+    display: inline-block;
+    transition: background 0.2s;
+}
+
+.director-btn:hover {
+    background: #E9E7E5;
+}
+
+.stats-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    margin-bottom: 60px;
+}
+
+.stat-item {
+    flex: 1;
+    min-width: 200px;
+    background: #F8F7F6;
+    border-radius: 24px;
+    padding: 12px 20px;
+    text-align: center;
+}
+
+.stat-number {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: #F43139;
+    line-height: 62px;
+}
+
+.stat-label {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #2C4068;
+}
+
+.section-header-team {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 40px;
+    padding-bottom: 16px;
+}
+
+.section-title-team {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #1A1718;
+    position: relative;
+    padding-left: 20px;
+}
+
+.section-title-team::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: #E8454D;
+}
+
+.section-count {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #4A6294;
+}
+
+.actors-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 60px;
+}
+
+.actor-card {
+    text-align: left;
+}
+
+.actor-name {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: black;
+    margin-bottom: 24px;
+}
+
+.actor-photo {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 24px;
+    overflow: hidden;
+    background: #FAFAFA;
+}
+
+.actor-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.work-with-us {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: center;
+    justify-content: space-between;
+    margin: 60px 0;
+}
+
+.work-image {
+    flex: 1;
+    min-width: 300px;
+}
+
+.work-image img {
+    width: 100%;
+    height: auto;
+}
+
+.work-content {
+    flex: 1;
+    min-width: 300px;
+}
+
+.work-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #1A1718;
+    position: relative;
+    padding-left: 16px;
+    margin-bottom: 20px;
+}
+
+.work-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    background: #E8454D;
+    border-radius: 1.5px;
+}
+
+.work-text {
+    font-size: 16px;
+    line-height: 27px;
+    color: #3D393A;
+    margin-bottom: 32px;
+}
+
+.work-btn {
+    background: #E8454D;
+    border: none;
+    border-radius: 8px;
+    padding: 15px 32px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.work-btn:hover {
+    background: #D62830;
+}
+
+.show-more-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 48px 0 60px;
+}
+
+.show-more-btn {
+    width: 260px;
+    padding: 14px 56px;
+    background: #F8F7F6;
+    border-radius: 8px;
+    border: none;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.show-more-btn:hover {
+    background: #E9E7E5;
+}
+
+/* ============================================
+   СТРАНИЦА О ТЕАТРЕ
+============================================ */
+.about-page {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.page-header-about {
+    margin: 60px 0 40px;
+}
+
+.page-title-about {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 62px;
+    color: #1A1A1A;
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.page-title-about::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: #E8454D;
+}
+
+.page-subtitle-about {
+    max-width: 700px;
+    font-size: 20px;
+    line-height: 30px;
+    color: #2A2627;
+}
+
+/* Таймлайн */
+.timeline-section {
+    margin-bottom: 60px;
+}
+
+.timeline-container {
+    position: relative;
+    padding: 20px 0;
+}
+
+.timeline-container::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background: #DEE2E6;
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 60px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.timeline-item.left .timeline-content {
+    text-align: right;
+    padding-right: 80px;
+}
+
+.timeline-item.right .timeline-content {
+    text-align: left;
+    padding-left: 80px;
+}
+
+.timeline-content {
+    width: 45%;
+}
+
+.timeline-photo {
+    width: 100px;
+    height: 100px;
+    background: #EFEEED;
+    border-radius: 50%;
+    outline: 2px solid #DEE2E6;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+.timeline-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.timeline-year {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #4A6294;
+    margin-bottom: 8px;
+}
+
+.timeline-title {
+    font-size: 19px;
+    font-weight: 600;
+    color: #212529;
+    margin-bottom: 8px;
+}
+
+.timeline-desc {
+    font-size: 15px;
+    line-height: 23px;
+    color: #495057;
+    max-width: 280px;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: 50%;
+    top: 50px;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    background: #E53E3E;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px white, 0 0 0 6px #DEE2E6;
+}
+
+.timeline-item.left .timeline-content {
+    margin-left: auto;
+}
+
+.timeline-item.right .timeline-content {
+    margin-right: auto;
+}
+
+.mission-section {
+    background: #F8F7F6;
+    border-radius: 12px;
+    padding: 56px 48px;
+    margin-bottom: 60px;
+}
+
+.mission-block {
+    margin-bottom: 48px;
+}
+
+.mission-block:last-child {
+    margin-bottom: 0;
+}
+
+.mission-block h2 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 40px;
+    font-weight: 600;
+    color: #1A1718;
+    margin-bottom: 24px;
+}
+
+.mission-block p {
+    font-size: 16px;
+    line-height: 27px;
+    color: #3D393A;
+    margin-bottom: 20px;
+}
+
+.quote {
+    border-left: 3px solid #E8454D;
+    padding-left: 27px;
+    margin-top: 20px;
+}
+
+.quote p {
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 500;
+    color: #4A6294;
+    margin-bottom: 0;
+}
+
+.director-section {
+    display: flex;
+    gap: 60px;
+    flex-wrap: wrap;
+    margin-bottom: 80px;
+}
+
+.director-info {
+    flex: 1.2;
+}
+
+.director-info h3 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: #1A1718;
+    margin-bottom: 8px;
+}
+
+.director-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #4A6294;
+    margin-bottom: 16px;
+}
+
+.director-bio {
+    margin-bottom: 16px;
+}
+
+.director-bio p {
+    font-size: 16px;
+    line-height: 27px;
+    color: #3D393A;
+    margin-bottom: 15px;
+}
+
+.director-signature {
+    border-top: 1px solid #E5E3E1;
+    padding-top: 16px;
+}
+
+.director-signature p {
+    font-size: 18px;
+    font-weight: 600;
+    color: #4A6294;
+}
+
+.director-photo {
+    flex: 0.8;
+}
+
+.director-photo img {
+    width: 100%;
+    border-radius: 12px;
+    outline: 1px solid #DCE4F0;
+    background: #E8EEF7;
+}
+
+.awards-section {
+    margin-bottom: 80px;
+}
+
+.awards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 24px;
+}
+
+.award-card {
+    background: white;
+    border-radius: 12px;
+    outline: 1px solid #E5E3E1;
+    padding: 27px 28px;
+}
+
+.award-year {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #4A6294;
+    margin-bottom: 12px;
+}
+
+.award-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #1A1718;
+    margin-bottom: 12px;
+}
+
+.award-desc {
+    font-size: 14px;
+    line-height: 21px;
+    color: #5A5556;
+}
+
+.gallery-section {
+    margin-bottom: 80px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin: 40px 0;
+}
+
+.gallery-item {
+    background: #E8EEF7;
+    border-radius: 12px;
+    outline: 1px solid #DCE4F0;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+    transition: transform 0.2s;
+}
+
+.gallery-item:hover {
+    transform: scale(1.02);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ============================================
+   СТРАНИЦА ЗАКАЗЧИКАМ
+============================================ */
+.customers-page {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 60px 20px 0;
+}
+
+.page-title-customers {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 67px;
+    color: #1A1718;
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.page-title-customers::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: #E8454D;
+}
+
+.page-subtitle-customers {
+    max-width: 700px;
+    font-size: 20px;
+    line-height: 30px;
+    color: #3D393A;
+    margin-bottom: 60px;
+}
+
+.section-header-custom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 40px;
+    padding-bottom: 16px;
+}
+
+.section-title-custom {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 40px;
+    font-weight: 600;
+    color: #1A1718;
+    position: relative;
+    padding-left: 20px;
+}
+
+.section-title-custom::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: #E8454D;
+}
+
+.section-link-custom {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #4A6294;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 60px;
+}
+
+.service-card {
+    background: white;
+    border-radius: 12px;
+    outline: 1px solid #E5E3E1;
+    padding: 32px;
+    transition: box-shadow 0.2s;
+}
+
+.service-card:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+.service-number {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: #4A6294;
+    margin-bottom: 32px;
+}
+
+.service-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #1A1718;
+    margin-bottom: 16px;
+}
+
+.service-desc {
+    font-size: 15px;
+    line-height: 24px;
+    color: #3D393A;
+    margin-bottom: 24px;
+}
+
+.service-link {
+    color: #4A6294;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.request-builder {
+    background: #F8F7F6;
+    border-radius: 12px;
+    outline: 1px solid #E5E3E1;
+    padding: 48px 40px;
+    margin-bottom: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.builder-form {
+    flex: 1;
+    min-width: 300px;
+}
+
+.form-group-custom {
+    margin-bottom: 20px;
+}
+
+.form-group-custom label {
+    display: block;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #2A2627;
+    margin-bottom: 8px;
+}
+
+.form-group-custom input,
+.form-group-custom select,
+.form-group-custom textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #E5E3E1;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: 'Nunito Sans', sans-serif;
+    background: white;
+}
+
+.form-group-custom textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.form-row .form-group-custom {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.builder-preview {
+    flex: 1;
+    min-width: 300px;
+    background: white;
+    border-radius: 12px;
+    outline: 1px solid #E5E3E1;
+    padding: 28px;
+}
+
+.preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #E5E3E1;
+    margin-bottom: 20px;
+}
+
+.preview-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1A1718;
+}
+
+.preview-draft {
+    font-size: 13px;
+    color: #5A5556;
+}
+
+.preview-item {
+    display: flex;
+    padding: 12px 0;
+    border-bottom: 1px solid #E5E3E1;
+}
+
+.preview-label {
+    width: 100px;
+    font-size: 14px;
+    color: #5A5556;
+}
+
+.preview-value {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1A1718;
+}
+
+.submit-request-btn {
+    width: 100%;
+    background: #E8454D;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 28px;
+    transition: background 0.2s;
+}
+
+.submit-request-btn:hover {
+    background: #D62830;
+}
+
+.rider-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.rider-info {
+    flex: 1;
+}
+
+.rider-info h3 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: #1A1718;
+    margin-bottom: 20px;
+}
+
+.rider-info p {
+    font-size: 17px;
+    line-height: 27px;
+    color: #3D393A;
+    margin-bottom: 24px;
+}
+
+.rider-features {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.rider-feature {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.rider-feature i {
+    color: #4A6294;
+    font-size: 16px;
+}
+
+.rider-card {
+    flex: 1;
+    background: #F8F7F6;
+    border-radius: 12px;
+    outline: 1px solid #E5E3E1;
+    padding: 32px;
+}
+
+.rider-card h4 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1A1718;
+    margin-bottom: 16px;
+}
+
+.rider-meta {
+    font-size: 14px;
+    color: #5A5556;
+    margin-bottom: 8px;
+}
+
+.rider-file {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: white;
+    border-radius: 8px;
+    outline: 1px solid #E5E3E1;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.rider-file i.fa-file-pdf {
+    font-size: 28px;
+    color: #E8454D;
+}
+
+.rider-file-info {
+    flex: 1;
+}
+
+.rider-file-name {
+    font-weight: 600;
+    font-size: 16px;
+    color: #1A1718;
+}
+
+.rider-file-date {
+    font-size: 12px;
+    color: #5A5556;
+}
+
+.rider-file i.fa-download {
+    font-size: 28px;
+    color: #4A6294;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.rider-file i.fa-download:hover {
+    color: #E8454D;
+}
+
+.terms-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-bottom: 60px;
+}
+
+.terms-card {
+    background: #F8F7F6;
+    border-radius: 12px;
+    outline: 1px solid #E5E3E1;
+    padding: 32px;
+}
+
+.terms-card h4 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #1A1718;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.terms-card h4 i {
+    color: #4A6294;
+    font-size: 22px;
+}
+
+.terms-list {
+    list-style: none;
+}
+
+.terms-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #E5E3E1;
+}
+
+.terms-list li:last-child {
+    border-bottom: none;
+}
+
+.terms-list li span:first-child {
+    color: #E8454D;
+}
+
+.contact-form-section {
+    background: #F8F7F6;
+    border-radius: 12px;
+    outline: 1px solid #E5E3E1;
+    padding: 56px 48px;
+    margin-bottom: 80px;
+}
+
+.contact-info h3 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: #1A1718;
+    margin-bottom: 16px;
+}
+
+.contact-info p {
+    font-size: 17px;
+    line-height: 27px;
+    color: #3D393A;
+    margin-bottom: 32px;
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.contact-item {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #E5E3E1;
+}
+
+.contact-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.contact-label {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: #5A5556;
+    margin-bottom: 8px;
+}
+
+.contact-value {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #1A1718;
+} 
+
+/* ============================================
+   СТРАНИЦА СПЕКТАКЛЯ (детальная)
+============================================ */
+.performance-page {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.breadcrumbs {
+    padding: 23px 0 24px;
+    display: flex;
+    gap: 12px;
+    color: #5A5556;
+    font-size: 14px;
+}
+
+.breadcrumbs a {
+    color: #5A5556;
+    text-decoration: none;
+}
+
+.performance-hero {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.performance-poster {
+    flex: 1;
+    min-width: 300px;
+}
+
+.performance-poster img {
+    width: 100%;
+    border-radius: 24px;
+    outline: 1px solid #E5E3E1;
+    background: #E8EEF7;
+}
+
+.performance-info {
+    flex: 1.3;
+    min-width: 350px;
+}
+
+.performance-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #1A1718;
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 32px;
+}
+
+.performance-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: #E8454D;
+}
+
+.performance-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #E5E3E1;
+    margin-bottom: 32px;
+}
+
+.meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.meta-label {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: #5A5556;
+}
+
+.meta-value {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1A1718;
+}
+
+.performance-description h3 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1A1718;
+    margin-bottom: 12px;
+}
+
+.performance-description p {
+    font-size: 16px;
+    line-height: 27px;
+    color: #3D393A;
+    margin-bottom: 24px;
+}
+
+.review-block {
+    background: #F8F7F6;
+    border-left: 4px solid #E8454D;
+    border-radius: 8px;
+    padding: 24px 32px;
+    margin: 24px 0;
+    font-style: italic;
+}
+
+.review-text {
+    font-size: 16px;
+    line-height: 27px;
+    color: #2A2627;
+    margin-bottom: 12px;
+}
+
+.review-author {
+    font-size: 13px;
+    font-weight: 600;
+    color: #5A5556;
+}
+
+.performance-price {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #4A6294;
+    margin: 24px 0;
+}
+
+.buy-ticket-main {
+    background: #E8454D;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 28px;
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.buy-ticket-main:hover {
+    background: #D62830;
+}
+
+.schedule-section {
+    border-top: 1px solid #E5E3E1;
+    padding-top: 24px;
+    margin-bottom: 80px;
+}
+
+.schedule-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.schedule-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: #1A1718;
+    position: relative;
+    padding-left: 20px;
+}
+
+.schedule-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: #E8454D;
+}
+
+.schedule-link {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #4A6294;
+    text-decoration: none;
+}
+
+.schedule-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.schedule-item {
+    background: #F8F7F6;
+    border-radius: 12px;
+    outline: 1px solid #E5E3E1;
+    padding: 20px 28px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    transition: transform 0.2s;
+}
+
+.schedule-item:hover {
+    transform: translateX(4px);
+}
+
+.schedule-date {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #1A1718;
+}
+
+.schedule-time {
+    font-size: 14px;
+    color: #5A5556;
+    margin-top: 4px;
+}
+
+.seats-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.seats-red {
+    background: #FDEBED;
+    color: #E8454D;
+}
+
+.seats-blue {
+    background: #E8EEF7;
+    color: #4A6294;
+}
+
+.schedule-buy {
+    background: #E8454D;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 18px;
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.schedule-buy:hover {
+    background: #D62830;
+}
+
+.cast-section {
+    margin-bottom: 80px;
+}
+
+.cast-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: #1A1718;
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 32px;
+}
+
+.cast-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: #E8454D;
+}
+
+.cast-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.cast-card {
+    background: #F8F7F6;
+    border-radius: 12px;
+    outline: 1px solid #E5E3E1;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+.cast-card:hover {
+    transform: translateY(-2px);
+}
+
+.cast-avatar {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #E8EEF7, #DCE4F0);
+    border-radius: 50%;
+    outline: 2px solid #4A6294;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: #4A6294;
+}
+
+.cast-name {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1A1718;
+}
+
+.cast-role {
+    font-size: 14px;
+    color: #5A5556;
+    margin-top: 4px;
+}
+
+.technical-section {
+    background: #FAFAFA;
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 80px;
+}
+
+.technical-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: black;
+    border-left: 3px solid #E8454D;
+    padding-left: 16px;
+    margin-bottom: 24px;
+}
+
+.technical-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.technical-item {
+    padding: 8px 0;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.technical-label {
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.technical-value {
+    font-size: 15px;
+    color: #404040;
+}
+
+.similar-section {
+    margin-bottom: 80px;
+}
+
+.similar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.similar-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: #1A1718;
+    position: relative;
+    padding-left: 20px;
+}
+
+.similar-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: #E8454D;
+}
+
+.similar-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.similar-card {
+    background: white;
+    border-radius: 12px;
+    outline: 1px solid #E5E3E1;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.similar-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+.similar-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    background: #E8EEF7;
+}
+
+.similar-content {
+    padding: 24px;
+}
+
+.similar-tags {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.similar-tag {
+    padding: 4px 10px;
+    background: #E8EEF7;
+    border-radius: 4px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    color: #4A6294;
+}
+
+.similar-name {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #1A1718;
+    margin-bottom: 12px;
+}
+
+.similar-desc {
+    font-size: 14px;
+    line-height: 21px;
+    color: #3D393A;
+    margin-bottom: 20px;
+}
+
+.similar-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid #E5E3E1;
+}
+
+.similar-price {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #4A6294;
+}
+
+.similar-btn {
+    background: #F8F7F6;
+    border: 1px solid #E5E3E1;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: #1A1718;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.similar-btn:hover {
+    background: #E9E7E5;
+}
+
+/* ============================================
+   СТРАНИЦА ВЫБОРА МЕСТ
+============================================ */
+.seats-page {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.progress-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.progress-step {
+    flex: 1;
+    text-align: center;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    background: #EFEEED;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #3D393A;
+}
+
+.step-number.active {
+    background: #4A6294;
+    color: white;
+}
+
+.step-label {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #5A5556;
+}
+
+.step-label.active {
+    color: #4A6294;
+}
+
+.hall-scheme {
+    background: white;
+    border-radius: 12px;
+    outline: 1px solid #E5E3E1;
+    padding: 32px;
+    margin-bottom: 40px;
+}
+
+.hall-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #E5E3E1;
+    margin-bottom: 28px;
+}
+
+.hall-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #1A1718;
+    position: relative;
+    padding-left: 20px;
+}
+
+.hall-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: #E8454D;
+}
+
+.legend {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+}
+
+.legend-color.free {
+    background: white;
+    border: 1px solid #D5D3D1;
+}
+
+.legend-color.selected {
+    background: #4A6294;
+}
+
+.legend-color.occupied {
+    background: #E5E3E1;
+    border: 1px solid #D5D3D1;
+}
+
+.stage {
+    background: linear-gradient(176deg, #2A3D5E 0%, #3A5078 100%);
+    border-radius: 8px 8px 0 0;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.stage span {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: white;
+}
+
+.seats-container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.seat-row {
+    display: flex;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.row-label {
+    width: 60px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #4A6294;
+}
+
+.seats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.seat {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.seat.free {
+    background: white;
+    border: 1px solid #E5E3E1;
+    color: #3D393A;
+}
+
+.seat.free:hover {
+    border-color: #4A6294;
+    background: #F8F7F6;
+    transform: scale(1.05);
+}
+
+.seat.occupied {
+    background: #EFEEED;
+    border: 1px solid #E5E3E1;
+    color: #9A9896;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.seat.selected {
+    background: #4A6294;
+    border: 1px solid #4A6294;
+    color: white;
+}
+
+.order-summary {
+    background: white;
+    border-radius: 12px;
+    outline: 1px solid #E5E3E1;
+    padding: 32px;
+    margin-bottom: 60px;
+}
+
+.summary-header {
+    padding-bottom: 16px;
+    border-bottom: 1px solid #E5E3E1;
+    margin-bottom: 24px;
+}
+
+.summary-header h3 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1A1718;
+}
+
+.summary-item {
+    display: flex;
+    gap: 16px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #E5E3E1;
+    margin-bottom: 20px;
+}
+
+.summary-img {
+    width: 80px;
+    height: 80px;
+    background: #E8EEF7;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.summary-details {
+    flex: 1;
+}
+
+.summary-title {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #1A1718;
+    margin-bottom: 4px;
+}
+
+.summary-meta {
+    font-size: 13px;
+    color: #5A5556;
+}
+
+.selected-seats-list {
+    margin-bottom: 24px;
+}
+
+.selected-seat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #E5E3E1;
+}
+
+.selected-seat-info {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.seat-name {
+    font-weight: 500;
+    font-size: 16px;
+    color: #2A2627;
+}
+
+.seat-price {
+    font-weight: 700;
+    font-size: 16px;
+    color: #4A6294;
+}
+
+.remove-seat {
+    color: #5A5556;
+    font-size: 18px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.remove-seat:hover {
+    color: #E8454D;
+}
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 24px;
+    border-top: 1px solid #E5E3E1;
+    margin-bottom: 24px;
+}
+
+.total-label {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: #1A1718;
+}
+
+.total-price {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: #1A1718;
+}
+
+.selection-actions {
+    display: flex;
+    gap: 16px;
+}
+
+.btn-back {
+    flex: 1;
+    background: #F8F7F6;
+    border: 1px solid #E5E3E1;
+    border-radius: 8px;
+    padding: 12px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #1A1718;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.2s;
+}
+
+.btn-back:hover {
+    background: #E9E7E5;
+}
+
+.btn-next {
+    flex: 1;
+    background: #E8454D;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.2s;
+}
+
+.btn-next:hover {
+    background: #D62830;
+}
+
+/* ============================================
+   СТРАНИЦА МАГАЗИН МЕРЧА
+============================================ */
+.page-header {
+    max-width: 1320px;
+    margin: 60px auto 0;
+    padding: 0 20px;
+}
+
+.title-accent {
+    position: relative;
+    padding-left: 20px;
+}
+
+.title-accent::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--red-59);
+}
+
+.page-title {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 62px;
+    color: #1A1718;
+}
+
+.page-description {
+    max-width: 600px;
+    margin-top: 8px;
+    font-size: 20px;
+    line-height: 30px;
+    color: #1A1A1A;
+}
+
+.filters-section {
+    max-width: 1320px;
+    margin: 30px auto 0;
+    padding: 0 20px;
+}
+
+.filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.filter-chip {
+    padding: 9px 24px 10.8px;
+    border-radius: 8px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    background: #F8F7F6;
+    color: #1A1A1A;
+    transition: all 0.2s;
+}
+
+.filter-chip:hover {
+    background: #E9E7E5;
+}
+
+.filter-chip.active {
+    background: #2A3D5E;
+    color: #F8F7F6;
+}
+
+.merch-grid {
+    max-width: 1320px;
+    margin: 48px auto 0;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.product-card {
+    background: white;
+    border-radius: 8px;
+    outline: 1px solid #E5E3E1;
+    transition: box-shadow 0.2s, transform 0.2s;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+.product-img {
+    width: 100%;
+    height: 220px;
+    background: #F5F5F5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #E9ECEF;
+}
+
+.product-img img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 20px 20px 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-name {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: #1A1718;
+    margin-bottom: 8px;
+}
+
+.product-desc {
+    font-size: 13px;
+    color: #3D393A;
+    margin-bottom: 12px;
+}
+
+.product-price {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: #4A6294;
+    margin: 8px 0 16px;
+}
+
+.buy-now-btn {
+    width: 100%;
+    height: 48px;
+    background: #E8454D;
+    border: none;
+    border-radius: 8px;
+    color: #F2F1F0;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: auto;
+    transition: background 0.2s;
+}
+
+.buy-now-btn:hover {
+    background: #D62830;
+}
+
+.load-more-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 16px 0 48px;
+}
+
+.load-more-btn {
+    width: 260px;
+    padding: 14px 56px;
+    background: #F8F7F6;
+    border-radius: 8px;
+    border: none;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.load-more-btn:hover {
+    background: #E9E7E5;
+}
+
+/* Модальные окна (магазин) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.2s;
+}
+
+.modal-overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-container {
+    background: white;
+    max-width: 600px;
+    width: 90%;
+    padding: 32px;
+    border-radius: 12px;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #999;
+    transition: color 0.2s;
+}
+
+.modal-close:hover {
+    color: #E8454D;
+}
+
+.cart-summary {
+    background: #DCE4F0;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.cart-item:last-child {
+    margin-bottom: 0;
+}
+
+.cart-item-info {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.cart-item-name {
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #2A3D5E;
+}
+
+.cart-item-details {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 14px;
+    color: #2A3D5E;
+}
+
+.cart-item-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 16px;
+}
+
+.cart-item-actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #2A3D5E;
+    transition: opacity 0.2s;
+    padding: 0;
+}
+
+.cart-item-actions button:hover {
+    opacity: 0.7;
+}
+
+.cart-item-price {
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #2A3D5E;
+}
+
+.total-row {
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 700;
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid #B0C4DE;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    color: #2A3D5E;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 32px;
+    flex-wrap: nowrap;
+}
+
+.modal-btn {
+    width: 260px;
+    height: 52px;
+    border-radius: 12px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.btn-outline-modal {
+    background: #F8F7F6;
+    color: #212529;
+}
+
+.btn-outline-modal:hover {
+    background: #E9E7E5;
+}
+
+.btn-primary-modal {
+    background: #E8454D;
+    color: #F2F1F0;
+}
+
+.btn-primary-modal:hover {
+    background: #D62830;
+}
+
+.success-content {
+    max-width: 1320px;
+    margin: 60px auto;
+    padding: 48px 32px;
+    background: white;
+    border-radius: 12px;
+    outline: 1px solid #E5E3E1;
+    text-align: center;
+}
+
+.success-content i {
+    font-size: 64px;
+    color: #4A6294;
+    margin-bottom: 24px;
+}
+
+.success-content h2 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #1A1718;
+}
+
+.success-content p {
+    font-size: 16px;
+    color: #3D393A;
+    margin-bottom: 12px;
+}
+
+.btn-return {
+    margin-top: 32px;
+    background: #E8454D;
+    color: #F2F1F0;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    display: inline-block;
+    transition: background 0.2s;
+}
+
+.btn-return:hover {
+    background: #D62830;
+}
+
+/* ============================================
+   BRANDBOOK SPECIFIC STYLES
+============================================ */
+.brandbook-container {
+    background: #F2F1F0;
+}
+
+.page-section {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+
+.page-section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-brand {
+    background: var(--deep-blue);
+    padding: 80px 40px 70px;
+    margin-bottom: 56px;
+}
+
+.hero-brand-content {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.hero-brand h1 {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 800;
+    font-size: 56px;
+    line-height: 1.1;
+    color: #F2F1F0;
+    letter-spacing: -0.02em;
+}
+
+.hero-brand p {
+    color: rgba(242, 241, 240, 0.8);
+    margin-top: 20px;
+    font-size: 18px;
+    max-width: 600px;
+}
+
+.content-wrapper {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+}
+
+.grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+}
+
+.grid-3col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+.brand-card {
+    background: #FFFFFF;
+    border-radius: 24px;
+    padding: 32px;
+    border: 1px solid rgba(35, 31, 32, 0.06);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.brand-card h3 {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 16px;
+    color: #231F20;
+}
+
+.brand-card p {
+    line-height: 1.5;
+    color: #231F20;
+    opacity: 0.85;
+}
+
+.photo-large {
+    border-radius: 28px;
+    overflow: hidden;
+    height: 380px;
+    background: var(--accent-gold);
+    margin: 40px 0;
+}
+
+.photo-large img,
+.photo-medium img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.photo-medium {
+    border-radius: 24px;
+    overflow: hidden;
+    aspect-ratio: 16/10;
+    background: var(--deep-blue);
+}
+
+.color-palette {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin: 40px 0 32px;
+}
+
+.swatch {
+    flex: 1;
+    min-width: 160px;
+    border-radius: 24px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.03);
+}
+
+.swatch-color {
+    height: 140px;
+}
+
+.swatch-info {
+    padding: 18px;
+    background: white;
+}
+
+.swatch-name {
+    font-weight: 800;
+    font-family: 'Unbounded', sans-serif;
+}
+
+.logo-demo-box {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 32px;
+    padding: 48px 32px;
+    display: flex;
+    justify-content: center;
+    gap: 56px;
+    flex-wrap: wrap;
+    border: 1px solid rgba(35, 31, 32, 0.1);
+    margin: 40px 0;
+}
+
+.logo-version {
+    text-align: center;
+}
+
+.logo-version img {
+    max-width: 200px;
+    margin-bottom: 12px;
+    border-radius: 16px;
+}
+
+.mistake-badge {
+    background: rgba(244, 49, 57, 0.08);
+    border-radius: 20px;
+    padding: 20px;
+    border-left: 4px solid #F43139;
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+============================================ */
+@media (max-width: 1100px) {
+    .team-scroll-wrapper {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    .scroll-wrapper {
+        padding: 20px 40px 30px 40px;
+        margin: 0 -40px;
+    }
+    .performances-grid,
+    .events-grid,
+    .merch-grid,
+    .merch-grid-main {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .services-grid,
+    .awards-grid,
+    .similar-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .cast-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .technical-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .grid-3col {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 860px) {
+    /* Скрываем всё в хедере, кроме бургера */
+    .header-inner .logo-group,
+    .header-inner .nav-menu,
+    .header-inner .buy-ticket-btn {
+        display: none;
+    }
+
+    .header-inner {
+        justify-content: flex-end;
+        height: 70px;
+    }
+
+    .burger-icon {
+        display: flex;
+    }
+
+    /* Стрелки на мобильных всегда видны */
+    .scroll-btn {
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .hero-title-afisha {
+        font-size: 36px;
+    }
+
+    .footer-top {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .footer-brand {
+        max-width: 100%;
+    }
+
+    .footer-theater-title {
+        white-space: normal;
+    }
+
+    .about-content,
+    .clients-grid {
+        flex-direction: column;
+    }
+
+    .play-card {
+        flex: 0 0 320px;
+    }
+
+    .section-title,
+    .section-title-team,
+    .page-title-contacts,
+    .page-title-team,
+    .page-title-about {
+        font-size: 36px;
+        line-height: 48px;
+    }
+
+    .page-title-customers {
+        font-size: 40px;
+        line-height: 48px;
+    }
+
+    .hero-brand h1 {
+        font-size: 36px;
+    }
+
+    .form-grid,
+    .contacts-grid {
+        flex-direction: column;
+    }
+
+    .map-address-card {
+        position: static;
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    .map-container {
+        flex-direction: column;
+        height: auto;
+        padding: 40px;
+    }
+
+    .timeline-container::before {
+        left: 30px;
+    }
+
+    .timeline-item {
+        flex-direction: column;
+        padding-left: 60px;
+    }
+
+    .timeline-item.left .timeline-content,
+    .timeline-item.right .timeline-content {
+        width: 100%;
+        text-align: left;
+        padding: 0;
+    }
+
+    .timeline-marker {
+        left: 30px;
+        top: 20px;
+        transform: translateX(-50%);
+    }
+
+    .timeline-photo {
+        margin-left: 0;
+    }
+
+    .director-highlight,
+    .director-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .stats-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .work-with-us {
+        flex-direction: column;
+    }
+
+    .actors-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .request-builder,
+    .rider-section {
+        flex-direction: column;
+    }
+
+    .selection-actions,
+    .modal-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .seat-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .row-label {
+        width: auto;
+    }
+
+    .seats {
+        margin-left: 0;
+    }
+
+    .performances-grid,
+    .events-grid,
+    .merch-grid,
+    .merch-grid-main {
+        grid-template-columns: 1fr;
+    }
+
+    .services-grid,
+    .awards-grid,
+    .similar-grid,
+    .cast-grid,
+    .technical-grid,
+    .grid-2col,
+    .grid-3col {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 680px) {
+    .logo-img {
+        height: 40px;
+    }
+
+    .brandbook-label {
+        font-size: 12px;
+    }
+
+    .hero-title-afisha {
+        font-size: 28px;
+    }
+
+    .page-title,
+    .page-title-contacts,
+    .page-title-team,
+    .page-title-about {
+        font-size: 32px;
+        line-height: 40px;
+    }
+
+    .section-title,
+    .section-title-team {
+        font-size: 28px;
+    }
+
+    .faq-title {
+        font-size: 28px;
+    }
+
+    .swatch {
+        min-width: 120px;
+    }
+}
+
+/* ============================================
+   ДОПОЛНИТЕЛЬНЫЕ ФИКСЫ ДЛЯ АФИШИ И ДРУГИХ СТРАНИЦ
+============================================ */
+.afisha-page {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+.afisha-page .events-grid,
+.afisha-page .filters-section-afisha,
+.afisha-page .tour-map-section,
+.afisha-page .load-more-wrapper {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.play-card .play-content {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+}
+
+.play-card .play-content .btn-details,
+.play-card .play-content .btn-buy {
+    width: 100%;
+    margin: 0 !important;
+}
+
+.clients-form .form-group {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.clients-form .form-group label {
+    display: block;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #2A2627;
+    margin-bottom: 8px;
+}
+
+.clients-form .form-group input,
+.clients-form .form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #E5E3E1;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: 'Nunito Sans', sans-serif;
+    background: white;
+    transition: border-color 0.2s;
+}
+
+.clients-form .form-group input:focus,
+.clients-form .form-group textarea:focus {
+    outline: none;
+    border-color: #4A6294;
+}
+
+.clients-form .form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.clients-form .submit-client-btn {
+    width: 100%;
+    background: #E8454D;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 10px;
+}
+
+.clients-form .submit-client-btn:hover {
+    background: #D62830;
+}
+
+.clients-form h3 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: #1A1718;
+    margin-bottom: 24px;
+}
+
+.contacts-page .form-container .form-group {
+    margin-bottom: 20px;
+}
+
+.contacts-page .form-container .form-group label {
+    display: block;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #2A2627;
+    margin-bottom: 8px;
+}
+
+.contacts-page .form-container .form-group input,
+.contacts-page .form-container .form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #E5E3E1;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: 'Nunito Sans', sans-serif;
+    background: white;
+    transition: border-color 0.2s;
+}
+
+.contacts-page .form-container .form-group input:focus,
+.contacts-page .form-container .form-group textarea:focus {
+    outline: none;
+    border-color: #4A6294;
+}
+
+.contacts-page .form-container .form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.contacts-page .form-container .custom-select-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.contacts-page .form-container .custom-select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #E5E3E1;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: 'Nunito Sans', sans-serif;
+    background: white;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: border-color 0.2s;
+}
+
+.contacts-page .form-container .custom-select:hover,
+.contacts-page .form-container .custom-select.active {
+    border-color: #4A6294;
+}
+
+.contacts-page .form-container .custom-options {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #E5E3E1;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 10;
+    display: none;
+    overflow: hidden;
+}
+
+.contacts-page .form-container .custom-options.show {
+    display: block;
+}
+
+.contacts-page .form-container .custom-option {
+    padding: 12px 16px;
+    font-size: 15px;
+    font-family: 'Nunito Sans', sans-serif;
+    color: #1A1718;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.contacts-page .form-container .custom-option:hover {
+    background: #F8F7F6;
+}
+
+.contacts-page .form-container .custom-option.selected {
+    background: #E8EEF7;
+    color: #2A3D5E;
+    font-weight: 500;
+}
+
+.contacts-page .form-container .submit-btn {
+    width: 100%;
+    background: #E8454D;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 14px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.contacts-page .form-container .submit-btn:hover {
+    background: #D62830;
+}
+
+.performances-page {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    width: 100%;
+}
+
+.performance-page {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+    width: 100%;
+}
+
+.filter-chip-date {
+    position: relative;
+    padding: 0;
+    background: transparent;
+}
+
+.month-select {
+    padding: 10px 32px 10px 24px;
+    border-radius: 40px;
+    background: #f0f0f0;
+    border: 1px solid transparent;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    font-family: inherit;
+    color: #1e1e1e;
+    transition: background 0.2s, color 0.2s;
+}
+
+.month-select.active-filter {
+    background: #2A3D5E;
+    color: white;
+    border-color: #2A3D5E;
+}
+
+.filter-chip-date i {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: inherit;
+}
+
+.events-grid.filtered .performance-card-afisha {
+    opacity: 0.65;
+    filter: grayscale(0.6);
+    transition: opacity 0.2s, filter 0.2s;
+}
+
+.hero-btn-light,
+.hero-btn-dark {
+    cursor: pointer;
+}
+
+.filter-chips-afisha {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.filter-chip-afisha {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 24px;
+    border-radius: 40px;
+    background: #f0f0f0;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    line-height: 1;
+}
+
+.filter-chip-afisha.active {
+    background: #2A3D5E;
+    color: white;
+}
+
+.month-select {
+    padding: 10px 36px 10px 24px;
+    border-radius: 40px;
+    background: #f0f0f0;
+    border: 1px solid transparent;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    color: #1e1e1e;
+}
+
+.month-select.active-filter {
+    background: #2A3D5E;
+    color: white;
+    border-color: #2A3D5E;
+}
+
+.filter-chip-date i {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: inherit;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.2s;
+}
+.modal-overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+.tour-modal-container {
+    width: 1098px;
+    max-width: 95vw;
+    max-height: 90vh;
+    background: #DCE4F0;
+    border-radius: 24px;
+    padding: 40px 60px;
+    position: relative;
+    overflow-y: auto;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+.modal-close {
+    position: absolute;
+    top: 20px; right: 30px;
+    font-size: 32px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: black;
+}
+.DivModalHeader {
+    border-bottom: 1px solid #2A3D5E;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+.DivModalHeader .H2 {
+    border-left: 3px solid #E8454D;
+    padding-left: 16px;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: black;
+    margin-bottom: 8px;
+}
+.DivModalHeader .P {
+    color: #2A3D5E;
+    font-size: 16px;
+}
+.DivModalTourList {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.DivModalTourItem {
+    background: white;
+    border-radius: 24px;
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+.SpanModalTourCity {
+    width: 160px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: #E8454D;
+}
+.DivModalTourDates {
+    flex: 1;
+}
+.DivModalTourDates .Strong {
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+.SpanModalTourVenue {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #2A3D5E;
+    font-size: 14px;
+}
+.SpanModalTourVenue i {
+    font-size: 14px;
+}
+.SpanTourStatus {
+    padding: 4px 14px;
+    background: #2A3D5E;
+    border-radius: 30px;
+    color: #F8F7F6;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    min-width: 90px;
+    text-align: center;
+}
+.SpanTourStatus.sold {
+    background: #2A2627;
+}
+.SpanTourStatus.soon {
+    background: #F8F7F6;
+    color: #1A1A1A;
+    border: 1px solid #ddd;
+}
+.DivModalFooter {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid #2A3D5E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: black;
+    font-size: 14px;
+}
+.tour-all-link-bottom {
+    text-align: right;
+    margin-top: 16px;
+}
+.tour-all-link-bottom .tour-all-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+}
+
+
+
+/* ============================================
+   ДОПОЛНИТЕЛЬНЫЕ СТИЛИ ДЛЯ СТРАНИЦЫ "СПЕКТАКЛИ"
+============================================ */
+.performances-page {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+.performances-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 48px;
+}
+
+/* Карточка спектакля (уже есть .performance-card, но уточним) */
+.performance-card {
+    background: white;
+    border-radius: 12px;
+    outline: 1px solid #E5E3E1;
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.performance-card:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+.performance-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    background: #F5F5F5;
+}
+
+.performance-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.performance-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag {
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.tag-age {
+    background: #E8EEF7;
+    border: 1px solid #DCE4F0;
+    color: #3A5078;
+}
+
+.tag-time {
+    background: #F8F7F6;
+    border: 1px solid #DCE4F0;
+    color: #2A2627;
+}
+
+.performance-name {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 36px;
+    color: #1A1718;
+}
+
+.performance-desc {
+    font-size: 16px;
+    line-height: 24px;
+    color: #3D393A;
+}
+
+.performance-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.btn-details,
+.btn-buy-performance {
+    background: #F8F7F6;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.2s;
+}
+
+.btn-details:hover {
+    background: #E9E7E5;
+}
+
+.btn-buy-performance {
+    background: #E8454D;
+    color: white;
+}
+
+.btn-buy-performance:hover {
+    background: #D62830;
+}
+
+/* Адаптив для страницы спектаклей */
+@media (max-width: 1100px) {
+    .performances-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 860px) {
+    .performances-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   СТИЛИ ДЛЯ СТРАНИЦЫ "АФИША"
+============================================ */
+.afisha-page {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Фильтры афиши */
+.filters-section-afisha {
+    padding: 32px 0 24px;
+}
+
+.filter-chips-afisha {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.filter-chip-afisha {
+    padding: 10px 24px;
+    border-radius: 40px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    background: #F8F7F6;
+    color: #404040;
+    transition: all 0.2s;
+}
+
+.filter-chip-afisha.active {
+    background: #2A3D5E;
+    color: white;
+}
+
+.filter-chip-afisha:hover:not(.active) {
+    background: #E9E7E5;
+}
+
+.filter-chip-date {
+    position: relative;
+    padding: 0;
+    background: transparent;
+}
+
+.month-select {
+    padding: 10px 36px 10px 24px;
+    border-radius: 40px;
+    background: #F8F7F6;
+    border: 1px solid transparent;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    color: #1e1e1e;
+    font-family: 'Unbounded', sans-serif;
+}
+
+.month-select.active-filter {
+    background: #2A3D5E;
+    color: white;
+    border-color: #2A3D5E;
+}
+
+.filter-chip-date i {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: inherit;
+}
+
+/* Сетка событий */
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin: 40px 0;
+}
+
+.performance-card-afisha {
+    background: white;
+    border-radius: 12px;
+    outline: 1px solid #E5E3E1;
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.performance-card-afisha:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+.performance-img-afisha {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: #F5F5F5;
+}
+
+.performance-content-afisha {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.performance-tags-afisha {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag-afisha {
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.tag-tickets {
+    background: #FDEBED;
+    border: 1px solid #F66A70;
+    color: #D62830;
+}
+
+.performance-name-afisha {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 36px;
+    color: #1A1718;
+}
+
+.performance-date-afisha {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: black;
+    margin-top: 4px;
+}
+
+.performance-desc-afisha {
+    font-size: 16px;
+    line-height: 24px;
+    color: #3D393A;
+}
+
+.event-venue-afisha {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #404040;
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+.performance-btns-afisha {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.btn-details-afisha {
+    background: #F8F7F6;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #1A1718;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.2s;
+}
+
+.btn-details-afisha:hover {
+    background: #E9E7E5;
+}
+
+.btn-buy-afisha {
+    background: #E8454D;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.2s;
+}
+
+.btn-buy-afisha:hover {
+    background: #D62830;
+}
+
+/* Кнопка "Показать еще" */
+.load-more-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 16px 0 48px;
+}
+
+.load-more-btn {
+    width: 260px;
+    padding: 14px 56px;
+    background: #F8F7F6;
+    border-radius: 8px;
+    border: none;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.load-more-btn:hover {
+    background: #E9E7E5;
+}
+
+/* Карта гастролей */
+.tour-map-section {
+    background: white;
+    border-radius: 28px;
+    outline: 1px solid #E5E5E5;
+    padding: 40px;
+    margin: 64px 0;
+}
+
+.tour-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.tour-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: black;
+}
+
+.tour-all-link {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #4A6294;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tour-map-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.map-placeholder {
+    flex: 1.2;
+    min-width: 300px;
+    height: 325px;
+    background: #DCE4F0;
+    border-radius: 12px;
+    position: relative;
+}
+
+.map-dot {
+    position: absolute;
+    width: 9px;
+    height: 10px;
+    background: black;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+.map-label {
+    position: absolute;
+    background: white;
+    padding: 6px 18px;
+    border-radius: 20px;
+    border: 1px solid #D4D4D4;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+.tour-list {
+    flex: 1;
+    min-width: 300px;
+}
+
+.tour-item {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding: 12px 0;
+    border-bottom: 1px solid #4A6294;
+}
+
+.tour-city {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #E53E3E;
+    width: 140px;
+}
+
+.tour-dates {
+    flex: 1;
+}
+
+.tour-dates span {
+    font-size: 14px;
+    color: #2A2627;
+}
+
+.tour-venue {
+    font-size: 14px;
+    color: #2A2627;
+    margin-top: 4px;
+}
+
+.tour-status {
+    padding: 4px 14px;
+    border-radius: 30px;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    background: #2A3D5E;
+    color: #F8F7F6;
+    min-width: 90px;
+    text-align: center;
+}
+
+.tour-status.sold {
+    background: #2A2627;
+}
+
+.tour-status.soon {
+    background: #F8F7F6;
+    color: #1A1A1A;
+    border: 1px solid #ddd;
+}
+
+.tour-all-link-bottom {
+    text-align: right;
+    margin-top: 16px;
+}
+
+/* Модальное окно гастролей */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.2s;
+}
+.modal-overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+.DivModalContent {
+    width: 1098px;
+    max-width: 95vw;
+    max-height: 90vh;
+    background: #DCE4F0;
+    border-radius: 24px;
+    padding: 40px 60px;
+    position: relative;
+    overflow-y: auto;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+.ButtonModalClose {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 32px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: black;
+}
+.DivModalHeader {
+    border-bottom: 1px solid #2A3D5E;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+.DivModalHeader .H2 {
+    border-left: 3px solid #E8454D;
+    padding-left: 16px;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: black;
+    margin-bottom: 8px;
+}
+.DivModalHeader .P {
+    color: #2A3D5E;
+    font-size: 16px;
+}
+.DivModalTourList {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.DivModalTourItem {
+    background: white;
+    border-radius: 24px;
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+.SpanModalTourCity {
+    width: 160px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: #E8454D;
+}
+.DivModalTourDates {
+    flex: 1;
+}
+.DivModalTourDates .Strong {
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+.SpanModalTourVenue {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #2A3D5E;
+    font-size: 14px;
+}
+.SpanModalTourVenue i {
+    font-size: 14px;
+}
+.SpanTourStatus {
+    padding: 4px 14px;
+    background: #2A3D5E;
+    border-radius: 30px;
+    color: #F8F7F6;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    min-width: 90px;
+    text-align: center;
+}
+.SpanTourStatus.sold {
+    background: #2A2627;
+}
+.SpanTourStatus.soon {
+    background: #F8F7F6;
+    color: #1A1A1A;
+    border: 1px solid #ddd;
+}
+.DivModalFooter {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid #2A3D5E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: black;
+    font-size: 14px;
+}
+.ModalBackgroundImage {
+    position: absolute;
+    width: 453px;
+    height: 594px;
+    right: 0;
+    top: -357px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Адаптив для афиши */
+@media (max-width: 1100px) {
+    .events-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .DivModalTourItem {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+}
+@media (max-width: 860px) {
+    .events-grid {
+        grid-template-columns: 1fr;
+    }
+    .tour-map-container {
+        flex-direction: column;
+    }
+    .map-placeholder {
+        min-width: auto;
+    }
+    .tour-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .DivModalContent {
+        padding: 30px 20px;
+    }
+}
+
+/* ============================================
+   ENHANCED MOBILE STYLES (680px и ниже)
+============================================ */
+@media (max-width: 680px) {
+    /* Уменьшаем отступы */
+    .container-main,
+    .afisha-page,
+    .performance-page {
+        padding: 0 16px !important;
+    }
+    
+    /* Заголовки */
+    .section-title,
+    .page-title,
+    .hero-title-afisha {
+        font-size: 28px !important;
+        line-height: 1.2 !important;
+        padding-left: 12px !important;
+    }
+    
+    /* Карточки в сетке — одна колонка */
+    .performances-grid,
+    .events-grid,
+    .merch-grid,
+    .services-grid,
+    .grid-3col,
+    .grid-2col {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+    
+    /* Горизонтальные скролл-контейнеры */
+    .scroll-wrapper {
+        padding: 16px !important;
+        margin: 0 -16px !important;
+        scroll-snap-type: x mandatory;
+    }
+    
+    .performance-card,
+    .play-card,
+    .merch-card {
+        flex: 0 0 85vw !important;
+        scroll-snap-align: start;
+    }
+    
+    /* Кнопки на всю ширину */
+    .hero-buttons-afisha,
+    .performance-btns,
+    .selection-actions {
+        flex-direction: column !important;
+        width: 100%;
+    }
+    
+    .hero-buttons-afisha button,
+    .performance-btns button {
+        width: 100% !important;
+    }
+    
+    /* Фикс для форм */
+    .clients-form,
+    .form-container {
+        padding: 24px 20px !important;
+    }
+    
+    /* Убираем лишние анимации для производительности */
+    * {
+        transition-duration: 0.2s !important;
+    }
+}
+
+
+
+/* ============================================
+   FOOTER MOBILE ADAPTIVE (FINAL FIXES)
+   Вставить строго в конец style.css
+============================================ */
+@media (max-width: 860px) {
+    .main-footer {
+        padding: 40px 20px 30px !important;
+        text-align: center !important;
+        width: 100% !important;
+    }
+    .footer-container {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
+    }
+    .footer-top {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
+        gap: 28px !important;
+        margin-bottom: 0 !important;
+    }
+
+    /* 🔹 Блок бренда */
+    .footer-brand {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
+        text-align: center !important;
+    }
+    .footer-logo { justify-content: center !important; gap: 10px !important; margin-bottom: 8px !important; }
+    .footer-theater-title { font-size: 18px !important; line-height: 1.3 !important; white-space: normal !important; }
+    .footer-description { margin: 0 auto 24px auto !important; max-width: 100% !important; }
+
+    /* 🔹 ФОРМА ПОДПИСКИ: УВЕЛИЧЕННЫЕ ОТСТУПЫ */
+    .newsletter-title {
+        margin: 0 auto 20px auto !important; /* 🔑 Отступ от заголовка до поля ввода */
+        padding-top: 8px !important;         /* 🔑 Отступ от текста описания сверху */
+        font-size: 18px !important;
+    }
+    
+    .subscribe-form {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
+        max-width: 320px !important;
+        gap: 12px !important;
+        margin: 0 auto 20px auto !important;
+        height: auto !important;
+        overflow: visible !important;
+        position: relative;
+    }
+
+    .subscribe-input,
+    .subscribe-btn {
+        width: 100% !important;
+        padding: 12px 28px !important;
+        border-radius: 8px !important;
+        font-family: 'Unbounded', sans-serif !important;
+        font-size: 14px !important;
+        font-weight: 600 !important;
+        line-height: 1.2 !important;
+        height: auto !important;
+        box-sizing: border-box !important;
+        cursor: pointer !important;
+        position: relative;
+    }
+
+    .subscribe-input {
+        background: #2A3D5E !important;
+        border: 1px solid #3A5078 !important;
+        color: white !important;
+        text-align: center !important;
+        outline: none !important;
+        margin-bottom: 0 !important;
+    }
+    .subscribe-input::placeholder {
+        color: #DCE4F0 !important;
+        font-family: 'Nunito Sans', sans-serif !important;
+        font-weight: 400 !important;
+        font-size: 14px !important;
+        opacity: 0.8 !important;
+    }
+    .subscribe-input:focus {
+        border-color: #4A6294 !important;
+        background: #3A5078 !important;
+        box-shadow: 0 0 0 2px rgba(74, 98, 148, 0.25) !important;
+    }
+
+    .subscribe-btn {
+        background: #4A6294 !important;
+        color: white !important;
+        border: none !important;
+        text-align: center !important;
+        transition: background 0.2s !important;
+        margin-bottom: 0 !important;
+    }
+    .subscribe-btn:hover { background: #3A4F79 !important; }
+
+    /* 🔹 КНОПКИ ФУТЕРА */
+    .footer-btn-primary,
+    .footer-btn-secondary {
+        width: 100% !important;
+        padding: 12px 28px !important;
+        border-radius: 8px !important;
+        font-size: 14px !important;
+        font-weight: 600 !important;
+        height: auto !important;
+        text-align: center !important;
+        cursor: pointer !important;
+    }
+
+    /* 🔹 ЧЕКБОКС И ТЕКСТ: СТРОГО В ОДНУ СТРОКУ */
+    .checkbox-custom {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;      /* 🔑 Центрирование по вертикали */
+        justify-content: center !important;
+        gap: 8px !important;
+        margin: 16px auto 20px auto !important;
+        max-width: 90% !important;
+        cursor: pointer !important;
+        text-align: left !important;
+        line-height: 1.2 !important;         /* 🔑 Компактная высота строки */
+        position: relative;
+        z-index: 2;
+    }
+    .checkbox-custom input { display: none !important; }
+    
+    .checkmark {
+        width: 18px !important;
+        height: 18px !important;
+        min-width: 18px !important;
+        border: 2px solid #4A6294 !important;
+        border-radius: 4px !important;
+        background: transparent !important;
+        position: relative !important;
+        margin-top: 0 !important;            /* 🔑 0 отступов для идеального выравнивания */
+        flex-shrink: 0 !important;
+    }
+    .checkbox-custom input:checked + .checkmark {
+        background: #4A6294 !important;
+        border-color: #4A6294 !important;
+    }
+    .checkbox-custom input:checked + .checkmark::after {
+        content: '\f00c' !important;
+        font-family: 'Font Awesome 6 Free' !important;
+        font-weight: 900 !important;
+        font-size: 10px !important;
+        color: white !important;
+        position: absolute !important;
+        top: 50% !important; left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+    }
+    .checkbox-custom span:last-child {
+        font-size: 12px !important;          /* 🔑 Чуть меньше шрифт для компактности в строку */
+        line-height: 1.2 !important;
+        color: var(--blue-200) !important;
+        margin: 0 !important;
+        padding: 2px 0 0 0 !important;       /* 🔑 Точная подгонка по вертикали */
+    }
+    .error-tooltip { font-size: 12px !important; margin-bottom: 12px !important; }
+
+    /* 🔹 Соцсети и навигация */
+    .social-icons {
+        display: flex !important;
+        justify-content: center !important;
+        gap: 12px !important;
+        margin: 0 auto 16px auto !important;
+    }
+    .footer-nav {
+        width: 100% !important;
+        text-align: center !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    .footer-nav h4 { font-size: 14px !important; text-transform: uppercase !important; letter-spacing: 0.5px !important; margin-bottom: 12px !important; }
+    .footer-nav ul { list-style: none !important; padding: 0 !important; margin: 0 !important; display: flex !important; flex-direction: column !important; align-items: center !important; gap: 10px !important; }
+    .footer-nav ul li a { font-size: 14px !important; display: inline-block !important; padding: 2px 0 !important; }
+
+    /* 🔹 Подвал футера: КОПИРАЙТ ПОСЛЕ КНОПОК */
+    .footer-bottom {
+        display: flex !important;
+        flex-direction: column-reverse !important; /* 🔑 КНОПКИ (order: 2) сверху, текст (order: 1) снизу */
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        gap: 16px !important;
+        padding-top: 20px !important;
+        margin-top: 10px !important;
+        border-top: 1px solid rgba(255,255,255,0.15) !important;
+    }
+    
+    .copyright {
+        font-size: 12px !important;
+        opacity: 0.8 !important;
+        order: 1 !important;                 /* 🔑 Теперь внизу, после кнопок */
+    }
+    .footer-buttons {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        max-width: 320px !important;
+        gap: 10px !important;
+        order: 2 !important;                 /* 🔑 Теперь сверху, перед копирайтом */
+    }
+}
+
+/* Очень маленькие экраны */
+@media (max-width: 400px) {
+    .main-footer { padding: 32px 16px 24px !important; }
+    .subscribe-input, .subscribe-btn, .footer-btn-primary, .footer-btn-secondary {
+        padding: 10px 24px !important;
+        font-size: 13px !important;
+    }
+    .footer-nav ul li a { font-size: 13px !important; }
+    .footer-buttons { max-width: 100% !important; }
+}
+
+/* iOS фикс */
+@supports (padding: max(0px)) {
+    .main-footer { padding-bottom: max(20px, env(safe-area-inset-bottom)) !important; }
+}
+/* ============================================
+   FINAL MOBILE NAV & BURGER FIX (75% WIDTH)
+   Вставить строго в конец файла
+============================================ */
+
+/* 1. Глобальный сброс: убираем горизонтальный скролл */
+html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* 2. Хедер на мобильных: бургер строго в правом верхнем углу */
+@media (max-width: 860px) {
+    .header-inner {
+        justify-content: flex-end !important;
+        flex-wrap: nowrap !important;
+        height: 64px !important;
+        padding: 0 16px !important;
+    }
+    .header-left {
+        justify-content: flex-end !important;
+        flex: 0 !important;
+    }
+    .burger-icon {
+        display: flex !important;
+        margin-left: 0 !important;
+        order: 99 !important; /* Всегда последний элемент */
+    }
+    /* Скрываем десктопные элементы */
+    .header-inner .logo-group,
+    .header-inner .nav-menu,
+    .header-inner .buy-ticket-btn,
+    .header-inner .dots-icon,
+    .header-inner .close-icon,
+    .extra-menu-row {
+        display: none !important;
+    }
+}
+
+/* 3. Меню: выезжает справа, ровно 75%, прямые края */
+.mobile-nav {
+    position: fixed !important;
+    top: 0 !important;
+    right: -100% !important; /* Полностью спрятано за правым краем */
+    left: auto !important;
+    
+    width: 75% !important;
+    max-width: 320px !important;
+    min-width: 240px !important;
+    
+    height: 100vh !important;
+    height: -webkit-fill-available !important; /* iOS Safari fix */
+    
+    background: #1A1A1A !important;
+    z-index: 10000 !important;
+    
+    transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    
+    padding: 70px 20px 30px 20px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    
+    display: flex !important;
+    flex-direction: column !important;
+    box-sizing: border-box !important;
+    
+    border-radius: 0 !important;
+    box-shadow: -4px 0 16px rgba(0, 0, 0, 0.25) !important;
+}
+
+.mobile-nav.open {
+    right: 0 !important; /* При открытии прижимается к правому краю */
+}
+
+/* 4. Крестик закрытия */
+.close-mobile-menu {
+    position: absolute !important;
+    top: 16px !important;
+    right: 16px !important;
+    width: 38px !important;
+    height: 38px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 50% !important;
+    color: #fff !important;
+    font-size: 20px !important;
+    cursor: pointer !important;
+    z-index: 10001 !important;
+    border: none !important;
+    transition: background 0.2s !important;
+}
+.close-mobile-menu:hover { background: rgba(255, 255, 255, 0.2) !important; }
+
+/* 5. Внутренности меню */
+.mobile-logo-group {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin-bottom: 16px !important;
+    padding-bottom: 16px !important;
+    border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+}
+.mobile-logo-group img { max-width: 110px !important; height: auto !important; }
+
+.mobile-nav ul {
+    list-style: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.mobile-nav ul li a {
+    color: #F2F1F0 !important;
+    font-family: 'Unbounded', sans-serif !important;
+    font-size: 15px !important;
+    text-decoration: none !important;
+    display: block !important;
+    padding: 6px 0 !important;
+    line-height: 1.2 !important;
+    transition: color 0.2s !important;
+}
+.mobile-nav ul li a:hover,
+.mobile-nav ul li a.active { color: #E8454D !important; }
+
+.mobile-nav .buy-ticket-btn {
+    display: block !important;
+    width: 100% !important;
+    margin: 16px 0 24px 0 !important;
+    background: #E8454D !important;
+    border-radius: 8px !important;
+    padding: 12px 16px !important;
+    color: white !important;
+    font-family: 'Unbounded', sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    border: none !important;
+    cursor: pointer !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
+}
+
+/* 6. Затемнение фона */
+.overlay {
+    position: fixed !important;
+    top: 0 !important; left: 0 !important;
+    width: 100% !important; height: 100% !important;
+    background: rgba(0,0,0,0.5) !important;
+    z-index: 9999 !important;
+    display: none !important;
+    opacity: 0 !important;
+    transition: opacity 0.3s ease !important;
+}
+.overlay.active { display: block !important; opacity: 1 !important; }
+
+/* 7. iOS Safari height fix */
+@supports (-webkit-touch-callout: none) {
+    .mobile-nav { height: -webkit-fill-available !important; }
+}
+
+
+
+
+
+
+
+
+
+/* Общие сбросы и основные стили (оставлены как есть) */
+.team-page {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.page-header-team {
+    margin: 60px 0 50px;
+}
+
+.page-title-team {
+    font-size: 48px;
+    font-family: 'Unbounded', cursive;
+    font-weight: 700;
+    border-left: 4px solid #E53E3E;
+    padding-left: 20px;
+    margin: 0 0 10px;
+}
+
+.page-subtitle-team {
+    font-size: 20px;
+    color: #231F20;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.director-highlight {
+    display: flex;
+    gap: 48px;
+    background: #1A2840;
+    padding: 60px;
+    border-radius: 12px;
+    margin: 60px 0 70px;
+    flex-wrap: wrap;
+}
+
+.director-photo {
+    flex: 0 0 360px;
+}
+
+.director-photo img {
+    width: 100%;
+    border-radius: 12px;
+}
+
+.director-info {
+    flex: 1;
+    color: white;
+}
+
+.director-tag {
+    background: #F43139;
+    display: inline-block;
+    padding: 6px 17px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.director-name {
+    font-size: 32px;
+    font-weight: 700;
+    font-family: 'Unbounded', cursive;
+    margin-bottom: 15px;
+}
+
+.director-name span {
+    color: #F2F1F0;
+}
+
+.director-position {
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.director-bio {
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 25px;
+}
+
+.director-btn {
+    background: white;
+    color: #1A1A1A;
+    border: none;
+    padding: 14px 56px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-family: 'Unbounded', cursive;
+    cursor: pointer;
+}
+
+.stats-row {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    margin: 70px 0 80px;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    background: #F8F7F6;
+    border-radius: 24px;
+    padding: 24px 20px;
+    text-align: center;
+    flex: 1;
+    min-width: 180px;
+}
+
+.stat-number {
+    font-size: 48px;
+    font-weight: 700;
+    color: #F43139;
+    font-family: 'Unbounded', cursive;
+}
+
+.stat-label {
+    font-size: 16px;
+    font-weight: 700;
+    color: #2C4068;
+    font-family: 'Unbounded', cursive;
+}
+
+.work-with-us {
+    display: flex;
+    gap: 60px;
+    background: #F8F7F6;
+    border-radius: 24px;
+    padding: 60px;
+    margin: 80px 0 90px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.work-image {
+    flex: 1;
+}
+
+.work-image img {
+    width: 100%;
+    border-radius: 24px;
+}
+
+.work-content {
+    flex: 1;
+}
+
+.work-title {
+    font-size: 32px;
+    font-weight: 700;
+    font-family: 'Unbounded', cursive;
+    border-left: 3px solid #E8454D;
+    padding-left: 16px;
+    margin-bottom: 20px;
+}
+
+.work-text {
+    font-size: 16px;
+    line-height: 27px;
+    margin-bottom: 30px;
+}
+
+.work-btn {
+    background: #E8454D;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-family: 'Unbounded', cursive;
+    cursor: pointer;
+}
+
+.section-header-team {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    margin: 60px 0 40px;
+}
+
+.section-title-team {
+    font-size: 40px;
+    font-weight: 700;
+    font-family: 'Unbounded', cursive;
+    border-left: 4px solid #E8454D;
+    padding-left: 20px;
+    margin: 0;
+}
+
+.section-count {
+    font-size: 14px;
+    font-weight: 600;
+    color: #4A6294;
+    font-family: 'Unbounded', cursive;
+}
+
+/* Блоки актёров */
+.actor-block {
+    margin-bottom: 80px;
+}
+
+.actor-name {
+    font-family: 'Unbounded', cursive;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 40px;
+    color: #1A1718;
+    margin-bottom: 36px;
+    padding-left: 0;
+}
+
+.actor-photos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.actor-photo-card {
+    background: #FAFAFA;
+    border-radius: 24px;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+}
+
+.actor-photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.actor-photo-card img:hover {
+    transform: scale(1.02);
+}
+
+.show-more-wrapper {
+    text-align: center;
+    margin: 70px 0 90px;
+}
+
+.show-more-btn {
+    background: #F8F7F6;
+    border: none;
+    padding: 14px 56px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-family: 'Unbounded', cursive;
+    cursor: pointer;
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+    .team-page {
+        padding: 0 20px;
+    }
+    .page-header-team {
+        margin: 40px 0 30px;
+    }
+    .director-highlight {
+        padding: 30px;
+        gap: 30px;
+        margin: 40px 0;
+    }
+    .stats-row {
+        margin: 50px 0;
+        gap: 16px;
+    }
+    .work-with-us {
+        padding: 30px;
+        gap: 30px;
+        margin: 50px 0;
+    }
+    .actor-block {
+        margin-bottom: 60px;
+    }
+    .actor-name {
+        font-size: 24px;
+        line-height: 32px;
+        margin-bottom: 24px;
+    }
+    .actor-photos-grid {
+        gap: 16px;
+    }
+    .section-header-team {
+        margin: 50px 0 30px;
+    }
+    .show-more-wrapper {
+        margin: 50px 0 60px;
+    }
+}
+
+@media (max-width: 576px) {
+    .actor-photos-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .stat-item {
+        min-width: 140px;
+    }
+}
+/* ============================================
+   CUSTOMERS PAGE - COMPLETE FIX (FINAL)
+   Вставить в КОНЕЦ style.css, удалить старые блоки
+============================================ */
+
+/* 🔹 Базовые отступы страницы */
+.customers-page {
+    max-width: 1360px !important;
+    margin: 0 auto !important;
+    padding: 60px 20px 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* 🔹 Отступы между секциями — ЕДИНЫЙ СТАНДАРТ 60px */
+.customers-page > section {
+    margin-bottom: 60px !important;
+}
+.customers-page > section:last-child {
+    margin-bottom: 0 !important;
+}
+
+.page-title-customers {
+    margin-bottom: 20px !important;
+    padding-left: 20px !important;
+}
+.page-subtitle-customers {
+    margin-bottom: 60px !important;
+    padding: 0 20px !important;
+}
+.section-header-custom {
+    margin-bottom: 40px !important;
+    padding: 0 20px !important;
+}
+
+/* 🔹 Сетка услуг */
+.services-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 24px !important;
+    padding: 0 20px !important;
+    margin-bottom: 60px !important;
+}
+.service-card {
+    background: white !important;
+    border-radius: 12px !important;
+    outline: 1px solid #E5E3E1 !important;
+    padding: 32px !important;
+    transition: box-shadow 0.2s !important;
+}
+.service-card:hover {
+    box-shadow: 0 12px 24px rgba(0,0,0,0.08) !important;
+}
+.service-link {
+    color: #4A6294 !important;
+    transition: color 0.2s !important;
+}
+.service-link:hover {
+    color: #E8454D !important; /* 🔥 Красный при наведении */
+}
+
+/* 🔹 Конструктор запроса */
+.request-builder {
+    background: #F8F7F6 !important;
+    border-radius: 12px !important;
+    outline: 1px solid #E5E3E1 !important;
+    padding: 48px 40px !important;
+    margin: 0 20px 60px !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 40px !important;
+}
+.builder-form,
+.builder-preview {
+    flex: 1 !important;
+    min-width: 300px !important;
+}
+
+/* 🔹 Поля формы — стилизация под сайт */
+.form-group-custom {
+    margin-bottom: 20px !important;
+}
+.form-group-custom label {
+    display: block !important;
+    font-family: 'Unbounded', sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: #2A2627 !important;
+    margin-bottom: 8px !important;
+}
+
+/* 🔹 Select/Input — единый стиль со стрелкой */
+#eventType,
+#audienceCount,
+#eventFormat,
+.contact-form-right select,
+.contact-form-right input,
+.contact-form-right textarea {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    width: 100% !important;
+    padding: 12px 40px 12px 16px !important;
+    background: white !important;
+    border: 1px solid #E5E3E1 !important;
+    border-radius: 8px !important;
+    font-family: 'Nunito Sans', sans-serif !important;
+    font-size: 15px !important;
+    color: #1A1718 !important;
+    transition: border-color 0.2s, box-shadow 0.2s !important;
+    box-sizing: border-box !important;
+    /* Стрелка */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234A6294' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 16px center !important;
+    background-size: 16px !important;
+}
+#eventType:focus,
+#audienceCount:focus,
+#eventFormat:focus,
+.contact-form-right select:focus,
+.contact-form-right input:focus,
+.contact-form-right textarea:focus {
+    outline: none !important;
+    border-color: #4A6294 !important;
+    box-shadow: 0 0 0 3px rgba(74, 98, 148, 0.15) !important;
+}
+/* Опции в выпадающем списке */
+#eventType option,
+#audienceCount option,
+#eventFormat option,
+.contact-form-right select option {
+    font-family: 'Nunito Sans', sans-serif !important;
+    font-size: 15px !important;
+    color: #1A1718 !important;
+    padding: 8px !important;
+    background: white !important;
+}
+/* Убираем стрелку у textarea */
+#extraWishes,
+.contact-form-right textarea {
+    background-image: none !important;
+    min-height: 100px !important;
+    resize: vertical !important;
+    line-height: 1.5 !important;
+}
+
+/* 🔹 Кнопки конструктора — В РЯД, выровнены */
+#requestForm > div:last-child,
+.builder-form > div[style*="display: flex"] {
+    display: flex !important;
+    flex-direction: row !important; /* 🔥 В ряд, не вертикально */
+    align-items: stretch !important;
+    gap: 12px !important;
+    margin-top: 28px !important;
+    flex-wrap: wrap !important;
+}
+#requestForm > div:last-child .submit-request-btn,
+.builder-form > div[style*="display: flex"] .submit-request-btn {
+    flex: 1 !important;
+    min-width: 140px !important;
+    margin-top: 0 !important;
+}
+
+/* 🔹 Кнопка "Сбросить" — прозрачная с серой обводкой */
+#resetBtn,
+.submit-request-btn.secondary {
+    background: transparent !important;
+    color: #1A1718 !important;
+    border: 1px solid #E5E3E1 !important;
+    transition: background 0.2s, border-color 0.2s !important;
+}
+#resetBtn:hover,
+.submit-request-btn.secondary:hover {
+    background: #F8F7F6 !important;
+    border-color: #D5D3D1 !important;
+}
+
+/* 🔹 Предпросмотр */
+.builder-preview {
+    background: white !important;
+    border-radius: 12px !important;
+    outline: 1px solid #E5E3E1 !important;
+    padding: 28px !important;
+}
+.preview-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding-bottom: 16px !important;
+    border-bottom: 1px solid #E5E3E1 !important;
+    margin-bottom: 20px !important;
+}
+.preview-item {
+    display: flex !important;
+    padding: 12px 0 !important;
+    border-bottom: 1px solid #E5E3E1 !important;
+    gap: 16px !important;
+}
+.preview-label {
+    width: 100px !important;
+    font-size: 14px !important;
+    color: #5A5556 !important;
+}
+.preview-value {
+    flex: 1 !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: #1A1718 !important;
+}
+
+/* 🔹 Технический райдер */
+.rider-section {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 40px !important;
+    margin: 0 20px 60px !important;
+    padding: 0 !important;
+}
+.rider-info,
+.rider-card {
+    flex: 1 !important;
+    min-width: 300px !important;
+}
+
+/* 🔹 Условия сотрудничества — карточки одинаковой высоты */
+.terms-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 24px !important;
+    padding: 0 20px !important;
+    margin-bottom: 60px !important;
+}
+.terms-card {
+    background: #F8F7F6 !important;
+    border-radius: 12px !important;
+    outline: 1px solid #E5E3E1 !important;
+    padding: 32px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+}
+.terms-card h4 {
+    margin-bottom: 20px !important;
+    flex-shrink: 0 !important;
+}
+.terms-list {
+    flex: 1 !important;
+    margin-bottom: 0 !important;
+}
+
+/* 🔹 Контакты: ДВЕ КОЛОНКИ, форма справа */
+.contact-form-section {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important; /* 🔥 Две колонки */
+    gap: 48px !important;
+    background: #F8F7F6 !important;
+    border-radius: 12px !important;
+    outline: 1px solid #E5E3E1 !important;
+    padding: 48px !important;
+    margin: 0 20px 80px !important;
+    align-items: start !important;
+}
+
+.contact-info {
+    padding-right: 20px !important;
+}
+.contact-info h3 {
+    font-size: 24px !important;
+    margin-bottom: 16px !important;
+}
+.contact-info p {
+    font-size: 14px !important;
+    margin-bottom: 24px !important;
+}
+.contact-details {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+}
+.contact-item {
+    padding-bottom: 16px !important;
+    border-bottom: 1px solid #E5E3E1 !important;
+}
+.contact-item:last-child {
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+}
+.contact-label {
+    font-size: 12px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    color: #5A5556 !important;
+    margin-bottom: 4px !important;
+    display: block !important;
+}
+.contact-value {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    color: #1A1718 !important;
+}
+/* 🔥 Ссылки контактов: чёрные, при наведении — красные */
+.contact-value a {
+    color: #1A1718 !important;
+    text-decoration: none !important;
+    transition: color 0.2s !important;
+}
+.contact-value a:hover {
+    color: #E8454D !important;
+}
+
+/* 🔹 Форма контактов справа */
+.contact-form-right {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+}
+.contact-form-right .form-group-custom {
+    margin-bottom: 0 !important;
+}
+.contact-form-right label {
+    display: block !important;
+    font-family: 'Unbounded', sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: #2A2627 !important;
+    margin-bottom: 8px !important;
+}
+.contact-form-right input,
+.contact-form-right select,
+.contact-form-right textarea {
+    width: 100% !important;
+    padding: 12px 16px !important;
+    background: white !important;
+    border: 1px solid #E5E3E1 !important;
+    border-radius: 8px !important;
+    font-family: 'Nunito Sans', sans-serif !important;
+    font-size: 15px !important;
+    color: #1A1718 !important;
+    transition: border-color 0.2s, box-shadow 0.2s !important;
+    box-sizing: border-box !important;
+}
+.contact-form-right input:focus,
+.contact-form-right select:focus,
+.contact-form-right textarea:focus {
+    outline: none !important;
+    border-color: #4A6294 !important;
+    box-shadow: 0 0 0 3px rgba(74, 98, 148, 0.15) !important;
+}
+.contact-form-right textarea {
+    min-height: 100px !important;
+    resize: vertical !important;
+}
+
+/* 🔹 Кнопка отправки формы контактов */
+#sendContactBtn {
+    width: 100% !important;
+    background: #E8454D !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 12px 28px !important;
+    color: white !important;
+    font-family: 'Unbounded', sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    cursor: pointer !important;
+    transition: background 0.2s !important;
+    margin-top: 8px !important;
+}
+#sendContactBtn:hover {
+    background: #D62830 !important;
+}
+
+/* 🔹 Ссылки "Все услуги", "Все контакты" — красные при наведении */
+.section-link-custom,
+.service-link,
+.section-link {
+    color: #4A6294 !important;
+    transition: color 0.2s !important;
+}
+.section-link-custom:hover,
+.service-link:hover,
+.section-link:hover {
+    color: #E8454D !important;
+    opacity: 1 !important;
+}
+
+/* 🔹 Адаптив: планшеты (до 1100px) */
+@media (max-width: 1100px) {
+    .customers-page {
+        padding: 0 24px !important;
+    }
+    .services-grid,
+    .terms-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+    }
+    .request-builder,
+    .rider-section,
+    .contact-form-section {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding: 40px 32px !important;
+    }
+    /* Контакты: одна колонка на планшете */
+    .contact-form-section {
+        grid-template-columns: 1fr !important;
+        gap: 32px !important;
+    }
+    .contact-info {
+        padding-right: 0 !important;
+        text-align: center !important;
+    }
+    .contact-details {
+        align-items: center !important;
+    }
+}
+
+/* 🔹 Адаптив: мобильные (до 768px) */
+@media (max-width: 768px) {
+    .customers-page {
+        padding: 0 20px !important;
+    }
+    .page-title-customers {
+        font-size: 36px !important;
+        padding-left: 16px !important;
+    }
+    .page-subtitle-customers,
+    .section-header-custom {
+        padding: 0 16px !important;
+    }
+    .services-grid,
+    .terms-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+        padding: 0 !important;
+    }
+    .request-builder,
+    .rider-section,
+    .contact-form-section {
+        margin: 0 0 40px !important;
+        padding: 32px 24px !important;
+        border-radius: 12px !important;
+    }
+    /* Кнопки конструктора — вертикально на мобильном */
+    #requestForm > div:last-child,
+    .builder-form > div[style*="display: flex"] {
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+    /* Контакты — одна колонка */
+    .contact-form-section {
+        grid-template-columns: 1fr !important;
+        padding: 32px 24px !important;
+        margin: 0 0 40px !important;
+    }
+    .contact-info {
+        text-align: center !important;
+    }
+    .contact-details {
+        align-items: center !important;
+    }
+}
+
+/* 🔹 Очень маленькие экраны (до 400px) */
+@media (max-width: 400px) {
+    .page-title-customers {
+        font-size: 28px !important;
+    }
+    .section-title-custom {
+        font-size: 24px !important;
+    }
+    #eventType,
+    #audienceCount,
+    #eventFormat {
+        padding: 10px 32px 10px 12px !important;
+        font-size: 13px !important;
+    }
+    .submit-request-btn {
+        padding: 10px !important;
+        font-size: 13px !important;
+    }
+}
+
+/* 🔹 iOS: безопасные отступы */
+@supports (padding: max(0px)) {
+    .customers-page {
+        padding-left: max(20px, env(safe-area-inset-left)) !important;
+        padding-right: max(20px, env(safe-area-inset-right)) !important;
+    }
+}
+
+
+
+
+
+
+/* ============================================
+   CUSTOM SELECT — СТИЛИ ПОД ДИЗАЙН САЙТА
+============================================ */
+
+/* Скрываем нативный select, но оставляем для доступности */
+.custom-select-wrapper {
+    position: relative;
+    width: 100%;
+    display: block;
+}
+.custom-select-wrapper select {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+    opacity: 0 !important;
+}
+
+/* Кнопка кастомного select */
+.custom-select-btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    padding: 12px 40px 12px 16px !important;
+    background: white !important;
+    border: 1px solid #E5E3E1 !important;
+    border-radius: 8px !important;
+    font-family: 'Nunito Sans', sans-serif !important;
+    font-size: 15px !important;
+    color: #1A1718 !important;
+    cursor: pointer !important;
+    transition: border-color 0.2s, box-shadow 0.2s !important;
+    box-sizing: border-box !important;
+    /* Стрелка */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234A6294' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 16px center !important;
+    background-size: 16px !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    text-align: left !important;
+}
+.custom-select-btn:hover,
+.custom-select-btn.active {
+    border-color: #4A6294 !important;
+    box-shadow: 0 0 0 3px rgba(74, 98, 148, 0.15) !important;
+}
+.custom-select-btn.active {
+    border-radius: 8px 8px 0 0 !important;
+}
+
+/* Выпадающий список */
+.custom-select-dropdown {
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: white !important;
+    border: 1px solid #4A6294 !important;
+    border-top: none !important;
+    border-radius: 0 0 8px 8px !important;
+    max-height: 250px !important;
+    overflow-y: auto !important;
+    z-index: 100 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    display: none !important;
+}
+.custom-select-dropdown.show {
+    display: block !important;
+}
+
+/* Опции в списке */
+.custom-select-option {
+    padding: 12px 16px !important;
+    font-family: 'Nunito Sans', sans-serif !important;
+    font-size: 15px !important;
+    color: #1A1718 !important;
+    cursor: pointer !important;
+    transition: background 0.15s !important;
+    border-bottom: 1px solid #F5F5F5 !important;
+}
+.custom-select-option:last-child {
+    border-bottom: none !important;
+}
+.custom-select-option:hover {
+    background: #F8F7F6 !important;
+}
+.custom-select-option.selected {
+    background: #E8EEF7 !important;
+    color: #2A3D5E !important;
+    font-weight: 600 !important;
+}
+
+/* Скроллбар для списка */
+.custom-select-dropdown::-webkit-scrollbar {
+    width: 6px !important;
+}
+.custom-select-dropdown::-webkit-scrollbar-track {
+    background: #F5F5F5 !important;
+    border-radius: 3px !important;
+}
+.custom-select-dropdown::-webkit-scrollbar-thumb {
+    background: #4A6294 !important;
+    border-radius: 3px !important;
+}
+
+/* 🔹 Адаптив: на мобильных можно вернуть нативный select для удобства */
+@media (max-width: 768px) {
+
+    .custom-select-wrapper select {
+        position: static !important;
+        width: 100% !important;
+        height: auto !important;
+        padding: 12px 40px 12px 16px !important;
+        clip: auto !important;
+        opacity: 1 !important;
+        -webkit-appearance: none !important;
+        appearance: none !important;
+        background: white !important;
+        border: 1px solid #E5E3E1 !important;
+        border-radius: 8px !important;
+        font-family: 'Nunito Sans', sans-serif !important;
+        font-size: 15px !important;
+        color: #1A1718 !important;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234A6294' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
+        background-repeat: no-repeat !important;
+        background-position: right 16px center !important;
+        background-size: 16px !important;
+    }
+    .custom-select-btn,
+    .custom-select-dropdown {
+        display: none !important;
+    }
+    
+}
+
+
+
+
+
+
+/* ============================================
+   CUSTOMERS PAGE - NATIVE SELECT FIX
+============================================ */
+
+/* 🔹 Нативные select/input в стиле сайта */
+.form-select-customers,
+.form-input-customers,
+.contact-form-right select,
+.contact-form-right input,
+.contact-form-right textarea {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    width: 100% !important;
+    padding: 12px 40px 12px 16px !important;
+    background: white !important;
+    border: 1px solid #E5E3E1 !important;
+    border-radius: 8px !important;
+    font-family: 'Nunito Sans', sans-serif !important;
+    font-size: 15px !important;
+    color: #1A1718 !important;
+    cursor: pointer !important;
+    transition: border-color 0.2s, box-shadow 0.2s !important;
+    box-sizing: border-box !important;
+    /* Стрелка для select */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234A6294' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 16px center !important;
+    background-size: 16px !important;
+}
+
+/* Убираем стрелку у input/textarea */
+.form-input-customers,
+.contact-form-right input,
+.contact-form-right textarea {
+    background-image: none !important;
+}
+
+.form-select-customers:focus,
+.form-input-customers:focus,
+.contact-form-right select:focus,
+.contact-form-right input:focus,
+.contact-form-right textarea:focus {
+    outline: none !important;
+    border-color: #4A6294 !important;
+    box-shadow: 0 0 0 3px rgba(74, 98, 148, 0.15) !important;
+}
+
+/* Опции в выпадающем списке (стилизуются браузером, но задаём шрифт) */
+.form-select-customers option,
+.contact-form-right select option {
+    font-family: 'Nunito Sans', sans-serif !important;
+    font-size: 15px !important;
+    color: #1A1718 !important;
+    padding: 8px !important;
+    background: white !important;
+}
+
+/* 🔹 Форма контактов — ДВЕ КОЛОНКИ (инфо слева, форма справа) */
+.contact-form-section {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 48px !important;
+    background: #F8F7F6 !important;
+    border-radius: 12px !important;
+    outline: 1px solid #E5E3E1 !important;
+    padding: 48px !important;
+    margin: 0 20px 80px !important;
+    align-items: start !important;
+}
+
+.contact-info {
+    padding-right: 20px !important;
+}
+
+/* 🔹 Ссылки контактов: чёрные, при наведении — красные */
+.contact-value a {
+    color: #1A1718 !important;
+    text-decoration: none !important;
+    transition: color 0.2s !important;
+}
+.contact-value a:hover {
+    color: #E8454D !important;
+}
+
+/* 🔹 Кнопки "Сформировать" / "Сбросить" — в ряд, отступ 10px */
+#requestForm > div:last-child {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 10px !important;
+    margin-top: 28px !important;
+    flex-wrap: wrap !important;
+}
+#requestForm > div:last-child .submit-request-btn {
+    flex: 1 !important;
+    min-width: 140px !important;
+    margin-top: 0 !important;
+}
+
+/* 🔹 Кнопка "Сбросить" — прозрачная с серой обводкой */
+#resetBtn,
+.submit-request-btn.secondary {
+    background: transparent !important;
+    color: #1A1718 !important;
+    border: 1px solid #E5E3E1 !important;
+    transition: background 0.2s, border-color 0.2s !important;
+}
+#resetBtn:hover,
+.submit-request-btn.secondary:hover {
+    background: #F8F7F6 !important;
+    border-color: #D5D3D1 !important;
+}
+
+/* 🔹 Отступы между секциями — 60px */
+.customers-page > section {
+    margin-bottom: 60px !important;
+}
+.customers-page > section:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* 🔹 Карточки "Договор" / "Порядок работы" — одинаковой высоты */
+.terms-card {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+}
+.terms-list {
+    flex: 1 !important;
+}
+
+/* 🔹 Адаптив: на мобильных — одна колонка */
+@media (max-width: 1100px) {
+    .contact-form-section {
+        grid-template-columns: 1fr !important;
+        gap: 32px !important;
+    }
+    .contact-info {
+        text-align: center !important;
+        padding-right: 0 !important;
+    }
+    .contact-details {
+        align-items: center !important;
+    }
+}
+
+/* 🔹 Исправление: textarea в форме "Заказчикам" — такой же фокус, как у input/select */
+.form-group-custom textarea:focus {
+    outline: none !important;
+    border-color: #4A6294 !important;  /* 🔥 Голубая обводка как у остальных полей */
+    box-shadow: 0 0 0 3px rgba(74, 98, 148, 0.15) !important;
+}
+
+/* 🔹 Для формы контактов справа — тоже исправляем */
+.contact-form-right textarea:focus {
+    outline: none !important;
+    border-color: #4A6294 !important;
+    box-shadow: 0 0 0 3px rgba(74, 98, 148, 0.15) !important;
+}
+
+
+/* ============================================
+   CUSTOMERS PAGE - SPACING FIX (60px между блоками)
+   Вставить в САМЫЙ КОНЕЦ файла
+============================================ */
+
+/* 🔹 Универсальные отступы для всех блоков на странице Заказчикам */
+.customers-page .services-grid,
+.customers-page .request-builder,
+.customers-page .rider-section,
+.customers-page .terms-grid,
+.customers-page .contact-form-section {
+    margin-bottom: 60px !important;
+}
+
+/* 🔹 Отступы для заголовков секций */
+.customers-page .section-header-custom {
+    margin-bottom: 40px !important;
+}
+
+/* 🔹 Последний блок — без нижнего отступа */
+.customers-page .contact-form-section:last-child {
+    margin-bottom: 80px !important; /* Финальный отступ до футера */
+}
+
+/* 🔹 Адаптив: на планшетах и мобильных уменьшаем отступы */
+@media (max-width: 1100px) {
+    .customers-page .services-grid,
+    .customers-page .request-builder,
+    .customers-page .rider-section,
+    .customers-page .terms-grid,
+    .customers-page .contact-form-section {
+        margin-bottom: 50px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .customers-page .services-grid,
+    .customers-page .request-builder,
+    .customers-page .rider-section,
+    .customers-page .terms-grid,
+    .customers-page .contact-form-section {
+        margin-bottom: 40px !important;
+    }
+}
+
+
+
+/* ============================================
+   ФИКС ОТСТУПОВ ДЛЯ СТРАНИЦЫ ЗАКАЗЧИКАМ
+   (Вставить в САМЫЙ КОНЕЦ файла style.css)
+============================================ */
+
+/* 🔹 Увеличиваем отступ под блоком "Технический райдер" */
+.rider-section {
+    margin-bottom: 80px !important; /* Установил 80px для видимого разделения */
+}
+
+/* 🔹 Увеличиваем отступ под блоком "Условия сотрудничества" */
+.terms-grid {
+    margin-bottom: 80px !important;
+}
+
+/* 🔹 На мобильных устройствах делаем отступ чуть меньше, но всё еще большим */
+@media (max-width: 768px) {
+    .rider-section,
+    .terms-grid {
+        margin-bottom: 50px !important;
+    }
+}
+
+
+
+
+/* ============================================
+   HERO SLIDER AFISHA — FINAL PROFESSIONAL
+   ✅ Без оверлеев, белый текст с тенью, контент внизу, умные стрелки
+============================================ */
+
+/* 🔹 Контейнер слайдера */
+.hero-slider-afisha {
+    position: relative;
+    width: 100%;
+    height: 720px;
+    background: #1A1718; /* Фоллбэк, если изображение не загрузится */
+    overflow: hidden;
+    margin-bottom: 60px;
+}
+
+/* 🔹 Слайд */
+.hero-slide-afisha {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+    display: flex;
+    align-items: flex-end; /* 🔥 Контент прижат к низу */
+    justify-content: flex-start;
+}
+
+.hero-slide-afisha.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 1;
+}
+
+/* 🔹 Фоновое изображение — БЕЗ затемнения, БЕЗ градиентов */
+.hero-bg-afisha {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    /* 🔥 Никаких фильтров, оверлеев, масок — чистое изображение */
+}
+
+/* 🔹 Контейнер контента — опущен почти к низу */
+.hero-content-afisha {
+    position: relative;
+    z-index: 2;
+    max-width: 1360px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 40px;
+    padding-bottom: 60px; /* 🔥 Отступ от нижнего края слайдера */
+    padding-left: 60px;   /* 🔥 Отступ слева */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* 🔹 Заголовок — белый с тенью для читаемости */
+.hero-title-afisha {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 1.1;
+    color: white;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7); /* 🔥 Глубокая тень */
+    margin-bottom: 16px;
+    max-width: 650px;
+    /* 🔥 Без фона, только тень */
+}
+
+/* 🔹 Подзаголовок — белый с тенью */
+.hero-subtitle-afisha {
+    font-size: 18px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.98);
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+    margin-bottom: 28px;
+    max-width: 550px;
+    /* 🔥 Без фона */
+}
+
+/* 🔹 Кнопки */
+.hero-buttons-afisha {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.hero-btn-dark {
+    background: #E8454D;
+    padding: 12px 28px;
+    border-radius: 8px;
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    text-shadow: none;
+}
+.hero-btn-dark:hover {
+    background: #D62830;
+    transform: translateY(-1px);
+}
+
+.hero-btn-light {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 12px 28px;
+    border-radius: 8px;
+    color: #1A1718;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    text-shadow: none;
+}
+.hero-btn-light:hover {
+    background: white;
+    transform: translateY(-1px);
+}
+
+/* 🔹 Точки навигации */
+.slider-dots {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 3;
+}
+
+.slider-dot {
+    width: 20px;
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: background 0.2s, width 0.2s;
+}
+.slider-dot.active {
+    width: 28px;
+    background: white;
+}
+.slider-dot:hover {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+
+
+.slider-arrow-left { left: 20px; }
+.slider-arrow-right { right: 20px; }
+
+
+/* 🔹 Адаптив: планшеты (до 1100px) */
+@media (max-width: 1100px) {
+    .hero-slider-afisha {
+        height: 600px;
+    }
+    .hero-content-afisha {
+        padding-bottom: 50px;
+        padding-left: 40px;
+    }
+    .hero-title-afisha {
+        font-size: 40px;
+    }
+    .hero-subtitle-afisha {
+        font-size: 16px;
+    }
+}
+
+/* 🔹 Адаптив: мобильные (до 768px) */
+@media (max-width: 768px) {
+    .hero-slider-afisha {
+        height: 520px;
+        margin-bottom: 40px;
+    }
+    
+    .hero-content-afisha {
+        padding: 0 20px;
+        padding-bottom: 50px; /* 🔥 Контент всё ещё внизу, но ближе к краю */
+        padding-left: 24px;
+    }
+    
+    .hero-title-afisha {
+        font-size: 32px;
+        line-height: 1.2;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8); /* 🔥 Усиленная тень для мобильных */
+    }
+    
+    .hero-subtitle-afisha {
+        font-size: 15px;
+        line-height: 1.4;
+        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7);
+    }
+    
+    .hero-buttons-afisha {
+        gap: 12px;
+    }
+    
+    .hero-btn-dark,
+    .hero-btn-light {
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+    
+    .slider-dots {
+        bottom: 24px;
+        gap: 10px;
+    }
+    
+    .slider-dot {
+        width: 16px;
+        height: 5px;
+    }
+    .slider-dot.active {
+        width: 24px;
+    }
+    
+    /* 🔥 На мобильных стрелки НЕ показываем НИКОГДА */
+    .slider-arrow {
+        display: none !important;
+    }
+}
+
+/* 🔹 Очень маленькие экраны (до 400px) */
+@media (max-width: 400px) {
+    .hero-slider-afisha {
+        height: 460px;
+    }
+    .hero-content-afisha {
+        padding-bottom: 40px;
+        padding-left: 20px;
+    }
+    .hero-title-afisha {
+        font-size: 26px;
+    }
+    .hero-subtitle-afisha {
+        font-size: 14px;
+    }
+}
+
+/* 🔥 HERO SLIDER AFISHA — FIX ALL ISSUES 🔥 */
+
+/* Убираем синий фон контейнера */
+.hero-slider-afisha {
+    background: none !important;
+}
+
+/* Убираем прозрачность с изображения */
+.hero-bg-afisha {
+    opacity: 1 !important;
+}
+
+/* Текст — БЕЛЫЙ с тенью, читаемый на любом фоне */
+.hero-title-afisha {
+    color: white !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8) !important;
+}
+.hero-subtitle-afisha {
+    color: rgba(255, 255, 255, 0.95) !important;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* ОПУСКАЕМ контент вниз */
+.hero-slide-afisha {
+    align-items: flex-end !important; /* Прижимаем к низу */
+}
+.hero-content-afisha {
+    padding-bottom: 100px !important; /* Отступ от нижнего края */
+    padding-left: 60px !important;   /* Отступ слева */
+}
+
+
+
+/* На мобильных стрелки не показываем НИКОГДА */
+@media (max-width: 768px) {
+    .slider-arrow {
+        display: none !important;
+    }
+    .hero-content-afisha {
+        padding-bottom: 50px !important;
+        padding-left: 24px !important;
+    }
+    .hero-title-afisha {
+        font-size: 32px !important;
+    }
+}
+/* 🔹 Стрелки слайдера — базовые стили */
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #2A3D5E;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.2s ease, transform 0.2s ease !important;
+    
+    /* 🔥 Скрыты по умолчанию — управляем через JS */
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+.slider-arrow-left { left: 20px; }
+.slider-arrow-right { right: 20px; }
+
+/* 🔥 При наведении — увеличение */
+.slider-arrow:hover {
+    transform: translateY(-50%) scale(1.08) !important;
+    background: white !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* 🔹 На мобильных стрелки не показываем НИКОГДА */
+@media (max-width: 768px) {
+    .slider-arrow {
+        display: none !important;
+    }
+}
+
+
+/* 🔹 Фикс бургера для узких экранов (до 400px) */
+@media (max-width: 400px) {
+  .header-inner {
+    height: 60px !important;
+    padding: 0 12px !important;
+  }
+  .burger-icon {
+    display: flex !important;
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 22px !important;
+    order: 99 !important;
+  }
+  /* Гарантированно скрываем десктоп-меню */
+  .header-inner .logo-group,
+  .header-inner .nav-menu,
+  .header-inner .buy-ticket-btn,
+  .extra-menu-row {
+    display: none !important;
+  }
+}
+
+
+/* 🔹 Фикс горизонтального переполнения для мобильных */
+@media (max-width: 400px) {
+  .scroll-wrapper,
+  #upcomingPerformancesScroll,
+  #playsScroll,
+  #merchScroll {
+    padding: 16px !important;
+    margin: 0 !important; /* ← Убираем отрицательные отступы */
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+  } 
+  .performance-card,
+  .play-card,
+  .merch-card {
+    flex: 0 0 calc(100vw - 32px) !important; /* ← Карточка = ширина экрана минус отступы */
+    scroll-snap-align: start !important;
+  } 
+  /* Убираем белую линию — проверяем outline/border */
+  .performance-card,
+  .play-card,
+  .merch-card,
+  .service-card {
+    outline: none !important;
+    border: 1px solid #E5E3E1 !important;
+  }
+}
+
+🔹 Убираем лишние обводки на мобильных 
+@media (max-width: 400px) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  [class*="card"],
+  .performance-card,
+  .play-card,
+  .merch-card,
+  .service-card,
+  .team-card,
+  .cast-card,
+  .similar-card {
+    outline: none !important;
+    box-shadow: none !important;
+    border: 1px solid #E5E3E1 !important;
+    border-radius: 8px !important;
+  }
+}
+
+
+
+
+
+/* ============================================
+🔥 MOBILE FIX - FINAL CORRECT VERSION (добавить в КОНЕЦ style.css)
+============================================ */
+
+/* 1. Глобальные настройки для мобильных */
+@media (max-width: 860px) {
+    /* Убираем горизонтальный скролл */
+    html, body {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+    }
+    
+    /* 🔹 Хедер: прозрачный, без размытия, только бургер */
+    .main-header {
+        background: transparent !important;
+        backdrop-filter: none !important;
+        border-bottom: none !important;
+        box-shadow: none !important;
+        position: absolute !important;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100 !important;
+    }
+    
+    .header-inner {
+        height: 60px !important;
+        padding: 0 16px !important;
+        background: transparent !important;
+        justify-content: flex-end !important;
+        flex-wrap: nowrap !important;
+    }
+    
+    /* Скрываем десктопные элементы хедера */
+    .header-inner .logo-group,
+    .header-inner .nav-menu,
+    .header-inner .buy-ticket-btn,
+    .header-inner .dots-icon,
+    .header-inner .close-icon,
+    .extra-menu-row {
+        display: none !important;
+    }
+    
+    /* 🔹 Бургер: показываем, стилизуем */
+    .burger-icon {
+        display: flex !important;
+        width: 48px !important;
+        height: 48px !important;
+        background: white !important;
+        border-radius: 50% !important;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.15) !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 22px !important;
+        color: #231F20 !important;
+        margin-left: auto !important;
+        order: 99 !important;
+        cursor: pointer !important;
+        transition: all 0.2s !important;
+    }
+    .burger-icon:hover {
+        color: var(--primary-red) !important;
+        transform: scale(1.05) !important;
+    }
+    
+    /* 🔹 Бегущая строка: отступ под хедер */
+    .ticker {
+        margin-top: 60px !important;
+        padding: 8px 0 !important;
+    }
+    .ticker-content {
+        font-size: 12px !important;
+    }
+    .ticker-content span {
+        margin: 0 20px !important;
+    }
+    
+    /* 🔹 Слайдер афиши */
+    .hero-slider-afisha {
+        height: 480px !important;
+        margin-bottom: 40px !important;
+    }
+    .hero-title-afisha {
+        font-size: 28px !important;
+        padding-left: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero-subtitle-afisha {
+        font-size: 14px !important;
+        padding-left: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero-buttons-afisha {
+        flex-direction: column !important;
+        width: 100% !important;
+        padding: 0 16px !important;
+        gap: 12px !important;
+    }
+    .hero-buttons-afisha button {
+        width: 100% !important;
+        padding: 12px !important;
+    }
+    
+    /* 🔹 Контейнеры: уменьшаем отступы */
+    .container-main,
+    .about-section .container-main,
+    .clients-section .container-main,
+    .plays-section .container-main,
+    .team-section .container-main,
+    .shop-section .container-main {
+        padding: 0 16px !important;
+        max-width: 100% !important;
+    }
+    
+    /* 🔹 Заголовки секций */
+    .section-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 12px !important;
+        margin-bottom: 24px !important;
+        padding: 0 !important;
+    }
+    .section-title {
+        font-size: 24px !important;
+        padding-left: 0 !important;
+        margin: 0 !important;
+    }
+    .section-title::before {
+        display: none !important;
+    }
+    .section-link {
+        font-size: 13px !important;
+        padding-left: 0 !important;
+    }
+    
+    /* 🔹 Горизонтальные скролл-контейнеры */
+    .scroll-container {
+        overflow: visible !important;
+    }
+    .scroll-wrapper {
+        padding: 0 4px !important;
+        margin: 0 -4px !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch !important;
+        gap: 8px !important;
+    }
+    .scroll-wrapper::-webkit-scrollbar {
+        display: none !important;
+    }
+    
+    /* Карточки в скролле */
+    .performance-card,
+    .play-card,
+    .merch-card {
+        flex: 0 0 85vw !important;
+        scroll-snap-align: start !important;
+        margin: 0 4px !important;
+        border-radius: 12px !important;
+    }
+    .performance-img,
+    .play-img,
+    .merch-img {
+        height: 160px !important;
+        object-fit: cover !important;
+    }
+    .performance-content,
+    .play-content,
+    .merch-content {
+        padding: 12px !important;
+        gap: 8px !important;
+    }
+    .performance-name,
+    .play-name,
+    .merch-name {
+        font-size: 16px !important;
+        line-height: 1.3 !important;
+        margin-bottom: 4px !important;
+    }
+    .performance-desc,
+    .play-desc {
+        font-size: 13px !important;
+        line-height: 1.4 !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2 !important;
+        -webkit-box-orient: vertical !important;
+        overflow: hidden !important;
+    }
+    .performance-btns,
+    .play-content .btn-details,
+    .play-content .btn-buy {
+        flex-direction: column !important;
+        gap: 8px !important;
+        margin-top: 8px !important;
+    }
+    .performance-btns button,
+    .play-content button,
+    .merch-btn {
+        width: 100% !important;
+        padding: 10px !important;
+        font-size: 13px !important;
+        border-radius: 8px !important;
+    }
+    
+    /* Стрелки скролла: скрываем на мобильных (свайп удобнее) */
+    .scroll-btn {
+        display: none !important;
+    }
+    
+    /* 🔹 Блок "О театре" */
+    .about-section {
+        padding: 40px 0 !important;
+    }
+    .about-content {
+        flex-direction: column !important;
+        gap: 24px !important;
+    }
+    .about-text h3,
+	.clients-info h3	{
+        font-size: 20px !important;
+        margin-bottom: 16px !important;
+    }
+    .about-text p {
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+        margin-bottom: 12px !important;
+    }
+    .about-img {
+        width: 100% !important;
+    }
+    .about-img img {
+        width: 100% !important;
+        border-radius: 12px !important;
+    }
+    
+    /* 🔹 Блок "Заказчикам" */
+    .clients-section {
+        padding: 40px 0 !important;
+    }
+    .clients-grid {
+        flex-direction: column !important;
+        gap: 32px !important;
+    }
+    .clients-form {
+        padding: 24px 20px !important;
+        border-radius: 12px !important;
+    }
+    .clients-form h3 {
+        font-size: 20px !important;
+        margin-bottom: 20px !important;
+    }
+    .clients-form .form-group {
+        margin-bottom: 16px !important;
+    }
+    .clients-form .form-group label {
+        font-size: 13px !important;
+        margin-bottom: 6px !important;
+    }
+    .clients-form .form-group input,
+    .clients-form .form-group textarea {
+        padding: 12px 14px !important;
+        font-size: 14px !important;
+        border-radius: 8px !important;
+    }
+    .clients-form .form-group textarea {
+        min-height: 80px !important;
+    }
+    .submit-client-btn {
+        width: 100% !important;
+        padding: 12px !important;
+        font-size: 14px !important;
+        border-radius: 8px !important;
+    }
+    .features-list {
+        gap: 12px !important;
+    }
+    .feature-item {
+        padding: 12px 16px 12px 44px !important;
+        font-size: 13px !important;
+        border-radius: 8px !important;
+    }
+    .feature-item i {
+        left: 16px !important;
+        top: 14px !important;
+        font-size: 16px !important;
+    }
+    .feature-item strong {
+        display: block !important;
+        margin-bottom: 2px !important;
+    }
+    .download-btn-tech {
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 10px 16px !important;
+        font-size: 13px !important;
+    }
+    
+    /* 🔹 Команда */
+    .team-section {
+        padding: 40px 0 !important;
+    }
+    .team-scroll-wrapper {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 16px !important;
+    }
+    .team-card {
+        text-align: center !important;
+    }
+    .team-img {
+        height: 180px !important;
+        border-radius: 12px !important;
+        object-fit: cover !important;
+    }
+    .team-name {
+        font-size: 14px !important;
+        margin-top: 12px !important;
+    }
+    .team-position {
+        font-size: 12px !important;
+    }
+    
+    /* 🔹 Футер на мобильных */
+    .main-footer {
+        padding: 40px 20px 30px !important;
+        margin-top: 40px !important;
+        text-align: center !important;
+    }
+    .footer-top {
+        flex-direction: column !important;
+        gap: 24px !important;
+        align-items: center !important;
+    }
+    .footer-brand {
+        text-align: center !important;
+        max-width: 100% !important;
+    }
+    .footer-logo {
+        justify-content: center !important;
+    }
+    .footer-theater-title {
+        font-size: 16px !important;
+        white-space: normal !important;
+        line-height: 1.3 !important;
+    }
+    .footer-description {
+        text-align: center !important;
+    }
+    .newsletter-title {
+        text-align: center !important;
+    }
+    .subscribe-form {
+        flex-direction: column !important;
+        height: auto !important;
+        gap: 10px !important;
+        max-width: 100% !important;
+    }
+    .subscribe-input,
+    .subscribe-btn {
+        width: 100% !important;
+        border-radius: 8px !important;
+        padding: 12px !important;
+        font-size: 14px !important;
+        text-align: center !important;
+    }
+
+    .social-icons {
+        justify-content: center !important;
+    }
+    .footer-nav {
+        text-align: center !important;
+    }
+    .footer-nav ul {
+        align-items: center !important;
+    }
+    .footer-buttons {
+        flex-direction: column !important;
+        width: 100% !important;
+        max-width: 300px !important;
+        gap: 10px !important;
+    }
+    .footer-btn-primary,
+    .footer-btn-secondary {
+        width: 100% !important;
+        padding: 12px !important;
+        font-size: 14px !important;
+    }
+    .footer-bottom {
+        flex-direction: column-reverse !important;
+        text-align: center !important;
+        gap: 12px !important;
+        padding-top: 20px !important;
+    }
+    
+    /* 🔹 Общие улучшения для мобильных */
+    * {
+        -webkit-tap-highlight-color: transparent !important;
+    }
+    button,
+    .btn-details,
+    .btn-buy,
+    .merch-btn,
+    .submit-client-btn,
+    .buy-ticket-btn {
+        min-height: 44px !important;
+        min-width: 44px !important;
+    }
+    input,
+    textarea,
+    select {
+        font-size: 16px !important;
+    }
+}
+
+/* Очень маленькие экраны (до 400px) */
+@media (max-width: 400px) {
+    .section-title {
+        font-size: 20px !important;
+    }
+    .performance-name,
+    .play-name,
+    .merch-name {
+        font-size: 14px !important;
+    }
+    .team-scroll-wrapper {
+        grid-template-columns: 1fr !important;
+    }
+    .ticker-content {
+        font-size: 11px !important;
+    }
+    .hero-slider-afisha {
+        height: 420px !important;
+    }
+    .hero-title-afisha {
+        font-size: 24px !important;
+    }
+}
+
+/* iOS safe area fix */
+@supports (padding: max(0px)) {
+    @media (max-width: 860px) {
+        .main-header {
+            padding-top: max(0px, env(safe-area-inset-top)) !important;
+        }
+        .main-footer {
+            padding-bottom: max(30px, env(safe-area-inset-bottom)) !important;
+        }
+    }
+}
+
+/* ============================================
+🔥 MOBILE FIX - FINAL (вставить в САМЫЙ КОНЕЦ style.css)
+============================================ */
+@media (max-width: 860px) {
+    /* Убираем горизонтальный скролл */
+    html, body {
+        overflow-x: hidden !important;
+        width: 100% !important;
+    }
+
+    /* 🔹 Скролл-контейнеры: убираем отрицательные отступы */
+    .scroll-wrapper,
+    #upcomingPerformancesScroll,
+    #playsScroll,
+    #merchScroll {
+        padding: 16px !important;
+        margin: 0 !important; /* ← Ключевое: убираем -60px/-40px */
+        gap: 12px !important;
+        scroll-snap-type: x mandatory !important;
+    }
+
+    /* 🔹 Карточки: точная ширина + убираем outline */
+    .performance-card,
+    .play-card,
+    .merch-card {
+        flex: 0 0 calc(100vw - 32px) !important; /* ← 16px padding × 2 */
+        scroll-snap-align: start !important;
+        margin: 0 !important;
+        outline: none !important; /* ← Убираем белую линию */
+        border: 1px solid #E5E3E1 !important; /* ← Заменяем outline на border */
+        border-radius: 12px !important;
+    }
+
+    /* 🔹 Скрываем стрелки скролла на мобильных */
+    .scroll-btn {
+        display: none !important;
+    }
+}
+
+/* Очень маленькие экраны */
+@media (max-width: 400px) {
+    .scroll-wrapper,
+    #upcomingPerformancesScroll,
+    #playsScroll,
+    #merchScroll {
+        padding: 12px !important;
+    }
+    .performance-card,
+    .play-card,
+    .merch-card {
+        flex: 0 0 calc(100vw - 24px) !important;
+    }
+}
+
+
+/* ============================================
+   TICKER (БЕГУЩАЯ СТРОКА) — ЧИСТЫЙ КОД
+============================================ */
+.ticker {
+    width: 100%;
+    overflow: hidden;
+    background: #2A3D5E;
+    padding: 10px 0;
+    position: relative;
+}
+
+.ticker-content {
+    display: inline-flex; /* Надежнее чем inline-block для строк */
+    white-space: nowrap;
+    animation: ticker-scroll 30s linear infinite;
+    will-change: transform; /* Аппаратное ускорение */
+}
+
+.ticker-content span {
+    display: inline-flex;
+    align-items: center;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: white;
+    padding: 0 30px; /* Отступы между фразами */
+}
+
+.ticker-content span.red-dot {
+    color: #E8454D;
+    padding: 0 10px 0 0;
+}
+
+@keyframes ticker-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* На мобильных замедляем для плавности */
+@media (max-width: 768px) {
+    .ticker-content {
+        animation-duration: 40s !important;
+    }
+}
+
+
+
+
+
+
+@media (max-width: 860px) {
+  /* Сброс глобальных отступов */
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden !important;
+  }
+  
+  /* Контейнер тикера */
+  .ticker {
+    overflow: hidden !important;
+    position: relative !important;
+    background: #2A3D5E !important;
+    margin: 0 !important;
+    padding: 8px 0 !important;
+    width: 100vw !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
+  
+
+  
+
+  
+  /* Исправление для очень узких экранов */
+  @media (max-width: 400px) {
+    .ticker-content {
+      animation-duration: 35s !important; /* Медленнее = плавнее */
+    }
+  }
+}
+
+
+
+@media (max-width: 860px) {
+    /* ... другие стили ... */
+    .ticker-content {
+        display: inline-flex !important;   /* ← вместо flex */
+        animation: ticker-scroll 30s linear infinite !important;
+        white-space: nowrap !important;
+    }
+    /* ... остальное ... */
+}
+
+.ticker {
+    overflow: hidden;
+    width: 100%;
+}
+
+
+/* ============================================
+   🔥 МОБИЛЬНЫЕ СТИЛИ ДЛЯ ГОРИЗОНТАЛЬНОГО СКРОЛЛА
+   Экраны меньше 860px
+============================================ */
+
+@media (max-width: 860px) {
+    /* Убираем глобальный горизонтальный скролл */
+    html, body {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Контейнеры скролла — правильные отступы */
+    .scroll-container {
+        overflow: visible !important;
+        width: 100% !important;
+    }
+
+    .scroll-wrapper,
+    #upcomingPerformancesScroll,
+    #playsScroll,
+    #merchScroll {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 16px !important;
+        overflow-x: auto !important;
+        overflow-y: visible !important;
+        scroll-behavior: smooth !important;
+        scrollbar-width: none !important;
+        -webkit-overflow-scrolling: touch !important;
+        scroll-snap-type: x mandatory !important;
+        
+        /* Ключевые отступы — без отрицательных значений */
+        padding: 16px !important;
+        margin: 0 !important;
+        width: 100% !important;
+    }
+
+    /* Скрываем скроллбар */
+    .scroll-wrapper::-webkit-scrollbar,
+    #upcomingPerformancesScroll::-webkit-scrollbar,
+    #playsScroll::-webkit-scrollbar,
+    #merchScroll::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    /* Карточки — точная ширина с отступами */
+    .performance-card,
+    .play-card,
+    .merch-card {
+        flex: 0 0 calc(100vw - 48px) !important;
+        max-width: calc(100vw - 48px) !important;
+        min-width: calc(100vw - 48px) !important;
+        scroll-snap-align: start !important;
+        margin: 0 !important;
+        
+        /* Убираем outline, используем border */
+        outline: none !important;
+        border: 1px solid #E5E3E1 !important;
+        border-radius: 12px !important;
+        background: white !important;
+        
+        /* Гарантируем, что карточка не вылезает */
+        box-sizing: border-box !important;
+    }
+
+    /* Картинки внутри карточек */
+    .performance-img,
+    .play-img,
+    .merch-img {
+        width: 100% !important;
+        height: 160px !important;
+        object-fit: cover !important;
+        display: block !important;
+    }
+
+    /* Контент внутри карточек */
+    .performance-content,
+    .play-content,
+    .merch-content {
+        padding: 14px !important;
+    }
+
+    /* Названия */
+    .performance-name,
+    .play-name,
+    .merch-name {
+        font-size: 16px !important;
+        line-height: 1.3 !important;
+        margin-bottom: 6px !important;
+    }
+
+    /* Описание — обрезаем до 2 строк */
+    .performance-desc,
+    .play-desc {
+        font-size: 13px !important;
+        line-height: 1.4 !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2 !important;
+        -webkit-box-orient: vertical !important;
+        overflow: hidden !important;
+    }
+
+    /* Кнопки */
+    .performance-btns,
+    .play-content .btn-details,
+    .play-content .btn-buy {
+        flex-direction: column !important;
+        gap: 8px !important;
+        margin-top: 10px !important;
+    }
+
+    .performance-btns button,
+    .play-content button,
+    .merch-btn {
+        width: 100% !important;
+        padding: 10px !important;
+        font-size: 13px !important;
+        border-radius: 8px !important;
+    }
+
+    /* Цена в магазине */
+    .merch-price {
+        font-size: 18px !important;
+        margin: 6px 0 12px !important;
+    }
+
+    /* Скрываем стрелки скролла на мобильных */
+    .scroll-btn {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+    }
+}
+
+/* ============================================
+   🔥 ОЧЕНЬ МАЛЕНЬКИЕ ЭКРАНЫ (до 400px)
+============================================ */
+
+@media (max-width: 400px) {
+    .scroll-wrapper,
+    #upcomingPerformancesScroll,
+    #playsScroll,
+    #merchScroll {
+        padding: 12px !important;
+        gap: 12px !important;
+    }
+
+    .performance-card,
+    .play-card,
+    .merch-card {
+        flex: 0 0 calc(100vw - 24px) !important;
+        max-width: calc(100vw - 24px) !important;
+        min-width: calc(100vw - 24px) !important;
+    }
+
+    .performance-img,
+    .play-img,
+    .merch-img {
+        height: 140px !important;
+    }
+
+    .performance-name,
+    .play-name,
+    .merch-name {
+        font-size: 14px !important;
+    }
+
+    .performance-desc,
+    .play-desc {
+        font-size: 12px !important;
+        -webkit-line-clamp: 2 !important;
+    }
+}
+
+/* ============================================
+   🔥 ЭКРАНЫ ОТ 400px ДО 860px (промежуточные)
+============================================ */
+
+@media (min-width: 401px) and (max-width: 860px) {
+    .performance-card,
+    .play-card,
+    .merch-card {
+        flex: 0 0 calc(100vw - 48px) !important;
+        max-width: calc(100vw - 48px) !important;
+        min-width: calc(100vw - 48px) !important;
+    }
+}
+
+
+
